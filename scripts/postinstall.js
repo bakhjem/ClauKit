@@ -26,14 +26,18 @@ const { execSync } = require("child_process");
     
     // Install spark-dev package via git
     console.log("📦 Installing spark-dev package via git...");
+    let gitInstallSuccess = false;
     try {
       execSync("npm install https://github.com/trungdo9/spark-dev.git", { 
-        stdio: 'inherit',
+        stdio: 'pipe', // Changed from 'inherit' to 'pipe' to better handle errors
         cwd: projectRoot 
       });
       console.log("✓ spark-dev package installed via git");
+      gitInstallSuccess = true;
     } catch (installError) {
-      console.error("✗ Failed to install spark-dev package:", installError.message);
+      console.error("⚠ Git install encountered issues (this is common on Windows):");
+      console.error("   Error:", installError.message);
+      console.log("🔄 Continuing with file copying from current directory...");
       // Continue with file copying even if install fails
     }
     
