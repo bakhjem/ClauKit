@@ -1,36 +1,38 @@
 {
-  "name": "next-engineer",
+  "name": "spark-dev",
   "version": "1.0.1",
-  "description": "A comprehensive boilerplate template for building professional software projects with CLI Coding Agents (Claude Code and Open Code).",
+  "description": "A development template for building AI agents using Claude.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "echo \"Linting passed\"",
     "semantic-release": "semantic-release",
-    "prepare": "husky install || true"
+    "prepare": "husky install || true",
+    "postinstall": "node scripts/postinstall.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/truongtv22/next-engineer.git"
+    "url": "https://github.com/trungdo9/spark-dev.git"
   },
   "keywords": [
-    "claude-code",
     "ai-agents",
     "development-template",
     "boilerplate",
     "automation",
     "cli-tools"
   ],
-  "author": "Duy Nguyen",
+  "author": "Trung Dev <trungdev@example.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/truongtv22/claudekit-engineer/issues"
+    "url": "https://github.com/trungdo9/spark-dev/issues"
   },
-  "homepage": "https://github.com/truongtv22/claudekit-engineer#readme",
+  "homepage": "https://github.com/trungdo9/spark-dev#readme",
   "files": [
     ".claude/",
     ".opencode/",
     "plans/",
+    "scripts/",
+    "docs/",
     "AGENTS.md",
     "CLAUDE.md",
     "README.md",
@@ -55,7 +57,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "publishConfig": {
-    "access": "public"
+  "dependencies": {
+    "next-engineer": "github:trungdo9/spark-dev"
   }
 }

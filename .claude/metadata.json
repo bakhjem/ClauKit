@@ -1,15 +1,13 @@
 {
   "version": "1.0.1",
-  "name": "claudekit-engineer",
-  "description": "A comprehensive boilerplate template for building professional software projects with CLI Coding Agents (Claude Code and Open Code).",
-  "buildDate": "2025-11-26T07:40:39.469Z",
+  "name": "spark-dev",
+  "description": "A development template for building AI agents using Claude.",
+  "buildDate": "2025-12-05T15:21:17.060Z",
   "repository": {
     "type": "git",
-    "url": "https://github.com/truongtv22/claudekit-engineer.git"
+    "url": "https://github.com/trungdo9/spark-dev.git"
   },
-  "download": {
-    "lastDownloadedAt": null,
-    "downloadedBy": null,
-    "installCount": 0
-  }
+  "setupDate": "2025-12-05T15:21:17.061Z",
+  "templateVersion": "1.0.1",
+  "installedFrom": "https://github.com/trungdo9/spark-dev.git"
 }
