@@ -9,6 +9,7 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const os = require("os");
 
 (function main() {
   const projectRoot = process.cwd();
@@ -42,13 +43,39 @@ const { execSync } = require("child_process");
     }
     
     // Get the spark-dev package location
-    // First try node_modules, then fallback to current directory (for development)
+    // First try node_modules, then fallback to current directory, then git clone
     let sparkDevPath = path.join(projectRoot, "node_modules", "spark-dev");
+    let usedFallback = false;
     
     // If not in node_modules, use current directory (assuming we're in spark-dev repo)
     if (!fs.existsSync(sparkDevPath)) {
-      console.log("📁 Using current project directory as spark-dev source");
-      sparkDevPath = projectRoot;
+      // Check if current directory has spark-dev files
+      const hasSparkDevFiles = fs.existsSync(path.join(projectRoot, ".claude")) || 
+                               fs.existsSync(path.join(projectRoot, "docs")) ||
+                               fs.existsSync(path.join(projectRoot, "CLAUDE.md"));
+      
+      if (hasSparkDevFiles) {
+        console.log("📁 Using current project directory as spark-dev source");
+        sparkDevPath = projectRoot;
+        usedFallback = true;
+      } else if (!gitInstallSuccess) {
+        // Try git clone as last resort
+        console.log("🔄 Attempting git clone to get spark-dev files...");
+        try {
+          const tempDir = path.join(os.tmpdir(), `spark-dev-${Date.now()}`);
+          execSync(`git clone https://github.com/trungdo9/spark-dev.git "${tempDir}"`, { 
+            stdio: 'pipe',
+            cwd: projectRoot 
+          });
+          console.log("✓ Successfully cloned spark-dev repository");
+          sparkDevPath = tempDir;
+          usedFallback = true;
+        } catch (cloneError) {
+          console.error("⚠ Git clone also failed:", cloneError.message);
+          console.log("❌ Unable to retrieve spark-dev files. Skipping template setup.");
+          return;
+        }
+      }
     }
     
     // Source directories and files to copy
@@ -111,6 +138,16 @@ const { execSync } = require("child_process");
 
       fs.writeFileSync(metadataPath, JSON.stringify(metadata, null, 2), "utf8");
       console.log(`✓ Metadata created at ${metadataPath}`);
+    }
+
+    // Cleanup temp directory if used
+    if (usedFallback && sparkDevPath !== projectRoot && sparkDevPath.includes(os.tmpdir())) {
+      try {
+        fs.rmSync(sparkDevPath, { recursive: true, force: true });
+        console.log("🧹 Cleaned up temporary directory");
+      } catch (cleanupError) {
+        console.warn("⚠ Could not clean up temporary directory:", cleanupError.message);
+      }
     }
 
     console.log(`🎉 spark-dev template setup completed successfully!`);

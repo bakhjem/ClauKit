@@ -2,12 +2,12 @@
   "version": "1.0.1",
   "name": "spark-dev",
   "description": "A development template for building AI agents using Claude.",
-  "buildDate": "2025-12-05T15:27:14.774Z",
+  "buildDate": "2025-12-05T15:33:12.210Z",
   "repository": {
     "type": "git",
     "url": "https://github.com/trungdo9/spark-dev.git"
   },
-  "setupDate": "2025-12-05T15:27:14.775Z",
+  "setupDate": "2025-12-05T15:33:12.211Z",
   "templateVersion": "1.0.1",
   "installedFrom": "https://github.com/trungdo9/spark-dev.git"
 }
