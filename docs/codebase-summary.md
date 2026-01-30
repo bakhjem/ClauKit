@@ -1,38 +1,56 @@
 # Codebase Summary
 
-**Last Updated**: 2025-11-05
-**Version**: 1.10.5
-**Repository**: [claudekit/claudekit-engineer](https://github.com/claudekit/claudekit-engineer)
+**Last Updated**: 2026-01-31
+**Version**: 1.0.1
+**Repository**: https://github.com/trungdo9/spark-dev
 
 ## Overview
 
-ClaudeKit Engineer is a comprehensive boilerplate template for building professional software projects with CLI Coding Agents (Claude Code and Open Code). It provides a complete development environment with AI-powered agent orchestration, automated workflows, and intelligent project management.
+spark-dev is a development template for building AI-powered applications with Claude Code. Built on top of ClaudeKit Engineer, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
 
 ## Project Structure
 
 ```
-claudekit-engineer/
-├── .claude/               # Claude Code configuration
-│   ├── agents/           # Specialized agent definitions (14 agents)
-│   ├── commands/         # Slash command implementations (50+ commands)
-│   ├── hooks/            # Git hooks and scripts
-│   ├── skills/           # Specialized skills library (20+ skills)
-│   └── workflows/        # Development workflow definitions
-├── .opencode/            # Open Code CLI configuration
-│   ├── agent/           # Agent definitions for OpenCode (13 agents)
-│   └── command/         # Command definitions for OpenCode
-├── .github/             # GitHub Actions workflows
-│   └── workflows/       # CI/CD automation
-├── docs/                # Project documentation
-│   └── research/        # Research reports directory
-├── guide/               # User guides and references
-├── plans/               # Implementation plans and reports
-│   ├── reports/         # Agent-to-agent communication
-│   └── templates/       # Plan templates
-├── CLAUDE.md           # Project-specific Claude instructions
-├── README.md           # Project overview
-├── package.json        # Node.js dependencies
-└── repomix-output.xml  # Codebase compaction file
+spark-dev/
+├── .claude/                    # Claude Code configuration
+│   ├── agents/                 # 19 specialized agent definitions
+│   ├── commands/               # 60+ slash command implementations
+│   ├── hooks/                  # Git hooks and scripts
+│   │   └── scout-block.js      # Scout Block Hook dispatcher
+│   ├── skills/                 # Specialized skills library
+│   ├── workflows/              # Development workflow definitions
+│   ├── settings.json           # Claude Code settings
+│   ├── metadata.json           # Project metadata
+│   ├── .env.example            # Environment variables template
+│   ├── .gitignore              # Git exclusions
+│   ├── .mcp.json.example       # MCP configuration template
+│   ├── statusline.sh           # Bash statusline script
+│   ├── statusline.ps1          # PowerShell statusline script
+│   └── statusline.js           # Node.js statusline script
+├── .opencode/                  # OpenCode CLI configuration
+│   ├── agent/                  # Agent definitions
+│   └── command/                # Command definitions
+├── .github/                    # GitHub configuration
+│   └── workflows/              # CI/CD workflows
+├── docs/                       # Project documentation
+│   ├── project-overview-pdr.md
+│   ├── codebase-summary.md
+│   ├── code-standards.md
+│   ├── system-architecture.md
+│   └── project-roadmap.md
+├── plans/                      # Implementation plans and reports
+│   └── reports/                # Agent-to-agent communication
+├── scripts/                    # Setup and utility scripts
+│   └── postinstall.js          # Post-install setup script
+├── CLAUDE.md                   # Project instructions for Claude
+├── README.md                   # Project overview
+├── package.json                # Node.js dependencies
+├── .releaserc.json             # Semantic release configuration
+├── .commitlintrc.json          # Commit linting rules
+├── .gitignore                  # Git exclusions
+├── .repomixignore              # Repomix exclusions
+├── CHANGELOG.md                # Version history
+└── LICENSE                     # MIT License
 ```
 
 ## Core Technologies
@@ -41,6 +59,23 @@ claudekit-engineer/
 - **Node.js**: >=18.0.0
 - **Package Manager**: npm
 - **License**: MIT
+
+### Production Dependencies
+- `next-engineer` - GitHub package for AI-powered development
+
+### Development Dependencies
+- `@commitlint/cli`: ^18.4.3
+- `@commitlint/config-conventional`: ^18.4.3
+- `@semantic-release/changelog`: ^6.0.3
+- `@semantic-release/commit-analyzer`: ^11.1.0
+- `@semantic-release/exec`: ^6.0.3
+- `@semantic-release/git`: ^10.0.1
+- `@semantic-release/github`: ^9.2.6
+- `@semantic-release/npm`: ^11.0.2
+- `@semantic-release/release-notes-generator`: ^12.1.0
+- `conventional-changelog-conventionalcommits`: ^7.0.2
+- `husky`: ^8.0.3
+- `semantic-release`: ^22.0.12
 
 ### Development Tools
 - **Semantic Release**: Automated versioning and changelog
@@ -57,82 +92,54 @@ claudekit-engineer/
 
 ### 1. Agent Orchestration System
 
-**Claude Code Agents** (`.claude/agents/`):
-- `planner.md` - Technical planning and architecture
-- `researcher.md` - Research and analysis
-- `tester.md` - Testing and validation
-- `debugger.md` - Issue analysis and debugging
-- `code-reviewer.md` - Code quality assessment
-- `docs-manager.md` - Documentation management
-- `git-manager.md` - Version control operations
-- `project-manager.md` - Project tracking and oversight
-- `database-admin.md` - Database operations
-- `ui-ux-designer.md` - UI/UX design
-- `copywriter.md` - Content creation
-- `scout.md` - Codebase exploration
-- `journal-writer.md` - Development journaling
-- `brainstormer.md` - Solution ideation
+**Claude Code Agents** (`.claude/agents/` - 16 agents):
+
+| Category | Agents |
+|----------|--------|
+| Planning | `planner`, `researcher`, `brainstormer` |
+| Quality | `tester`, `code-reviewer`, `debugger`, `security-auditor` |
+| Documentation | `docs-manager`, `copywriter`, `journal-writer` |
+| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager` |
+| Implementation | `scout`, `scout-external`, `ui-ux-designer`, `lovable-to-nextjs`, `csharp-expert` |
+| Specialized | `seo-specialist` |
 
 **OpenCode Agents** (`.opencode/agent/`):
 - Similar agent definitions optimized for OpenCode CLI
-- `planner-researcher.md` - Combined planning and research
-- `solution-brainstormer.md` - Advanced brainstorming
-- `system-architecture.md` - Architecture documentation
 
 ### 2. Slash Commands System
 
-**Categories**:
-- **Core Development**: `/plan`, `/cook`, `/ask`, `/bootstrap`, `/brainstorm`, `/test`
-- **Debugging**: `/debug`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:logs`, `/fix:test`, `/fix:types`, `/fix:ui`
-- **Design**: `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`
-- **Documentation**: `/docs:init`, `/docs:update`, `/docs:summarize`
-- **Git Operations**: `/git:cm`, `/git:cp`, `/git:pr`
-- **Planning**: `/plan:two`, `/plan:ci`, `/plan:cro`
-- **Content**: `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro`
-- **Integration**: `/integrate:polar`, `/integrate:sepay`
-- **Utility**: `/watzup`, `/journal`, `/scout:ext`, `/scout`
+**Categories** (65+ commands):
+
+| Category | Commands |
+|----------|----------|
+| Development | `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code` |
+| Debugging | `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui` |
+| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max` |
+| Content | `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro` |
+| Documentation | `/docs:init`, `/docs:update`, `/docs:summarize` |
+| SEO | `/seo:audit`, `/seo:keywords`, `/seo:schema` |
+| Git Operations | `/git:cm`, `/git:cp`, `/git:pr` |
+| Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
+| Project Management | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
+| Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
+| Integration | `/integrate:polar`, `/integrate:sepay`, `/use-mcp` |
+| Code Review | `/review:codebase` |
 
 ### 3. Skills Library
 
 **Skills Organization** (`.claude/skills/`):
 
-**Phase 1 Skill Groups** (Progressive Disclosure Pattern):
-- **DevOps** (`devops/`) - Cloudflare edge platform, Docker containerization, Google Cloud Platform
-  - 11 reference files (<250 lines each), 2 Python utilities, 45 tests
-  - Consolidates: Cloudflare (5 skills), Docker, GCloud
-- **Databases** (`databases/`) - MongoDB document database, PostgreSQL relational database
-  - 8 reference files, 3 Python utilities
-  - Consolidates: MongoDB, PostgreSQL
-- **Web Frameworks** (`web-frameworks/`) - Next.js, Turborepo monorepos, RemixIcon
-  - 7 reference files, 2 Python utilities
-  - Consolidates: Next.js, Turborepo, RemixIcon
-- **UI Styling** (`ui-styling/`) - shadcn/ui components, Tailwind CSS, canvas-design
-  - 7 reference files, 2 Python utilities
-  - Consolidates: shadcn/ui, Tailwind CSS, canvas-design
-
-**Individual Skills** (Original Pattern):
-- **Authentication**: `better-auth/`
-- **Browser Automation**: `chrome-devtools/`
-- **Debugging**: `systematic-debugging/`, `root-cause-tracing/`, `defense-in-depth/`, `verification-before-completion/`
-- **Documentation**: `docs-seeker/`, `repomix/`
-- **Document Processing**: `document-skills/` (docx, pdf, pptx, xlsx)
-- **Media**: `ffmpeg/`, `imagemagick/`
-- **Gemini AI**: `gemini-audio/`, `gemini-document-processing/`, `ai-multimodal/`, `gemini-video-understanding/`, `ai-multimodal/`
-- **MCP**: `mcp-builder/`
-- **Problem Solving**: `collision-zone-thinking/`, `meta-pattern-recognition/`, `scale-game/`, `inversion-exercise/`, `simplification-cascades/`, `when-stuck/`
-- **Ecommerce**: `shopify/`
-- **Development**: `sequential-thinking/`, `skill-creator/`, `google-adk-python/`
-
-**Archived Skills** (`.claude/skills/_archive/20251104-*/`):
-- 14 original skills consolidated into Phase 1 groups
-- Full preservation of original content
-- Available for reference or rollback
-
-**See:** `docs/skills-migration-guide-phase1.md` for migration details
+Skills are organized into the following categories:
+- **DevOps**: Cloudflare, Docker, Google Cloud
+- **Databases**: MongoDB, PostgreSQL
+- **Web Frameworks**: Next.js, Turborepo
+- **UI Styling**: shadcn/ui, Tailwind CSS
+- **Individual Skills**: better-auth, chrome-devtools, debugging, docs-seeker, document-skills, ffmpeg, imagemagick, gemini-audio, gemini-video-understanding, mcp-builder, problem-solving, shopify
 
 ### 4. Workflows
 
 **Primary Workflows** (`.claude/workflows/`):
+
 1. **primary-workflow.md**: Core development cycle
    - Code implementation
    - Testing
@@ -140,26 +147,40 @@ claudekit-engineer/
    - Integration
    - Debugging
 
-2. **orchestration-protocol.md**: Agent coordination patterns
-   - Sequential chaining
-   - Parallel execution
-
-3. **development-rules.md**: Development standards
-   - File size management (<500 lines)
+2. **development-rules.md**: Development standards
+   - File size management (<200 lines)
    - YANGI, KISS, DRY principles
    - Code quality guidelines
    - Pre-commit/push rules
 
-4. **documentation-management.md**: Doc maintenance
+3. **orchestration-protocol.md**: Agent coordination patterns
+   - Sequential chaining
+   - Parallel execution
+
+4. **documentation-management.md**: Documentation maintenance
    - Roadmap and changelog updates
    - Automatic update triggers
    - Documentation protocols
+
+### 5. Hooks System
+
+**Scout Block Hook** (`.claude/hooks/scout-block.js`):
+- Cross-platform hook for blocking heavy directories
+- Automatic platform detection (Windows/Unix/WSL)
+- Blocks: node_modules, __pycache__, .git/, dist/, build/
+- Improves AI agent response time and token efficiency
+
+### 6. Statusline Scripts
+
+Three implementations for cross-platform statusline:
+- `statusline.sh` - Bash (Unix/Linux/WSL)
+- `statusline.ps1` - PowerShell (Windows)
+- `statusline.js` - Node.js (universal fallback)
 
 ## Entry Points
 
 ### For Users
 - **README.md**: Project overview and quick start
-- **guide/COMMANDS.md**: Comprehensive command reference (7,073 tokens)
 - **CLAUDE.md**: Development instructions and workflows
 
 ### For Developers
@@ -185,7 +206,7 @@ Prefer simple, straightforward solutions
 Eliminate code duplication
 
 ### File Size Management
-- Keep files under 500 lines
+- Keep files under 200 lines for optimal context management
 - Split large files into focused components
 - Extract utilities into separate modules
 
@@ -210,31 +231,22 @@ Eliminate code duplication
 **Commit Message Format**: Conventional Commits
 ```
 type(scope): description
-
-Types:
-- feat: Features (minor bump)
-- fix: Bug fixes (patch bump)
-- docs: Documentation (patch bump)
-- refactor: Code refactoring (patch bump)
-- test: Tests (patch bump)
-- ci: CI changes (patch bump)
-- BREAKING CHANGE: Major version bump
 ```
+
+**Types**:
+- `feat:` - Features (minor bump)
+- `fix:` - Bug fixes (patch bump)
+- `docs:` - Documentation (patch bump)
+- `refactor:` - Code refactoring (patch bump)
+- `test:` - Tests (patch bump)
+- `ci:` - CI changes (patch bump)
+- `BREAKING CHANGE:` - Major version bump
 
 **Automated Release**:
 - Every push to `main` triggers release check
 - Semantic versioning (MAJOR.MINOR.PATCH)
 - Automated changelog generation
 - GitHub releases with generated notes
-
-## Testing Strategy
-
-- Comprehensive unit tests required
-- High code coverage mandatory
-- Error scenario testing
-- Performance validation
-- Tests must pass before push
-- No ignoring failed tests
 
 ## Documentation Standards
 
@@ -244,9 +256,6 @@ Types:
 - `codebase-summary.md` - This file
 - `system-architecture.md` - Architecture documentation
 - `project-roadmap.md` - Development roadmap
-- `project-changelog.md` - Detailed changelog
-- `statusline-windows-support.md` - Windows statusline setup guide
-- `statusline-architecture.md` - Technical statusline implementation
 
 **Documentation Triggers**:
 - Feature implementation completion
@@ -255,36 +264,19 @@ Types:
 - Security updates
 - Weekly reviews
 
-## Dependencies Overview
-
-### Production Dependencies
-None (template project)
-
-### Development Dependencies
-- **@commitlint/cli**: ^18.4.3
-- **@commitlint/config-conventional**: ^18.4.3
-- **@semantic-release/changelog**: ^6.0.3
-- **@semantic-release/commit-analyzer**: ^11.1.0
-- **@semantic-release/git**: ^10.0.1
-- **@semantic-release/github**: ^9.2.6
-- **@semantic-release/npm**: ^11.0.2
-- **@semantic-release/release-notes-generator**: ^12.1.0
-- **conventional-changelog-conventionalcommits**: ^7.0.2
-- **husky**: ^8.0.3
-- **semantic-release**: ^22.0.12
-
 ## File Statistics
 
-**Total Files**: 48 files (in repomix output)
-**Total Tokens**: 38,868 tokens
-**Total Characters**: 173,077 chars
+**Repository Statistics**:
+- Total Files: 468 files (in repomix output)
+- Total Tokens: 1,022,780 tokens
+- Total Characters: 4,297,314 chars
 
-**Top 5 Files by Token Count**:
-1. `guide/COMMANDS.md` - 7,073 tokens (18.2%)
-2. `CHANGELOG.md` - 4,836 tokens (12.4%)
-3. `README.md` - 3,261 tokens (8.4%)
-4. `.opencode/agent/ui-ux-designer.md` - 2,521 tokens (6.5%)
-5. `.opencode/agent/system-architecture.md` - 1,714 tokens (4.4%)
+**Project-Specific Files**:
+- Configuration files: 15+
+- Agent definitions: 19
+- Command definitions: 65+
+- Workflow files: 4+
+- Documentation files: 6+
 
 ## Integration Capabilities
 
@@ -296,46 +288,36 @@ Purpose: Send project updates to Discord channels
 Workflow: `.github/workflows/release.yml`
 Features: Automated releases, changelog generation
 
-### Agent Skills
-- **brain**: Advanced reasoning
-- **docs-seeker**: Documentation reading
-- **ai-multimodal**: Visual understanding
-- **ai-multimodal & imagemagick skills**: Content generation and processing
+### MCP Servers
+Configuration: `.claude/.mcp.json.example`
+Supports: context7, sequential-thinking, SearchAPI, and more
 
 ## Critical Files
 
 ### Configuration
-- `/mnt/d/www/claudekit/claudekit-engineer/package.json` - Node.js config
-- `/mnt/d/www/claudekit/claudekit-engineer/.releaserc.json` - Release config
-- `/mnt/d/www/claudekit/claudekit-engineer/.commitlintrc.json` - Commit linting
-- `/mnt/d/www/claudekit/claudekit-engineer/.gitignore` - Git exclusions
-- `/mnt/d/www/claudekit/claudekit-engineer/.repomixignore` - Repomix exclusions
+- `/package.json` - Node.js config
+- `/.releaserc.json` - Release config
+- `/.commitlintrc.json` - Commit linting
+- `/.gitignore` - Git exclusions
+- `/.repomixignore` - Repomix exclusions
 
 ### Documentation
-- `/mnt/d/www/claudekit/claudekit-engineer/README.md` - Main project docs
-- `/mnt/d/www/claudekit/claudekit-engineer/CLAUDE.md` - Agent instructions
-- `/mnt/d/www/claudekit/claudekit-engineer/CHANGELOG.md` - Version history
-- `/mnt/d/www/claudekit/claudekit-engineer/guide/COMMANDS.md` - Command reference
+- `/README.md` - Main project docs
+- `/CLAUDE.md` - Agent instructions
+- `/CHANGELOG.md` - Version history
 
 ### Workflows
-- `/mnt/d/www/claudekit/claudekit-engineer/.claude/workflows/primary-workflow.md`
-- `/mnt/d/www/claudekit/claudekit-engineer/.claude/workflows/development-rules.md`
-- `/mnt/d/www/claudekit/claudekit-engineer/.claude/workflows/orchestration-protocol.md`
-- `/mnt/d/www/claudekit/claudekit-engineer/.claude/workflows/documentation-management.md`
-
-## Related Projects
-
-- **claudekit** - ClaudeKit website (`../claudekit`)
-- **claudekit-marketing** - Marketing Kit (`../claudekit-marketing`)
-- **claudekit-cli** - CLI setup tool (`../claudekit-cli`)
-- **claudekit-docs** - Public docs (`../claudekit-docs`)
+- `/.claude/workflows/primary-workflow.md`
+- `/.claude/workflows/development-rules.md`
+- `/.claude/workflows/orchestration-protocol.md`
+- `/.claude/workflows/documentation-management.md`
 
 ## Version History
 
-**Current**: v1.8.0
+**Current**: v1.0.1
 **License**: MIT
-**Author**: Duy Nguyen
-**Repository**: https://github.com/claudekit/claudekit-engineer
+**Author**: Trung Dev
+**Repository**: https://github.com/trungdo9/spark-dev
 
 ## Unresolved Questions
 

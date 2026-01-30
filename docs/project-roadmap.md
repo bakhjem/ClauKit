@@ -1,169 +1,135 @@
-# ClaudeKit Engineer - Project Roadmap
+# Project Roadmap
 
-**Last Updated:** 2025-11-11
-**Current Version:** 1.8.0
-**Repository:** https://github.com/claudekit/claudekit-engineer
+**Last Updated**: 2026-01-31
+**Current Version**: 1.0.1
+**Repository**: https://github.com/trungdo9/spark-dev
 
 ## Executive Summary
 
-ClaudeKit Engineer is an AI-powered development orchestration framework enabling developers to build professional software faster through intelligent agent collaboration, automated workflows, and comprehensive quality management. The project has successfully completed core foundation phases and is advancing cross-platform compatibility and advanced features.
+spark-dev is a development template for building AI-powered applications with Claude Code. Built on top of ClaudeKit Engineer, it provides a standardized foundation for AI-assisted development. The project has completed its initial foundation phase and is advancing towards enhanced capabilities.
 
 ---
 
 ## Phase Overview
 
 ### Phase 1: Foundation (COMPLETE)
-**Status:** ✅ Complete | **Completion:** v1.8.0
-**Progress:** 100%
+**Status**: Complete | **Version**: 1.0.1
 
 Established core agent orchestration framework, slash command system, automated releases, and foundational skills library.
 
-**Key Achievements:**
-- Multi-agent orchestration engine
-- 50+ slash commands (plan, cook, test, ask, bootstrap, debug, fix:*)
-- Semantic versioning & automated releases
-- 20+ skills library (auth, cloud, databases, design, etc.)
+**Key Achievements**:
+- Multi-agent orchestration system (19 agents)
+- 65+ slash commands
+- Semantic versioning and automated releases
+- Comprehensive skills library
 - Documentation system with repomix integration
 - Scout Block Hook for cross-platform performance optimization
 - Git workflows with conventional commits enforcement
+- Cross-platform statusline support (Bash, PowerShell, Node.js)
+- Post-install setup script with git clone fallback
 
 ---
 
-### Phase 2: Cross-Platform Enhancement (IN PROGRESS)
-**Status:** 🔄 In Progress | **Completion Target:** Dec 2025
-**Progress:** 35%
+### Phase 2: Enhancement (IN PROGRESS)
+**Status**: Planned | **Target Start**: Q1 2026
 
-Expanding platform support and improving developer experience across Windows, macOS, and Linux environments.
+Expanding platform support, improving developer experience, and adding additional capabilities.
 
-#### Sub-Task: Windows Statusline Support
-**Status:** ✅ COMPLETE
-**Completed:** 2025-11-11
-**Priority:** Medium
-
-Enabled Windows users to use Claude Code statusline functionality through multiple cross-platform script implementations.
-
-**Deliverables Completed:**
-- `statusline.ps1` - PowerShell native implementation for Windows
-- `statusline.js` - Node.js universal fallback implementation
-- `docs/statusline-windows-support.md` - Comprehensive user guide (4 setup options)
-- `docs/statusline-architecture.md` - Technical architecture & implementation details
-- All 5 implementation phases complete:
-  - Phase 1: Research & Analysis
-  - Phase 2: PowerShell Implementation
-  - Phase 3: Node.js Fallback
-  - Phase 4: Platform Detection & Wrapper
-  - Phase 5: Testing & Documentation
-
-**Features:**
-- ✅ PowerShell 5.1+ & PowerShell Core 7+ support
-- ✅ Node.js 16+ universal fallback
-- ✅ Git Bash integration
-- ✅ WSL full compatibility
-- ✅ Feature parity: colors, git branch, models, sessions, costs, tokens, progress bars
-- ✅ ANSI color support with NO_COLOR environment variable
-- ✅ ccusage integration for session metrics
-- ✅ UTF-8 encoding & emoji support
-
-**Performance:**
-- PowerShell 5.1: ~250ms cold, ~150ms warm
-- PowerShell 7+: ~150ms cold, ~100ms warm
-- Node.js: ~100ms cold, ~50ms warm
-- With ccusage: ~300ms typical
-
-**Documentation Quality:**
-- User setup guide with 4 configuration options
-- Troubleshooting section (9 common issues)
-- Performance benchmarks
-- Platform compatibility matrix
-- Migration guide between implementations
-- Advanced configuration examples
-- 380+ lines of comprehensive guidance
+**Planned Items**:
+- Additional cloud platform skills (AWS, Azure)
+- Enhanced UI/UX workflows
+- Performance optimization phase 2
+- Expanded debugging capabilities
+- Additional integration commands
 
 ---
 
 ### Phase 3: Advanced Features (PLANNED)
-**Status:** 📋 Planned | **Target Start:** Jan 2026
-**Progress:** 0%
+**Status**: Future | **Target Start**: Q2 2026
 
-Future enhancements for AI-assisted development capabilities.
+Advanced enhancements for AI-assisted development capabilities.
 
-**Planned Items:**
-- Visual workflow builder UI
-- Custom agent creator UI
-- Enhanced caching mechanisms
-- Real-time collaboration features
-- Analytics & insights dashboard
+**Planned Items**:
+- Visual workflow builder concepts
+- Enhanced agent collaboration features
+- Analytics and insights integration
 - Performance telemetry
+- Team collaboration workflows
 
 ---
 
 ### Phase 4: Enterprise (FUTURE)
-**Status:** 📋 Future | **Target Start:** Q2 2026
-**Progress:** 0%
+**Status**: Future | **Target Start**: Q4 2026
 
 Enterprise-grade features and deployment options.
 
-**Planned Items:**
+**Planned Items**:
 - Self-hosted deployment options
 - Advanced security features
 - Compliance automation
 - Custom enterprise integrations
-- Dedicated enterprise support
+- Dedicated support pathways
 
 ---
 
 ## Current Development Focus
 
-### 1. Windows Ecosystem Support
-- ✅ Statusline cross-platform support
-- 📋 Windows terminal integration optimization
-- 📋 PowerShell Core expansion
-- 📋 WSL2 performance optimization
+### 1. Agent System Enhancement
+- Document and optimize existing 16 agents
+- Expand agent capabilities based on usage patterns
+- Improve agent handoff protocols
 
-### 2. Additional Cloud Skills
-- 📋 Google Cloud Platform (GCP) integration
-- 📋 Amazon Web Services (AWS) integration
-- 📋 Microsoft Azure integration
+### 2. Skills Library Expansion
+- Add cloud platform integrations (GCP, AWS, Azure)
+- Enhance existing skill documentation
+- Create skill optimization workflows
 
-### 3. Enhanced Documentation
-- ✅ Updated Windows support guides
-- 📋 API reference automation
-- 📋 Architecture guide expansion
-- 📋 Tutorial library
+### 3. Documentation
+- API reference automation
+- Architecture guide expansion
+- Tutorial library development
+- Example project documentation
 
 ### 4. Performance Optimization
-- ✅ Scout Block Hook for agent performance
-- 📋 Caching strategies for common operations
-- 📋 Token optimization
-- 📋 Parallel execution enhancements
+- Scout Block Hook optimization
+- Caching strategies for common operations
+- Token optimization
+- Parallel execution enhancements
 
 ---
 
 ## Milestone Tracking
 
-### Q4 2025 Milestones
-| Milestone | Status | Due Date | Progress |
-|-----------|--------|----------|----------|
-| Windows Statusline Support | ✅ Complete | 2025-11-11 | 100% |
-| Additional Skills Library Expansion | 📋 Pending | 2025-12-15 | 0% |
-| Enhanced Error Handling | 📋 Pending | 2025-12-31 | 0% |
-
 ### Q1 2026 Milestones
-| Milestone | Status | Due Date | Progress |
-|-----------|--------|----------|----------|
-| Visual Workflow Builder | 📋 Planned | 2026-03-31 | 0% |
-| Custom Agent Creator UI | 📋 Planned | 2026-03-31 | 0% |
-| Cloud Platform Integrations (GCP, AWS, Azure) | 📋 Planned | 2026-03-31 | 0% |
+
+| Milestone | Status | Target Date | Description |
+|-----------|--------|-------------|-------------|
+| Skills Library Expansion | Planned | 2026-03-31 | Add cloud platform skills |
+| Enhanced Debugging | Planned | 2026-03-31 | Improve fix commands |
+| Documentation Update | Planned | 2026-03-31 | API reference automation |
+
+### Q2 2026 Milestones
+
+| Milestone | Status | Target Date | Description |
+|-----------|--------|-------------|-------------|
+| Advanced Features | Planned | 2026-06-30 | Phase 3 features |
+| Performance Telemetry | Planned | 2026-06-30 | Performance tracking |
+
+### Q3-Q4 2026 Milestones
+
+| Milestone | Status | Target Date | Description |
+|-----------|--------|-------------|-------------|
+| Enterprise Features | Planned | 2026-12-31 | Phase 4 features |
 
 ---
 
 ## Success Metrics
 
-### Adoption
-- GitHub stars: Tracking (public launch pending)
-- NPM downloads: Tracking
-- Active users & installations: Tracking
-- Community engagement: In development
+### Adoption Metrics
+- GitHub stars and forks
+- NPM package downloads
+- Active users and installations
+- Community engagement (issues, discussions, PRs)
 
 ### Performance Targets
 - Bootstrap time: < 10 minutes
@@ -189,43 +155,48 @@ Enterprise-grade features and deployment options.
 ## Feature Inventory
 
 ### Core Features (COMPLETE)
-- ✅ Multi-agent orchestration system
-- ✅ 50+ slash commands
-- ✅ Comprehensive skills library (20+)
-- ✅ Automated release management
-- ✅ Development workflow automation
-- ✅ Documentation system with repomix
-- ✅ Cross-platform performance optimization
-- ✅ Git workflow automation
-- ✅ Comprehensive error handling
+- Multi-agent orchestration system (19 agents)
+- 65+ slash commands
+- Comprehensive skills library
+- Automated release management
+- Development workflow automation
+- Documentation system with repomix
+- Cross-platform performance optimization
+- Git workflow automation
+- Comprehensive error handling
+- Statusline scripts (sh, ps1, js)
+- Post-install setup script
 
-### Recent Additions (2025-11-11)
-- ✅ Windows statusline support (PowerShell, Node.js)
-- ✅ Cross-platform statusline documentation
-- ✅ Advanced configuration guides
+### Recent Additions (v1.0.1)
+- Git clone fallback in post-install script
+- Enhanced metadata.json configuration
+- Updated build and setup dates
+- ClaudeKit Engineer foundation integration
+- New agents: csharp-expert, security-auditor, seo-specialist
+- New commands: seo:audit, seo:keywords, seo:schema, design:ui-ux-pro-max
+- New skills: csharp-expert, security-audit, seo
 
 ### In Development
-- 🔄 Additional cloud platform integrations
-- 🔄 UI/UX improvements
-- 🔄 Enhanced error handling patterns
-- 🔄 Performance optimization phase 2
+- Skills library expansion
+- Enhanced debugging commands
+- Documentation automation
 
 ### Planned
-- 📋 Visual workflow builder
-- 📋 Custom agent creator
-- 📋 Team collaboration features
-- 📋 Analytics dashboard
+- Visual workflow concepts
+- Team collaboration features
+- Analytics dashboard
+- Cloud platform integrations
 
 ---
 
 ## Technical Architecture
 
 ### Technology Stack
-- **Runtime:** Node.js >= 18.0.0, Bash, PowerShell, Cross-platform hooks
-- **AI Platforms:** Anthropic Claude, OpenRouter, Google Gemini, Grok Code
-- **Development Tools:** Semantic Release, Commitlint, Husky, Repomix, Scout Block Hook
-- **CI/CD:** GitHub Actions
-- **Languages:** JavaScript, Bash, PowerShell, Markdown
+- **Runtime**: Node.js >= 18.0.0, Bash, PowerShell, Cross-platform hooks
+- **AI Platforms**: Anthropic Claude, Google Gemini, Grok Code
+- **Development Tools**: Semantic Release, Commitlint, Husky, Repomix, Scout Block Hook
+- **CI/CD**: GitHub Actions
+- **Languages**: JavaScript, Bash, PowerShell, Markdown
 
 ### Integration Points
 - MCP Tools: context7, sequential-thinking, SearchAPI, review-website, VidCap
@@ -238,7 +209,7 @@ Enterprise-grade features and deployment options.
 
 ### Technical
 - Requires Node.js >= 18.0.0
-- Depends on Claude Code or Open Code CLI
+- Depends on Claude Code CLI
 - File-based communication has I/O overhead
 - Token limits on AI model context windows
 
@@ -273,7 +244,7 @@ Enterprise-grade features and deployment options.
 ### Required
 - Node.js runtime environment
 - Git version control
-- Claude Code or Open Code CLI
+- Claude Code CLI
 - API keys for AI platforms
 
 ### Optional
@@ -298,7 +269,7 @@ Enterprise-grade features and deployment options.
 - YANGI (You Aren't Gonna Need It)
 - KISS (Keep It Simple, Stupid)
 - DRY (Don't Repeat Yourself)
-- Files < 500 lines
+- Files < 200 lines
 - Comprehensive error handling
 - Security-first development
 
@@ -325,37 +296,19 @@ Enterprise-grade features and deployment options.
 
 ---
 
-## Changelog
+## Version History
 
-### Version 1.8.0 (Current - 2025-11-11)
+### Version 1.0.1 (Current - 2026-01-31)
 
-#### Features Added
-- **Windows Statusline Support:** Complete cross-platform statusline implementation
-  - PowerShell native implementation (statusline.ps1)
-  - Node.js universal fallback (statusline.js)
-  - Support for Windows PowerShell 5.1+, PowerShell Core 7+
-  - Git Bash and WSL full compatibility
-
-#### Documentation Added
-- Comprehensive Windows statusline user guide (statusline-windows-support.md)
-- Technical architecture documentation (statusline-architecture.md)
-- Setup guides for 4 different Windows environments
-- Troubleshooting guide with 9 common issue solutions
-- Performance benchmarks for all implementations
-
-#### Quality Improvements
-- Feature parity across bash, PowerShell, and Node.js
-- Enhanced ANSI color support
-- UTF-8 encoding verification
-- Cross-platform path handling
-- Silent degradation error handling
-
-#### Implementation Details
-- Phase 1: Research & analysis complete
-- Phase 2: PowerShell implementation complete
-- Phase 3: Node.js fallback complete
-- Phase 4: Platform detection & wrapper complete
-- Phase 5: Testing & documentation complete
+**Changes**:
+- Update build and setup dates in metadata.json
+- Enhance post-install script with git clone fallback
+- Refactor project metadata structure
+- Foundation established from ClaudeKit Engineer
+- Added 3 new agents (csharp-expert, security-auditor, seo-specialist)
+- Added new SEO commands (seo:audit, seo:keywords, seo:schema)
+- Added design:ui-ux-pro-max command
+- Added new specialized skills
 
 ---
 
@@ -366,11 +319,6 @@ Enterprise-grade features and deployment options.
 - [Code Standards](./code-standards.md)
 - [System Architecture](./system-architecture.md)
 - [Codebase Summary](./codebase-summary.md)
-- [Release Process](./RELEASE.md)
-
-### Feature Documentation
-- [Windows Statusline Support Guide](./statusline-windows-support.md)
-- [Statusline Architecture](./statusline-architecture.md)
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code/overview)
@@ -378,24 +326,25 @@ Enterprise-grade features and deployment options.
 - [Conventional Commits](https://conventionalcommits.org/)
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)
+- [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer)
 
 ---
 
 ## Questions & Notes
 
 ### Current Status
-- Windows statusline support implementation fully delivered and documented
-- Ready for integration testing with Claude Code CLI
-- All 5 phases of implementation complete with comprehensive documentation
+- Foundation phase complete
+- Ready for enhancement phase
+- All core components documented
 
-### Next Steps (Not Yet Scheduled)
-1. Integration testing with Claude Code CLI production
-2. Performance validation on target Windows platforms
-3. User feedback collection from Windows developer community
-4. Consideration of additional Windows ecosystem enhancements
+### Next Steps
+1. Skills library expansion planning
+2. Enhanced debugging capabilities design
+3. Documentation automation implementation
+4. Cloud platform integration research
 
 ---
 
-**Maintained By:** ClaudeKit Engineer Team
-**Last Review:** 2025-11-11
-**Next Review Target:** 2025-12-11
+**Maintained By**: spark-dev Team
+**Last Review**: 2026-01-31
+**Next Review Target**: 2026-04-30

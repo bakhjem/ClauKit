@@ -1,12 +1,12 @@
 # Code Standards & Codebase Structure
 
-**Last Updated**: 2025-10-26
-**Version**: 1.8.0
-**Applies To**: All code within ClaudeKit Engineer project
+**Last Updated**: 2026-01-31
+**Version**: 1.0.1
+**Applies To**: All code within spark-dev project
 
 ## Overview
 
-This document defines coding standards, file organization patterns, naming conventions, and best practices for ClaudeKit Engineer. All code must adhere to these standards to ensure consistency, maintainability, and quality.
+This document defines coding standards, file organization patterns, naming conventions, and best practices for spark-dev. All code must adhere to these standards to ensure consistency, maintainability, and quality.
 
 ## Core Development Principles
 
@@ -37,13 +37,10 @@ project-root/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                # Agent definitions (*.md)
 │   ├── commands/              # Slash commands (*.md)
-│   │   ├── [category]/       # Nested command categories
-│   │   └── [command].md      # Individual commands
+│   │   └── [category]/       # Nested command categories
 │   ├── hooks/                # Git hooks and scripts
 │   ├── skills/               # Reusable knowledge modules
 │   │   └── [skill-name]/     # Individual skill directories
-│   │       ├── SKILL.md      # Skill definition
-│   │       └── references/   # Supporting materials
 │   └── workflows/            # Workflow definitions
 ├── .opencode/                 # OpenCode configuration
 │   ├── agent/                # OpenCode agent definitions
@@ -51,12 +48,11 @@ project-root/
 ├── .github/                   # GitHub-specific files
 │   └── workflows/            # CI/CD workflows
 ├── docs/                      # Project documentation
-│   ├── research/             # Research reports
 │   └── *.md                  # Core documentation files
-├── guide/                     # User guides
 ├── plans/                     # Implementation plans
 │   ├── reports/              # Agent communication reports
 │   └── templates/            # Plan templates
+├── scripts/                   # Setup and utility scripts
 ├── src/                       # Source code (if applicable)
 ├── tests/                     # Test suites (if applicable)
 ├── .gitignore                # Git ignore patterns
@@ -93,6 +89,9 @@ project-root/
   - `better-auth/SKILL.md`
   - `cloudflare-workers/SKILL.md`
   - `mongodb/SKILL.md`
+  - `csharp-expert/SKILL.md`
+  - `security-audit/SKILL.md`
+  - `seo/SKILL.md`
 
 **Documentation** (`docs/`):
 - Format: `[document-purpose].md`
@@ -108,35 +107,35 @@ project-root/
 - Use date prefix for chronological sorting
 - Clear source and destination agents
 - Examples:
-  - `251026-from-planner-to-main-auth-implementation-report.md`
-  - `251026-from-tester-to-debugger-test-failures-report.md`
+  - `260130-from-planner-to-main-auth-implementation-report.md`
+  - `260130-from-tester-to-debugger-test-failures-report.md`
 
 **Plans** (`plans/`):
 - Format: `YYMMDD-[feature-name]-plan.md`
 - Use date prefix for version tracking
 - Descriptive feature names in kebab-case
 - Examples:
-  - `251026-user-authentication-plan.md`
-  - `251026-database-migration-plan.md`
+  - `260130-user-authentication-plan.md`
+  - `260130-database-migration-plan.md`
 
 **Research Reports** (`plans/<plan-name>/research/`):
 - Format: `YYMMDD-[research-topic].md`
 - Date prefix for tracking
 - Clear topic description
 - Examples:
-  - `251026-oauth2-implementation-strategies.md`
-  - `251026-performance-optimization-techniques.md`
+  - `260130-oauth2-implementation-strategies.md`
+  - `260130-performance-optimization-techniques.md`
 
 ## File Size Management
 
 ### Hard Limits
-- **Maximum file size**: 500 lines of code
-- Files exceeding 500 lines MUST be refactored
+- **Maximum file size**: 200 lines of code
+- Files exceeding 200 lines MUST be refactored
 - Exception: Auto-generated files (with clear marking)
 
 ### Refactoring Strategies
 
-**When file exceeds 500 lines**:
+**When file exceeds 200 lines**:
 1. **Extract Utility Functions**: Move to separate `utils/` directory
 2. **Component Splitting**: Break into smaller, focused components
 3. **Service Classes**: Extract business logic to dedicated services
@@ -145,15 +144,15 @@ project-root/
 **Example Refactoring**:
 ```
 Before:
-user-service.js (750 lines)
+user-service.js (400 lines)
 
 After:
 services/
-├── user-service.js (200 lines)      # Core service
-├── user-validation.js (150 lines)   # Validation logic
-└── user-repository.js (180 lines)   # Database operations
+├── user-service.js (120 lines)      # Core service
+├── user-validation.js (80 lines)    # Validation logic
+└── user-repository.js (100 lines)   # Database operations
 utils/
-└── password-hasher.js (80 lines)    # Utility functions
+└── password-hasher.js (50 lines)    # Utility functions
 ```
 
 ## Naming Conventions
@@ -250,7 +249,7 @@ GET    /api/users/:userId/posts
   "userName": "john_doe",
   "emailAddress": "john@example.com",
   "isVerified": true,
-  "createdAt": "2025-10-26T00:00:00Z"
+  "createdAt": "2026-01-30T00:00:00Z"
 }
 ```
 
@@ -284,7 +283,7 @@ GET    /api/users/:userId/posts
  * Handles user authentication, registration, and profile management.
  *
  * @module services/user-service
- * @author ClaudeKit
+ * @author spark-dev
  * @version 1.0.0
  */
 ```
@@ -309,7 +308,7 @@ async function authenticateUser(email, password) {
 - Complex logic requires explanation
 - TODO comments include assignee and date
 ```javascript
-// TODO(john, 2025-10-26): Optimize this query for large datasets
+// TODO(john, 2026-01-30): Optimize this query for large datasets
 const users = await db.query('SELECT * FROM users');
 
 // Cache miss - fetch from database
@@ -499,7 +498,6 @@ Implements OAuth2 flow with Google and GitHub providers.
 Includes token refresh and revocation.
 
 Closes #123
-
 ---
 
 fix(api): resolve timeout in database queries
@@ -541,13 +539,13 @@ test/integration-test-suite
 
 ### Pre-Commit Checklist
 
-- ✅ No secrets or credentials
-- ✅ No debug code or console.logs
-- ✅ All tests pass locally
-- ✅ Code follows style guidelines
-- ✅ No linting errors
-- ✅ Files under 500 lines
-- ✅ Conventional commit message
+- No secrets or credentials
+- No debug code or console.logs
+- All tests pass locally
+- Code follows style guidelines
+- No linting errors
+- Files under 200 lines
+- Conventional commit message
 
 ## Documentation Standards
 
@@ -704,10 +702,7 @@ Mistakes to avoid
 ```
 .claude/hooks/
 ├── scout-block.js        # Node.js dispatcher (cross-platform entry)
-├── scout-block.sh        # Bash implementation (Unix)
-├── scout-block.ps1       # PowerShell implementation (Windows)
-├── test-scout-block.sh   # Unix test suite
-└── test-scout-block.ps1  # Windows test suite
+└── test-scout-block.sh   # Unix test suite (and test-scout-block.ps1 for Windows)
 ```
 
 **Implementation Requirements**:
@@ -850,35 +845,35 @@ const expensiveCalculation = memoize((n) => {
 ### Code Review Checklist
 
 **Functionality**:
-- ✅ Implements required features
-- ✅ Handles edge cases
-- ✅ Error handling complete
-- ✅ Input validation present
+- Implements required features
+- Handles edge cases
+- Error handling complete
+- Input validation present
 
 **Code Quality**:
-- ✅ Follows naming conventions
-- ✅ Adheres to file size limits
-- ✅ DRY principle applied
-- ✅ KISS principle followed
-- ✅ Well-structured and organized
+- Follows naming conventions
+- Adheres to file size limits (200 lines)
+- DRY principle applied
+- KISS principle followed
+- Well-structured and organized
 
 **Security**:
-- ✅ No hardcoded secrets
-- ✅ Input sanitization
-- ✅ Proper authentication/authorization
-- ✅ Secure dependencies
+- No hardcoded secrets
+- Input sanitization
+- Proper authentication/authorization
+- Secure dependencies
 
 **Testing**:
-- ✅ Unit tests included
-- ✅ Integration tests for flows
-- ✅ Edge cases tested
-- ✅ Error paths covered
+- Unit tests included
+- Integration tests for flows
+- Edge cases tested
+- Error paths covered
 
 **Documentation**:
-- ✅ Code comments where needed
-- ✅ API documentation updated
-- ✅ README updated if needed
-- ✅ Changelog entry added
+- Code comments where needed
+- API documentation updated
+- README updated if needed
+- Changelog entry added
 
 ## Enforcement
 
@@ -920,10 +915,10 @@ const expensiveCalculation = memoize((n) => {
 **Documentation Required**:
 ```javascript
 /**
- * EXCEPTION: File exceeds 500 lines
+ * EXCEPTION: File exceeds 200 lines
  * REASON: Critical performance optimization requires monolithic structure
  * TODO: Refactor when performance is no longer critical
- * DATE: 2025-10-26
+ * DATE: 2026-01-30
  */
 ```
 
@@ -942,7 +937,7 @@ const expensiveCalculation = memoize((n) => {
 
 ### Related Projects
 - [Claude Code Documentation](https://docs.claude.com/)
-- [Open Code Documentation](https://opencode.ai/docs)
+- [ClaudeKit Engineer](https://github.com/claudekit/claudekit-engineer)
 
 ## Unresolved Questions
 

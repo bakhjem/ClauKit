@@ -1,12 +1,12 @@
 # System Architecture
 
-**Last Updated**: 2025-10-26
-**Version**: 1.8.0
-**Project**: ClaudeKit Engineer
+**Last Updated**: 2026-01-31
+**Version**: 1.0.1
+**Project**: spark-dev
 
 ## Overview
 
-ClaudeKit Engineer implements a multi-agent AI orchestration architecture where specialized agents collaborate through a file-based communication protocol. The system enables developers to leverage AI assistance throughout the entire software development lifecycle - from planning and implementation to testing, review, and deployment.
+spark-dev implements a multi-agent AI orchestration architecture where specialized agents collaborate through a file-based communication protocol. Built on top of ClaudeKit Engineer, it enables developers to leverage AI assistance throughout the entire software development lifecycle.
 
 ## Architectural Pattern
 
@@ -30,7 +30,7 @@ ClaudeKit Engineer implements a multi-agent AI orchestration architecture where 
 ### 1. Core Layer
 
 #### 1.1 CLI Interface
-**Location**: Claude Code / Open Code CLI
+**Location**: Claude Code CLI
 **Responsibility**: User interaction and command routing
 **Key Functions**:
 - Parse slash commands
@@ -38,7 +38,7 @@ ClaudeKit Engineer implements a multi-agent AI orchestration architecture where 
 - Display results to users
 - Manage conversation context
 
-**Technology**: Anthropic Claude Code CLI / OpenCode AI CLI
+**Technology**: Anthropic Claude Code CLI
 
 #### 1.2 Command Parser
 **Location**: Built into CLI
@@ -62,32 +62,30 @@ ClaudeKit Engineer implements a multi-agent AI orchestration architecture where 
 
 #### 2.1 Agent Types
 
-**Planning Agents**:
-- `planner` - Technical planning and architecture
-- `researcher` - Research and analysis
-- `planner-researcher` - Combined planning and research (Opus model)
-- `brainstormer` - Solution ideation
+**19 Specialized Agents**:
 
-**Implementation Agents**:
-- Main agent (user interaction) - Implements code
-- `scout` - Parallel codebase exploration
-- `ui-ux-designer` - Design creation
-- `ui-ux-developer` - Design implementation
-- `database-admin` - Database operations
-
-**Quality Assurance Agents**:
-- `code-reviewer` - Code quality assessment
-- `tester` - Test creation and execution
-- `debugger` - Issue analysis and debugging
-
-**Documentation Agents**:
-- `docs-manager` - Documentation maintenance
-- `copywriter` - Content creation
-- `journal-writer` - Development journaling
-
-**Operations Agents**:
-- `git-manager` - Version control operations
-- `project-manager` - Progress tracking and oversight
+| Category | Agent | Purpose |
+|----------|-------|---------|
+| Planning | `planner` | Technical planning and architecture |
+| Planning | `researcher` | Research and analysis |
+| Planning | `brainstormer` | Solution ideation |
+| Quality | `tester` | Test creation and execution |
+| Quality | `code-reviewer` | Code quality assessment |
+| Quality | `debugger` | Issue analysis and debugging |
+| Quality | `security-auditor` | Security analysis |
+| Documentation | `docs-manager` | Documentation maintenance |
+| Documentation | `copywriter` | Content creation |
+| Documentation | `journal-writer` | Development journaling |
+| Operations | `git-manager` | Version control operations |
+| Operations | `project-manager` | Progress tracking |
+| Operations | `database-admin` | Database operations |
+| Operations | `mcp-manager` | MCP server management |
+| Implementation | `scout` | Codebase exploration |
+| Implementation | `scout-external` | External tool exploration |
+| Implementation | `ui-ux-designer` | Design creation |
+| Implementation | `lovable-to-nextjs` | Lovable to Next.js conversion |
+| Implementation | `csharp-expert` | C#/.NET development |
+| Specialized | `seo-specialist` | SEO optimization |
 
 #### 2.2 Agent Definition Structure
 
@@ -113,7 +111,7 @@ temperature: 0.1
 
 **Model Selection**:
 - `claude-sonnet-4-20250514` - Fast, efficient (most agents)
-- `claude-opus-4-1-20250805` - Advanced reasoning (planner-researcher)
+- `claude-opus-4-1-20250805` - Advanced reasoning (complex planning)
 - `google/gemini-2.5-flash` - Cost-effective (docs-manager)
 - `grok-code` - Specialized (git-manager)
 
@@ -148,7 +146,7 @@ Issues, blockers, or questions
 **Communication Patterns**:
 1. **Request-Response**: Agent A requests, Agent B responds
 2. **Broadcast**: Agent publishes report for multiple consumers
-3. **Chain**: Sequential handoffs (A → B → C)
+3. **Chain**: Sequential handoffs (A -> B -> C)
 4. **Fan-Out**: Parallel execution (A spawns B, C, D)
 5. **Fan-In**: Collect results from parallel agents
 
@@ -156,43 +154,22 @@ Issues, blockers, or questions
 
 #### 3.1 Command Categories
 
-**Core Development**:
-- `/plan` - Research and planning
-- `/cook` - Feature implementation
-- `/test` - Test execution
-- `/ask` - Technical consultation
-- `/bootstrap` - Project initialization
-- `/brainstorm` - Solution ideation
+**65+ Slash Commands**:
 
-**Debugging & Fixing**:
-- `/debug` - Deep analysis
-- `/fix:fast` - Quick fixes
-- `/fix:hard` - Complex problems
-- `/fix:ci` - CI/CD debugging
-- `/fix:test` - Test debugging
-- `/fix:types` - Type error resolution
-- `/fix:logs` - Log analysis
-- `/fix:ui` - UI issue fixing
-
-**Design & Content**:
-- `/design:*` - Design creation variants
-- `/content:*` - Content creation variants
-
-**Documentation**:
-- `/docs:init` - Initial docs
-- `/docs:update` - Update docs
-- `/docs:summarize` - Generate summaries
-
-**Git Operations**:
-- `/git:cm` - Commit
-- `/git:cp` - Commit and push
-- `/git:pr` - Create PR
-
-**Project Management**:
-- `/watzup` - Status review
-- `/journal` - Journaling
-- `/scout` - Codebase exploration
-- `/scout:ext` - Codebase exploration (using external tools)
+| Category | Commands |
+|----------|----------|
+| Development | `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code` |
+| Debugging | `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui` |
+| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max` |
+| Content | `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro` |
+| Documentation | `/docs:init`, `/docs:update`, `/docs:summarize` |
+| SEO | `/seo:audit`, `/seo:keywords`, `/seo:schema` |
+| Git Operations | `/git:cm`, `/git:cp`, `/git:pr` |
+| Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
+| Project Management | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
+| Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
+| Integration | `/integrate:polar`, `/integrate:sepay`, `/use-mcp` |
+| Code Review | `/review:codebase` |
 
 #### 3.2 Command Workflow Pattern
 
@@ -283,53 +260,32 @@ Explore different approaches simultaneously
 .claude/skills/
 └── [skill-name]/
     ├── SKILL.md           # Main skill definition
-    ├── references/        # Supporting documentation
-    │   ├── api-ref.md
-    │   └── examples.md
-    └── scripts/           # Utility scripts (if applicable)
+    └── references/        # Supporting documentation
+        ├── api-ref.md
+        └── examples.md
 ```
 
 **Skill Categories**:
-- **Authentication**: better-auth
-- **Cloud Platforms**: Cloudflare, Google Cloud
+- **DevOps**: Cloudflare, Docker, Google Cloud
 - **Databases**: MongoDB, PostgreSQL
-- **Design**: Canvas design generation
-- **Debugging**: Systematic approaches
-- **Development**: Next.js, Turborepo
-- **Documentation**: Repomix, docs-seeker
-- **Document Processing**: PDF, DOCX, PPTX, XLSX
-- **Infrastructure**: Docker
-- **Media**: FFmpeg, ImageMagick
-- **MCP**: Server building
-- **Problem Solving**: Meta-patterns, thinking frameworks
-- **UI Frameworks**: shadcn/ui, Tailwind CSS
-- **Ecommerce**: Shopify
+- **Web Frameworks**: Next.js, Turborepo
+- **UI Styling**: shadcn/ui, Tailwind CSS
+- **Individual Skills**: better-auth, chrome-devtools, debugging, docs-seeker, document-skills, ffmpeg, imagemagick, gemini-audio, gemini-video-understanding, mcp-builder, problem-solving, shopify
+- **Specialized**: csharp-expert, security-audit, seo
 
 #### 5.2 Skill Invocation
 
 **Invocation**: `Skill` tool in CLI
 **Usage**: Agents invoke skills to access specialized knowledge
-**Example**:
-```
-Planner needs Next.js expertise
-  ↓
-Invokes "nextjs" skill
-  ↓
-Skill provides implementation guidance
-  ↓
-Planner incorporates into plan
-```
 
 ### 6. Integration Layer
 
 #### 6.1 Hook System
 
-**Purpose**: Intercept and control Claude Code operations for performance and security
-
 **Scout Block Hook** (Cross-Platform):
 - **Architecture**: Node.js dispatcher with platform-specific implementations
-- **Windows**: PowerShell implementation (`scout-block.ps1`)
-- **Unix (Linux/macOS/WSL)**: Bash implementation (`scout-block.sh`)
+- **Windows**: PowerShell implementation (via Node.js)
+- **Unix (Linux/macOS/WSL)**: Bash implementation
 - **Platform Detection**: Automatic via `process.platform` in dispatcher
 - **Configuration**: Zero-config - automatic platform selection
 
@@ -339,13 +295,9 @@ Planner incorporates into plan
 - Error handling with exit codes (0 = allow, 2 = block/error)
 - Security features: sanitized error messages, input validation
 
-**Requirements**:
-- Node.js >= 18.0.0 (already required by project)
-- No additional dependencies
-
 **Testing**:
-- Cross-platform test suites (`test-scout-block.sh`, `test-scout-block.ps1`)
-- Comprehensive test coverage (11+ test cases)
+- Cross-platform test suites
+- Comprehensive test coverage
 - Validates blocked/allowed patterns, error handling, edge cases
 
 **Hook Configuration** (`.claude/settings.json`):
@@ -363,28 +315,17 @@ Planner incorporates into plan
 #### 6.2 MCP (Model Context Protocol) Integration
 
 **Available MCP Servers**:
+- **context7**: Read latest documentation
+- **sequential-thinking**: Structured thinking process
+- **SearchAPI**: Google and YouTube search
+- **review-website**: Web content extraction
+- **VidCap**: Video transcript analysis
 
-**docs-seeker** skill (Documentation):
-- Read latest docs for packages/plugins
-- Access up-to-date technical information
-
-**sequential-thinking** skill (Problem Solving):
-- Structured thinking process
-- Break down complex problems
-- Reflective analysis
-
-**ai-multimodal** skill (Visual Analysis):
-- Describe images, videos, documents
-- UI/UX analysis from screenshots
-
-**ai-multimodal & imagemagick skills** (Generation & Processing):
-- Generate images, videos, and documents via ai-multimodal skills
-- Perform design asset creation and edits with imagemagick skill workflows
-
-**brain** (Advanced Reasoning):
-- Sequential thinking
-- Code analysis
-- Debugging assistance
+**Skills Integration**:
+- **ai-multimodal**: Visual analysis (images, videos, documents)
+- **docs-seeker**: Documentation reading
+- **sequential-thinking**: Problem decomposition
+- **imagemagick**: Image processing
 
 #### 6.3 External Service Integration
 
@@ -398,7 +339,7 @@ Planner incorporates into plan
 - Project updates
 - Team communication
 
-**NPM** (Optional):
+**NPM**:
 - Package publishing
 - Version management
 
@@ -512,24 +453,6 @@ Remote Repository (GitHub)
 └─────────────────────┘
 ```
 
-### Agent Communication Example
-
-```
-plans/<plan-name>/reports/251026-from-planner-to-main-auth-plan-report.md
-    ↓
-Main Agent reads plan
-    ↓
-Implements features
-    ↓
-plans/<plan-name>/reports/251026-from-main-to-tester-auth-impl-report.md
-    ↓
-Tester reads implementation details
-    ↓
-Runs tests
-    ↓
-plans/<plan-name>/reports/251026-from-tester-to-main-test-results-report.md
-```
-
 ## Technology Stack
 
 ### Core Technologies
@@ -537,11 +460,11 @@ plans/<plan-name>/reports/251026-from-tester-to-main-test-results-report.md
 **Runtime Environment**:
 - Node.js >= 18.0.0
 - Bash scripting (hooks)
+- PowerShell (Windows hooks)
 
 **AI Platforms**:
 - Anthropic Claude (Sonnet 4, Opus 4)
 - Google Gemini 2.5 Flash
-- OpenRouter (multi-model support)
 - Grok Code
 
 **Development Tools**:
@@ -554,87 +477,6 @@ plans/<plan-name>/reports/251026-from-tester-to-main-test-results-report.md
 - GitHub Actions
 - Conventional Commits
 - Semantic Versioning
-
-### Agent Skills Ecosystem
-
-**Sequential Thinking**: Problem decomposition
-**brain**: Advanced reasoning
-**docs-seeker**: Documentation access
-**ai-multimodal**: Visual understanding
-**ai-multimodal & imagemagick skills**: Content generation and processing
-
-## Data Flow Diagrams
-
-### Command Execution Flow
-
-```
-User → CLI → Parser → Command Def → Agent Workflow
-                                         ↓
-                        ┌────────────────┴────────────────┐
-                        ↓                                 ↓
-                Sequential Execution              Parallel Execution
-                        ↓                                 ↓
-                Agent A → Agent B → Agent C    Agent A + Agent B + Agent C
-                        ↓                                 ↓
-                        └─────────────┬───────────────────┘
-                                      ↓
-                              Collect Results
-                                      ↓
-                              Present to User
-```
-
-### File-Based Communication Flow
-
-```
-Agent A (Planner)
-    ↓ Writes
-./plans/<plan-name>/plan.md
-    ↓ Reads
-Main Agent
-    ↓ Implements
-Code Changes
-    ↓ Writes
-./plans/<plan-name>/reports/251026-from-main-to-tester-impl-report.md
-    ↓ Reads
-Tester Agent
-    ↓ Executes
-Tests
-    ↓ Writes
-./plans/<plan-name>/reports/251026-from-tester-to-main-results-report.md
-    ↓ Reads
-Main Agent (next steps)
-```
-
-### Documentation Update Flow
-
-```
-Code Changes
-    ↓
-Docs Manager Triggered
-    ↓
-Check Freshness (< 1 day?)
-    ↓
-┌─────────┴─────────┐
-↓ No (outdated)     ↓ Yes (fresh)
-Run Repomix         Read Existing
-    ↓                   ↓
-Generate Summary        │
-    └────────┬──────────┘
-             ↓
-    Analyze Changes
-             ↓
-    Update Documentation
-    - API docs
-    - Code standards
-    - Architecture
-    - Codebase summary
-             ↓
-    Validate Naming
-             ↓
-    Create Report
-             ↓
-    Save to ./docs/
-```
 
 ## Security Architecture
 
@@ -677,11 +519,6 @@ Generate Summary        │
 - Environment variable injection
 - Secure storage systems in production
 
-**Credentials**:
-- Password hashing (bcrypt, argon2)
-- Token-based authentication
-- Secure session management
-
 ## Scalability Considerations
 
 ### Horizontal Scalability
@@ -718,7 +555,7 @@ Generate Summary        │
 
 ```
 Developer Machine
-├── Claude Code CLI / Open Code CLI
+├── Claude Code CLI
 ├── .claude/ (configuration)
 ├── .opencode/ (configuration)
 ├── Git repository
@@ -863,28 +700,6 @@ User Project
 - Cleanup of temporary files
 - Optimized git operations
 
-## Future Architecture Evolution
-
-### Planned Enhancements
-
-**Agent Improvements**:
-- Visual workflow builder for agent orchestration
-- Custom agent creator with UI
-- Agent marketplace for community contributions
-- Real-time agent communication (beyond files)
-
-**Scalability Enhancements**:
-- Distributed agent execution
-- Cloud-based agent orchestration
-- Multi-repository support
-- Large-scale project handling
-
-**Integration Expansions**:
-- Additional AI platforms
-- More MCP servers
-- Custom integration framework
-- Enterprise service connectors
-
 ## References
 
 ### Internal Documentation
@@ -897,10 +712,3 @@ User Project
 - [Open Code Documentation](https://opencode.ai/docs)
 - [MCP Documentation](https://modelcontextprotocol.io/)
 - [Semantic Versioning](https://semver.org/)
-
-## Unresolved Questions
-
-1. **Real-Time Collaboration**: How to handle multiple developers using agents simultaneously on same codebase?
-2. **Agent State Management**: Should agents maintain state between invocations beyond file system?
-3. **Distributed Execution**: Architecture for running agents across multiple machines?
-4. **Performance Benchmarking**: What are acceptable latency thresholds for different operation types?

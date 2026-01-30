@@ -1,21 +1,23 @@
 # Project Overview & Product Development Requirements (PDR)
 
-**Project Name**: ClaudeKit Engineer
-**Version**: 1.8.0
-**Last Updated**: 2025-10-26
+**Project Name**: spark-dev
+**Version**: 1.0.1
+**Last Updated**: 2026-01-31
 **Status**: Active Development
-**Repository**: https://github.com/claudekit/claudekit-engineer
+**Repository**: https://github.com/trungdo9/spark-dev
 
 ## Executive Summary
 
-ClaudeKit Engineer is a comprehensive boilerplate template that revolutionizes software development by integrating AI-powered CLI coding agents (Claude Code and Open Code) into the development workflow. It provides a complete orchestration framework where specialized AI agents collaborate to handle planning, implementation, testing, code review, documentation, and project management.
+spark-dev is a development template for building AI-powered applications with Claude Code. Built on top of ClaudeKit Engineer, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
 
 ## Project Purpose
 
 ### Vision
-Enable developers to build professional software projects faster and with higher quality by leveraging AI agent orchestration, automated workflows, and intelligent project management.
+
+Enable developers to build professional software projects faster and with higher quality by leveraging AI agent orchestration and intelligent project management.
 
 ### Mission
+
 Provide a production-ready template that:
 - Accelerates development velocity through AI-powered agent collaboration
 - Enforces best practices and coding standards automatically
@@ -24,7 +26,8 @@ Provide a production-ready template that:
 - Streamlines git workflows with professional commit standards
 
 ### Value Proposition
-- **10x Faster Planning**: Parallel researcher agents explore solutions simultaneously
+
+- **Accelerated Planning**: Parallel researcher agents explore solutions simultaneously
 - **Consistent Quality**: Automated code review and testing on every change
 - **Zero Documentation Debt**: Docs update automatically with code changes
 - **Professional Git History**: Clean, conventional commits without AI attribution
@@ -33,61 +36,57 @@ Provide a production-ready template that:
 ## Target Users
 
 ### Primary Users
+
 1. **Solo Developers**: Building projects faster with AI assistance
 2. **Small Development Teams**: Standardizing workflows and practices
-3. **Open Source Maintainers**: Managing contributions and documentation
+3. **AI-Powered Development Shops**: Leveraging Claude Code for automation
 4. **Startups**: Rapid prototyping and MVP development
 5. **Enterprise Teams**: Enforcing architectural standards
 
 ### User Personas
 
 **Persona 1: Solo Full-Stack Developer**
-- **Needs**: Fast iteration, quality code, minimal documentation overhead
-- **Pain Points**: Context switching, documentation maintenance, testing gaps
-- **Solution**: AI agents handle planning, testing, docs while dev focuses on features
+- Needs: Fast iteration, quality code, minimal documentation overhead
+- Pain Points: Context switching, documentation maintenance, testing gaps
+- Solution: AI agents handle planning, testing, docs while dev focuses on features
 
 **Persona 2: Technical Lead**
-- **Needs**: Enforce standards, review code, maintain architecture docs
-- **Pain Points**: Code review bottleneck, inconsistent patterns, outdated docs
-- **Solution**: Automated reviews, standardized workflows, living documentation
+- Needs: Enforce standards, review code, maintain architecture docs
+- Pain Points: Code review bottleneck, inconsistent patterns, outdated docs
+- Solution: Automated reviews, standardized workflows, living documentation
 
-**Persona 3: Open Source Maintainer**
-- **Needs**: Scale contributions, maintain quality, clear documentation
-- **Pain Points**: Limited time, varying contribution quality, doc rot
-- **Solution**: Consistent review process, automated standards enforcement
+**Persona 3: AI-First Developer**
+- Needs: Leverage Claude Code capabilities, automated workflows
+- Pain Points: Manual setup, inconsistent agent configurations
+- Solution: Pre-configured agents, commands, and workflows
 
 ## Key Features & Capabilities
 
 ### 1. Multi-Agent Orchestration System
 
-**Agent Types**:
-- **Planning Agents**: Research, architecture, technical decisions
-- **Implementation Agents**: Code generation, feature development
-- **Quality Agents**: Testing, code review, security analysis
-- **Documentation Agents**: Auto-updating docs, API references
-- **Management Agents**: Project tracking, progress monitoring, git operations
+**Agent Types** (19 agents):
+- **Planning Agents**: planner, researcher, brainstormer
+- **Implementation Agents**: Main agent, scout, scout-external, ui-ux-designer, csharp-expert
+- **Quality Agents**: tester, code-reviewer, debugger, security-auditor
+- **Documentation Agents**: docs-manager, copywriter, journal-writer
+- **Management Agents**: project-manager, git-manager, database-admin, mcp-manager
+- **Specialized**: seo-specialist
 
 **Orchestration Patterns**:
-- **Sequential Chaining**: Planning → Implementation → Testing → Review → Deploy
+- **Sequential Chaining**: Planning -> Implementation -> Testing -> Review -> Deploy
 - **Parallel Execution**: Multiple researchers exploring different approaches
 - **Query Fan-Out**: Simultaneous investigation of technical solutions
 
-**Performance Optimization**:
-- **Scout Block Hook**: Cross-platform hook system blocking heavy directories
-  - Automatic platform detection (Windows/Unix/WSL)
-  - Zero-configuration setup
-  - Blocks: node_modules, __pycache__, .git/, dist/, build/
-  - Improves AI agent response time and token efficiency
+### 2. Comprehensive Slash Commands (65+)
 
-### 2. Comprehensive Slash Commands (50+)
-
-**Core Development**:
+**Development**:
 - `/plan [task]` - Research and create implementation plans
 - `/cook [tasks]` - Implement features with full workflow
 - `/test` - Run comprehensive test suites
 - `/ask [question]` - Expert technical consultation
 - `/bootstrap` - Initialize new projects end-to-end
 - `/brainstorm [question]` - Solution ideation and evaluation
+- `/code` - Code generation and implementation
 
 **Debugging & Fixing**:
 - `/debug [issues]` - Deep issue analysis
@@ -105,6 +104,8 @@ Provide a production-ready template that:
 - `/design:3d [tasks]` - Interactive 3D designs with Three.js
 - `/design:screenshot [image]` - Design from screenshots
 - `/design:video [video]` - Design from video references
+- `/design:describe [image]` - Describe design from images
+- `/design:ui-ux-pro-max` - Advanced UI/UX design
 - `/content:fast [request]` - Quick copywriting
 - `/content:good [request]` - High-quality content creation
 - `/content:enhance [issues]` - Copy improvement
@@ -115,6 +116,11 @@ Provide a production-ready template that:
 - `/docs:update` - Update existing documentation
 - `/docs:summarize` - Generate codebase summaries
 
+**SEO**:
+- `/seo:audit` - Comprehensive SEO audit
+- `/seo:keywords` - Keyword research and analysis
+- `/seo:schema` - Schema markup generation
+
 **Git Operations**:
 - `/git:cm` - Stage and commit changes
 - `/git:cp` - Stage, commit, and push
@@ -124,57 +130,31 @@ Provide a production-ready template that:
 - `/watzup` - Review recent changes and status
 - `/journal` - Development journal entries
 - `/scout [prompt] [scale]` - Parallel codebase exploration
+- `/scout:ext [prompt]` - Codebase exploration with external tools
 
-### 3. Extensive Skills Library (20+ Skills)
+**Skills & Integration**:
+- `/skill:add` - Add new skill
+- `/skill:create` - Create new skill
+- `/skill:optimize` - Optimize skills
+- `/skill:fix-logs` - Fix logs using skills
+- `/use-mcp` - Use MCP servers
 
-**Categories**:
-- **Authentication**: better-auth integration
-- **Cloud**: Cloudflare (Workers, R2, Browser Rendering), Google Cloud
-- **Databases**: MongoDB, PostgreSQL
-- **Design**: Canvas-based design generation
-- **Debugging**: Systematic debugging, root-cause tracing, defense-in-depth
-- **Development**: Next.js, Turborepo, Claude Code workflows
-- **Documentation**: Repomix, docs-seeker
-- **Documents**: PDF, DOCX, PPTX, XLSX processing
-- **Infrastructure**: Docker containerization
-- **Media**: FFmpeg, ImageMagick
-- **MCP**: Model Context Protocol server building
-- **Problem Solving**: Meta-pattern recognition, collision-zone thinking
-- **UI**: shadcn/ui, Tailwind CSS, Remix Icon
-- **Ecommerce**: Shopify integrations
+### 3. Workflow System
 
-### 4. Automated Release Management
+**Primary Workflows**:
+1. **primary-workflow.md** - Code implementation cycle
+2. **development-rules.md** - Coding standards and rules
+3. **orchestration-protocol.md** - Agent coordination patterns
+4. **documentation-management.md** - Documentation protocols
 
-**Features**:
-- Semantic versioning (MAJOR.MINOR.PATCH)
-- Conventional commit enforcement
-- Automated changelog generation
-- GitHub releases with assets
-- Optional NPM publishing
-- Git hooks for commit validation
+### 4. Development Principles
 
-**Commit Types**:
-- `feat:` → Minor version bump
-- `fix:` → Patch version bump
-- `BREAKING CHANGE:` → Major version bump
-- `docs:`, `refactor:`, `test:`, `ci:` → Patch bump
-
-### 5. Development Workflow Automation
-
-**Pre-Commit**:
-- Commit message linting (conventional commits)
-- Optional test execution
-
-**Pre-Push**:
-- Linting validation
-- Test suite execution
-- Build verification
-
-**CI/CD**:
-- GitHub Actions integration
-- Automated releases on main branch
-- Test automation
-- Build validation
+- **YANGI** (You Aren't Gonna Need It) - Avoid over-engineering
+- **KISS** (Keep It Simple, Stupid) - Prefer simple solutions
+- **DRY** (Don't Repeat Yourself) - Eliminate code duplication
+- Files under 200 lines for optimal context management
+- Try-catch error handling
+- Security-first development
 
 ## Technical Requirements
 
@@ -333,7 +313,6 @@ Provide a production-ready template that:
 
 **AI Platforms**:
 - Anthropic Claude (Sonnet 4, Opus 4)
-- OpenRouter integration
 - Google Gemini (for docs-manager)
 - Grok Code (for git-manager)
 
@@ -366,9 +345,6 @@ Provide a production-ready template that:
 ## Use Cases
 
 ### UC1: Bootstrap New Project
-**Actor**: Developer
-**Goal**: Create new project from scratch
-**Flow**:
 1. Run `/bootstrap` command
 2. Answer requirement questions
 3. AI researches tech stacks
@@ -378,12 +354,7 @@ Provide a production-ready template that:
 7. AI creates tests and documentation
 8. Project ready for development
 
-**Outcome**: Fully functional project with tests, docs, CI/CD in < 10 minutes
-
 ### UC2: Implement New Feature
-**Actor**: Developer
-**Goal**: Add feature with full workflow
-**Flow**:
 1. Run `/cook "add user authentication"`
 2. Planner creates implementation plan
 3. Researcher agents explore auth solutions
@@ -394,12 +365,7 @@ Provide a production-ready template that:
 8. AI updates documentation
 9. AI commits with conventional message
 
-**Outcome**: Feature complete with tests, docs, and clean git history
-
 ### UC3: Debug Production Issue
-**Actor**: Developer
-**Goal**: Identify and fix production bug
-**Flow**:
 1. Run `/fix:logs "API timeout errors"`
 2. Debugger agent analyzes logs
 3. Root cause identified
@@ -409,24 +375,14 @@ Provide a production-ready template that:
 7. Code review confirms quality
 8. Commit and deploy
 
-**Outcome**: Bug fixed with comprehensive testing and documentation
-
 ### UC4: Create Pull Request
-**Actor**: Developer
-**Goal**: Submit code for review
-**Flow**:
 1. Run `/git:pr feature/new-auth main`
 2. AI analyzes all commits in branch
 3. AI generates comprehensive PR description
 4. PR created with proper context
 5. Links to related issues added
 
-**Outcome**: Professional PR ready for review
-
 ### UC5: Update Documentation
-**Actor**: Project Manager
-**Goal**: Ensure docs are current
-**Flow**:
 1. Run `/docs:update`
 2. Docs manager scans codebase
 3. Generates fresh summary with repomix
@@ -435,13 +391,11 @@ Provide a production-ready template that:
 6. Validates naming conventions
 7. Creates update report
 
-**Outcome**: Documentation synchronized with code
-
 ## Constraints & Limitations
 
 ### Technical Constraints
 - Requires Node.js >= 18.0.0
-- Depends on Claude Code or Open Code CLI
+- Depends on Claude Code CLI
 - File-based communication has I/O overhead
 - Token limits on AI model context windows
 
@@ -460,65 +414,58 @@ Provide a production-ready template that:
 ## Risks & Mitigation
 
 ### Risk 1: AI Model API Failures
-**Impact**: High
-**Likelihood**: Medium
-**Mitigation**: Retry logic, fallback models, graceful degradation
+- Impact: High, Likelihood: Medium
+- Mitigation: Retry logic, fallback models, graceful degradation
 
 ### Risk 2: Context Window Limits
-**Impact**: Medium
-**Likelihood**: High
-**Mitigation**: Repomix for code compaction, selective context loading, chunking
+- Impact: Medium, Likelihood: High
+- Mitigation: Repomix for code compaction, selective context loading, chunking
 
 ### Risk 3: Agent Coordination Failures
-**Impact**: High
-**Likelihood**: Low
-**Mitigation**: Validation checks, error recovery, rollback mechanisms
+- Impact: High, Likelihood: Low
+- Mitigation: Validation checks, error recovery, rollback mechanisms
 
 ### Risk 4: Secret Exposure
-**Impact**: Critical
-**Likelihood**: Low
-**Mitigation**: Pre-commit scanning, .gitignore enforcement, security reviews
+- Impact: Critical, Likelihood: Low
+- Mitigation: Pre-commit scanning, .gitignore enforcement, security reviews
 
 ### Risk 5: Documentation Drift
-**Impact**: Medium
-**Likelihood**: Medium
-**Mitigation**: Automated triggers, freshness checks, validation workflows
+- Impact: Medium, Likelihood: Medium
+- Mitigation: Automated triggers, freshness checks, validation workflows
 
 ## Future Roadmap
 
-### Phase 1: Foundation (Complete - v1.0-1.8)
-- ✅ Core agent framework
-- ✅ Slash command system
-- ✅ Automated releases
-- ✅ Skills library
-- ✅ Documentation system
+### Phase 1: Foundation (Current - v1.0.1)
+- Core agent framework
+- Slash command system
+- Automated releases
+- Skills library
+- Documentation system
 
-### Phase 2: Enhancement (Current)
-- 🔄 Additional skills (GCP, AWS, Azure)
-- 🔄 UI/UX improvements
-- 🔄 Performance optimization
-- 🔄 Enhanced error handling
+### Phase 2: Enhancement (Planned)
+- Additional cloud skills (GCP, AWS, Azure)
+- UI/UX improvements
+- Performance optimization
+- Enhanced error handling
 
 ### Phase 3: Advanced Features (Planned)
-- 📋 Visual workflow builder
-- 📋 Custom agent creator UI
-- 📋 Team collaboration features
-- 📋 Analytics and insights dashboard
-- 📋 Multi-language support
+- Visual workflow builder
+- Custom agent creator UI
+- Team collaboration features
+- Analytics and insights dashboard
 
-### Phase 4: Enterprise (Future)
-- 📋 Self-hosted deployment
-- 📋 Advanced security features
-- 📋 Compliance automation
-- 📋 Custom integrations
-- 📋 Enterprise support
+### Enterprise (Future)
+- Self-hosted deployment
+ Phase 4:- Advanced security features
+- Compliance automation
+- Custom integrations
 
 ## Dependencies & Integration
 
 ### Required Dependencies
 - Node.js runtime environment
 - Git version control
-- Claude Code or Open Code CLI
+- Claude Code CLI
 - API keys for AI platforms
 
 ### Optional Dependencies
@@ -540,7 +487,7 @@ Provide a production-ready template that:
 - YANGI (You Aren't Gonna Need It)
 - KISS (Keep It Simple, Stupid)
 - DRY (Don't Repeat Yourself)
-- Files < 500 lines
+- Files < 200 lines
 - Comprehensive error handling
 - Security-first development
 
@@ -567,40 +514,24 @@ Provide a production-ready template that:
 
 ## Glossary
 
-- **Agent**: Specialized AI assistant with specific expertise and responsibilities
-- **Slash Command**: Shortcut that triggers agent workflows (e.g., `/plan`)
-- **Skill**: Reusable knowledge module for specific technologies or patterns
+- **Agent**: Specialized AI assistant with specific expertise
+- **Slash Command**: Shortcut that triggers agent workflows
+- **Skill**: Reusable knowledge module for specific technologies
 - **MCP**: Model Context Protocol for AI tool integration
 - **Repomix**: Tool for compacting codebases into AI-friendly format
 - **Sequential Chaining**: Running agents one after another with dependencies
 - **Parallel Execution**: Running multiple agents simultaneously
 - **Query Fan-Out**: Spawning multiple researchers to explore different approaches
-- **Conventional Commits**: Structured commit message format (type(scope): description)
+- **Conventional Commits**: Structured commit message format
 
-## Appendix
+## Related Documentation
 
-### Related Documentation
 - [Codebase Summary](./codebase-summary.md)
 - [Code Standards](./code-standards.md)
 - [System Architecture](./system-architecture.md)
-- [Commands Reference](../guide/COMMANDS.md)
+- [Project Roadmap](./project-roadmap.md)
 
-### External Resources
-- [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code/overview)
-- [Open Code Documentation](https://opencode.ai/docs)
-- [Conventional Commits](https://conventionalcommits.org/)
-- [Semantic Versioning](https://semver.org/)
-- [Keep a Changelog](https://keepachangelog.com/)
+## Support & Community
 
-### Support & Community
-- GitHub Issues: https://github.com/claudekit/claudekit-engineer/issues
-- Discussions: https://github.com/claudekit/claudekit-engineer/discussions
-- Repository: https://github.com/claudekit/claudekit-engineer
-
-## Unresolved Questions
-
-1. **Performance Benchmarks**: Need to establish baseline metrics for agent execution times
-2. **Multi-Repository Support**: How to handle projects spanning multiple repositories?
-3. **Custom AI Model Support**: Should we support other AI platforms beyond Claude and OpenRouter?
-4. **Agent Marketplace**: Community-contributed agents and skills distribution mechanism?
-5. **Real-Time Collaboration**: How to handle multiple developers using agents simultaneously?
+- GitHub Issues: https://github.com/trungdo9/spark-dev/issues
+- Repository: https://github.com/trungdo9/spark-dev
