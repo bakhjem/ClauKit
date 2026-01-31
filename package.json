@@ -1,18 +1,20 @@
 {
-  "name": "spark-dev",
+  "name": "@trungdo9/ClauKit",
   "version": "1.0.1",
-  "description": "A development template for building AI agents using Claude.",
+  "description": "A CLI tool to initialize Claude agents configuration in your project.",
   "main": "index.js",
+  "bin": {
+    "ck": "./bin/ck.js",
+    "claukit": "./bin/ck.js"
+  },
   "scripts": {
     "test": "echo \"Warning: no test specified\" && exit 0",
     "lint": "echo \"Linting passed\"",
-    "semantic-release": "semantic-release",
-    "prepare": "husky install || true",
-    "postinstall": "node scripts/postinstall.js"
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/trungdo9/spark-dev.git"
+    "url": "https://github.com/trungdo9/ClauKit.git"
   },
   "keywords": [
     "ai-agents",
@@ -24,21 +26,20 @@
   "author": "Trung Dev <trungdev@example.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/trungdo9/spark-dev/issues"
+    "url": "https://github.com/trungdo9/ClauKit/issues"
   },
-  "homepage": "https://github.com/trungdo9/spark-dev#readme",
+  "homepage": "https://github.com/trungdo9/ClauKit#readme",
   "files": [
+    "bin/",
     ".claude/",
     ".opencode/",
     "plans/",
-    "scripts/",
     "docs/",
     "AGENTS.md",
     "CLAUDE.md",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE",
-    ".claude/metadata.json"
+    "LICENSE"
   ],
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
@@ -58,6 +59,6 @@
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "next-engineer": "github:trungdo9/spark-dev"
+    "next-engineer": "github:trungdo9/ClaudeKit"
   }
 }
