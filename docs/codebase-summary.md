@@ -256,6 +256,8 @@ type(scope): description
 - `codebase-summary.md` - This file
 - `system-architecture.md` - Architecture documentation
 - `project-roadmap.md` - Development roadmap
+- `design-guidelines.md` - Design principles and guidelines
+- `deployment-guide.md` - Deployment procedures
 
 **Documentation Triggers**:
 - Feature implementation completion

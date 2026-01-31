@@ -928,6 +928,8 @@ const expensiveCalculation = memoize((n) => {
 - [Project Overview PDR](./project-overview-pdr.md)
 - [Codebase Summary](./codebase-summary.md)
 - [System Architecture](./system-architecture.md)
+- [Design Guidelines](./design-guidelines.md)
+- [Deployment Guide](./deployment-guide.md)
 
 ### External Standards
 - [Conventional Commits](https://conventionalcommits.org/)

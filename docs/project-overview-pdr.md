@@ -530,6 +530,8 @@ Provide a production-ready template that:
 - [Code Standards](./code-standards.md)
 - [System Architecture](./system-architecture.md)
 - [Project Roadmap](./project-roadmap.md)
+- [Design Guidelines](./design-guidelines.md)
+- [Deployment Guide](./deployment-guide.md)
 
 ## Support & Community
 

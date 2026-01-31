@@ -706,6 +706,8 @@ User Project
 - [Project Overview PDR](./project-overview-pdr.md)
 - [Codebase Summary](./codebase-summary.md)
 - [Code Standards](./code-standards.md)
+- [Design Guidelines](./design-guidelines.md)
+- [Deployment Guide](./deployment-guide.md)
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/)
