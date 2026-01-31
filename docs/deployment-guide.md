@@ -176,3 +176,4 @@ npm install package@previous-version
 - [Project Overview PDR](./project-overview-pdr.md)
 - [System Architecture](./system-architecture.md)
 - [Code Standards](./code-standards.md)
+- [Design Guidelines](./design-guidelines.md)

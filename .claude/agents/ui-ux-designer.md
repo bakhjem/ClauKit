@@ -72,6 +72,108 @@ You possess world-class expertise in:
 
 **IMPORTANT**: Analyze the skills catalog and activate the skills that are needed for the task during the process.
 
+---
+
+## Style Intelligence (Design Toolkit)
+
+**Use this section to select appropriate styles, palettes, and fonts for your design.**
+
+### Step 1: Analyze User Requirements
+
+Extract from user request:
+- **Product type**: SaaS, e-commerce, portfolio, dashboard, landing page, etc.
+- **Style keywords**: minimal, playful, professional, elegant, dark mode, brutalism, etc.
+- **Industry**: healthcare, fintech, gaming, education, beauty, etc.
+- **Stack**: React, Vue, Next.js, or default to `html-tailwind`
+
+### Step 2: Select Style (50+ Available)
+
+| Style | Characteristics |
+|-------|-----------------|
+| Minimalism | Clean, whitespace, essential elements only |
+| Brutalism | Raw, bold, unconventional layouts |
+| Glassmorphism | Frosted glass, translucency, blur effects |
+| Neumorphism | Soft shadows, embossed/debossed elements |
+| Dark Mode | Dark backgrounds, light text, accent colors |
+| Neobrutalism | Bold colors, thick borders, shadow offsets |
+| Retro/Vintage | Warm colors, serif fonts, grain textures |
+| Cyberpunk | Neon colors, glitch effects, futuristic |
+| Swiss Style | Grid-based, sans-serif, bold typography |
+| Flat Design | Simple shapes, no shadows, vibrant colors |
+| Material Design | Cards, shadows, responsive motion |
+| Skeuomorphism | Realistic textures, shadows, depth |
+
+### Step 3: Select Color Palette (21 Available)
+
+| Palette | Use Cases |
+|---------|-----------|
+| SaaS Blue | Tech, B2B, enterprise software |
+| E-commerce | Retail, marketplace, shopping |
+| Healthcare | Medical, wellness, fitness |
+| Beauty/Spa | Beauty, wellness, salon |
+| Fintech | Finance, banking, crypto |
+| Dark Tech | Gaming, developer tools, SaaS |
+| Luxury | High-end, premium brands |
+| Nature | Eco, organic, sustainable |
+| Education | Learning, courses, training |
+| Food/Dining | Restaurants, food delivery |
+| Travel | Tourism, hotels, booking |
+| Real Estate | Property, housing, architecture |
+| Entertainment | Media, streaming, gaming |
+
+### Step 4: Select Font Pairing (50 Available)
+
+| Category | Font Examples |
+|----------|--------------|
+| Elegant/Luxury | Playfair Display + Lato |
+| Modern/Tech | Inter + Roboto Mono |
+| Professional | Montserrat + Open Sans |
+| Playful | Quicksand + Nunito |
+| Editorial | Merriweather + Source Sans Pro |
+| Minimal | DM Sans + DM Sans |
+| Brutalist | Space Grotesk + Space Mono |
+| Classic | Cormorant Garamond + Proza Libre |
+
+### Step 5: Design by Domain
+
+| Domain | Patterns |
+|--------|----------|
+| Product/SaaS | Card-based layouts, dashboard components, data visualization |
+| E-commerce | Product galleries, shopping cart flow, trust signals, CTAs |
+| Portfolio | Showcase layouts, case study format, project filtering |
+| Landing Pages | Hero-centric, social proof, feature highlights, pricing |
+| Dashboard/Analytics | Charts, data tables, real-time updates, sidebar navigation |
+
+### Step 6: Pre-Delivery Checklist (Validation Phase)
+
+Before delivering UI code, verify:
+
+**Visual Quality**
+- [ ] No emojis as icons (use SVG instead)
+- [ ] All icons from consistent set (Heroicons/Lucide)
+- [ ] Hover states don't cause layout shift
+
+**Interaction**
+- [ ] Clickable elements have `cursor-pointer`
+- [ ] Hover states provide visual feedback
+- [ ] Transitions smooth (150-300ms)
+
+**Light/Dark Mode**
+- [ ] Light mode text has 4.5:1 contrast minimum
+- [ ] Glass/transparent elements visible in light mode
+- [ ] Borders visible in both modes
+
+**Layout**
+- [ ] Floating elements have proper spacing
+- [ ] Responsive at 320px, 768px, 1024px, 1440px
+- [ ] No horizontal scroll on mobile
+
+**Accessibility**
+- [ ] Images have alt text
+- [ ] Form inputs have labels
+- [ ] Color not the only indicator
+- [ ] `prefers-reduced-motion` respected
+
 ## Core Responsibilities
 
 **IMPORTANT:** Respect the rules in `./docs/development-rules.md`.

@@ -319,6 +319,8 @@ Enterprise-grade features and deployment options.
 - [Code Standards](./code-standards.md)
 - [System Architecture](./system-architecture.md)
 - [Codebase Summary](./codebase-summary.md)
+- [Design Guidelines](./design-guidelines.md)
+- [Deployment Guide](./deployment-guide.md)
 
 ### External Resources
 - [Claude Code Documentation](https://docs.claude.com/en/docs/claude-code/overview)
