@@ -1,14 +1,10 @@
-# claukit
+# ClauKit
 
-**Version**: 1.0.1
-**Last Updated**: 2026-01-31
+**Version**: 1.0.1  
+**Last Updated**: 2026-01-31  
 **Repository**: https://github.com/trungdo9/ClauKit
 
-A development template for building AI-powered applications with Claude Code. This template provides a complete development environment with AI agent orchestration, automated workflows, and intelligent project management.
-
-## Overview
-
-claukit is built on top of ClaudeKit Engineer, providing a standardized foundation for AI-assisted development. It includes pre-configured agents, commands, skills, and workflows that accelerate software development.
+A CLI tool to initialize Claude agents configuration in your project. This template provides a complete development environment with AI agent orchestration, automated workflows, and intelligent project management.
 
 ## Quick Start
 
@@ -20,21 +16,41 @@ claukit is built on top of ClaudeKit Engineer, providing a standardized foundati
 
 ### Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/trungdo9/ClauKit.git your-project-name
-   cd your-project-name
-   ```
+#### Option 1: Install via Git (Recommended)
 
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+# Install globally
+npm install -g https://github.com/trungdo9/ClauKit.git
 
-3. Start Claude Code:
-   ```bash
-   claude
-   ```
+# Initialize in your project
+ck init
+```
+
+#### Option 2: Run without installation
+
+```bash
+# Initialize directly using npx
+npx https://github.com/trungdo9/ClauKit.git init
+```
+
+#### Option 3: Clone and customize
+
+```bash
+# Clone this repository
+git clone https://github.com/trungdo9/ClauKit.git your-project-name
+cd your-project-name
+
+# Start Claude Code
+claude
+```
+
+### CLI Commands
+
+```bash
+ck init              # Copy .claude folder to current directory
+ck init --force      # Overwrite existing files
+ck help              # Show help information
+```
 
 ## Project Structure
 
@@ -52,11 +68,11 @@ claukit/
 ├── .opencode/                  # OpenCode CLI configuration
 │   ├── agent/                  # Agent definitions
 │   └── command/                # Command definitions
-├── .github/                    # GitHub configuration
-│   └── workflows/              # CI/CD workflows
 ├── docs/                       # Project documentation
 ├── plans/                      # Implementation plans and reports
 ├── scripts/                    # Setup and utility scripts
+├── bin/                        # CLI entry point
+│   └── ck.js                   # ClauKit CLI
 ├── CLAUDE.md                   # Project instructions for Claude
 ├── README.md                   # This file
 ├── package.json                # Node.js dependencies
@@ -154,8 +170,6 @@ All documentation is maintained in `./docs`:
 - [Project Roadmap](./docs/project-roadmap.md)
 
 ## Dependencies
-
-**Production**: `next-engineer` (GitHub package)
 
 **Development**:
 - `@commitlint/cli` ^18.4.3
