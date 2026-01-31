@@ -1,8 +1,8 @@
-# spark-dev
+# ClauKit
 
 **Version**: 1.0.1
 **Last Updated**: 2026-01-31
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
 
@@ -20,7 +20,7 @@ A development template for building AI-powered applications with Claude Code. Bu
 
 ```bash
 # Install globally
-npm install -g https://github.com/trungdo9/spark-dev.git
+npm install -g https://github.com/trungdo9/ClauKit.git
 
 # Initialize in your project
 ck init
@@ -30,14 +30,14 @@ ck init
 
 ```bash
 # Initialize directly using npx
-npx https://github.com/trungdo9/spark-dev.git init
+npx https://github.com/trungdo9/ClauKit.git init
 ```
 
 #### Option 3: Clone and customize
 
 ```bash
 # Clone this repository
-git clone https://github.com/trungdo9/spark-dev.git your-project-name
+git clone https://github.com/trungdo9/ClauKit.git your-project-name
 cd your-project-name
 
 # Start Claude Code
@@ -55,7 +55,7 @@ ck help              # Show help information
 ## Project Structure
 
 ```
-spark-dev/
+claukit/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # Specialized agent definitions (19 agents)
 │   ├── commands/               # Slash command implementations (65+ commands)
@@ -188,5 +188,5 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-- GitHub Issues: https://github.com/trungdo9/spark-dev/issues
-- Repository: https://github.com/trungdo9/spark-dev
+- GitHub Issues: https://github.com/trungdo9/ClauKit/issues
+- Repository: https://github.com/trungdo9/ClauKit
