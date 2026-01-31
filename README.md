@@ -1,10 +1,10 @@
-# ClauKit
+# spark-dev
 
-**Version**: 1.0.1  
-**Last Updated**: 2026-01-31  
-**Repository**: https://github.com/trungdo9/ClauKit
+**Version**: 1.0.1
+**Last Updated**: 2026-01-31
+**Repository**: https://github.com/trungdo9/spark-dev
 
-A CLI tool to initialize Claude agents configuration in your project. This template provides a complete development environment with AI agent orchestration, automated workflows, and intelligent project management.
+A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
 
 ## Quick Start
 
@@ -20,7 +20,7 @@ A CLI tool to initialize Claude agents configuration in your project. This templ
 
 ```bash
 # Install globally
-npm install -g https://github.com/trungdo9/ClauKit.git
+npm install -g https://github.com/trungdo9/spark-dev.git
 
 # Initialize in your project
 ck init
@@ -30,14 +30,14 @@ ck init
 
 ```bash
 # Initialize directly using npx
-npx https://github.com/trungdo9/ClauKit.git init
+npx https://github.com/trungdo9/spark-dev.git init
 ```
 
 #### Option 3: Clone and customize
 
 ```bash
 # Clone this repository
-git clone https://github.com/trungdo9/ClauKit.git your-project-name
+git clone https://github.com/trungdo9/spark-dev.git your-project-name
 cd your-project-name
 
 # Start Claude Code
@@ -55,28 +55,36 @@ ck help              # Show help information
 ## Project Structure
 
 ```
-claukit/
+spark-dev/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # Specialized agent definitions (19 agents)
-│   ├── commands/               # Slash command implementations (60+ commands)
+│   ├── commands/               # Slash command implementations (65+ commands)
 │   ├── hooks/                  # Git hooks and scripts
 │   ├── skills/                 # Specialized skills library
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
-│   └── statusline.*            # Statusline scripts (sh, ps1, js)
+│   ├── .env.example            # Environment template
+│   ├── .gitignore              # Git exclusions
+│   ├── .mcp.json.example       # MCP configuration template
+│   ├── statusline.sh           # Bash statusline script
+│   ├── statusline.ps1          # PowerShell statusline script
+│   └── statusline.js           # Node.js statusline script
 ├── .opencode/                  # OpenCode CLI configuration
 │   ├── agent/                  # Agent definitions
 │   └── command/                # Command definitions
+├── .github/                    # GitHub configuration
+│   └── workflows/              # CI/CD workflows
 ├── docs/                       # Project documentation
 ├── plans/                      # Implementation plans and reports
 ├── scripts/                    # Setup and utility scripts
-├── bin/                        # CLI entry point
-│   └── ck.js                   # ClauKit CLI
 ├── CLAUDE.md                   # Project instructions for Claude
 ├── README.md                   # This file
 ├── package.json                # Node.js dependencies
-└── CHANGELOG.md                # Version history
+├── .releaserc.json             # Semantic release configuration
+├── .commitlintrc.json          # Commit linting rules
+├── CHANGELOG.md                # Version history
+└── LICENSE                     # MIT License
 ```
 
 ## Core Features
@@ -84,24 +92,15 @@ claukit/
 ### AI Agent System
 
 **19 Specialized Agents**:
-- **planner** - Technical planning and architecture
-- **researcher** - Research and analysis
-- **tester** - Testing and validation
-- **debugger** - Issue analysis and debugging
-- **code-reviewer** - Code quality assessment
-- **docs-manager** - Documentation management
-- **git-manager** - Version control operations
-- **project-manager** - Project tracking
-- **scout** / **scout-external** - Codebase exploration
-- **ui-ux-designer** - Design creation
-- **database-admin** - Database operations
-- **copywriter** - Content creation
-- **brainstormer** - Solution ideation
-- **journal-writer** - Development journaling
-- **mcp-manager** - MCP server management
-- **csharp-expert** - C#/.NET development
-- **security-auditor** - Security analysis
-- **seo-specialist** - SEO optimization
+
+| Category | Agents |
+|----------|--------|
+| Planning | `planner`, `researcher`, `brainstormer` |
+| Quality | `tester`, `code-reviewer`, `debugger`, `security-auditor` |
+| Documentation | `docs-manager`, `copywriter`, `journal-writer` |
+| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager` |
+| Implementation | `scout`, `scout-external`, `ui-ux-designer`, `lovable-to-nextjs`, `csharp-expert` |
+| Specialized | `seo-specialist` |
 
 ### Slash Commands (65+)
 
@@ -111,6 +110,8 @@ claukit/
 
 **Design**: `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max`
 
+**Content**: `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro`
+
 **Documentation**: `/docs:init`, `/docs:update`, `/docs:summarize`
 
 **SEO**: `/seo:audit`, `/seo:keywords`, `/seo:schema`
@@ -118,6 +119,8 @@ claukit/
 **Git Operations**: `/git:cm`, `/git:cp`, `/git:pr`
 
 **Project Management**: `/watzup`, `/journal`, `/scout`, `/scout:ext`
+
+**Skills**: `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs`
 
 ### Workflows
 
@@ -168,6 +171,8 @@ All documentation is maintained in `./docs`:
 - [Code Standards](./docs/code-standards.md)
 - [System Architecture](./docs/system-architecture.md)
 - [Project Roadmap](./docs/project-roadmap.md)
+- [Design Guidelines](./docs/design-guidelines.md)
+- [Deployment Guide](./docs/deployment-guide.md)
 
 ## Dependencies
 
@@ -183,5 +188,5 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-- GitHub Issues: https://github.com/trungdo9/ClauKit/issues
-- Repository: https://github.com/trungdo9/ClauKit
+- GitHub Issues: https://github.com/trungdo9/spark-dev/issues
+- Repository: https://github.com/trungdo9/spark-dev
