@@ -1,14 +1,14 @@
-# spark-dev
+# claukit
 
 **Version**: 1.0.1
 **Last Updated**: 2026-01-31
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. This template provides a complete development environment with AI agent orchestration, automated workflows, and intelligent project management.
 
 ## Overview
 
-spark-dev is built on top of ClaudeKit Engineer, providing a standardized foundation for AI-assisted development. It includes pre-configured agents, commands, skills, and workflows that accelerate software development.
+claukit is built on top of ClaudeKit Engineer, providing a standardized foundation for AI-assisted development. It includes pre-configured agents, commands, skills, and workflows that accelerate software development.
 
 ## Quick Start
 
@@ -22,7 +22,7 @@ spark-dev is built on top of ClaudeKit Engineer, providing a standardized founda
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/trungdo9/spark-dev.git your-project-name
+   git clone https://github.com/trungdo9/ClauKit.git your-project-name
    cd your-project-name
    ```
 
@@ -39,7 +39,7 @@ spark-dev is built on top of ClaudeKit Engineer, providing a standardized founda
 ## Project Structure
 
 ```
-spark-dev/
+claukit/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # Specialized agent definitions (19 agents)
 │   ├── commands/               # Slash command implementations (60+ commands)
@@ -169,5 +169,5 @@ MIT License - see LICENSE file for details.
 
 ## Support
 
-- GitHub Issues: https://github.com/trungdo9/spark-dev/issues
-- Repository: https://github.com/trungdo9/spark-dev
+- GitHub Issues: https://github.com/trungdo9/ClauKit/issues
+- Repository: https://github.com/trungdo9/ClauKit

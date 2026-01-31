@@ -1,6 +1,6 @@
 ---
 description: Research keywords for a topic
-argument-hint: <keyword-or-topic>
+argument-hint: <keyword-or-topic> [--serp-features] [--gap --competitors=<url>] [--cluster] [--brief]
 ---
 
 # Keyword Research: $ARGUMENTS
@@ -14,6 +14,16 @@ Use the seo-specialist agent to perform keyword research and analysis.
 3. **Research keywords** - estimate volume, difficulty, CPC
 4. **Categorize results** - Primary, Secondary, Long-tail
 5. **Create content strategy** - recommendations for content creation
+
+## Enhanced Options
+
+| Flag | Description |
+|------|-------------|
+| `--serp-features` | Analyze SERP features for top keywords |
+| `--gap` | Perform content gap analysis against competitors |
+| `--competitors=<url>` | Comma-separated list of competitor URLs |
+| `--cluster` | Group keywords into semantic clusters |
+| `--brief` | Generate content brief in markdown format |
 
 ## Research Process
 
@@ -37,28 +47,46 @@ For each keyword, estimate:
 - **CPC**: Cost per click (USD, estimated)
 - **Intent**: Informational/Commercial/Transactional
 - **Opportunity**: Very High/High/Medium/Low
+- **SERP Features**: Presence of featured snippets, PAA, etc.
 
-### 4. Categorization
+### 4. SERP Features Analysis (with --serp-features)
 
-#### Primary Keywords (High Volume, High Intent)
-- Core terms directly related to seed
-- High commercial intent
-- Priority for main pages
+| SERP Feature | Description | Content Strategy |
+|--------------|-------------|------------------|
+| Featured Snippet | Box at top answering question | Structure content as Q&A, lists |
+| People Also Ask | Expandable Q&A list | Target question-based keywords |
+| Knowledge Panel | Brand/info box | Build entity authority |
+| Local Pack | Map with 3 local results | Local SEO optimization |
+| Image Pack | Image carousel | Include optimized images |
+| Video Results | YouTube/videos | Create video content |
+| Shopping Results | Product listings | E-commerce optimization |
+| Reviews | Star ratings | Add review schema |
+| Top Stories | News articles | News content strategy |
 
-#### Secondary Keywords (Medium Volume, Medium Intent)
-- Supporting terms
-- Good for blog/content
-- Lower competition
+### 5. Content Gap Analysis (with --gap --competitors)
 
-#### Long-tail Keywords (Low Volume, Low Competition)
-- Specific, detailed queries
-- High conversion potential
-- Easier to rank
+Compare your content against competitors:
+- Keywords they rank for that you don't
+- Content topics they cover that you miss
+- Backlink opportunities
+- Content format gaps
 
-### 5. Content Strategy
-- Topic clusters
-- Content types (blog, guide, comparison)
-- Content calendar recommendations
+### 6. Keyword Clustering (with --cluster)
+
+Group related keywords into topic clusters:
+- Semantic similarity analysis
+- Intent alignment per cluster
+- Content pillar recommendations
+- Internal linking strategy
+
+### 7. Content Brief Generation (with --brief)
+
+Generate ready-to-write content briefs:
+- Target keyword + LSI terms
+- Optimal structure (H2, H3 outline)
+- Word count recommendations
+- Competitor content analysis
+- Schema recommendations
 
 ## Output Format
 
@@ -74,6 +102,7 @@ Generated: [Date]
 - CPC: $[X.XX]
 - Intent: [Type]
 - Opportunity: [Level]
+- SERP Features: [Snippet|PAA|Local|Shopping|None]
 
 ### 2. [Keyword]
 ...
@@ -87,6 +116,19 @@ Generated: [Date]
 
 ### 10. [Keyword]
 ...
+
+## SERP FEATURES ANALYSIS (with --serp-features)
+
+**Featured Snippet Opportunities:**
+- [Keyword] - Create Q&A format
+- [Keyword] - Use listicle structure
+
+**People Also Ask Targets:**
+- [Question keyword] - Answer directly
+
+**Content Type Recommendations:**
+- [Keyword] - Video content needed
+- [Keyword] - Image-heavy article
 
 ## SEARCH INTENT ANALYSIS
 
@@ -102,12 +144,58 @@ Generated: [Date]
 - Keywords for pricing pages
 - Direct conversion
 
+## CONTENT GAP ANALYSIS (with --gap --competitors)
+
+**You Rank, Competitors Don't:**
+- [Keyword] - Strengthen position
+
+**Competitors Rank, You Don't:**
+- [Keyword] - [URL] - Create content
+- [Keyword] - [URL] - Create content
+
+**Opportunity Score:**
+- [Keyword] - Very High (low competition, high intent)
+
+## KEYWORD CLUSTERS (with --cluster)
+
+### Cluster 1: [Topic Name]
+- [Keyword 1]
+- [Keyword 2]
+- [Keyword 3]
+- Recommended Pillar: [Pillar Page]
+
+### Cluster 2: [Topic Name]
+...
+
+## CONTENT BRIEF (with --brief)
+
+**Target Keyword:** [Keyword]
+**Word Count:** [X,XXX] words
+**Content Type:** [Guide|Tutorial|Comparison|Listicle]
+
+### Recommended Structure:
+1. H2: Introduction (150 words)
+2. H2: [Section 1]
+   - H3: [Subsection]
+   - H3: [Subsection]
+3. H2: [Section 2]
+   ...
+
+### Competitor Analysis:
+- [URL 1]: [X] words, structure notes
+- [URL 2]: [X] words, structure notes
+
+### Schema to Add:
+- Article
+- FAQ (if Q&A format)
+
 ## CONTENT STRATEGY
 
 ### Immediate Wins (Create First):
 1. [Content Title]
    - Target: [keyword]
    - Format: [type]
+   - SERP Feature: [target]
 
 2. [Content Title]
    - Target: [keyword]
@@ -128,6 +216,7 @@ Generated: [Date]
 
 ## NEXT STEPS
 /seo audit [url]
+/seo schema [type]
 /content [content-type] [title]
 ```
 
@@ -138,12 +227,27 @@ Generated: [Date]
 /seo keywords "project management software"
 ```
 
-**Long-tail research:**
+**With SERP features analysis:**
 ```
-/seo keywords "best project management software for small teams"
+/seo keywords "project management software" --serp-features
 ```
 
-**Competitor-focused research:**
+**Content gap analysis:**
 ```
-/seo keywords "asana alternatives"
+/seo keywords "saas pricing" --gap --competitors=https://competitor1.com,https://competitor2.com
+```
+
+**Keyword clustering:**
+```
+/seo keywords "marketing" --cluster --groups=10
+```
+
+**Generate content brief:**
+```
+/seo keywords "how to use ai for business" --brief
+```
+
+**Full analysis:**
+```
+/seo keywords "project management" --serp-features --gap --competitors=https://asana.com --cluster --brief
 ```
