@@ -105,15 +105,19 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 ```
 
 **Workflow**:
-1. Planning (planner + researcher)
-2. Implementation
-3. Type checking
-4. Test writing
-5. Test execution
-6. Debugging (if needed)
-7. Code review
-8. Documentation update
-9. Git commit
+1. Research + planning
+2. Plan Review
+3. User runs `/clear`
+4. Implementation
+5. Type checking
+6. Test writing
+7. Test execution
+8. Debugging (if needed)
+9. Code Review
+10. Documentation update
+11. Git commit
+
+**Note**: `/cook` is the all-in-one shortcut path. For the stricter team workflow, prefer `/plan` → plan review → `/clear` → `/code @plans/.../plan.md`.
 
 **Examples**:
 ```bash
@@ -167,6 +171,30 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 /plan "implement WebSocket real-time notifications"
 /plan "add multi-language support with i18n"
 ```
+
+**Note**: `/plan` stops before implementation. After the user reviews and approves the plan, the user should run `/clear` before starting `/code` in a fresh context.
+
+---
+
+### `/code`
+
+**Description**: Implement and test an existing approved plan.
+
+**Usage**:
+```bash
+/code @plans/.../plan.md
+```
+
+**Workflow**:
+1. Read the approved plan
+2. Implement by phase
+3. Type checking / compile
+4. Test writing + execution
+5. Debugging loop (if needed)
+6. Code Review
+7. Documentation / project update
+
+**Note**: `/code` is the recommended executor after `/plan` review and `/clear`. It should consume an approved plan, not re-plan from scratch.
 
 ---
 
@@ -510,10 +538,15 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 - `/ask` - Architectural consultation
 
 **For Implementation**:
-- `/cook` - General features
+- `/code` - Execute an approved plan in a fresh context
+- `/cook` - All-in-one shortcut for general features
 - `/bootstrap` - New projects
 - `/design:*` - UI/UX work
 - `/integrate:*` - Third-party services
+
+**About `/clear`**:
+- `/clear` is a **user-triggered context reset between planning and coding**
+- `/clear` is **not** an internal subagent step
 
 **For Fixing Issues**:
 - `/fix:fast` - Simple bugs

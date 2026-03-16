@@ -51,10 +51,14 @@ Think harder to plan & start working on these tasks follow the Orchestration Pro
   - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
   - Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
   - For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
+* Present the generated plan to the user and ask for review/approval before any implementation begins.
+* After the user approves the plan, the user should run `/clear` to create a fresh implementation context.
+* Treat `/clear` as a user-triggered context reset between planning and coding, not as an internal subagent step.
+* Only start coding after the `review → /clear` handoff is completed.
 
 ### Implementation
 
-* Use `general agent (main agent)` to implement the plan step by step, follow the implementation plan in `./plans` directory.
+* Use `general agent (main agent)` to implement the approved plan step by step, follow the implementation plan in `./plans` directory.
 * Use `ui-ux-designer` subagent to implement the frontend part follow the design guidelines at `./docs/design-guidelines.md` file.
   * Use `ai-multimodal` skill to generate image assets.
   * Use `ai-multimodal` skill to analyze and verify generated assets.
