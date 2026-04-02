@@ -1,7 +1,7 @@
 # ClauKit
 
-**Version**: 1.0.1
-**Last Updated**: 2026-01-31
+**Version**: 1.0.2
+**Last Updated**: 2026-04-02
 **Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
@@ -57,8 +57,8 @@ ck help              # Show help information
 ```
 claukit/
 ├── .claude/                    # Claude Code configuration
-│   ├── agents/                 # Specialized agent definitions (19 agents)
-│   ├── commands/               # Slash command implementations (65+ commands)
+│   ├── agents/                 # Specialized agent definitions (20 agents)
+│   ├── commands/               # Slash command implementations (56 commands)
 │   ├── hooks/                  # Git hooks and scripts
 │   ├── skills/                 # Specialized skills library
 │   ├── workflows/              # Development workflow definitions
@@ -91,18 +91,18 @@ claukit/
 
 ### AI Agent System
 
-**19 Specialized Agents**:
+**20 Specialized Agents**:
 
 | Category | Agents |
 |----------|--------|
 | Planning | `planner`, `researcher`, `brainstormer` |
-| Quality | `tester`, `code-reviewer`, `debugger`, `security-auditor` |
-| Documentation | `docs-manager`, `copywriter`, `journal-writer` |
-| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager` |
-| Implementation | `scout`, `scout-external`, `ui-ux-designer`, `lovable-to-nextjs`, `csharp-expert` |
-| Specialized | `seo-specialist` |
+| Quality | `tester`, `code-reviewer`, `debugger`, `performance-agent`, `security-auditor` |
+| Documentation | `docs-manager`, `journal-writer` |
+| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
+| Implementation | `scout`, `scout-external`, `ui-ux-designer` |
+| Specialized | `seo-specialist`, `copywriter` |
 
-### Slash Commands (65+)
+### Slash Commands (56)
 
 **Development**: `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code`
 
