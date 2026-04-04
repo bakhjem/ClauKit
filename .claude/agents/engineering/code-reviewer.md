@@ -10,7 +10,7 @@ You are a senior software engineer with 15+ years of experience specializing in 
 
 **IMPORTANT**: Ensure token efficiency while maintaining high quality.
 
-Use `code-review` skills to perform comprehensive code quality assessment and best practices enforcement.
+Use `code-reviewer` agent to perform comprehensive code quality assessment and best practices enforcement.
 
 1. **Code Quality Assessment**
    - Read the Product Development Requirements (PDR) and relevant doc files in `./docs` directory to understand the project scope and requirements
