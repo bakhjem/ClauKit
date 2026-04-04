@@ -12,6 +12,8 @@
 const fs = require("fs");
 const path = require("path");
 const { execSync } = require("child_process");
+const https = require("https");
+const http = require("http");
 
 // Get package version
 const packageJsonPath = path.join(__dirname, "..", "package.json");
@@ -21,6 +23,7 @@ const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, "utf8"));
 const CLI_NAME = "ck";
 const COMMANDS = {
   init: "Initialize Claude configuration in current project",
+  update: "Check and download latest version from GitHub",
   help: "Show help information"
 };
 
@@ -136,6 +139,163 @@ function listFiles(dir, prefix = "") {
 }
 
 /**
+ * Fetch latest version from GitHub releases or tags
+ */
+async function fetchLatestVersion() {
+  const repo = packageJson.repository?.url?.replace("https://github.com/", "").replace(".git", "") || "trungdo9/ClauKit";
+  
+  console.log(`🔍 Checking GitHub for latest version...`);
+  console.log(`   Repository: ${repo}`);
+  
+  // Try GitHub Releases API first
+  try {
+    const releaseVersion = await fetchFromGitHubAPI(`https://api.github.com/repos/${repo}/releases/latest`);
+    if (releaseVersion) {
+      console.log(`   ✅ Found release: v${releaseVersion}`);
+      return releaseVersion;
+    }
+  } catch (e) {
+    // Release not found, try tags
+  }
+  
+  // Fallback: Try GitHub Tags API
+  console.log(`   ℹ️  No releases found, checking tags...`);
+  try {
+    const tagVersion = await fetchTagsFromGitHub(repo);
+    if (tagVersion) {
+      console.log(`   ✅ Found tag: v${tagVersion}`);
+      return tagVersion;
+    }
+  } catch (e) {
+    // Tags not found
+  }
+  
+  return null;
+}
+
+/**
+ * Fetch data from GitHub API
+ */
+function fetchFromGitHubAPI(url) {
+  return new Promise((resolve, reject) => {
+    https.get(url, { headers: { "User-Agent": "ClauKit-CLI" } }, (res) => {
+      let data = "";
+      
+      res.on("data", (chunk) => { data += chunk; });
+      res.on("end", () => {
+        if (res.statusCode === 404) {
+          resolve(null);
+          return;
+        }
+        try {
+          const release = JSON.parse(data);
+          if (release.tag_name) {
+            resolve(release.tag_name.replace("v", ""));
+          } else {
+            resolve(null);
+          }
+        } catch (e) {
+          reject(new Error("Failed to parse GitHub response"));
+        }
+      });
+    }).on("error", (e) => {
+      reject(new Error(`Network error: ${e.message}`));
+    });
+  });
+}
+
+/**
+ * Fetch latest tag from GitHub
+ */
+function fetchTagsFromGitHub(repo) {
+  return new Promise((resolve, reject) => {
+    const url = `https://api.github.com/repos/${repo}/tags?per_page=1`;
+    
+    https.get(url, { headers: { "User-Agent": "ClauKit-CLI" } }, (res) => {
+      let data = "";
+      
+      res.on("data", (chunk) => { data += chunk; });
+      res.on("end", () => {
+        if (res.statusCode === 404) {
+          resolve(null);
+          return;
+        }
+        try {
+          const tags = JSON.parse(data);
+          if (tags && tags.length > 0 && tags[0].name) {
+            resolve(tags[0].name.replace("v", ""));
+          } else {
+            resolve(null);
+          }
+        } catch (e) {
+          reject(new Error("Failed to parse GitHub response"));
+        }
+      });
+    }).on("error", (e) => {
+      reject(new Error(`Network error: ${e.message}`));
+    });
+  });
+}
+
+/**
+ * Compare semantic versions
+ */
+function compareVersions(current, latest) {
+  const currentParts = current.split(".").map(Number);
+  const latestParts = latest.split(".").map(Number);
+  
+  for (let i = 0; i < 3; i++) {
+    const c = currentParts[i] || 0;
+    const l = latestParts[i] || 0;
+    if (c < l) return -1;
+    if (c > l) return 1;
+  }
+  return 0;
+}
+
+/**
+ * Update command - Check and download latest version
+ */
+async function updateCommand(options = {}) {
+  console.log(`🚀 ClauKit Updater v${packageJson.version}`);
+  console.log("");
+  
+  try {
+    const latestVersion = await fetchLatestVersion();
+    
+    if (!latestVersion) {
+      console.log("⚠️  Could not find latest version on GitHub");
+      console.log("   Please check your internet connection");
+      return;
+    }
+    
+    console.log(`📦 Latest version: ${latestVersion}`);
+    console.log(`📦 Current version: ${packageJson.version}`);
+    
+    const comparison = compareVersions(packageJson.version, latestVersion);
+    
+    if (comparison === 0) {
+      console.log("\n✅ You are running the latest version!");
+    } else if (comparison < 0) {
+      console.log("\n🆕 A new version is available!");
+      console.log("");
+      console.log("   To update, run:");
+      console.log(`   npm install -g ${packageJson.name}@latest`);
+      console.log("");
+      console.log("   Or use npx to run directly:");
+      console.log(`   npx ${packageJson.name}@latest <command>`);
+    } else {
+      console.log("\n⚠️  You are running a newer version than released.");
+      console.log("   This is a development version.");
+    }
+    
+  } catch (err) {
+    console.error(`❌ Error: ${err.message}`);
+    console.log("\n   Please check your internet connection and try again.");
+  }
+}
+
+/**
  * Show help information
  */
 function showHelp() {
@@ -150,6 +310,7 @@ Usage:
 
 Commands:
   init    ${COMMANDS.init}
+  update  ${COMMANDS.update}
   help    ${COMMANDS.help}
 
 Options:
@@ -165,6 +326,9 @@ Examples:
   
   # Initialize in custom path
   ck init --path ./config/.claude
+  
+  # Check for updates
+  ck update
   
   # Run without installing
   npx @trungdo9/ClauKit init
@@ -207,6 +371,10 @@ switch (cmd) {
       // TODO: Implement custom path support
     }
     initCommand(options);
+    break;
+    
+  case "update":
+    updateCommand(options);
     break;
     
   case "help":
