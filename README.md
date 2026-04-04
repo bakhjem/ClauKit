@@ -1,7 +1,7 @@
 # ClauKit
 
 **Version**: 1.0.2
-**Last Updated**: 2026-04-02
+**Last Updated**: 2026-04-04
 **Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
@@ -42,6 +42,21 @@ cd your-project-name
 
 # Start Claude Code
 claude
+```
+
+#### Option 4: GitHub MCP Integration (Optional)
+
+For GitHub integration via MCP:
+
+```bash
+# Copy environment template
+cp .claude/.env.example .claude/.env
+
+# Add your GitHub Personal Access Token
+# Get token at: https://github.com/settings/tokens/new?scopes=repo
+# Edit .claude/.env and set GITHUB_TOKEN=ghp_xxx...
+
+# Restart Claude Code to activate MCP
 ```
 
 ### CLI Commands
@@ -91,11 +106,12 @@ claukit/
 
 ### AI Agent System
 
-**20 Specialized Agents**:
+**22 Specialized Agents**:
 
 | Category | Agents |
 |----------|--------|
 | Planning | `planner`, `researcher`, `brainstormer` |
+| Development | `frontend-developer`, `backend-developer` |
 | Quality | `tester`, `code-reviewer`, `debugger`, `performance-agent`, `security-auditor` |
 | Documentation | `docs-manager`, `journal-writer` |
 | Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
@@ -108,7 +124,7 @@ claukit/
 
 **Debugging**: `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui`
 
-**Design**: `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max`
+**Design**: `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:describe`, `/design:ui-ux-pro-max`
 
 **Content**: `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro`
 
