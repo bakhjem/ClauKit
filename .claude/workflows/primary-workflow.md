@@ -3,8 +3,15 @@
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
 **IMPORTANT**: Ensure token efficiency while maintaining high quality.
 
+#### 0. Brainstorming (Optional — user-triggered)
+- For complex/architectural decisions, user may invoke `/brainstorm` to engage the `brainstormer` agent BEFORE planning.
+- Brainstormer runs 7-phase workflow: **Scout → Discovery → Research → Analysis → Debate → Consensus → Finalize**.
+- Output: summary report at `./plans/<plan-name>/brainstorm-report.md` + explicit handoff to `planner` agent.
+- Skip this phase for simple tasks or when architectural approach is already decided.
+
 #### 1. Planning
 - Before implementation starts, delegate to `planner` agent to create an implementation plan with TODO tasks in `./plans` directory.
+- If Phase 0 was executed, `planner` receives the brainstorm summary report as primary input (avoid re-doing research).
 - When in planning phase, use multiple `researcher` agents in parallel to conduct research on different relevant technical topics and report back to `planner` agent to create implementation plan.
 - Present the generated plan to the user for approval before any coding begins.
 

@@ -3,10 +3,14 @@ description: ⚡⚡ Analyze and fix small issues [AUTO DETECT COMPLEXITY]
 argument-hint: [issues]
 ---
 
-If there is a markdown implementation plan already, use `/code <path-to-plan>` slash command to implement it.
+If there is an existing markdown implementation plan, use `/code <path-to-plan>` to implement it.
 
-Else: 
-- Analyze the issues and ask for more details if needed.
-- Decide to use `/fix:fast` or `/fix:hard` SlashCommands based on the complexity.
-- Execute SlashCommand: `/fix:fast <detailed-instructions-prompt>` or `/fix:hard <detailed-instructions-prompt>`
-- Note: `detailed-instructions-prompt` is **an enhanced prompt** that describes the issue in detail based on the provided issue description.
+Otherwise, follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflows/fix-pipeline.md)) as router:
+
+1. Analyze the issues; ask for more details if needed.
+2. Auto-detect complexity → route to `/fix:fast` (simple) or `/fix:hard` (complex).
+3. Execute `/fix:fast <enhanced-prompt>` or `/fix:hard <enhanced-prompt>` — pass a detailed-instructions prompt enhanced from the user's issue description.
+
+## Variant: router
+Distinct from siblings — this is the auto-dispatch entry point. For other variants:
+- `/fix:fast` · `/fix:hard` · `/fix:logs` · `/fix:ci` · `/fix:test` · `/fix:types` · `/fix:ui`

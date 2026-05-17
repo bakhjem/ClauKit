@@ -3,26 +3,30 @@ description: Optimize an existing agent skill
 argument-hint: [skill-name] [prompt]
 ---
 
-Think harder.
-Use `skill-creator` and `claude-code` skills.
-Use `docs-seeker` skills to search for documentation if needed.
+**Think harder.** Activate `skill-creator` skill ([.claude/skills/software/skill-creator/SKILL.md](.claude/skills/software/skill-creator/SKILL.md)) + `claude-code` + `docs-seeker` (when needed). Plan structure → activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
 
 ## Arguments
-SKILL: $1 (default: `*`)
-PROMPT: $2 (default: empty)
+- `SKILL`: `$1` (default: `*` — all skills)
+- `PROMPT`: `$2` (default: empty)
 
 ## Your mission
-Propose a plan to optimize an existing skill in `.claude/skills/${SKILL}` directory. 
-When you finish, ask user to review your plan:
-- If the user approve: Write down a plan follow "Output Requirements", then ask user if they want to start implementing.
-- If the user reject: Revise the plan or ask more questions to clarify more about the user's request (ask one question at the time), then repeat the review process.
+Propose a plan to optimize existing skill in `.claude/skills/${SKILL}/`. When done, ask user to review:
+- **Approve** → write plan per "Output Requirements" → ask if implement
+- **Reject** → revise or ask clarifying question (one at a time) → repeat review
 
 ## Additional instructions
 <additional-instructions>$PROMPT</additional-instructions>
 
+## Variant: `/skill:optimize` — refactor existing skill (plan-first)
+
+Distinct from siblings — produces an **optimization plan** before any changes. No code edits without approval.
+
 ## Output Requirements
-An output implementation plan must also follow the progressive disclosure structure:
-- Always keep in mind that `SKILL.md` and reference files should be token consumption efficient, so that **progressive disclosure** can be leveraged at best.
-- Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
-- Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
-- For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
+
+Follow **Plan Directory Structure** + **Plan File Specification** from `planning` skill (single source of truth). Plus skill-specific rules from `skill-creator` skill:
+- Token efficiency for progressive disclosure
+- `SKILL.md` + reference files structured for lazy loading
+
+## Important
+- All skill methodology → `skill-creator` skill.
+- All plan structure → `planning` skill.

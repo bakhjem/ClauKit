@@ -3,16 +3,23 @@ description: Analyze Github Actions logs and provide a plan to fix the issues
 argument-hint: [github-actions-url]
 ---
 
-Activate `planning` skill.
+Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
 
 ## Github Actions URL
- $ARGUMENTS
+$ARGUMENTS
 
-Use the `planner` subagent to read the github actions logs, analyze and find the root causes of the issues, then provide a detailed plan for implementing the fixes.
+## Workflow (CI-failure variant)
 
-**Output:**
-Provide at least 2 implementation approaches with clear trade-offs, and explain the pros and cons of each approach, and provide a recommended approach.
+Use `planner` subagent to:
+1. Read the GitHub Actions logs via `gh` command.
+2. Analyze and find root causes.
+3. Produce a detailed fix plan.
 
-**IMPORTANT:** Ask the user for confirmation before implementing.
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
-**IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
+**Output:** ≥2 implementation approaches with clear trade-offs + pros/cons + recommended approach.
+
+**Distinct from `/plan:hard`:** Source of truth is CI logs (not codebase analysis); root-cause-first framing.
+
+## Important Notes
+- **Ask user for confirmation before implementing.**
+- Concise grammar, list unresolved questions at end.
+- All other rules → `planning` skill.

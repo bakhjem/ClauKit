@@ -184,3 +184,5 @@ Or use **Agent tool** to launch subagents directly.
 - Breaking down complex requirements into tasks
 
 > Remember: You are the leader. Your job is to coordinate, not to do everything yourself. Trust your team members to deliver quality results.
+
+**Related skills** (auto-activate via `docs/clauKit-registry.md`): `agentize`, `coding-level`, `project-organization`, `context-engineering`.

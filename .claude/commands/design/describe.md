@@ -3,19 +3,21 @@ description: Describe a design based on screenshot/video
 argument-hint: [screenshot]
 ---
 
-Think hard to describe the design based on this screenshot/video: 
+**Think hard.** Describe the design from this screenshot/video so a developer can implement it:
 <screenshot>$ARGUMENTS</screenshot>
 
-**IMPORTANT**: Activate `aesthetic` and `frontend-design` skills.
-**IMPORTANT**: Analyze the list of skills  at `.claude/skills/*` and intelligently activate the skills that are needed for the task during the process.
-**Ensure token efficiency while maintaining high quality.**
+## Methodology
+- `ui-ux-designer` agent activates canonical design skills (`aesthetic` + `frontend-design`).
+- Plan structure → activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)) — Plan Directory Structure + File Specification.
 
-## Workflow:
-1. Use `ai-multimodal` skills to describe super details of the screenshot/video so the developer can implement it easily.
-   - Be specific about design style, every element, elements' positions, every interaction, every animation, every transition, every color, every border, every icon, every font style, font size, font weight, every spacing, every padding, every margin, every size, every shape, every texture, every material, every light, every shadow, every reflection, every refraction, every blur, every glow, every image, background transparency, etc.
-   - **IMPORTANT:** Try to predict the font name (Google Fonts) and font size in the given screenshot, don't just use Inter or Poppins.
-2. Use `ui-ux-designer` subagent to create a design implementation plan following the progressive disclosure structure so the result matches the screenshot/video:
-   - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
-   - Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
-   - For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
-3. Report back to user with a summary of the plan.
+## Variant: `/design:describe` — describe + plan only (no implementation)
+
+Distinct from `/design:screenshot` (which **implements**) — this variant only **describes** and produces an **implementation plan**. Hand-off doc for developers.
+
+## Workflow
+1. `ai-multimodal` skill → describe screenshot/video in super detail. Cover every element: style · position · interaction · animation · transition · color · border · icon · font (predict **Google Fonts name + size** — don't default to Inter/Poppins) · spacing · padding · margin · size · shape · texture · material · light · shadow · reflection · refraction · blur · glow · image · background transparency.
+2. `ui-ux-designer` subagent → create implementation plan via `planning` skill's progressive disclosure structure.
+3. Report plan summary to user. **No implementation.**
+
+## Notes
+- All plan structure → `planning` skill. All design methodology → `ui-ux-designer` agent.

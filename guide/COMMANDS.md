@@ -97,32 +97,42 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 
 ### `/cook`
 
-**Description**: Implement a feature following a structured workflow.
+**Description**: Drive a feature spec → production through the full lifecycle (research, plan, code, test, review). Backed by the `cook` skill methodology (5-stage gated pipeline).
 
 **Usage**:
 ```bash
-/cook [tasks-description]
+/cook [task hoặc plan path] [--fast|--auto|--from-plan|--no-test]
 ```
 
-**Workflow**:
-1. Research + planning
-2. Plan Review
-3. User runs `/clear`
-4. Implementation
-5. Type checking
-6. Test writing
-7. Test execution
-8. Debugging (if needed)
-9. Code Review
-10. Documentation update
-11. Git commit
+**Modes**:
 
-**Note**: `/cook` is the all-in-one shortcut path. For the stricter team workflow, prefer `/plan` → plan review → `/clear` → `/code @plans/.../plan.md`.
+| Flag | Effect |
+|---|---|
+| (default) | Full pipeline with user approval gates between stages |
+| `--fast` | Skip research phase; keep plan + test + review |
+| `--auto` | Skip user approval gates; auto-approve if code review reports `Critical=0 AND High=0` |
+| `--from-plan` | Skip research + plan; jump to implementation (auto-set if argument is a plan path) |
+| `--no-test` | Skip test stage; logs a visible waiver per cook skill rule |
+
+**Workflow stages** (cook skill methodology):
+1. **Analysis** — read plan/task, activate cook skill + supporting skills
+2. **Research** (skipped in `--fast`/`--from-plan`) — parallel `researcher` + `scout`
+3. **Plan** (skipped in `--from-plan`) — `planner` creates `./plans/<timestamp>-<slug>/plan.md`; user reviews
+4. **Implementation** — `frontend-developer` / `backend-developer` / `ui-ux-designer`; phase-by-phase
+5. **Testing** (skipped in `--no-test`) — `tester` + `debugger`; 100% pass, no fake data
+6. **Code Review** — `code-reviewer` emits severity buckets; gate by user or auto-approve rule
+7. **PM + Docs** — `project-manager` + `docs-manager` in parallel
+8. **Onboarding + Final Report** — user instructions, optional `git-manager` commit
+
+**Relationship to `/code`**: `/code` is a backup fast-path for "plan-already-exists" — equivalent to `/cook <plan> --from-plan`. Prefer `/cook`; `/code` is kept available as fallback.
 
 **Examples**:
 ```bash
 /cook "add user profile page with avatar upload"
-/cook "implement OAuth2 authentication with Google"
+/cook "implement OAuth2 authentication with Google" --auto
+/cook plans/260517-1430-auth/plan.md
+/cook plans/.../plan.md --auto
+/cook "prototype landing hero" --fast
 ```
 
 ---
@@ -538,8 +548,9 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 - `/ask` - Architectural consultation
 
 **For Implementation**:
-- `/code` - Execute an approved plan in a fresh context
-- `/cook` - All-in-one shortcut for general features
+- `/cook` - Full lifecycle: research → plan → code → test → review (primary)
+- `/cook <plan.md>` or `/cook ... --from-plan` - Execute an approved plan in a fresh context
+- `/code` - Backup fast-path (= `/cook <plan> --from-plan`); kept as fallback
 - `/bootstrap` - New projects
 - `/design:*` - UI/UX work
 - `/integrate:*` - Third-party services

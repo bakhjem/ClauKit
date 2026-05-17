@@ -3,19 +3,26 @@ description: Fix the agent skill based on `logs.txt` file.
 argument-hint: [prompt-or-path-to-skill]
 ---
 
-Think harder.
-Use `skill-creator` and `claude-code` skills.
-Use `docs-seeker` skills to search for documentation if needed.
+**Think harder.** Activate `skill-creator` skill ([.claude/skills/software/skill-creator/SKILL.md](.claude/skills/software/skill-creator/SKILL.md)) + `claude-code` + `docs-seeker` (when needed).
 
 ## Your mission
-Fix the agent skill based on the current `logs.txt` file (in the project root directory).
+Fix the agent skill based on `./logs.txt` in the project root.
 
 ## Requirements
 <user-prompt>$ARGUMENTS</user-prompt>
 
-## Rules of Skill Fixing:
-Base on the requirements:
-- If you're given an URL, it's documentation page, use `Explorer` subagent to explore every internal link and report back to main agent, don't skip any link.
-- If you receive a lot of URLs, use multiple `Explorer` subagents to explore them in parallel, then report back to main agent.
-- If you receive a lot of files, use multiple `Explorer` subagents to explore them in parallel, then report back to main agent.
-- If you're given a Github URL, use [`repomix`](https://repomix.com/guide/usage) command to summarize ([install it](https://repomix.com/guide/installation) if needed) and spawn multiple `Explorer` subagents to explore it in parallel, then report back to main agent.
+## Variant: `/skill:fix-logs` — log-driven skill fix
+
+Distinct from siblings — input is `./logs.txt` (failure logs from skill execution). Diagnose root cause from logs → fix.
+
+## Input Handling (shared with skill family)
+
+| Input | Handler |
+|---|---|
+| URL (single docs page) | `Explore` subagent → traverse every internal link, no skip |
+| Multiple URLs | Multiple `Explore` subagents in parallel |
+| Many files | Multiple `Explore` subagents in parallel |
+| GitHub URL | `repomix` to summarize (install if needed) + multiple `Explore` subagents in parallel |
+
+## Important
+- All skill-creation methodology → `skill-creator` skill (single source of truth).

@@ -1,22 +1,34 @@
 ---
 name: test-automation
-description: Comprehensive test automation skills using Playwright, Cucumber, and other testing frameworks. Covers E2E testing, integration testing, BDD patterns, test maintenance, and CI/CD integration. Use when writing automated tests, setting up test infrastructure, or implementing behavior-driven development.
+description: QA / automation engineering — Playwright deep-dive (configs, page objects, debugging), Cucumber BDD, mobile (Appium/Detox), API (Supertest/Newman), CI/CD integration, credential management. Cross-platform test infrastructure.
 license: MIT
 version: 1.0.0
 ---
 
-# Test Automation Skill
+# Test Automation (QA Engineering)
 
-Production-ready test automation with modern frameworks, patterns, and best practices.
+Production-ready test automation infra for **QA / automation engineers** building cross-platform test suites. Canonical Playwright reference (configs, page objects, debugging, credentials).
+
+## Scope vs `web-testing`
+
+Use this skill when you are the **QA / automation engineer** building reusable test infrastructure spanning web + mobile + API + BDD, or when you need deep Playwright configuration / debugging / CI/CD setup / credential management.
+
+Use the [`web-testing`](../../web-testing/SKILL.md) skill when you are the **app developer** validating your own web app with the three-layer toolkit (Vitest unit + Playwright E2E quick start + k6 load).
+
+Canonical content split:
+- **Playwright deep-dive, page objects, debugging, CI/CD, credentials** → here (this skill)
+- **BDD (Cucumber), mobile (Appium/Detox), API (Supertest/Newman)** → here
+- **Vitest unit + k6 load** → `web-testing` skill
 
 ## When to Use
 
-- Setting up E2E test automation from scratch
-- Writing Playwright tests for web/mobile apps
-- Implementing Cucumber/BDD scenarios
-- Integrating tests with CI/CD pipelines
+- Setting up E2E test automation from scratch (web/mobile/API)
+- Writing Playwright tests with page objects + advanced configs
+- Implementing Cucumber/BDD scenarios with Gherkin
+- Integrating tests with CI/CD pipelines (GitHub Actions, GitLab CI)
 - Creating maintainable, flaky-resistant test suites
-- Debugging test failures
+- Managing test credentials across local / CI / cloud
+- Debugging test failures with traces, snapshots, codegen
 
 ## Supported Frameworks
 

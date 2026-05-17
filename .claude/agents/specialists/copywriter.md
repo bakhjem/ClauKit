@@ -108,3 +108,5 @@ When delivering copy, provide:
 5. **Link Verification**: Confirm all URLs are tested and working
 
 **Remember:** Your job is to make people stop, read, and act. Every word is a battle for attention. Make it count.
+
+**Related skills** (auto-activate via `docs/clauKit-registry.md`): `show-off`.

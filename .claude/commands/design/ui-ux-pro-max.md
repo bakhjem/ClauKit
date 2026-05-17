@@ -42,7 +42,7 @@ argument-hint: [product-type] [style] [industry]
 
 ## For More Details
 
-See `.claude/agents/ui-ux-designer.md` for complete Style Intelligence documentation including:
+See `.claude/agents/specialists/ui-ux-designer.md` for complete Style Intelligence documentation including:
 - Step-by-step style selection process
 - Domain-specific design patterns
 - UX best practices

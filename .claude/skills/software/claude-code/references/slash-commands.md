@@ -317,15 +317,6 @@ Check deployment readiness.
 
 ## Integration Commands
 
-### /integrate:polar [tasks]
-Implement payment integration with Polar.sh.
-
-```bash
-/integrate:polar add subscription payments
-```
-
-**When to use**: Polar payment integration
-
 ### /integrate:sepay [tasks]
 Implement payment integration with SePay.vn.
 

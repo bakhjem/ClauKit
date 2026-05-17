@@ -3,18 +3,25 @@ description: ⚡ Analyze Github Actions logs and fix issues
 argument-hint: [github-actions-url]
 ---
 
+Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflows/fix-pipeline.md)).
+
 ## Github Actions URL
 <url>$ARGUMENTS</url>
 
-## Workflow
-1. Use `debugger` subagent to read the github actions logs, analyze and find the root causes of the issues, then report back to main agent.
-2. Use `scout` subagent to analyze the codebase and find the exact location of the issues, then report back to main agent.
-3. Use `planner` subagent to create an implementation plan based on the reports, then report back to main agent.
-4. Start implementing the fix based the reports and solutions.
-5. Use `tester` agent to test the fix and make sure it works, then report back to main agent.
-6. Use `code-reviewer` subagent to quickly review the code changes and make sure it meets requirements, then report back to main agent.
-7. If there are issues or failed tests, repeat from step 2.
-8. After finishing, respond back to user with a summary of the changes and explain everything briefly, guide user to get started and suggest the next steps.
+## Variant: `/fix:ci` — CI-failure-driven
+
+- **Stage [1]** (input): `debugger` subagent reads GitHub Actions logs via `gh` command.
+- **Stage [3]** (diagnose): `debugger` finds root causes from CI logs.
+- **Stage [3b]** (locate): `scout` subagent → find exact code location of issues.
+- **Stage [4]** (plan): `planner` subagent creates plan from reports.
+- **Stage [5]** (implement): main agent.
+- **Stage [6]** (verify): `tester` subagent.
+- **Stage [7]** (review): `code-reviewer` subagent (quick pass).
+- **Failure loop:** back to stage [3b] (re-scout).
 
 ## Notes
-- If `gh` command is not available, instruct the user to install and authorize GitHub CLI first.
+- If `gh` not available → instruct user to install + authorize GitHub CLI first.
+
+## Distinct from siblings
+- Input source = GitHub Actions URL (remote, fetched via `gh`).
+- Similar to `/fix:logs` but for remote CI runs instead of local log file.

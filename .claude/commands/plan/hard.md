@@ -3,55 +3,26 @@ description: ⚡⚡⚡ Research, analyze, and create an implementation plan
 argument-hint: [task]
 ---
 
-Think harder.
-Activate `planning` skill.
+Think harder. Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
 
 ## Your mission
-<task>
-$ARGUMENTS
-</task>
+<task>$ARGUMENTS</task>
 
-## Workflow
-1. Create a directory named `plans/YYYYMMDD-HHmm-plan-name` (eg. `plans/20251101-1505-authentication-and-profile-implementation`).
-   Make sure you pass the directory path to every subagent during the process.
-2. Follow strictly to the "Plan Creation & Organization" rules of `planning` skill.
-3. Use multiple `researcher` agents (max 2 agents) in parallel to research for this task: 
-   Each agent research for a different aspect of the task and are allowed to perform max 5 tool calls.
-4. Analyze the codebase by reading `codebase-summary.md`, `code-standards.md`, `system-architecture.md` and `project-overview-pdr.md` file.
-   **ONLY PERFORM THIS FOLLOWING STEP IF `codebase-summary.md` is not available or older than 3 days**: Use `/scout <instructions>` slash command to search the codebase for files needed to complete the task.
-5. Main agent gathers all research and scout report filepaths, and pass them to `planner` subagent with the prompt to create an implementation plan of this task.
-6. Main agent receives the implementation plan from `planner` subagent, and ask user to review the plan
+## Workflow (research-heavy variant)
 
-## Output Requirements
+1. Create directory `plans/YYYYMMDD-HHmm-plan-name` and pass path to every subagent.
+2. Follow the **"Plan Creation & Organization"** rules + **Plan Directory Structure** + **Plan File Specification** defined in the `planning` skill (single source of truth).
+3. Use up to **2 `researcher` agents in parallel** — each researches a different aspect, max 5 tool calls each.
+4. Analyze codebase: read `docs/codebase-summary.md`, `docs/code-standards.md`, `docs/system-architecture.md`, `docs/project-overview-pdr.md`.
+   - **Only if** `codebase-summary.md` missing or >3 days old → use `/scout` to discover relevant files.
+5. Main agent passes all research + scout report filepaths to `planner` subagent to produce the implementation plan.
+6. Receive plan from `planner`, ask user to review.
 
-**Plan Directory Structure**
-```
-plans/
-└── YYYYMMDD-HHmm-plan-name/
-    ├── research/
-    │   ├── researcher-XX-report.md
-    │   └── ...
-    ├── reports/
-    │   ├── XX-report.md
-    │   └── ...
-    ├── scout/
-    │   ├── scout-XX-report.md
-    │   └── ...
-    ├── plan.md
-    ├── phase-XX-phase-name-here.md
-    └── ...
-```
+**Research output:** Each research markdown report ≤150 lines while covering all topics + citations.
 
-**Research Output Requirements**
-- Ensure every research markdown report remains concise (≤150 lines) while covering all requested topics and citations.
-
-**Plan File Specification**
-- Save the overview access point at `plans/YYYYMMDD-HHmm-plan-name/plan.md`. Keep it generic, under 80 lines, and list each implementation phase with status and progress plus links to phase files.
-- For each phase, create `plans/YYYYMMDD-HHmm-plan-name/phase-XX-phase-name-here.md` containing the following sections in order: Context links (reference parent plan, dependencies, docs), Overview (date, description, priority, implementation status, review status), Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps.
+**Distinct from `/plan:fast`:** Includes the research phase (multiple researchers in parallel + conditional scout).
 
 ## Important Notes
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
-**IMPORTANT:** Ensure token efficiency while maintaining high quality.
-**IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
-**IMPORTANT:** In reports, list any unresolved questions at the end, if any.
-**IMPORTANT**: **Do not** start implementing.
+- **DO NOT implement** — plan only.
+- Token efficiency, concise grammar, list unresolved questions at end.
+- All other rules → `planning` skill.

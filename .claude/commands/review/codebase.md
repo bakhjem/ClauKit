@@ -3,47 +3,41 @@ description: ⚡⚡⚡ Scan & analyze the codebase.
 argument-hint: [tasks-or-prompt]
 ---
 
-Think harder to scan the codebase and analyze it follow the Orchestration Protocol, Core Responsibilities, Subagents Team and Development Rules: 
+Think harder to scan + analyze the codebase. Follow Orchestration Protocol + Core Responsibilities + Subagents Team + Development Rules.
+
 <tasks>$ARGUMENTS</tasks>
 
----
+## Role
+Elite software engineering expert — system architecture + technical decision-making. Operate by YAGNI / KISS / DRY trinity.
 
-## Role Responsibilities
-- You are an elite software engineering expert who specializes in system architecture design and technical decision-making. 
-- You operate by the holy trinity of software engineering: **YAGNI** (You Aren't Gonna Need It), **KISS** (Keep It Simple, Stupid), and **DRY** (Don't Repeat Yourself). Every solution you propose must honor these principles.
-- **IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
-- **IMPORTANT:** In reports, list any unresolved questions at the end, if any.
+## Methodology references (skills)
 
----
+- **Code-review methodology** → `code-review` skill ([.claude/skills/software/code-review/SKILL.md](.claude/skills/software/code-review/SKILL.md)) — receiving feedback, requesting reviews, verification gates.
+- **Planning methodology** → `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)) — plan directory structure, file specification.
+- **Activate other skills as needed** from the catalog.
 
-## Workflow:
-
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
+## Workflow (orchestration variant — multi-agent)
 
 ### Research
-
-* Use 2 `researcher` subagents in parallel to search up to max 5 sources for the user's request, idea validation, best practices, challenges, and find the best possible solutions.
-* Keep every research markdown report concise (≤150 lines) while covering all requested topics and citations.
-* Use `/scout:ext` (preferred) or `/scout` (fallback) slash command to search the codebase for files needed to complete the task
+- 2 `researcher` subagents in parallel — max 5 sources for user request, idea validation, best practices, challenges, best solutions.
+- Each research markdown ≤150 lines while covering all topics + citations.
+- `/scout:ext` (preferred) or `/scout` (fallback) for codebase file discovery.
 
 ### Code Review
-
-* After finishing, use multiple `code-reviewer` subagents in parallel to review code. 
-* If there are any issues, duplicate code, or security vulnerabilities, ask main agent to improve the code and repeat the "Testing" process until all tests pass. 
-* When all tests pass, code is reviewed, the tasks are completed, report back to user with a summary of the changes and explain everything briefly, ask user to review the changes and approve them.
-* **IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
+- Multiple `code-reviewer` subagents in parallel (methodology from `code-review` skill).
+- Issues / duplicate code / security vulns → ask main agent to improve + repeat test cycle until all tests pass.
+- All clear → report changes to user + ask for review + approval.
 
 ### Plan
-* Use `planner` subagent to analyze reports from `researcher` and `scout` subagents to create an improvement plan following the progressive disclosure structure:
-  - Create a directory `plans/YYYYMMDD-HHmm-plan-name` (example: `plans/20251101-1505-authentication-and-profile-implementation`).
-  - Save the overview access point at `plan.md`, keep it generic, under 80 lines, and list each phase with status/progress and links.
-  - For each phase, add `phase-XX-phase-name.md` files containing sections (Context links, Overview with date/priority/statuses, Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps).
+- `planner` subagent analyzes researcher + scout reports → creates improvement plan following `planning` skill's **Plan Creation & Organization** + **Plan Directory Structure** + **Plan File Specification**.
 
 ### Final Report
-* Report back to user with a summary of the changes and explain everything briefly, guide user to get started and suggest the next steps.
-* Ask the user if they want to commit and push to git repository, if yes, use `git-manager` subagent to commit and push to git repository.
+- Summarize changes + brief explanation + getting-started guide + next steps.
+- Ask user about commit + push. If yes → `git-manager` subagent.
 
-**REMEMBER**:
-- You can always generate images with `ai-multimodal` skill on the fly for visual assets.
-- You always read and analyze the generated assets with `ai-multimodal` skill to verify they meet requirements.
-- For image editing (removing background, adjusting, cropping), use ImageMagick or similar tools as needed.
+## Distinct role
+**Orchestration-level command** (not just review trigger). Coordinates researcher + code-reviewer + planner + git-manager subagents in a full scan-analyze-plan-report cycle.
+
+## Notes
+- Concise grammar, list unresolved questions at end.
+- Visual assets: `ai-multimodal` skill (generate + verify). For image editing → ImageMagick or similar.

@@ -13,11 +13,11 @@ spark-dev is a development template for building AI-powered applications with Cl
 ```
 spark-dev/
 ├── .claude/                    # Claude Code configuration
-│   ├── agents/                 # 19 specialized agent definitions
-│   ├── commands/               # 60+ slash command implementations
+│   ├── agents/                 # 23 specialized agent definitions
+│   ├── commands/               # 54 slash command implementations
 │   ├── hooks/                  # Git hooks and scripts
 │   │   └── scout-block.js      # Scout Block Hook dispatcher
-│   ├── skills/                 # Specialized skills library
+│   ├── skills/                 # 74 skills (3-tier: global/, software/, marketing/)
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
@@ -92,49 +92,49 @@ spark-dev/
 
 ### 1. Agent Orchestration System
 
-**Claude Code Agents** (`.claude/agents/` - 16 agents):
+**Claude Code Agents** (`.claude/agents/` - 22 agents, organized by role):
 
-| Category | Agents |
-|----------|--------|
-| Planning | `planner`, `researcher`, `brainstormer` |
-| Quality | `tester`, `code-reviewer`, `debugger`, `security-auditor` |
-| Documentation | `docs-manager`, `copywriter`, `journal-writer` |
-| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager` |
-| Implementation | `scout`, `scout-external`, `ui-ux-designer`, `lovable-to-nextjs`, `csharp-expert` |
-| Specialized | `seo-specialist` |
+| Folder | Agents |
+|--------|--------|
+| `engineering/` | `planner`, `orchestrator`, `project-manager`, `frontend-developer`, `backend-developer`, `code-reviewer`, `tester`, `debugger`, `docs-manager`, `journal-writer`, `performance-agent` |
+| `specialists/` | `ui-ux-designer`, `copywriter`, `database-admin`, `security-auditor` |
+| `operations/` | `git-manager`, `mcp-manager`, `integration-agent` |
+| `research/` | `scout`, `scout-external`, `researcher` |
+| (root) | `brainstormer` |
 
 **OpenCode Agents** (`.opencode/agent/`):
 - Similar agent definitions optimized for OpenCode CLI
 
 ### 2. Slash Commands System
 
-**Categories** (65+ commands):
+**Categories** (54 commands):
 
 | Category | Commands |
 |----------|----------|
-| Development | `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code` |
+| Development | `/plan`, `/test`, `/ask`, `/bootstrap`, `/bootstrap:auto`, `/bootstrap:auto:fast`, `/brainstorm`, `/code`, `/orchestrate` |
 | Debugging | `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui` |
-| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max` |
+| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:describe`, `/design:ui-ux-pro-max` |
 | Content | `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro` |
 | Documentation | `/docs:init`, `/docs:update`, `/docs:summarize` |
 | SEO | `/seo:audit`, `/seo:keywords`, `/seo:schema` |
 | Git Operations | `/git:cm`, `/git:cp`, `/git:pr` |
 | Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
-| Project Management | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
+| Session | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
 | Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
-| Integration | `/integrate:polar`, `/integrate:sepay`, `/use-mcp` |
-| Code Review | `/review:codebase` |
+| Integration | `/integrate:sepay`, `/use-mcp` |
+| Review | `/review:codebase` |
 
 ### 3. Skills Library
 
-**Skills Organization** (`.claude/skills/`):
+**Skills Organization** (`.claude/skills/` — 74 SKILL.md files, 3-tier):
 
-Skills are organized into the following categories:
-- **DevOps**: Cloudflare, Docker, Google Cloud
-- **Databases**: MongoDB, PostgreSQL
-- **Web Frameworks**: Next.js, Turborepo
-- **UI Styling**: shadcn/ui, Tailwind CSS
-- **Individual Skills**: better-auth, chrome-devtools, debugging, docs-seeker, document-skills, ffmpeg, imagemagick, gemini-audio, gemini-video-understanding, mcp-builder, problem-solving, shopify
+- `global/` (1): `docs-seeker` — cross-cutting
+- `marketing/` (2): `seo`, `geo`
+- `software/` (71): top-level standalone + subcategories
+  - Subcategories: `ai/`, `database/`, `design/`, `development/`, `document-skills/`, `git/`, `react-native/`
+  - 12 stubs awaiting research-fill: `agentize`, `ck-graphify`, `coding-level`, `context-engineering`, `cook`, `gkg`, `plans-kanban`, `predict`, `project-organization`, `retro`, `scenario`, `xia`
+
+Single source of truth: `docs/clauKit-registry.md` (covers skills + agents + commands + duplicate detection). Skills auto-activate by description match; commands/agents cross-link to related skills via `Related skills` footer.
 
 ### 4. Workflows
 

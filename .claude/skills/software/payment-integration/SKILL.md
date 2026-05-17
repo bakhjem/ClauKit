@@ -1,43 +1,31 @@
 ---
 name: payment-integration
-description: Implement payment integrations with SePay (Vietnamese payment gateway with VietQR, bank transfers, cards) and Polar (global SaaS monetization platform with subscriptions, usage-based billing, automated benefits). Use when integrating payment processing, implementing checkout flows, managing subscriptions, handling webhooks, processing bank transfers, generating QR codes, automating benefit delivery, or building billing systems. Supports authentication (API keys, OAuth2), product management, customer portals, tax compliance (Polar as MoR), and comprehensive SDK integrations (Node.js, PHP, Python, Go, Laravel, Next.js).
-version: 1.0.0
+description: Implement payment integration with SePay (Vietnamese payment gateway with VietQR, NAPAS, bank transfers, and cards). Use when integrating Vietnamese payment processing, implementing checkout flows, handling webhooks, processing bank transfers, generating QR codes, or building billing systems for the Vietnamese market. Supports API Key/OAuth2 authentication, virtual accounts, bank account monitoring, and SDK integrations (Node.js, PHP, Laravel).
 license: MIT
 ---
 
 # Payment Integration
 
-Implement payment processing with SePay (Vietnamese payments) and Polar (global SaaS monetization).
+Implement payment processing with SePay (Vietnamese payments).
 
 ## When to Use
 
 Use when implementing:
-- Payment gateway integration (checkout, processing)
-- Subscription management (trials, upgrades, billing)
+- Vietnamese payment gateway integration (checkout, processing)
 - Webhook handling (payment notifications)
 - QR code payments (VietQR, NAPAS)
-- Usage-based billing (metering, credits)
-- Automated benefit delivery (licenses, GitHub access, Discord roles)
-- Customer portals (self-service management)
 - Bank transfer automation (Vietnamese banks)
-- Product catalogs with pricing
+- Virtual account creation for orders
+- Product catalogs with VND pricing
 
-## Platform Selection
+## Platform
 
-**Choose SePay for:**
-- Vietnamese market (VND currency)
+**SePay** — Vietnamese payment gateway:
+- VND currency
 - Bank transfer automation
 - VietQR/NAPAS payments
 - Local payment methods
 - Direct bank account monitoring
-
-**Choose Polar for:**
-- Global SaaS products
-- Subscription management
-- Usage-based billing
-- Automated benefits (GitHub, Discord, licenses)
-- Merchant of Record (tax compliance)
-- Digital product sales
 
 ## Quick Reference
 
@@ -49,38 +37,17 @@ Use when implementing:
 - **QR Codes**: `references/sepay/qr-codes.md` - VietQR generation, templates, integration
 - **Best Practices**: `references/sepay/best-practices.md` - Security, patterns, monitoring
 
-### Polar Integration
-- **Overview & Auth**: `references/polar/overview.md` - Platform capabilities, authentication methods, MoR concept
-- **Products & Pricing**: `references/polar/products.md` - Product types, pricing models, usage-based billing
-- **Checkouts**: `references/polar/checkouts.md` - Checkout flows, embedded checkout, links
-- **Subscriptions**: `references/polar/subscriptions.md` - Lifecycle, upgrades, downgrades, trials
-- **Webhooks**: `references/polar/webhooks.md` - Event types, signature verification, monitoring
-- **Benefits**: `references/polar/benefits.md` - Automated delivery (GitHub, Discord, licenses, files)
-- **SDK Usage**: `references/polar/sdk.md` - TypeScript, Python, PHP, Go, framework adapters
-- **Best Practices**: `references/polar/best-practices.md` - Security, patterns, monitoring
-
 ### Integration Scripts
 - **SePay Webhook Verification**: `scripts/sepay-webhook-verify.js` - Verify SePay webhook authenticity
-- **Polar Webhook Verification**: `scripts/polar-webhook-verify.js` - Verify Polar webhook signatures
-- **Checkout Helper**: `scripts/checkout-helper.js` - Generate checkout sessions for both platforms
+- **Checkout Helper**: `scripts/checkout-helper.js` - Generate SePay checkout sessions
 
 ## Implementation Workflow
 
-### SePay Implementation
 1. Load `references/sepay/overview.md` for auth setup
 2. Load `references/sepay/api.md` or `references/sepay/sdk.md` for integration
 3. Load `references/sepay/webhooks.md` for payment notifications
 4. Use `scripts/sepay-webhook-verify.js` for webhook verification
 5. Load `references/sepay/best-practices.md` for production readiness
-
-### Polar Implementation
-1. Load `references/polar/overview.md` for auth and concepts
-2. Load `references/polar/products.md` for product setup
-3. Load `references/polar/checkouts.md` for payment flows
-4. Load `references/polar/webhooks.md` for event handling
-5. Use `scripts/polar-webhook-verify.js` for webhook verification
-6. Load `references/polar/benefits.md` if automating delivery
-7. Load `references/polar/best-practices.md` for production readiness
 
 ## Key Capabilities
 
@@ -92,27 +59,17 @@ Use when implementing:
 - 44+ Vietnamese banks supported
 - Rate limit: 2 calls/second
 
-**Polar:**
-- Merchant of Record (global tax compliance)
-- Subscription lifecycle management
-- Usage-based billing (events, meters)
-- Automated benefits (GitHub, Discord, licenses)
-- Customer portal (self-service)
-- Multi-language SDKs
-- Rate limit: 300 req/min
-
 ## Instructions
 
 When implementing payment integration:
 
-1. **Identify platform** based on requirements (Vietnamese vs global, payment types)
-2. **Load relevant references** progressively as needed
-3. **Implement authentication** using platform-specific methods
-4. **Set up products/pricing** according to business model
-5. **Implement checkout flow** (hosted, embedded, or API-driven)
-6. **Configure webhooks** with proper verification
-7. **Handle payment events** (success, failure, refund)
-8. **Test thoroughly** in sandbox before production
-9. **Monitor and optimize** using platform analytics
+1. **Load relevant references** progressively as needed
+2. **Implement authentication** using API Key or OAuth2
+3. **Set up products/pricing** according to business model
+4. **Implement checkout flow** (hosted, embedded, or API-driven)
+5. **Configure webhooks** with proper verification
+6. **Handle payment events** (success, failure, refund)
+7. **Test thoroughly** in sandbox before production
+8. **Monitor and optimize** using platform analytics
 
 Load only the references needed for current implementation step to maintain context efficiency.

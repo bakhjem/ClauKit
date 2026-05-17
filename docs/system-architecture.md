@@ -85,7 +85,6 @@ spark-dev implements a multi-agent AI orchestration architecture where specializ
 | Implementation | `ui-ux-designer` | Design creation |
 | Implementation | `lovable-to-nextjs` | Lovable to Next.js conversion |
 | Implementation | `csharp-expert` | C#/.NET development |
-| Specialized | `seo-specialist` | SEO optimization |
 
 #### 2.2 Agent Definition Structure
 
@@ -168,7 +167,7 @@ Issues, blockers, or questions
 | Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
 | Project Management | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
 | Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
-| Integration | `/integrate:polar`, `/integrate:sepay`, `/use-mcp` |
+| Integration | `/integrate:sepay`, `/use-mcp` |
 | Code Review | `/review:codebase` |
 
 #### 3.2 Command Workflow Pattern

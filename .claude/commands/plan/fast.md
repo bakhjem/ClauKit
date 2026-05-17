@@ -3,44 +3,23 @@ description: ⚡⚡ No research. Only analyze and create an implementation plan
 argument-hint: [task]
 ---
 
-Think.
-Activate `planning` skill.
+Think. Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
 
 ## Your mission
-<task>
-$ARGUMENTS
-</task>
+<task>$ARGUMENTS</task>
 
-## Workflow
+## Workflow (no-research variant)
+
 Use `planner` subagent to:
-1. Create a directory named `plans/YYYYMMDD-HHmm-plan-name` (eg. `plans/20251101-1505-authentication-and-profile-implementation`).
-   Make sure you pass the directory path to every subagent during the process.
-2. Follow strictly to the "Plan Creation & Organization" rules of `planning` skill.
-3. Analyze the codebase by reading `codebase-summary.md`, `code-standards.md`, `system-architecture.md` and `project-overview-pdr.md` file.
-4. Gathers all information and create an implementation plan of this task.
+1. Create directory `plans/YYYYMMDD-HHmm-plan-name` and pass path to every subagent.
+2. Follow the **"Plan Creation & Organization"** rules + **Plan Directory Structure** + **Plan File Specification** defined in the `planning` skill (single source of truth).
+3. Analyze codebase: read `docs/codebase-summary.md`, `docs/code-standards.md`, `docs/system-architecture.md`, `docs/project-overview-pdr.md`.
+4. Gather information → create implementation plan.
 5. Ask user to review the plan.
 
-## Output Requirements
-
-**Plan Directory Structure**
-```
-plans/
-└── YYYYMMDD-HHmm-plan-name/
-    ├── reports/
-    │   ├── XX-report.md
-    │   └── ...
-    ├── plan.md
-    ├── phase-XX-phase-name-here.md
-    └── ...
-```
-
-**Plan File Specification**
-- Save the overview access point at `plans/YYYYMMDD-HHmm-plan-name/plan.md`. Keep it generic, under 80 lines, and list each implementation phase with status and progress plus links to phase files.
-- For each phase, create `plans/YYYYMMDD-HHmm-plan-name/phase-XX-phase-name-here.md` containing the following sections in order: Context links (reference parent plan, dependencies, docs), Overview (date, description, priority, implementation status, review status), Key Insights, Requirements, Architecture, Related code files, Implementation Steps, Todo list, Success Criteria, Risk Assessment, Security Considerations, Next steps.
+**Distinct from `/plan:hard`:** Skip the research phase (no `researcher` agents, no scout). Pure analysis + planning from existing docs only.
 
 ## Important Notes
-- **IMPORTANT:** Ensure token efficiency while maintaining high quality.
-- **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
-- **IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
-- **IMPORTANT:** In reports, list any unresolved questions at the end, if any.
-- **IMPORTANT**: **Do not** start implementing.
+- **DO NOT implement** — plan only.
+- Token efficiency, concise grammar, list unresolved questions at end.
+- All other rules → `planning` skill.

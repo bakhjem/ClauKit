@@ -3,28 +3,25 @@ description: ⚡⚡⚡⚡ Research & create an implementation plan with 2 approa
 argument-hint: [task]
 ---
 
-Think harder.
-Activate `planning` skill.
+Think harder. Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
 
 ## Your mission
-Use the `planner` subagent to create 2 detailed implementation plans for this following task:
-<task>
- $ARGUMENTS
-</task>
+Use `planner` subagent to create **2 detailed implementation plans** for:
+<task>$ARGUMENTS</task>
 
-## Workflow
-1. First: Create a directory named `plans/YYYYMMDD-HHmm-plan-name` (eg. `plans/20251101-1505-authentication-and-profile-implementation`).
-   Make sure you pass the directory path to every subagent during the process.
-2. Follow strictly to the "Plan Creation & Organization" rules of `planning` skill.
-3. Use multiple `researcher` agents in parallel to research for this task, each agent research for a different aspect of the task and perform max 5 researches (max 5 tool calls).
-4. Use `scout` agent to search the codebase for files needed to complete the task.
-5. Main agent gathers all research and scout report filepaths, and pass them to `planner` subagent with the detailed instructions prompt to create an implementation plan of this task.
-  **Output:** Provide at least 2 implementation approaches with clear trade-offs, and explain the pros and cons of each approach, and provide a recommended approach.
-1. Main agent receives the implementation plan from `planner` subagent, and ask user to review the plan
+## Workflow (2-approach comparison variant)
+
+1. Create directory `plans/YYYYMMDD-HHmm-plan-name`, pass path to every subagent.
+2. Follow **Plan Creation & Organization** + **Plan Directory Structure** + **Plan File Spec** from `planning` skill.
+3. Multiple `researcher` agents in parallel — each on a different aspect, max 5 tool calls each.
+4. `scout` agent → discover relevant files.
+5. Main agent passes all reports to `planner` with instruction:
+   **Output ≥2 implementation approaches with clear trade-offs + pros/cons + recommended approach.**
+6. Receive plan, ask user to review.
+
+**Distinct from `/plan:hard`:** Mandatory 2+ approaches comparison with pros/cons table.
 
 ## Important Notes
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
-**IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
-**IMPORTANT:** Ensure token efficiency while maintaining high quality.
-**IMPORTANT:** In reports, list any unresolved questions at the end, if any.
-**IMPORTANT**: **Do not** start implementing.
+- **DO NOT implement** — plan only.
+- Token efficiency, concise grammar, list unresolved questions at end.
+- All other rules → `planning` skill.

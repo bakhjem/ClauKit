@@ -3,16 +3,13 @@
 /**
  * Checkout Helper Script
  *
- * Generate checkout sessions for both SePay and Polar platforms.
+ * Generate checkout sessions for SePay.
  *
  * Usage:
- *   node checkout-helper.js <platform> <config-json>
- *
- * Platforms: sepay, polar
+ *   node checkout-helper.js sepay <config-json>
  *
  * Environment Variables:
  *   SEPAY_MERCHANT_ID, SEPAY_SECRET_KEY, SEPAY_ENV
- *   POLAR_ACCESS_TOKEN, POLAR_SERVER
  */
 
 const crypto = require('crypto');
@@ -82,56 +79,6 @@ class CheckoutHelper {
   }
 
   /**
-   * Generate Polar checkout configuration
-   */
-  static generatePolarCheckout(config) {
-    const {
-      productPriceId,
-      successUrl,
-      externalCustomerId,
-      customerEmail,
-      customerName,
-      discountId,
-      metadata,
-      embedOrigin
-    } = config;
-
-    // Validate required fields
-    if (!productPriceId) {
-      throw new Error('Missing required field: productPriceId');
-    }
-    if (!successUrl) {
-      throw new Error('Missing required field: successUrl');
-    }
-
-    // Must be absolute URL
-    if (!successUrl.startsWith('http://') && !successUrl.startsWith('https://')) {
-      throw new Error('successUrl must be an absolute URL');
-    }
-
-    const checkoutConfig = {
-      product_price_id: productPriceId,
-      success_url: successUrl
-    };
-
-    // Add optional fields
-    if (externalCustomerId) checkoutConfig.external_customer_id = externalCustomerId;
-    if (customerEmail) checkoutConfig.customer_email = customerEmail;
-    if (customerName) checkoutConfig.customer_name = customerName;
-    if (discountId) checkoutConfig.discount_id = discountId;
-    if (metadata) checkoutConfig.metadata = metadata;
-    if (embedOrigin) checkoutConfig.embed_origin = embedOrigin;
-
-    return {
-      config: checkoutConfig,
-      apiEndpoint: config.server === 'sandbox'
-        ? 'https://sandbox-api.polar.sh/v1/checkouts'
-        : 'https://api.polar.sh/v1/checkouts',
-      curlCommand: this.generatePolarCurl(checkoutConfig, config.accessToken, config.server)
-    };
-  }
-
-  /**
    * Generate HTML form for SePay
    */
   static generateHTMLForm(fields, actionUrl) {
@@ -160,20 +107,6 @@ ${inputs}
 </html>
 `.trim();
   }
-
-  /**
-   * Generate cURL command for Polar
-   */
-  static generatePolarCurl(config, accessToken, server = 'production') {
-    const endpoint = server === 'sandbox'
-      ? 'https://sandbox-api.polar.sh/v1/checkouts'
-      : 'https://api.polar.sh/v1/checkouts';
-
-    return `curl -X POST ${endpoint} \\
-  -H "Authorization: Bearer ${accessToken}" \\
-  -H "Content-Type: application/json" \\
-  -d '${JSON.stringify(config, null, 2)}'`;
-  }
 }
 
 // CLI Usage
@@ -181,15 +114,9 @@ if (require.main === module) {
   const args = process.argv.slice(2);
 
   if (args.length < 2) {
-    console.log('Usage: node checkout-helper.js <platform> <config-json>');
-    console.log('\nPlatforms:');
-    console.log('  sepay  - SePay checkout form generation');
-    console.log('  polar  - Polar checkout session configuration');
-    console.log('\nExamples:');
-    console.log('\nSePay:');
+    console.log('Usage: node checkout-helper.js sepay <config-json>');
+    console.log('\nExample:');
     console.log('  node checkout-helper.js sepay \'{"orderInvoiceNumber":"ORD001","orderAmount":100000,"successUrl":"https://example.com/success","errorUrl":"https://example.com/error","cancelUrl":"https://example.com/cancel"}\'');
-    console.log('\nPolar:');
-    console.log('  node checkout-helper.js polar \'{"productPriceId":"price_xxx","successUrl":"https://example.com/success","externalCustomerId":"user_123"}\'');
     process.exit(1);
   }
 
@@ -211,28 +138,9 @@ if (require.main === module) {
       console.log(JSON.stringify(result.fields, null, 2));
       console.log('\nHTML Form:');
       console.log(result.htmlForm);
-    } else if (platform === 'polar') {
-      // Get from environment or config
-      config.accessToken = config.accessToken || process.env.POLAR_ACCESS_TOKEN;
-      config.server = config.server || process.env.POLAR_SERVER || 'production';
-
-      if (!config.accessToken) {
-        console.error('✗ Error: POLAR_ACCESS_TOKEN is required');
-        console.error('Set it via environment variable or in config JSON');
-        process.exit(1);
-      }
-
-      const result = CheckoutHelper.generatePolarCheckout(config);
-
-      console.log('✓ Polar Checkout Configuration Generated\n');
-      console.log('API Endpoint:', result.apiEndpoint);
-      console.log('\nCheckout Configuration:');
-      console.log(JSON.stringify(result.config, null, 2));
-      console.log('\ncURL Command:');
-      console.log(result.curlCommand);
     } else {
       console.error(`✗ Error: Unknown platform '${platform}'`);
-      console.error('Supported platforms: sepay, polar');
+      console.error('Supported platforms: sepay');
       process.exit(1);
     }
   } catch (error) {

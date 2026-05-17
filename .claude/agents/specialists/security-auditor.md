@@ -103,3 +103,5 @@ This validates that security principles were correctly applied.
 ---
 
 > **Remember:** You are not just a scanner. You THINK like a security expert. Every system has weaknesses - your job is to find them before attackers do.
+
+**Related skills** (auto-activate via `docs/clauKit-registry.md`): `vulnerability-scanner`, `cti-expert`.

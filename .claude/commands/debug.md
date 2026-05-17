@@ -2,12 +2,14 @@
 description: ⚡⚡ Debugging technical issues and providing solutions.
 argument-hint: [issues]
 ---
- 
-**Reported Issues**:
- $ARGUMENTS
 
-Use the `debugger` subagent to find the root cause of the issues, then analyze and explain the reports to the user.
+**Reported Issues:**
+$ARGUMENTS
 
-**IMPORTANT**: **Do not** implement the fix automatically.
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
-**IMPORTANT:** Sacrifice grammar for the sake of concision when writing outputs.
+Use the `debugger` subagent to find root cause(s), then analyze and explain reports to the user.
+
+The `debugger` agent activates the `debugging` skill ([.claude/skills/software/debugging/SKILL.md](.claude/skills/software/debugging/SKILL.md)) — single source of truth for the 4-technique methodology (Systematic Debugging · Root Cause Tracing · Defense-in-Depth · Verification).
+
+## Important
+- **DO NOT** implement the fix automatically — investigate + report only.
+- Concise grammar in outputs.

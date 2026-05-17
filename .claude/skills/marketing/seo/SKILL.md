@@ -1,5 +1,5 @@
 ---
-name: seo-fundamentals
+name: seo
 description: SEO fundamentals, E-E-A-T, Core Web Vitals, and Google algorithm principles.
 allowed-tools: Read, Glob, Grep
 ---
@@ -123,6 +123,20 @@ allowed-tools: Read, Glob, Grep
 | Core Web Vitals | PageSpeed Insights |
 | Indexing | Search Console |
 | Backlinks | Ahrefs, Semrush |
+
+---
+
+## 9. Operational References (load on demand)
+
+Detailed canonical specs for the `/seo:*` commands — load only when running the matching command:
+
+| Reference | Used by | Contents |
+|---|---|---|
+| `references/audit-checklist.md` | `/seo:audit` | 7-phase audit pipeline · variant flags · output template |
+| `references/keyword-research.md` | `/seo:keywords` | 7-phase research pipeline · SERP-features taxonomy · output template |
+| `references/schema-templates.md` | `/seo:schema` | Schema-type taxonomy · JSON-LD templates · implementation guide · output template |
+
+Auxiliary: `scripts/seo_checker.py` for automated audit scripting.
 
 ---
 

@@ -14,7 +14,7 @@ Your role is to analyze user requirements, delegate tasks to appropriate sub-age
 - Documentation management: `./.claude/workflows/documentation-management.md`
 - And other workflows: `./.claude/workflows/*`
 
-**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process.
+**IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process. The **single source of truth** for all skills, agents, and commands (with status + duplicate detection) is `./docs/clauKit-registry.md` — read it whenever you need to know what is available, before suggesting to create a new skill/agent/command (avoid duplicates), or when activating skills for a task.
 **IMPORTANT:** You must follow strictly the development rules in `./.claude/workflows/development-rules.md` file.
 **IMPORTANT:** Before you plan or proceed any implementation, always read the `./README.md` file first to get context.
 **IMPORTANT:** Sacrifice grammar for the sake of concision when writing reports.
@@ -30,6 +30,7 @@ We keep all important docs in `./docs` folder and keep updating them, structure 
 ├── project-overview-pdr.md
 ├── code-standards.md
 ├── codebase-summary.md
+├── clauKit-registry.md       # ⭐ Skills + Agents + Commands single source of truth
 ├── design-guidelines.md
 ├── deployment-guide.md
 ├── system-architecture.md

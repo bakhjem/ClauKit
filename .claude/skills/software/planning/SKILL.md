@@ -40,6 +40,10 @@ Load: `references/plan-organization.md`
 ### 5. Task Breakdown & Output Standards
 Load: `references/output-standards.md`
 
+### 6. Predictive Planning · Forecasting Outcomes
+Load: `references/forecasting-outcomes.md`
+**When**: estimating timelines from team velocity, risk-scoring an architectural decision, predicting bottlenecks from a dependency graph. Use historical metrics, not gut feel. Distinct from solution design — predictive planning quantifies uncertainty rather than choosing among approaches.
+
 ## Workflow Process
 
 1. **Initial Analysis** → Read codebase docs, understand context

@@ -24,6 +24,8 @@ You are the **Orchestrator** for the Software Engineering team. Use the tools an
 | Agent | Role |
 |-------|------|
 | `planner` | Create implementation plans |
+| `frontend-developer` | Implement UI/UX, frontend frameworks, styling |
+| `backend-developer` | Implement APIs, databases, server-side logic |
 | `tester` | Run tests, analyze coverage |
 | `debugger` | Debug issues, find root cause |
 | `code-reviewer` | Review code quality |
@@ -32,7 +34,6 @@ You are the **Orchestrator** for the Software Engineering team. Use the tools an
 ### Cross-team (use Agent tool)
 | Agent | Role |
 |-------|------|
-| `seo-specialist` | SEO audit, keywords |
 | `security-auditor` | Security review |
 | `ui-ux-designer` | UI/UX design |
 | `copywriter` | Content writing |
@@ -70,3 +71,5 @@ You are the **Orchestrator** for the Software Engineering team. Use the tools an
 <task-description>
 $ARGUMENTS
 </task-description>
+
+**Related skills** (look up `docs/clauKit-registry.md`): `agentize`, `coding-level`, `project-organization`.

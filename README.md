@@ -1,7 +1,7 @@
 # ClauKit
 
-**Version**: 1.0.2
-**Last Updated**: 2026-04-04
+**Version**: 1.0.5
+**Last Updated**: 2026-05-17
 **Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
@@ -16,21 +16,27 @@ A development template for building AI-powered applications with Claude Code. Bu
 
 ### Installation
 
+> **Note**: ClauKit is not published on the npm registry yet. All install methods below pull directly from the GitHub repository, so a git URL (or `github:` shorthand) is required.
+
 #### Option 1: Install via Git (Recommended)
 
 ```bash
-# Install globally
+# Install globally from GitHub
 npm install -g https://github.com/trungdo9/ClauKit.git
 
 # Initialize in your project
+cd /path/to/your-project
 ck init
+
+# Later, pull the latest version
+ck update
 ```
 
 #### Option 2: Run without installation
 
 ```bash
-# Initialize directly using npx
-npx https://github.com/trungdo9/ClauKit.git init
+# Initialize directly using npx (no global install)
+npx github:trungdo9/ClauKit init
 ```
 
 #### Option 3: Clone and customize
@@ -63,19 +69,22 @@ cp .claude/.env.example .claude/.env
 
 ```bash
 ck init              # Copy .claude folder to current directory
-ck init --force      # Overwrite existing files
+ck init --force      # Overwrite existing files (use after backing up local changes)
+ck update            # Check GitHub for the latest version and update the global install
 ck help              # Show help information
 ```
+
+> `ck init` only copies `.claude/`. Other assets shipped in the package (`.opencode/`, `AGENTS.md`, `docs/`, `CLAUDE.md`) are only available via Option 3 (clone-as-template).
 
 ## Project Structure
 
 ```
 claukit/
 ├── .claude/                    # Claude Code configuration
-│   ├── agents/                 # Specialized agent definitions (20 agents)
-│   ├── commands/               # Slash command implementations (56 commands)
+│   ├── agents/                 # Specialized agent definitions (22 agents)
+│   ├── commands/               # Slash command implementations (55 commands)
 │   ├── hooks/                  # Git hooks and scripts
-│   ├── skills/                 # Specialized skills library
+│   ├── skills/                 # Specialized skills library (78 skills)
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
@@ -114,13 +123,17 @@ claukit/
 | Development | `frontend-developer`, `backend-developer` |
 | Quality | `tester`, `code-reviewer`, `debugger`, `performance-agent`, `security-auditor` |
 | Documentation | `docs-manager`, `journal-writer` |
-| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
+| Operations | `orchestrator`, `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
 | Implementation | `scout`, `scout-external`, `ui-ux-designer` |
-| Specialized | `seo-specialist`, `copywriter` |
+| Specialized | `copywriter` |
 
-### Slash Commands (56)
+### Slash Commands (55)
 
-**Development**: `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code`
+**Development**: `/plan`, `/cook`, `/code`, `/test`, `/ask`, `/brainstorm`, `/orchestrate`, `/xia`
+
+**Planning**: `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro`
+
+**Bootstrap**: `/bootstrap`, `/bootstrap:auto`, `/bootstrap:auto:fast`
 
 **Debugging**: `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui`
 
@@ -134,7 +147,11 @@ claukit/
 
 **Git Operations**: `/git:cm`, `/git:cp`, `/git:pr`
 
-**Project Management**: `/watzup`, `/journal`, `/scout`, `/scout:ext`
+**Review**: `/review:codebase`
+
+**Integration**: `/integrate:sepay`
+
+**Project Management**: `/watzup`, `/journal`, `/scout`, `/scout:ext`, `/use-mcp`
 
 **Skills**: `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs`
 

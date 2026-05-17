@@ -70,7 +70,6 @@ Provide a production-ready template that:
 - **Quality Agents**: tester, code-reviewer, debugger, security-auditor
 - **Documentation Agents**: docs-manager, copywriter, journal-writer
 - **Management Agents**: project-manager, git-manager, database-admin, mcp-manager
-- **Specialized**: seo-specialist
 
 **Orchestration Patterns**:
 - **Sequential Chaining**: Planning -> Implementation -> Testing -> Review -> Deploy

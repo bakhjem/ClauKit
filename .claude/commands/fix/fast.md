@@ -3,17 +3,24 @@ description: ⚡ Analyze and fix small issues [FAST]
 argument-hint: [issues]
 ---
 
-Analyze the skills catalog and activate the skills that are needed for the task during the process.
+**Think hard.** Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflows/fix-pipeline.md)).
 
 ## Mission
-**Think hard** to analyze and fix these issues:
 <issues>$ARGUMENTS</issues>
 
-## Workflow
-1. If the user provides a screenshots or videos, use `ai-multimodal` skill to describe as detailed as possible the issue, make sure developers can predict the root causes easily based on the description.
-2. Use `debugger` subagent to find the root cause of the issues and report back to main agent.
-3. Use `problem-solving` skills to tackle the issues.
-4. Start implementing the fix based the reports and solutions.
-5. Use `tester` agent to test the fix and make sure it works, then report back to main agent.
-6. If there are issues or failed tests, repeat from step 2.
-7. After finishing, respond back to user with a summary of the changes and explain everything briefly, guide user to get started and suggest the next steps.
+## Variant: `/fix:fast` — minimal pipeline
+
+- **Stage [2]** (multimodal): if screenshots/videos → `ai-multimodal` skill.
+- **Stage [3]** (diagnose): `debugger` subagent only.
+- **Stage [4]** (plan): SKIP — go directly to implement.
+- **Stage [5]** (implement): main agent applies fix.
+- **Stage [6]** (verify): `tester` subagent.
+- **Stage [7]** (review): SKIP code-reviewer — just summarize to user.
+- **Failure loop:** back to stage [3].
+
+**Companion skill:** `problem-solving` activates during diagnose.
+
+## Distinct from siblings
+- `/fix:hard` — full pipeline with researcher + planner + code-reviewer + docs update
+- `/fix:logs` / `/fix:ci` — input from log files / CI URL instead of issue text
+- `/fix:test` / `/fix:types` / `/fix:ui` — specialized inputs/agents
