@@ -80,7 +80,7 @@ Default failure mode: layers 5 and 4 bloat unchecked. Optimization starts there.
 When tuning an existing agent:
 
 1. **Measure** input tokens by layer for 10 representative sessions.
-2. **Isolate** if quality is the bottleneck — spawn sub-agents for orthogonal sub-tasks (see `[[orchestrate]]`).
+2. **Isolate** if quality is the bottleneck — spawn sub-agents for orthogonal sub-tasks (see `[[team]]`).
 3. **Prune tools** — biggest single-layer win, lowest risk.
 4. **Compress history** at a fixed turn threshold (summarize after turn ~20).
 5. **Re-rank retrieval** — top-K → top-50 + cross-encoder → top-5.
@@ -108,4 +108,4 @@ See `references/`:
 
 ## Cross-links
 
-`[[sequential-thinking]]`, `[[problem-solving]]`, `[[research]]`, `[[orchestrate]]`, `[[skill-creator]]`, `[[gkg]]` (graph-as-context substrate)
+`[[sequential-thinking]]`, `[[problem-solving]]`, `[[research]]`, `[[team]]`, `[[skill-creator]]`, `[[gkg]]` (graph-as-context substrate)

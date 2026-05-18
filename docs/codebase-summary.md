@@ -96,7 +96,7 @@ spark-dev/
 
 | Folder | Agents |
 |--------|--------|
-| `engineering/` | `planner`, `orchestrator`, `project-manager`, `frontend-developer`, `backend-developer`, `code-reviewer`, `tester`, `debugger`, `docs-manager`, `journal-writer`, `performance-agent` |
+| `engineering/` | `planner`, `project-manager`, `frontend-developer`, `backend-developer`, `code-reviewer`, `tester`, `debugger`, `docs-manager`, `journal-writer`, `performance-agent` |
 | `specialists/` | `ui-ux-designer`, `copywriter`, `database-admin`, `security-auditor` |
 | `operations/` | `git-manager`, `mcp-manager`, `integration-agent` |
 | `research/` | `scout`, `scout-external`, `researcher` |
@@ -111,18 +111,18 @@ spark-dev/
 
 | Category | Commands |
 |----------|----------|
-| Development | `/plan`, `/test`, `/ask`, `/bootstrap`, `/bootstrap:auto`, `/bootstrap:auto:fast`, `/brainstorm`, `/code`, `/orchestrate` |
-| Debugging | `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui` |
-| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:describe`, `/design:ui-ux-pro-max` |
-| Content | `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro` |
-| Documentation | `/docs:init`, `/docs:update`, `/docs:summarize` |
-| SEO | `/seo:audit`, `/seo:keywords`, `/seo:schema` |
-| Git Operations | `/git:cm`, `/git:cp`, `/git:pr` |
-| Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
-| Session | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
-| Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
-| Integration | `/integrate:sepay`, `/use-mcp` |
-| Review | `/review:codebase` |
+| Development | `/ck:plan`, `/ck:test`, `/ck:ask`, `/ck:bootstrap`, `/ck:bootstrap -auto`, `/ck:bootstrap -fast`, `/ck:brainstorm`, `/ck:code`, `/ck:team` |
+| Debugging | `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix:ci`, `/ck:fix:test`, `/ck:fix:types`, `/ck:fix:logs`, `/ck:fix:ui` |
+| Design | `/ck:design --fast`, `/ck:design --good`, `/ck:design --3d`, `/ck:design --screenshot`, `/ck:design --describe`, `/ck:design --ui-ux-pro-max` |
+| Content | `/ck:content -fast`, `/ck:content -good`, `/ck:content:enhance`, `/ck:content:cro` |
+| Documentation | `/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize` |
+| SEO | `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema` |
+| Git Operations | `/ck:git:cm`, `/ck:git:cp`, `/ck:git:pr` |
+| Planning | `/ck:plan -fast`, `/ck:plan -hard`, `/ck:plan:two`, `/ck:plan:ci`, `/ck:plan:cro` |
+| Session | `/ck:watzup`, `/ck:journal`, `/ck:scout`, `/ck:scout -ext` |
+| Skills | `/ck:skill:add`, `/ck:skill:create`, `/ck:skill:optimize`, `/ck:skill:fix-logs` |
+| Integration | `/ck:integrate:sepay`, `/ck:use-mcp` |
+| Review | `/ck:review:codebase` |
 
 ### 3. Skills Library
 

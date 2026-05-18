@@ -23,6 +23,14 @@ Dispatch code-reviewer subagent to catch issues before they cascade.
 
 ## How to Request
 
+**0. Scout edge cases first (optional, recommended for complex changes):**
+
+```bash
+/ck:scout edge cases for <feature>
+```
+
+Surfaces files affected beyond modified files, data-flow paths, boundary conditions, side effects. Hand the scout report to the reviewer so attention lands where breakage is most likely.
+
 **1. Get git SHAs:**
 ```bash
 BASE_SHA=$(git rev-parse HEAD~1)  # or origin/main
@@ -50,56 +58,27 @@ Use Task tool with `code-reviewer` type, fill template at `code-reviewer.md`
 
 ```
 [Just completed Task 2: Add verification function]
+BASE_SHA=a7981ec  HEAD_SHA=3df7661
 
-You: Let me request code review before proceeding.
-
-BASE_SHA=$(git log --oneline | grep "Task 1" | head -1 | awk '{print $1}')
-HEAD_SHA=$(git rev-parse HEAD)
-
-[Dispatch code-reviewer subagent]
-  WHAT_WAS_IMPLEMENTED: Verification and repair functions for conversation index
+[Dispatch code-reviewer]
+  WHAT_WAS_IMPLEMENTED: verifyIndex() + repairIndex() with 4 issue types
   PLAN_OR_REQUIREMENTS: Task 2 from docs/plans/deployment-plan.md
-  BASE_SHA: a7981ec
-  HEAD_SHA: 3df7661
-  DESCRIPTION: Added verifyIndex() and repairIndex() with 4 issue types
+  DESCRIPTION: verification and repair functions for conversation index
 
-[Subagent returns]:
-  Strengths: Clean architecture, real tests
-  Issues:
-    Important: Missing progress indicators
-    Minor: Magic number (100) for reporting interval
-  Assessment: Ready to proceed
-
-You: [Fix progress indicators]
-[Continue to Task 3]
+[Returns] Issues — Important: missing progress indicators · Minor: magic number 100
+You: [fix progress indicators] → continue Task 3
 ```
 
 ## Integration with Workflows
 
-**Subagent-Driven Development:**
-- Review after EACH task
-- Catch issues before they compound
-- Fix before moving to next task
-
-**Executing Plans:**
-- Review after each batch (3 tasks)
-- Get feedback, apply, continue
-
-**Ad-Hoc Development:**
-- Review before merge
-- Review when stuck
+- **Subagent-driven development:** review after EACH task — catch issues before they compound.
+- **Executing plans:** review after each batch (3 tasks), apply feedback, continue.
+- **Ad-hoc development:** review before merge or when stuck.
 
 ## Red Flags
 
-**Never:**
-- Skip review because "it's simple"
-- Ignore Critical issues
-- Proceed with unfixed Important issues
-- Argue with valid technical feedback
+**Never:** skip review because "it's simple" · ignore Critical issues · proceed with unfixed Important issues · argue with valid technical feedback.
 
-**If reviewer wrong:**
-- Push back with technical reasoning
-- Show code/tests that prove it works
-- Request clarification
+**If reviewer is wrong:** push back with technical reasoning, show code/tests proving it works, request clarification.
 
-See template at: requesting-code-review/code-reviewer.md
+See template at: `requesting-code-review/code-reviewer.md`.

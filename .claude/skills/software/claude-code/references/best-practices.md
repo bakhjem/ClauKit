@@ -252,9 +252,9 @@ Options:
 
 **Usage:**
 ```bash
-/test
-/test unit
-/test integration
+/ck:test
+/ck:test unit
+/ck:test integration
 ```
 
 ### Share Skills
@@ -392,38 +392,38 @@ claude analytics cost --project my-project
 
 ```bash
 # 1. Plan feature
-claude /plan "implement user authentication"
+claude /ck:plan "implement user authentication"
 
 # 2. Create checkpoint
 claude checkpoint create "before auth implementation"
 
 # 3. Implement
-claude /cook "implement user authentication"
+claude /ck:cook "implement user authentication"
 
 # 4. Test
-claude /test
+claude /ck:test
 
 # 5. Review
 claude "review authentication implementation"
 
 # 6. Commit
-claude /git:cm
+claude /ck:git:cm
 ```
 
 ### Bug Fixing
 
 ```bash
 # 1. Debug
-claude /debug "login button not working"
+claude /ck:debug "login button not working"
 
 # 2. Fix
-claude /fix:fast "fix login button issue"
+claude /ck:fix --quick "fix login button issue"
 
 # 3. Test
-claude /test
+claude /ck:test
 
 # 4. Commit
-claude /git:cm
+claude /ck:git:cm
 ```
 
 ### Code Review

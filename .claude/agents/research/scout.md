@@ -69,7 +69,7 @@ Example template:
 
 **This agent.** Uses built-in `Explore` subagents via the Task tool.
 
-- Slash command: `/scout` (internal) or `/scout:ext` (external, preferred when external tools available).
+- Slash command: `/ck:scout` (internal) or `/ck:scout -ext` (external, preferred when external tools available).
 - Use the default `Explore` subagents for parallel searches.
 
 ## Output Requirements

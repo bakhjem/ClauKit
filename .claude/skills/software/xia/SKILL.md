@@ -1,6 +1,6 @@
 ---
 name: xia
-description: Port and refactor a feature from a public GitHub repo into the local codebase. Use when user wants to copy/adapt an existing implementation (auth flow, payment integration, UI component, algorithm, etc.) from another repo rather than build from scratch. Triggers on `/xia` or phrases like "port from", "borrow this feature", "copy from repo X".
+description: Port and refactor a feature from a public GitHub repo into the local codebase. Use when user wants to copy/adapt an existing implementation (auth flow, payment integration, UI component, algorithm, etc.) from another repo rather than build from scratch. Triggers on `/ck:xia` or phrases like "port from", "borrow this feature", "copy from repo X".
 category: Planning & Research
 status: active
 ---
@@ -14,7 +14,7 @@ Safely extract a feature from an external GitHub repository and integrate it int
 ## When to Use
 
 - User points at a public GitHub repo and asks to "port", "borrow", "lift", "adapt", or "copy" a feature.
-- User runs `/xia <github-url> [feature]` with or without `--improve` / `--compare`.
+- User runs `/ck:xia <github-url> [feature]` with or without `--improve` / `--compare`.
 - A planning step concluded that a proven open-source implementation is a better starting point than green-field code.
 
 **Do NOT use** when:
@@ -36,7 +36,7 @@ Safely extract a feature from an external GitHub repository and integrate it int
 
 1. Validate `repo_url` is a public GitHub URL. If not, stop and ask user.
 2. Read `LICENSE` via `gh api repos/<owner>/<name>/contents/LICENSE` or `gh repo view`. Flag GPL / AGPL / non-permissive licenses to user **before** copying anything.
-3. List repo tree: `gh api repos/<owner>/<name>/git/trees/HEAD?recursive=1` (or shallow-clone to `/tmp/xia-<repo>-<sha>/` if tree is large).
+3. List repo tree: `gh api repos/<owner>/<name>/ck:git/trees/HEAD?recursive=1` (or shallow-clone to `/tmp/xia-<repo>-<sha>/` if tree is large).
 4. Delegate to `scout-external` (or `Explore`) agent: locate the file(s) implementing `feature`. Return paths + a 1-line "what each file does" map.
 5. Save inspection report to `plans/<plan-name>/reports/xia-<repo>-inspect.md`.
 
@@ -72,7 +72,7 @@ Safely extract a feature from an external GitHub repository and integrate it int
 ### Phase 5 — Verify (always when porting)
 
 15. Run type-check / lint / build commands locally.
-16. Instruct user to run `/test` (or run `tester` agent) — port is not "done" until tests pass.
+16. Instruct user to run `/ck:test` (or run `tester` agent) — port is not "done" until tests pass.
 17. Write final report to `plans/<plan-name>/reports/xia-<repo>-port.md` covering: files added/modified, deps added, refactors applied, remaining TODOs, license note.
 
 ## Output Locations
@@ -94,9 +94,9 @@ If no active plan, drop reports into `plans/xia-adhoc-YYYYMMDD-HHmm/reports/`.
 
 ## Related
 
-- `/scout` + `scout-external` agent — for locating files in the source repo.
+- `/ck:scout` + `scout-external` agent — for locating files in the source repo.
 - `code-review` skill + `code-reviewer` agent — Phase 4 validation.
-- `/test` — Phase 5 verification.
+- `/ck:test` — Phase 5 verification.
 - `git-manager` agent — commit the port as a discrete commit with `feat: port <feature> from <repo>` message.
 
 ## References

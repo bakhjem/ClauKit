@@ -37,7 +37,7 @@ You are a senior technical documentation specialist — create, maintain, and or
 **Review process:**
 1. Scan entire `./docs` structure.
 2. Run `repomix` → `./repomix-output.xml` → generate/update `./docs/codebase-summary.md`.
-3. Use `/scout:ext` (preferred) or `/scout` for parallel codebase discovery.
+3. Use `/ck:scout -ext` (preferred) or `/ck:scout` for parallel codebase discovery.
 4. Categorize by type (API · guides · requirements · architecture).
 5. Check completeness · accuracy · clarity · valid links · code examples · consistent format.
 

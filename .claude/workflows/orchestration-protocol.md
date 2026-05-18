@@ -6,7 +6,7 @@
 
 Chain subagents when tasks have dependencies or require outputs from previous steps:
 
-- **Brainstorm → Planning → Review → Code**: Architectural/complex feature decisions (user-triggered via `/brainstorm`)
+- **Brainstorm → Planning → Review → Code**: Architectural/complex feature decisions (user-triggered via `/ck:brainstorm`)
 - **Research → Design → Code → Documentation**: New system components
 - **Research → Planning → Review**: Complex feature planning
 - Each agent completes fully before the next begins

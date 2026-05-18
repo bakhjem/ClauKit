@@ -123,37 +123,37 @@ claukit/
 | Development | `frontend-developer`, `backend-developer` |
 | Quality | `tester`, `code-reviewer`, `debugger`, `performance-agent`, `security-auditor` |
 | Documentation | `docs-manager`, `journal-writer` |
-| Operations | `orchestrator`, `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
+| Operations | `git-manager`, `project-manager`, `database-admin`, `mcp-manager`, `integration-agent` |
 | Implementation | `scout`, `scout-external`, `ui-ux-designer` |
 | Specialized | `copywriter` |
 
 ### Slash Commands (55)
 
-**Development**: `/plan`, `/cook`, `/code`, `/test`, `/ask`, `/brainstorm`, `/orchestrate`, `/xia`
+**Development**: `/ck:plan`, `/ck:cook`, `/ck:code`, `/ck:test`, `/ck:ask`, `/ck:brainstorm`, `/ck:team`, `/ck:xia`
 
-**Planning**: `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro`
+**Planning**: `/ck:plan -fast`, `/ck:plan -hard`, `/ck:plan:two`, `/ck:plan:ci`, `/ck:plan:cro`
 
-**Bootstrap**: `/bootstrap`, `/bootstrap:auto`, `/bootstrap:auto:fast`
+**Bootstrap**: `/ck:bootstrap`, `/ck:bootstrap -auto`, `/ck:bootstrap -fast`
 
-**Debugging**: `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui`
+**Debugging**: `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix:ci`, `/ck:fix:test`, `/ck:fix:types`, `/ck:fix:logs`, `/ck:fix:ui`
 
-**Design**: `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:describe`, `/design:ui-ux-pro-max`
+**Design**: `/ck:design --fast`, `/ck:design --good`, `/ck:design --3d`, `/ck:design --screenshot`, `/ck:design --describe`, `/ck:design --ui-ux-pro-max`
 
-**Content**: `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro`
+**Content**: `/ck:content -fast`, `/ck:content -good`, `/ck:content:enhance`, `/ck:content:cro`
 
-**Documentation**: `/docs:init`, `/docs:update`, `/docs:summarize`
+**Documentation**: `/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize`
 
-**SEO**: `/seo:audit`, `/seo:keywords`, `/seo:schema`
+**SEO**: `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema`
 
-**Git Operations**: `/git:cm`, `/git:cp`, `/git:pr`
+**Git Operations**: `/ck:git:cm`, `/ck:git:cp`, `/ck:git:pr`
 
-**Review**: `/review:codebase`
+**Review**: `/ck:review:codebase`
 
-**Integration**: `/integrate:sepay`
+**Integration**: `/ck:integrate:sepay`
 
-**Project Management**: `/watzup`, `/journal`, `/scout`, `/scout:ext`, `/use-mcp`
+**Project Management**: `/ck:watzup`, `/ck:journal`, `/ck:scout`, `/ck:scout -ext`, `/ck:use-mcp`
 
-**Skills**: `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs`
+**Skills**: `/ck:skill:add`, `/ck:skill:create`, `/ck:skill:optimize`, `/ck:skill:fix-logs`
 
 ### Workflows
 

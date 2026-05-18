@@ -82,9 +82,9 @@ Common failure modes when answering technical questions. Each comes with the fai
 
 **Pattern:** User asks "how is X done?", answer ends with `Edit` / `Write` tool calls "fixing" something.
 
-**Cause:** Conflating consultation with implementation. The `/ask` skill is read-only.
+**Cause:** Conflating consultation with implementation. The `/ck:ask` skill is read-only.
 
-**Correction:** Stop at the recommendation. If implementation is needed, say "Want me to implement this? That'd be `/code` or `/plan` first." Then wait for user to confirm.
+**Correction:** Stop at the recommendation. If implementation is needed, say "Want me to implement this? That'd be `/ck:code` or `/ck:plan` first." Then wait for user to confirm.
 
 ---
 

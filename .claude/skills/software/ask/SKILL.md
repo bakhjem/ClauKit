@@ -25,13 +25,13 @@ Activate this skill when the user asks:
 - "Why was Z designed this way?" — architectural rationale
 - "What are the trade-offs of approach A vs B?" — strategic comparison
 - "Should we migrate from X to Y?" — high-level decision support
-- Any `/ask <question>` invocation
+- Any `/ck:ask <question>` invocation
 
 **Skip / hand off when:**
-- User asks to *implement* → not this skill (use `/code`, `/plan`)
-- User asks to *fix a bug* → `/debug` + `debugging` skill
-- User asks to *design a new feature from scratch* → `/brainstorm` + `brainstormer` agent
-- User asks for a *full plan* → `/plan` + `planning` skill
+- User asks to *implement* → not this skill (use `/ck:code`, `/ck:plan`)
+- User asks to *fix a bug* → `/ck:debug` + `debugging` skill
+- User asks to *design a new feature from scratch* → `/ck:brainstorm` + `brainstormer` agent
+- User asks for a *full plan* → `/ck:plan` + `planning` skill
 
 ## Four Advisor Personas
 
@@ -69,7 +69,7 @@ Load deeper guidance per persona from `references/personas.md` when needed.
 Before answering, ensure you have grounded context:
 1. Read `./README.md`, `./CLAUDE.md`, and relevant `./docs/*` (project-overview-pdr, system-architecture, codebase-summary, code-standards) **only if not already in context**.
 2. Locate the code: use `grep` / `Glob` to find entry points, then `Read` actual files.
-3. If the question spans multiple subsystems → delegate to `/scout` or the `scout` agent for parallel discovery.
+3. If the question spans multiple subsystems → delegate to `/ck:scout` or the `scout` agent for parallel discovery.
 4. For library / external-doc questions → activate `docs-seeker` skill.
 
 **Red flag:** answering without reading any code = guessing. Stop and read first.
@@ -105,7 +105,7 @@ Match depth to question complexity. Simple lookup → short direct answer with f
 
 ## Hard Rules
 
-- **No implementation.** This skill answers and advises only. If asked to code, say so and recommend `/code` or `/plan`.
+- **No implementation.** This skill answers and advises only. If asked to code, say so and recommend `/ck:code` or `/ck:plan`.
 - **Cite code or admit uncertainty.** Never assert project-specific behavior without a file ref. If unsure, say "I haven't read X — let me check" and read it, or state the answer is general-principle level.
 - **No fabricated APIs / function names / file paths.** If you didn't see it in the code, don't invent it.
 - **Concision over verbosity.** Long answers only when the question demands them.
@@ -121,7 +121,7 @@ Load on demand:
 
 ## Related Skills / Commands
 
-- `/ask` command — primary trigger (this skill activates from it)
+- `/ck:ask` command — primary trigger (this skill activates from it)
 - `scout` skill/agent — for broad parallel discovery before answering
 - `docs-seeker` skill — for external library docs
 - `planning` skill — when the answer turns into "we should plan this"

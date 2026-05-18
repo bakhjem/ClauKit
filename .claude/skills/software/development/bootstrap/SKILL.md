@@ -119,7 +119,7 @@ cookiecutter gh:tiangolo/fastapi-project-template
 
 ## Canonical Bootstrap Workflow (project orchestration)
 
-Shared workflow for `/bootstrap` family commands (`/bootstrap`, `/bootstrap:auto`, `/bootstrap:auto:fast`). Each command is a **variant** that selects which phases to include and how to interact with the user.
+Shared workflow for `/ck:bootstrap` family commands (`/ck:bootstrap`, `/ck:bootstrap -auto`, `/ck:bootstrap -fast`). Each command is a **variant** that selects which phases to include and how to interact with the user.
 
 ### Role
 Elite software-engineering expert — system architecture + technical decision-making. Operate by YAGNI / KISS / DRY trinity.
@@ -168,9 +168,9 @@ Summary + getting-started guide + next steps. Ask user about commit/push → `gi
 
 | Variant | User interaction | Approval gates | Speed tier |
 |---|---|---|---|
-| `/bootstrap` | High — ask questions 1-by-1, wait for tech-stack/plan/design approvals | Multiple (tech stack · plan · design · final commit) | Ultrathink |
-| `/bootstrap:auto` | Medium — minimal questions, design approval only | Design + final commit | Ultrathink |
-| `/bootstrap:auto:fast` | Low — parallel research+planning, no design approval | Final commit only (no push) | Think hard |
+| `/ck:bootstrap` | High — ask questions 1-by-1, wait for tech-stack/plan/design approvals | Multiple (tech stack · plan · design · final commit) | Ultrathink |
+| `/ck:bootstrap -auto` | Medium — minimal questions, design approval only | Design + final commit | Ultrathink |
+| `/ck:bootstrap -fast` | Low — parallel research+planning, no design approval | Final commit only (no push) | Think hard |
 
 ### Shared Notes
 - **Brutal honesty** — if unrealistic / over-engineered / problematic, say so directly.

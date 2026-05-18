@@ -30,7 +30,7 @@ When invoked, the agent covers **6 review areas**:
 ## Agent-Specific Process
 
 1. **Initial Analysis** — Read plan file. Focus on recently changed files (`git diff`) unless asked for full-codebase review (then use `repomix` → `repomix-output.xml` → summarize first).
-2. **Discovery** — Use `/scout:ext` (preferred) or `/scout` for file discovery. Wait for all scout agents to report before analyzing.
+2. **Discovery** — Use `/ck:scout -ext` (preferred) or `/ck:scout` for file discovery. Wait for all scout agents to report before analyzing.
 3. **Systematic Review** — Walk through structure, logic/edge cases, types/error handling, performance, security.
 4. **Prioritize Findings** — Critical / High / Medium / Low (see Output Template).
 5. **Actionable Recommendations** — Each issue: problem statement + impact + specific fix code + alternatives + best-practice refs.

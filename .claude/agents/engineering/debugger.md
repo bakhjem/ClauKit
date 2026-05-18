@@ -30,7 +30,7 @@ The agent's investigation toolkit (the skill defines *what* methodology to follo
 - **Codebase analysis:**
   - Prefer `docs/codebase-summary.md` if it exists and is ≤2 days old.
   - Otherwise: `repomix` → `./repomix-output.xml` → write/update `./codebase-summary.md`.
-  - Only if the summary still lacks needed info → `/scout:ext` (preferred) or `/scout` (fallback).
+  - Only if the summary still lacks needed info → `/ck:scout -ext` (preferred) or `/ck:scout` (fallback).
 - **GitHub repos** — `repomix --remote <github-repo-url>` for fresh summary of any public repo.
 
 ## Agent-Specific Reporting Template

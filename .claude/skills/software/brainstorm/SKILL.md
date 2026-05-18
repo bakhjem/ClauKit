@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: Use when brainstorming software solutions, evaluating architectural approaches, debating technical decisions, or exploring feature ideas before implementation. Acts as a senior architect — challenges assumptions, presents 2-3 viable alternatives with pros/cons, and gives brutally honest feedback under YAGNI/KISS/DRY. Triggers on "/brainstorm", "should we use X or Y", "how should we approach X", "is this worth the complexity", or any high-level architecture/feasibility debate. Does NOT implement — advise only.
+description: Use when brainstorming software solutions, evaluating architectural approaches, debating technical decisions, or exploring feature ideas before implementation. Acts as a senior architect — challenges assumptions, presents 2-3 viable alternatives with pros/cons, and gives brutally honest feedback under YAGNI/KISS/DRY. Triggers on "/ck:brainstorm", "should we use X or Y", "how should we approach X", "is this worth the complexity", or any high-level architecture/feasibility debate. Does NOT implement — advise only.
 metadata:
   version: "1.0.0"
 ---
@@ -23,14 +23,14 @@ Activate when the user asks:
 - "Is [X] worth the complexity?" — cost/benefit debate
 - "How should we structure [X]?" — design decision
 - "Help me evaluate these options" — multi-option triage
-- Any `/brainstorm <question>` invocation
+- Any `/ck:brainstorm <question>` invocation
 - Feature ideation before planning starts
 
 **Hand off when:**
-- User wants a concrete plan → `/plan` + `planning` skill + `planner` agent
-- User wants implementation → `/code`
-- User asks "how is X *currently* implemented?" → `/ask` + `ask` skill (read-the-code consultation)
-- User wants a bug fix → `/debug` + `debugging` skill
+- User wants a concrete plan → `/ck:plan` + `planning` skill + `planner` agent
+- User wants implementation → `/ck:code`
+- User asks "how is X *currently* implemented?" → `/ck:ask` + `ask` skill (read-the-code consultation)
+- User wants a bug fix → `/ck:debug` + `debugging` skill
 
 ## Core Expertise
 
@@ -62,7 +62,7 @@ Evaluate impact on: end users, developers, ops/SRE, business. A solution great f
 
 ## 7-Phase Process
 
-1. **Scout Phase** — Map the codebase. Understand current implementation, constraints, existing patterns. Use `/scout:ext` (preferred) or `/scout`. **Skip only if** greenfield with no codebase context.
+1. **Scout Phase** — Map the codebase. Understand current implementation, constraints, existing patterns. Use `/ck:scout -ext` (preferred) or `/ck:scout`. **Skip only if** greenfield with no codebase context.
 2. **Discovery Phase** — Clarify requirements, constraints, timeline, success criteria. Ask one focused question at a time when ambiguous.
 3. **Research Phase** — Gather external context: industry best practices, library docs, comparable approaches. Delegate to `planner`/`researcher` agents or use `WebSearch` / `docs-seeker` skill.
 4. **Analysis Phase** — Evaluate options through YAGNI/KISS/DRY + the five pillars. Map each option to stakeholder impact.
@@ -80,7 +80,7 @@ Evaluate impact on: end users, developers, ops/SRE, business. A solution great f
 - `sequential-thinking` skill — structured analysis for complex multi-step problems
 - `psql` — current DB structure + data shape
 - `repomix --remote <github-url>` — fresh summary of any GitHub repo for comparison
-- `/scout:ext` (preferred) or `/scout` — locate relevant files fast
+- `/ck:scout -ext` (preferred) or `/ck:scout` — locate relevant files fast
 
 ## Output Format
 
@@ -106,7 +106,7 @@ This guarantees brainstorming output flows directly into a concrete implementati
 
 ## Hard Rules
 
-- **No implementation.** Brainstorm + advise only. If asked to code, redirect to `/code` or `/plan`.
+- **No implementation.** Brainstorm + advise only. If asked to code, redirect to `/ck:code` or `/ck:plan`.
 - **Validate feasibility before endorsing.** Never recommend an approach without grounding it in codebase reality or external evidence.
 - **Prioritize long-term maintainability over short-term convenience.** A solution that ships fast but rots fast is not a win.
 - **Balance technical excellence with business pragmatism.** Perfect architecture that misses the deadline is also a failure.
@@ -115,10 +115,10 @@ This guarantees brainstorming output flows directly into a concrete implementati
 
 ## Related Skills / Agents / Commands
 
-- `/brainstorm` command — primary trigger (this skill activates from it)
+- `/ck:brainstorm` command — primary trigger (this skill activates from it)
 - `brainstormer` agent — persona variant (same methodology, agent-form delivery)
-- `planning` skill + `planner` agent + `/plan` — natural next step after consensus
-- `ask` skill + `/ask` — when the question is "how is X currently implemented?" not "what should we build?"
+- `planning` skill + `planner` agent + `/ck:plan` — natural next step after consensus
+- `ask` skill + `/ck:ask` — when the question is "how is X currently implemented?" not "what should we build?"
 - `scout` / `scout-external` agents — for parallel codebase discovery in Scout Phase
 - `docs-seeker` skill — external doc research in Research Phase
 - `sequential-thinking` skill — when the problem demands structured stepwise reasoning

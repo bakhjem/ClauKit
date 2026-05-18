@@ -55,7 +55,7 @@ Load these references when needed for detailed guidance:
 
 ### Development Workflows
 - **Slash Commands**: `references/slash-commands.md`
-  - Complete command catalog: /cook, /plan, /debug, /test, /fix:*, /docs:*, /git:*, /design:*, /content:*
+  - Complete command catalog: /ck:cook, /ck:plan, /ck:debug, /ck:test, /fix:*, /docs:*, /git:*, /design:*, /content:*
 
 - **Agent Skills**: `references/agent-skills.md`
   - Creating skills, skill.json format, best practices, API usage
@@ -98,43 +98,43 @@ Load these references when needed for detailed guidance:
 
 ### Feature Implementation
 ```bash
-/cook implement user authentication with JWT
+/ck:cook implement user authentication with JWT
 # Or plan first
-/plan implement payment integration with Stripe
+/ck:plan implement payment integration with Stripe
 ```
 
 ### Bug Fixing
 ```bash
-/fix:fast the login button is not working
-/debug the API returns 500 errors intermittently
-/fix:types  # Fix TypeScript errors
+/ck:fix --quick the login button is not working
+/ck:debug the API returns 500 errors intermittently
+/ck:fix:types  # Fix TypeScript errors
 ```
 
 ### Code Review & Testing
 ```bash
 claude "review my latest commit"
-/test
-/fix:test the user service tests are failing
+/ck:test
+/ck:fix:test the user service tests are failing
 ```
 
 ### Documentation
 ```bash
-/docs:init      # Create initial documentation
-/docs:update    # Update existing docs
-/docs:summarize # Summarize changes
+/ck:docs:init      # Create initial documentation
+/ck:docs:update    # Update existing docs
+/ck:docs:summarize # Summarize changes
 ```
 
 ### Git Operations
 ```bash
-/git:cm                    # Stage and commit
-/git:cp                    # Stage, commit, and push
-/git:pr feature-branch main  # Create pull request
+/ck:git:cm                    # Stage and commit
+/ck:git:cp                    # Stage, commit, and push
+/ck:git:pr feature-branch main  # Create pull request
 ```
 
 ### Design & Content
 ```bash
-/design:fast create landing page for SaaS product
-/content:good write product description for new feature
+/ck:design --fast create landing page for SaaS product
+/ck:content -good write product description for new feature
 ```
 
 ## Instructions for Claude

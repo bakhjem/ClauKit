@@ -1,6 +1,6 @@
 # SEO Audit — Canonical Checklist
 
-Single source of truth for `/seo:audit` command. Defines the audit pipeline + output template.
+Single source of truth for `/ck:seo:audit` command. Defines the audit pipeline + output template.
 
 ## Audit Process (7 phases)
 
@@ -129,7 +129,7 @@ Previous Score: [XX/100] ([+X/-X] from last audit)
 1. [Medium priority fix]
 
 ## NEXT STEPS
-/seo:keywords [related-keyword]
-/seo:schema [type]
-/seo:audit [competitor-url] --compare
+/ck:seo:keywords [related-keyword]
+/ck:seo:schema [type]
+/ck:seo:audit [competitor-url] --compare
 ```

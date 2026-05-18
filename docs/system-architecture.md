@@ -157,18 +157,18 @@ Issues, blockers, or questions
 
 | Category | Commands |
 |----------|----------|
-| Development | `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/brainstorm`, `/code` |
-| Debugging | `/debug`, `/fix`, `/fix:fast`, `/fix:hard`, `/fix:ci`, `/fix:test`, `/fix:types`, `/fix:logs`, `/fix:ui` |
-| Design | `/design:fast`, `/design:good`, `/design:3d`, `/design:screenshot`, `/design:video`, `/design:describe`, `/design:ui-ux-pro-max` |
-| Content | `/content:fast`, `/content:good`, `/content:enhance`, `/content:cro` |
-| Documentation | `/docs:init`, `/docs:update`, `/docs:summarize` |
-| SEO | `/seo:audit`, `/seo:keywords`, `/seo:schema` |
-| Git Operations | `/git:cm`, `/git:cp`, `/git:pr` |
-| Planning | `/plan:fast`, `/plan:hard`, `/plan:two`, `/plan:ci`, `/plan:cro` |
-| Project Management | `/watzup`, `/journal`, `/scout`, `/scout:ext` |
-| Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
-| Integration | `/integrate:sepay`, `/use-mcp` |
-| Code Review | `/review:codebase` |
+| Development | `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:bootstrap`, `/ck:brainstorm`, `/ck:code` |
+| Debugging | `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix:ci`, `/ck:fix:test`, `/ck:fix:types`, `/ck:fix:logs`, `/ck:fix:ui` |
+| Design | `/ck:design --fast`, `/ck:design --good`, `/ck:design --3d`, `/ck:design --screenshot`, `/ck:design --video`, `/ck:design --describe`, `/ck:design --ui-ux-pro-max` |
+| Content | `/ck:content -fast`, `/ck:content -good`, `/ck:content:enhance`, `/ck:content:cro` |
+| Documentation | `/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize` |
+| SEO | `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema` |
+| Git Operations | `/ck:git:cm`, `/ck:git:cp`, `/ck:git:pr` |
+| Planning | `/ck:plan -fast`, `/ck:plan -hard`, `/ck:plan:two`, `/ck:plan:ci`, `/ck:plan:cro` |
+| Project Management | `/ck:watzup`, `/ck:journal`, `/ck:scout`, `/ck:scout -ext` |
+| Skills | `/ck:skill:add`, `/ck:skill:create`, `/ck:skill:optimize`, `/ck:skill:fix-logs` |
+| Integration | `/ck:integrate:sepay`, `/ck:use-mcp` |
+| Code Review | `/ck:review:codebase` |
 
 #### 3.2 Command Workflow Pattern
 
@@ -217,7 +217,7 @@ Explore different approaches simultaneously
 #### 4.2 Standard Workflows
 
 **Feature Development Workflow**:
-1. User: `/cook "add user authentication"`
+1. User: `/ck:cook "add user authentication"`
 2. Planner: Create implementation plan
 3. Researchers: Explore auth solutions (parallel)
 4. Planner: Synthesize research, create detailed plan
@@ -230,7 +230,7 @@ Explore different approaches simultaneously
 11. Git Manager: Commit with conventional message
 
 **Bug Fix Workflow**:
-1. User: `/debug "API timeout errors"`
+1. User: `/ck:debug "API timeout errors"`
 2. Debugger: Analyze logs and system
 3. Debugger: Identify root cause
 4. Planner: Create fix plan
@@ -240,7 +240,7 @@ Explore different approaches simultaneously
 8. Git Manager: Commit fix
 
 **Documentation Update Workflow**:
-1. User: `/docs:update`
+1. User: `/ck:docs:update`
 2. Docs Manager: Check doc freshness
 3. (If >1 day old): Run `repomix` for codebase summary
 4. Docs Manager: Analyze codebase changes
@@ -395,7 +395,7 @@ Remote Repository (GitHub)
 ┌─────────────┐
 │    User     │
 └──────┬──────┘
-       │ /cook "add auth"
+       │ /ck:cook "add auth"
        ↓
 ┌─────────────────────┐
 │   Command Parser    │

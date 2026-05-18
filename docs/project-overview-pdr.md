@@ -79,64 +79,64 @@ Provide a production-ready template that:
 ### 2. Comprehensive Slash Commands (65+)
 
 **Development**:
-- `/plan [task]` - Research and create implementation plans
-- `/cook [tasks]` - Implement features with full workflow
-- `/test` - Run comprehensive test suites
-- `/ask [question]` - Expert technical consultation
-- `/bootstrap` - Initialize new projects end-to-end
-- `/brainstorm [question]` - Solution ideation and evaluation
-- `/code` - Code generation and implementation
+- `/ck:plan [task]` - Research and create implementation plans
+- `/ck:cook [tasks]` - Implement features with full workflow
+- `/ck:test` - Run comprehensive test suites
+- `/ck:ask [question]` - Expert technical consultation
+- `/ck:bootstrap` - Initialize new projects end-to-end
+- `/ck:brainstorm [question]` - Solution ideation and evaluation
+- `/ck:code` - Code generation and implementation
 
 **Debugging & Fixing**:
-- `/debug [issues]` - Deep issue analysis
-- `/fix:fast [issues]` - Quick bug fixes
-- `/fix:hard [issues]` - Complex problem solving with subagents
-- `/fix:ci [url]` - GitHub Actions log analysis
-- `/fix:test [issues]` - Test suite debugging
-- `/fix:types` - Type error resolution
-- `/fix:logs [issue]` - Log analysis and fixes
-- `/fix:ui [issue]` - UI/UX problem solving
+- `/ck:debug [issues]` - Deep issue analysis
+- `/ck:fix --quick [issues]` - Quick bug fixes
+- `/ck:fix --review [issues]` - Complex problem solving with subagents
+- `/ck:fix:ci [url]` - GitHub Actions log analysis
+- `/ck:fix:test [issues]` - Test suite debugging
+- `/ck:fix:types` - Type error resolution
+- `/ck:fix:logs [issue]` - Log analysis and fixes
+- `/ck:fix:ui [issue]` - UI/UX problem solving
 
 **Design & Content**:
-- `/design:fast [tasks]` - Quick design creation
-- `/design:good [tasks]` - Immersive design development
-- `/design:3d [tasks]` - Interactive 3D designs with Three.js
-- `/design:screenshot [image]` - Design from screenshots
-- `/design:video [video]` - Design from video references
-- `/design:describe [image]` - Describe design from images
-- `/design:ui-ux-pro-max` - Advanced UI/UX design
-- `/content:fast [request]` - Quick copywriting
-- `/content:good [request]` - High-quality content creation
-- `/content:enhance [issues]` - Copy improvement
-- `/content:cro [issues]` - Conversion optimization
+- `/ck:design --fast [tasks]` - Quick design creation
+- `/ck:design --good [tasks]` - Immersive design development
+- `/ck:design --3d [tasks]` - Interactive 3D designs with Three.js
+- `/ck:design --screenshot [image]` - Design from screenshots
+- `/ck:design --video [video]` - Design from video references
+- `/ck:design --describe [image]` - Describe design from images
+- `/ck:design --ui-ux-pro-max` - Advanced UI/UX design
+- `/ck:content -fast [request]` - Quick copywriting
+- `/ck:content -good [request]` - High-quality content creation
+- `/ck:content:enhance [issues]` - Copy improvement
+- `/ck:content:cro [issues]` - Conversion optimization
 
 **Documentation**:
-- `/docs:init` - Create initial documentation
-- `/docs:update` - Update existing documentation
-- `/docs:summarize` - Generate codebase summaries
+- `/ck:docs:init` - Create initial documentation
+- `/ck:docs:update` - Update existing documentation
+- `/ck:docs:summarize` - Generate codebase summaries
 
 **SEO**:
-- `/seo:audit` - Comprehensive SEO audit
-- `/seo:keywords` - Keyword research and analysis
-- `/seo:schema` - Schema markup generation
+- `/ck:seo:audit` - Comprehensive SEO audit
+- `/ck:seo:keywords` - Keyword research and analysis
+- `/ck:seo:schema` - Schema markup generation
 
 **Git Operations**:
-- `/git:cm` - Stage and commit changes
-- `/git:cp` - Stage, commit, and push
-- `/git:pr [branch]` - Create pull requests
+- `/ck:git:cm` - Stage and commit changes
+- `/ck:git:cp` - Stage, commit, and push
+- `/ck:git:pr [branch]` - Create pull requests
 
 **Project Management**:
-- `/watzup` - Review recent changes and status
-- `/journal` - Development journal entries
-- `/scout [prompt] [scale]` - Parallel codebase exploration
-- `/scout:ext [prompt]` - Codebase exploration with external tools
+- `/ck:watzup` - Review recent changes and status
+- `/ck:journal` - Development journal entries
+- `/ck:scout [prompt] [scale]` - Parallel codebase exploration
+- `/ck:scout -ext [prompt]` - Codebase exploration with external tools
 
 **Skills & Integration**:
-- `/skill:add` - Add new skill
-- `/skill:create` - Create new skill
-- `/skill:optimize` - Optimize skills
-- `/skill:fix-logs` - Fix logs using skills
-- `/use-mcp` - Use MCP servers
+- `/ck:skill:add` - Add new skill
+- `/ck:skill:create` - Create new skill
+- `/ck:skill:optimize` - Optimize skills
+- `/ck:skill:fix-logs` - Fix logs using skills
+- `/ck:use-mcp` - Use MCP servers
 
 ### 3. Workflow System
 
@@ -168,7 +168,7 @@ Provide a production-ready template that:
 **FR2: Command System**
 - Parse slash commands with arguments
 - Route to appropriate agent workflows
-- Support nested commands (e.g., `/fix:ci`)
+- Support nested commands (e.g., `/ck:fix:ci`)
 - Provide command discovery and help
 
 **FR3: Documentation Management**
@@ -344,7 +344,7 @@ Provide a production-ready template that:
 ## Use Cases
 
 ### UC1: Bootstrap New Project
-1. Run `/bootstrap` command
+1. Run `/ck:bootstrap` command
 2. Answer requirement questions
 3. AI researches tech stacks
 4. Review and approve recommendations
@@ -354,7 +354,7 @@ Provide a production-ready template that:
 8. Project ready for development
 
 ### UC2: Implement New Feature
-1. Run `/cook "add user authentication"`
+1. Run `/ck:cook "add user authentication"`
 2. Planner creates implementation plan
 3. Researcher agents explore auth solutions
 4. Developer reviews and approves plan
@@ -365,7 +365,7 @@ Provide a production-ready template that:
 9. AI commits with conventional message
 
 ### UC3: Debug Production Issue
-1. Run `/fix:logs "API timeout errors"`
+1. Run `/ck:fix:logs "API timeout errors"`
 2. Debugger agent analyzes logs
 3. Root cause identified
 4. Fix plan created
@@ -375,14 +375,14 @@ Provide a production-ready template that:
 8. Commit and deploy
 
 ### UC4: Create Pull Request
-1. Run `/git:pr feature/new-auth main`
+1. Run `/ck:git:pr feature/new-auth main`
 2. AI analyzes all commits in branch
 3. AI generates comprehensive PR description
 4. PR created with proper context
 5. Links to related issues added
 
 ### UC5: Update Documentation
-1. Run `/docs:update`
+1. Run `/ck:docs:update`
 2. Docs manager scans codebase
 3. Generates fresh summary with repomix
 4. Identifies outdated sections

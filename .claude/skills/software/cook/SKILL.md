@@ -13,16 +13,16 @@ A **feature lifecycle pipeline**: take one feature from written spec to producti
 
 Distinct from:
 - `[[bootstrap]]` — sets up a new project (one-time).
-- `/code` command — implements code given an existing plan (one stage).
+- `/ck:code` command — implements code given an existing plan (one stage).
 - `[[orchestrate]]` — multi-agent task delegation (parallel fan-out).
 
 `cook` is sequential, single-feature, gated.
 
-## Skill vs `/cook` command
+## Skill vs `/ck:cook` command
 
-The skill defines the methodology and gates. The `/cook` command ([.claude/commands/cook.md](.claude/commands/cook.md)) is the workflow trigger that walks an agent through them with mode flags (`--fast`, `--auto`, `--from-plan`, `--no-test`). The skill is the source of truth; the command is sugar.
+The skill defines the methodology and gates. The `/ck:cook` command ([.claude/commands/cook.md](.claude/commands/cook.md)) is the workflow trigger that walks an agent through them with mode flags (`--fast`, `--auto`, `--from-plan`, `--no-test`). The skill is the source of truth; the command is sugar.
 
-The `/code` command is kept as a backup / fast-path for "plan-already-exists" (equivalent to `/cook <plan> --from-plan`).
+The `/ck:code` command is kept as a backup / fast-path for "plan-already-exists" (equivalent to `/ck:cook <plan> --from-plan`).
 
 ## When to Use
 
@@ -40,10 +40,13 @@ Activation phrases: *"cook this feature"*, *"take this from spec to deploy"*, *"
 | 1 | **Plan** — confirm spec; identify files to change; list risks | Spec linked + impact diff produced |
 | 2 | **Code** — implement, locally test | All new code under existing file-size limits; lint passes |
 | 3 | **Test** — unit + integration tests written and green | `[[scenario]]`-derived test cases cover at least 1 happy + 1 negative + 1 recovery |
-| 4 | **Docs** — update README / changelog / API docs | Reviewer can use the feature with docs alone |
-| 5 | **Deploy** — merge, release, verify in prod | Smoke check passes; rollback path documented |
+| 4 | **Review** — dispatch `code-reviewer` agent per `[[code-review]]` skill protocol | Severity buckets: `Critical = 0 AND High = 0` (else fix → re-test → re-review loop) |
+| 5 | **Docs** — update README / changelog / API docs | Reviewer can use the feature with docs alone |
+| 6 | **Deploy** — merge, release, verify in prod | Smoke check passes; rollback path documented |
 
 **Gating rule**: a stage cannot start until the prior gate passes. Skipping is a feature, not a bug — but it must be logged with a reason.
+
+**Review stage protocol**: follow `[[code-review]]` skill — get BASE_SHA/HEAD_SHA, optionally scout edge cases first, dispatch `code-reviewer` subagent with WHAT_WAS_IMPLEMENTED + PLAN_OR_REQUIREMENTS + DESCRIPTION. See [`code-review/references/requesting-code-review.md`](../code-review/references/requesting-code-review.md).
 
 ## Worked Example (CI: GitHub Actions)
 
@@ -54,8 +57,9 @@ GitHub Actions is *one* execution substrate; the methodology is independent. Sam
 | 1 Plan | Spec linked in PR description | `pr-template` action enforces fields |
 | 2 Code | `lint` + `typecheck` | Same in CI |
 | 3 Test | `npm test` | Test workflow, coverage report |
-| 4 Docs | README diff checked | `docs-drift` linter |
-| 5 Deploy | Manual approval | Release workflow + smoke job |
+| 4 Review | `code-reviewer` agent local | PR review bot / required reviewer |
+| 5 Docs | README diff checked | `docs-drift` linter |
+| 6 Deploy | Manual approval | Release workflow + smoke job |
 
 Same stages map cleanly to GitLab CI, Buildkite, CircleCI, or a Makefile — methodology stays.
 
@@ -80,4 +84,4 @@ See `references/`:
 
 ## Cross-links
 
-`[[bootstrap]]`, `[[orchestrate]]`, `[[planning]]`, `[[scenario]]`, `[[test-automation]]`, `[[retro]]`
+`[[bootstrap]]`, `[[orchestrate]]`, `[[planning]]`, `[[scenario]]`, `[[test-automation]]`, `[[code-review]]`, `[[retro]]`

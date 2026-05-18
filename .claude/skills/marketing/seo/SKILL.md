@@ -132,9 +132,9 @@ Detailed canonical specs for the `/seo:*` commands — load only when running th
 
 | Reference | Used by | Contents |
 |---|---|---|
-| `references/audit-checklist.md` | `/seo:audit` | 7-phase audit pipeline · variant flags · output template |
-| `references/keyword-research.md` | `/seo:keywords` | 7-phase research pipeline · SERP-features taxonomy · output template |
-| `references/schema-templates.md` | `/seo:schema` | Schema-type taxonomy · JSON-LD templates · implementation guide · output template |
+| `references/audit-checklist.md` | `/ck:seo:audit` | 7-phase audit pipeline · variant flags · output template |
+| `references/keyword-research.md` | `/ck:seo:keywords` | 7-phase research pipeline · SERP-features taxonomy · output template |
+| `references/schema-templates.md` | `/ck:seo:schema` | Schema-type taxonomy · JSON-LD templates · implementation guide · output template |
 
 Auxiliary: `scripts/seo_checker.py` for automated audit scripting.
 

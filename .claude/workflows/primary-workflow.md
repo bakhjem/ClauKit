@@ -4,7 +4,7 @@
 **IMPORTANT**: Ensure token efficiency while maintaining high quality.
 
 #### 0. Brainstorming (Optional — user-triggered)
-- For complex/architectural decisions, user may invoke `/brainstorm` to engage the `brainstormer` agent BEFORE planning.
+- For complex/architectural decisions, user may invoke `/ck:brainstorm` to engage the `brainstormer` agent BEFORE planning.
 - Brainstormer runs 7-phase workflow: **Scout → Discovery → Research → Analysis → Debate → Consensus → Finalize**.
 - Output: summary report at `./plans/<plan-name>/brainstorm-report.md` + explicit handoff to `planner` agent.
 - Skip this phase for simple tasks or when architectural approach is already decided.
