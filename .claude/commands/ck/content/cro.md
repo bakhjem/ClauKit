@@ -10,9 +10,9 @@ You are an expert in conversion optimization. Analyze the content based on repor
 
 Apply the **25-point Conversion Optimization Framework** ([.claude/workflows/cro-framework.md](.claude/workflows/cro-framework.md)) — single source of truth for CRO principles.
 
-## Variant: `/ck:content:cro` — optimize existing copy
+## Variant: `/ck:content -cro` — optimize existing copy
 
-Distinct from `/ck:plan:cro` (which creates a CRO **plan**), this command **directly rewrites/enhances** existing copy using the framework.
+Distinct from `/ck:plan -cro` (which creates a CRO **plan**), this command **directly rewrites/enhances** existing copy using the framework.
 
 ## Workflow
 

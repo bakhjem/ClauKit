@@ -8,7 +8,7 @@ Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflo
 ## Mission
 <issue>$ARGUMENTS</issue>
 
-## Variant: `/ck:fix:logs` — log-driven
+## Variant: `/ck:fix -logs` — log-driven
 
 - **Stage [1]** (input): read `./logs.txt`. If missing → reproduce issue first and pipe output to `./logs.txt`.
 - **Stage [3]** (diagnose): `debugger` subagent reads `./logs.txt` → find root causes.

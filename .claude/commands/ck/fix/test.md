@@ -8,7 +8,7 @@ Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflo
 ## Reported Issues
 <issues>$ARGUMENTS</issues>
 
-## Variant: `/ck:fix:test` — test-first
+## Variant: `/ck:fix -test` — test-first
 
 - **Stage [1]** (input): `tester` subagent compiles code + fixes syntax errors first.
 - **Stage [3]** (diagnose): `tester` runs test suite → failures handed to `debugger` for root-cause.

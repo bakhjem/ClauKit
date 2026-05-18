@@ -4,7 +4,7 @@ argument-hint: [plan]
 ---
 
 Think harder to start working on the following plan follow the Orchestration Protocol, Core Responsibilities, Subagents Team and Development Rules: 
-<plan>$ARGUMENTS</ck:plan>
+<plan>$ARGUMENTS</plan>
 
 ---
 

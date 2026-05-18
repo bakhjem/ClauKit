@@ -30,11 +30,39 @@ load_env
 # Read JSON input from stdin
 INPUT=$(cat)
 
+# JSON parser using Node.js (eliminates jq dependency)
+# Usage: json_get '<input>' '<jq-like path>'
+# Supported paths: .key, .nested.key, .array[]?.field, length, raw string
+json_get() {
+    local data="$1"
+    local path="$2"
+    INPUT_DATA="$data" JQ_PATH="$path" node -e '
+        try {
+            const data = JSON.parse(process.env.INPUT_DATA);
+            const path = process.env.JQ_PATH;
+            if (path === "hookType") console.log(data.hookType || "unknown");
+            else if (path === "projectDir") console.log(data.projectDir || "");
+            else if (path === "sessionId") console.log(data.sessionId || "");
+            else if (path === "subagentType") console.log(data.subagentType || "unknown");
+            else if (path === "toolsUsedLength") console.log((data.toolsUsed || []).length);
+            else if (path === "toolNames") {
+                (data.toolsUsed || []).forEach(t => { if (t && t.tool) console.log(t.tool); });
+            } else if (path === "filesModified") {
+                (data.toolsUsed || []).forEach(t => {
+                    if (t && ["Edit","Write","MultiEdit"].includes(t.tool) && t.parameters && t.parameters.file_path) {
+                        console.log(t.parameters.file_path);
+                    }
+                });
+            }
+        } catch (e) { process.exit(1); }
+    '
+}
+
 # Extract relevant information from the hook input
-HOOK_TYPE=$(echo "$INPUT" | jq -r '.hookType // "unknown"')
-PROJECT_DIR=$(echo "$INPUT" | jq -r '.projectDir // ""')
+HOOK_TYPE=$(json_get "$INPUT" "hookType")
+PROJECT_DIR=$(json_get "$INPUT" "projectDir")
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-SESSION_ID=$(echo "$INPUT" | jq -r '.sessionId // ""')
+SESSION_ID=$(json_get "$INPUT" "sessionId")
 PROJECT_NAME=$(basename "$PROJECT_DIR")
 
 # Configuration - these will be set via environment variables
@@ -61,7 +89,7 @@ send_discord_embed() {
         "color": $color,
         "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.000Z)",
         "footer": {
-            "text": "DevPocket API • ${PROJECT_NAME}"
+            "text": "ClauKit • ${PROJECT_NAME}"
         },
         "fields": $fields
     }]
@@ -78,11 +106,11 @@ EOF
 case "$HOOK_TYPE" in
     "Stop")
         # Extract tool usage summary
-        TOOLS_USED=$(echo "$INPUT" | jq -r '.toolsUsed[]?.tool // empty' | sort | uniq -c | sort -nr)
-        FILES_MODIFIED=$(echo "$INPUT" | jq -r '.toolsUsed[]? | select(.tool == "Edit" or .tool == "Write" or .tool == "MultiEdit") | .parameters.file_path // empty' | sort | uniq)
+        TOOLS_USED=$(json_get "$INPUT" "toolNames" | sort | uniq -c | sort -nr)
+        FILES_MODIFIED=$(json_get "$INPUT" "filesModified" | sort | uniq)
 
         # Count operations
-        TOTAL_TOOLS=$(echo "$INPUT" | jq '.toolsUsed | length')
+        TOTAL_TOOLS=$(json_get "$INPUT" "toolsUsedLength")
 
         # Build description
         DESCRIPTION="✅ Claude Code session completed successfully"
@@ -151,7 +179,7 @@ EOF
         ;;
 
     "SubagentStop")
-        SUBAGENT_TYPE=$(echo "$INPUT" | jq -r '.subagentType // "unknown"')
+        SUBAGENT_TYPE=$(json_get "$INPUT" "subagentType")
 
         DESCRIPTION="Specialized agent completed its task"
 

@@ -8,7 +8,7 @@ Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflo
 `ui-ux-designer` subagent reads `./docs/design-guidelines.md` then fixes:
 <issue>$ARGUMENTS</issue>
 
-## Variant: `/ck:fix:ui` — UI-specialist pipeline
+## Variant: `/ck:fix -ui` — UI-specialist pipeline
 
 - **Stage [2]** (multimodal): if screenshots/videos → `ai-multimodal` skill for detailed issue description.
 - **Stage [3]** (diagnose): `ui-ux-designer` subagent (NOT `debugger`).

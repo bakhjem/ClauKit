@@ -119,16 +119,17 @@ claude "review my latest commit"
 
 ### Documentation
 ```bash
-/ck:docs:init      # Create initial documentation
-/ck:docs:update    # Update existing docs
-/ck:docs:summarize # Summarize changes
+/ck:docs -init       # Create initial documentation (alias: /ck:docs:init)
+/ck:docs -update     # Update existing docs        (alias: /ck:docs:update)
+/ck:docs -summarize  # Summarize changes           (alias: /ck:docs:summarize)
 ```
 
 ### Git Operations
 ```bash
-/ck:git:cm                    # Stage and commit
-/ck:git:cp                    # Stage, commit, and push
-/ck:git:pr feature-branch main  # Create pull request
+/ck:git -cm                       # Stage and commit
+/ck:git -cp                       # Stage, commit, and push
+/ck:git -pr feature-branch main   # Create pull request
+/ck:git -merge 123                # Merge PR (interactive strategy)
 ```
 
 ### Design & Content

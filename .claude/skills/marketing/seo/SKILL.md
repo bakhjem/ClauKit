@@ -128,13 +128,13 @@ allowed-tools: Read, Glob, Grep
 
 ## 9. Operational References (load on demand)
 
-Detailed canonical specs for the `/seo:*` commands — load only when running the matching command:
+Detailed canonical specs for the `/ck:seo` dispatcher flags — load only when running the matching flag:
 
 | Reference | Used by | Contents |
 |---|---|---|
-| `references/audit-checklist.md` | `/ck:seo:audit` | 7-phase audit pipeline · variant flags · output template |
-| `references/keyword-research.md` | `/ck:seo:keywords` | 7-phase research pipeline · SERP-features taxonomy · output template |
-| `references/schema-templates.md` | `/ck:seo:schema` | Schema-type taxonomy · JSON-LD templates · implementation guide · output template |
+| `references/audit-checklist.md` | `/ck:seo -audit` | 7-phase audit pipeline · variant flags · output template |
+| `references/keyword-research.md` | `/ck:seo -keywords` | 7-phase research pipeline · SERP-features taxonomy · output template |
+| `references/schema-templates.md` | `/ck:seo -schema` | Schema-type taxonomy · JSON-LD templates · implementation guide · output template |
 
 Auxiliary: `scripts/seo_checker.py` for automated audit scripting.
 

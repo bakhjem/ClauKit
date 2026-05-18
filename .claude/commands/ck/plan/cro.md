@@ -11,9 +11,9 @@ You are an expert in conversion optimization. Analyze the content based on:
 - **CRO Framework:** [.claude/workflows/cro-framework.md](.claude/workflows/cro-framework.md) — single source of truth for the 25-point CRO principles.
 - **Planning methodology:** activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)) — Plan Directory Structure + Plan File Specification.
 
-## Variant: `/ck:plan:cro` — create CRO plan (not direct rewrite)
+## Variant: `/ck:plan -cro` — create CRO plan (not direct rewrite)
 
-Distinct from `/ck:content:cro` (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
+Distinct from `/ck:content -cro` (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
 
 ## Workflow
 

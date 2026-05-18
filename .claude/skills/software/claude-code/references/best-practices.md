@@ -407,7 +407,7 @@ claude /ck:test
 claude "review authentication implementation"
 
 # 6. Commit
-claude /ck:git:cm
+claude /ck:git -cm
 ```
 
 ### Bug Fixing
@@ -423,7 +423,7 @@ claude /ck:fix --quick "fix login button issue"
 claude /ck:test
 
 # 4. Commit
-claude /ck:git:cm
+claude /ck:git -cm
 ```
 
 ### Code Review

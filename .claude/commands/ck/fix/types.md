@@ -4,7 +4,7 @@ description: ⚡ Fix type errors
 
 Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflows/fix-pipeline.md)).
 
-## Variant: `/ck:fix:types` — typecheck-driven (minimal)
+## Variant: `/ck:fix -types` — typecheck-driven (minimal)
 
 - **Stage [1]** (input): run `bun run typecheck` OR `tsc` OR `npx tsc`.
 - **Stages [3]–[5]** collapsed: direct fix loop — read errors, apply fix, re-run typecheck.

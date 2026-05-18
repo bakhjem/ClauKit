@@ -110,20 +110,21 @@ Provide a production-ready template that:
 - `/ck:content:enhance [issues]` - Copy improvement
 - `/ck:content:cro [issues]` - Conversion optimization
 
-**Documentation**:
-- `/ck:docs:init` - Create initial documentation
-- `/ck:docs:update` - Update existing documentation
-- `/ck:docs:summarize` - Generate codebase summaries
+**Documentation** (dispatcher `/ck:docs` + subcommand aliases):
+- `/ck:docs -init` (alias: `/ck:docs:init`) - Create initial documentation
+- `/ck:docs -update` (alias: `/ck:docs:update`) - Update existing documentation
+- `/ck:docs -summarize` (alias: `/ck:docs:summarize`) - Generate codebase summaries
 
 **SEO**:
-- `/ck:seo:audit` - Comprehensive SEO audit
-- `/ck:seo:keywords` - Keyword research and analysis
-- `/ck:seo:schema` - Schema markup generation
+- `/ck:seo -audit` - Comprehensive SEO audit
+- `/ck:seo -keywords` - Keyword research and analysis
+- `/ck:seo -schema` - Schema markup generation
 
 **Git Operations**:
-- `/ck:git:cm` - Stage and commit changes
-- `/ck:git:cp` - Stage, commit, and push
-- `/ck:git:pr [branch]` - Create pull requests
+- `/ck:git -cm` - Stage and commit changes
+- `/ck:git -cp` - Stage, commit, and push
+- `/ck:git -pr [branch]` - Create pull requests
+- `/ck:git -merge [pr#|branch]` - Merge PR or branch (interactive strategy)
 
 **Project Management**:
 - `/ck:watzup` - Review recent changes and status
@@ -375,14 +376,14 @@ Provide a production-ready template that:
 8. Commit and deploy
 
 ### UC4: Create Pull Request
-1. Run `/ck:git:pr feature/new-auth main`
+1. Run `/ck:git -pr feature/new-auth main`
 2. AI analyzes all commits in branch
 3. AI generates comprehensive PR description
 4. PR created with proper context
 5. Links to related issues added
 
 ### UC5: Update Documentation
-1. Run `/ck:docs:update`
+1. Run `/ck:docs -update` (alias: `/ck:docs:update`)
 2. Docs manager scans codebase
 3. Generates fresh summary with repomix
 4. Identifies outdated sections

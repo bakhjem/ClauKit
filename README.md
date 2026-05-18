@@ -141,11 +141,11 @@ claukit/
 
 **Content**: `/ck:content -fast`, `/ck:content -good`, `/ck:content:enhance`, `/ck:content:cro`
 
-**Documentation**: `/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize`
+**Documentation**: `/ck:docs -init`, `/ck:docs -update`, `/ck:docs -summarize` (aliases: `/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize`)
 
-**SEO**: `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema`
+**SEO**: `/ck:seo -audit`, `/ck:seo -keywords`, `/ck:seo -schema`
 
-**Git Operations**: `/ck:git:cm`, `/ck:git:cp`, `/ck:git:pr`
+**Git Operations**: `/ck:git -cm`, `/ck:git -cp`, `/ck:git -pr`, `/ck:git -merge`
 
 **Review**: `/ck:review:codebase`
 

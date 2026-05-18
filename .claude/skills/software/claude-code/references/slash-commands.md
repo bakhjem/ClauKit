@@ -133,62 +133,80 @@ Analyze logs and fix issues.
 
 ## Documentation Commands
 
-### /ck:docs:init
+Dispatcher: `/ck:docs` with flags `-init` · `-update` · `-summarize`. Subcommand aliases (`/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize`) remain supported.
+
+### /ck:docs -init (alias: /ck:docs:init)
 Create initial documentation structure.
 
 ```bash
-/ck:docs:init
+/ck:docs -init
+# or: /ck:docs:init
 ```
 
 **When to use**: New projects needing documentation
 
-### /ck:docs:update
+### /ck:docs -update (alias: /ck:docs:update)
 Update existing documentation based on code changes.
 
 ```bash
-/ck:docs:update
+/ck:docs -update
+/ck:docs -update "focus on the new auth module"
+# or: /ck:docs:update
 ```
 
 **When to use**: After significant code changes
 
-### /ck:docs:summarize
+### /ck:docs -summarize (alias: /ck:docs:summarize)
 Summarize codebase and create overview.
 
 ```bash
-/ck:docs:summarize
+/ck:docs -summarize
+/ck:docs -summarize "auth, payments" true
+# or: /ck:docs:summarize
 ```
 
 **When to use**: Generate project summaries
 
 ## Git Commands
 
-### /ck:git:cm
-Stage all files and create commit.
+### /ck:git -cm
+Stage all files and create commit (no push).
 
 ```bash
-/ck:git:cm
+/ck:git -cm
 ```
 
 **When to use**: Commit changes with automatic message
 
-### /ck:git:cp
+### /ck:git -cp
 Stage, commit, and push all code in current branch.
 
 ```bash
-/ck:git:cp
+/ck:git -cp
 ```
 
 **When to use**: Commit and push in one command
 
-### /ck:git:pr [branch] [from-branch]
+### /ck:git -pr [branch] [from-branch]
 Create pull request.
 
 ```bash
-/ck:git:pr feature-branch main
-/ck:git:pr bugfix-auth develop
+/ck:git -pr feature-branch main
+/ck:git -pr bugfix-auth develop
 ```
 
 **When to use**: Creating PRs with automatic descriptions
+
+### /ck:git -merge [pr-number|target-branch]
+Merge PR or local branch (interactive — prompts for strategy).
+
+```bash
+/ck:git -merge          # merge PR of current branch (or local)
+/ck:git -merge 123      # merge PR #123
+/ck:git -merge develop  # merge current branch into develop
+```
+
+**When to use**: Finalizing a PR or branch merge with user-chosen strategy
 
 ## Planning Commands
 
@@ -453,7 +471,7 @@ Include:
 
 ### Multiple Arguments
 ```bash
-/ck:git:pr feature-branch main
+/ck:git -pr feature-branch main
 # Arguments: "feature-branch", "main"
 ```
 

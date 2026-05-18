@@ -248,10 +248,13 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:content:cro` | CRO content optimization |
 | `/ck:content:enhance` | Analyze + enhance copy |
 
-### `docs:*` (3) 🔁 docs-manager
+### `docs` (dispatcher) + `docs:*` (3) 🔁 docs-manager
 
 | Command | Description |
 |---|---|
+| `/ck:docs -init` | Create initial docs (alias of `/ck:docs:init`) |
+| `/ck:docs -update [requests]` | Update docs (alias of `/ck:docs:update`) |
+| `/ck:docs -summarize [topics] [scan?]` | Summary report (alias of `/ck:docs:summarize`) |
 | `/ck:docs:init` | Create initial docs |
 | `/ck:docs:summarize` | Summarize codebase docs |
 | `/ck:docs:update` | Update docs |
@@ -266,13 +269,14 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:fix:types` | Fix type errors |
 | `/ck:fix:ui` | Fix UI issues |
 
-### `git:*` (3) 🔁 git-manager
+### `git` (dispatcher) 🔁 git-manager
 
 | Command | Description |
 |---|---|
-| `/ck:git:cm` | Stage + commit |
-| `/ck:git:cp` | Stage + commit + push |
-| `/ck:git:pr` | Create pull request |
+| `/ck:git -cm` | Stage + commit |
+| `/ck:git -cp` | Stage + commit + push |
+| `/ck:git -pr [to] [from]` | Create pull request |
+| `/ck:git -merge [pr#\|branch]` | Merge PR or branch (interactive) |
 
 ### `integrate:*` (1) 🔁 integration-agent
 
@@ -294,22 +298,22 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 |---|---|
 | `/ck:review:codebase` | Scan + analyze codebase |
 
-### `seo:*` (3) 🔁 seo skill
+### `seo` (dispatcher) 🔁 seo skill
 
 | Command | Description |
 |---|---|
-| `/ck:seo:audit` | SEO audit URL |
-| `/ck:seo:keywords` | Keyword research |
-| `/ck:seo:schema` | JSON-LD schema |
+| `/ck:seo -audit <url>` | SEO audit URL |
+| `/ck:seo -keywords <topic>` | Keyword research |
+| `/ck:seo -schema <type>` | JSON-LD schema |
 
-### `skill:*` (4) 🔁 skill-creator
+### `skill` (dispatcher, 4 flags) 🔁 skill-creator
 
-| Command | Description |
+| Invocation | Description |
 |---|---|
-| `/ck:skill:add` | Add files/scripts to a skill |
-| `/ck:skill:create` | Create new skill |
-| `/ck:skill:fix-logs` | Fix skill from logs |
-| `/ck:skill:optimize` | Optimize existing skill |
+| `/ck:skill -add` | Add files/scripts to a skill |
+| `/ck:skill -create` | Create new skill |
+| `/ck:skill -fix-logs` | Fix skill from logs |
+| `/ck:skill -optimize` | Optimize existing skill (plan-first) |
 
 ---
 
@@ -328,11 +332,11 @@ These are the *intended* trios where Skill = knowledge, Agent = persona, Command
 **Batch 1** (4 trios): `brainstorm`, `planning`, `code-review`, `debugging`
 **Batch 2** (5 trios): `research`, `scout`/`scout-external`, `docs`, `bootstrap`, `payment-integration`
 **Batch 3** (5 trios): `git`, `xia`, `journal`, `fix`, `ask`
-**Batch 4** (1 trio): `seo` (3 commands: `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references.
+**Batch 4** (1 trio): `seo` (dispatcher with 3 flags: `/ck:seo -audit`, `/ck:seo -keywords`, `/ck:seo -schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references. Collapsed from `seo:*` namespace to flag-style dispatcher 2026-05-18.
 **Batch 5** (4 cleanups): `content/cro` + `plan/cro` (cross-command CRO duplicate), `design/3d` (plan-structure duplicate), `design/*` (skill-activation boilerplate), `skill/*` (input-handling boilerplate).
 - **CRO framework** — 25-point Conversion Optimization Framework extracted to [.claude/workflows/cro-framework.md](../../.claude/workflows/cro-framework.md). Both `/ck:content:cro` and `/ck:plan:cro` reference it instead of duplicating.
 - **`design/*`** — removed repeated `aesthetic`+`frontend-design` skill-activation block from 5 commands (`ui-ux-designer` agent already auto-activates these). `design/3d`, `design/screenshot`, `design/describe` now reference `planning` skill for plan structure.
-- **`skill/*`** — 4 commands now reference `skill-creator` skill canonically; `/ck:skill:optimize` references `planning` skill for plan structure.
+- **`skill`** — collapsed 4 subcommands (`/ck:skill:add|create|optimize|fix-logs`) into a single dispatcher `/ck:skill` with `-add`/`-create`/`-optimize`/`-fix-logs` flags (mirrors `/ck:git` pattern). Skill-creator canonical; `-optimize` references `planning` skill for plan structure.
 
 Notable extensions:
 - `bootstrap` skill extended with **"Canonical Bootstrap Workflow"** (10-phase pipeline) — `/ck:bootstrap`, `/ck:bootstrap -auto`, `/ck:bootstrap -fast` only document variant differences.
@@ -353,7 +357,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Docs | `mintlify`, `llms`, `markdown-novel-viewer`, `tech-graph`, `document-skills/*` | `docs-manager` | `/docs:*` |
 | Design | 10 design skills | `ui-ux-designer` | `/design:*` |
 | Content | `show-off` | `copywriter` | `/content:*` |
-| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/seo:*` |
+| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/ck:seo -audit\|-keywords\|-schema` |
 | Git | `git`, `worktree` | `git-manager` | `/git:*` |
 | Bootstrap | `bootstrap` (knowledge) | – | `/ck:bootstrap`, `/ck:bootstrap -auto*` |
 | Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/ck:xia` |
@@ -446,7 +450,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 
 | Action | Agent | Notes |
 |---|---|---|
-| Removed | `seo-specialist` | `marketing/` folder emptied + removed. `/ck:seo:audit`, `/ck:seo:keywords`, `/ck:seo:schema` commands now run directly with `seo` skill + references (no dedicated agent). Frontmatter had non-standard fields (`mode`, `temperature`, `skills`) — legacy from OpenCode/agentgateway. |
+| Removed | `seo-specialist` | `marketing/` folder emptied + removed. `/ck:seo -audit`, `/ck:seo -keywords`, `/ck:seo -schema` commands now run directly with `seo` skill + references (no dedicated agent). Frontmatter had non-standard fields (`mode`, `temperature`, `skills`) — legacy from OpenCode/agentgateway. |
 
 ---
 

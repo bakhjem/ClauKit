@@ -8,7 +8,7 @@ Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflo
 ## Github Actions URL
 <url>$ARGUMENTS</url>
 
-## Variant: `/ck:fix:ci` — CI-failure-driven
+## Variant: `/ck:fix -ci` — CI-failure-driven
 
 - **Stage [1]** (input): `debugger` subagent reads GitHub Actions logs via `gh` command.
 - **Stage [3]** (diagnose): `debugger` finds root causes from CI logs.
@@ -24,4 +24,4 @@ Follow the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflo
 
 ## Distinct from siblings
 - Input source = GitHub Actions URL (remote, fetched via `gh`).
-- Similar to `/ck:fix:logs` but for remote CI runs instead of local log file.
+- Similar to `/ck:fix -logs` but for remote CI runs instead of local log file.
