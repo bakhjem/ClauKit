@@ -1,7 +1,7 @@
 # ClauKit
 
-**Version**: 1.0.5
-**Last Updated**: 2026-05-17
+**Version**: 1.1.3
+**Last Updated**: 2026-05-20
 **Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
@@ -115,7 +115,7 @@ claukit/
 
 ### AI Agent System
 
-**22 Specialized Agents**:
+**21 Specialized Agents**:
 
 | Category | Agents |
 |----------|--------|
@@ -127,33 +127,34 @@ claukit/
 | Implementation | `scout`, `scout-external`, `ui-ux-designer` |
 | Specialized | `copywriter` |
 
-### Slash Commands (55)
+### Slash Commands (23)
 
-**Development**: `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:brainstorm`, `/ck:team`, `/ck:xia`
+All dispatcher commands use **positional args** (no dash prefix) for mode selection. Only `ck:fix` uses `--flags` for combinable modifiers.
 
-**Planning**: `/ck:plan fast`, `/ck:plan hard`, `/ck:plan two`, `/ck:plan ci`, `/ck:plan cro`
-
-**Bootstrap**: `/ck:bootstrap`, `/ck:bootstrap auto`, `/ck:bootstrap fast`
-
-**Debugging**: `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix ci`, `/ck:fix test`, `/ck:fix types`, `/ck:fix logs`, `/ck:fix ui`
-
-**Design**: `/ck:design fast`, `/ck:design good`, `/ck:design 3d`, `/ck:design screenshot`, `/ck:design describe`, `/ck:design ui-ux-pro-max`
-
-**Content**: `/ck:content fast`, `/ck:content good`, `/ck:content enhance`, `/ck:content cro`
-
-**Documentation**: `/ck:docs init`, `/ck:docs update`, `/ck:docs summarize`
-
-**SEO**: `/ck:seo audit`, `/ck:seo keywords`, `/ck:seo schema`
-
-**Git Operations**: `/ck:git cm`, `/ck:git cp`, `/ck:git pr`, `/ck:git merge`
-
-**Review**: `/ck:review:codebase`
-
-**Integration**: `/ck:integrate:sepay`
-
-**Project Management**: `/ck:watzup`, `/ck:journal`, `/ck:scout`, `/ck:scout -ext`, `/ck:use-mcp`
-
-**Skills**: `/ck:skill:add`, `/ck:skill:create`, `/ck:skill:optimize`, `/ck:skill:fix-logs`
+| Command | Modes / Usage |
+|---------|---------------|
+| `/ck:ask` | `<question>` |
+| `/ck:bootstrap` | `[auto\|fast]` |
+| `/ck:brainstorm` | `<topic>` |
+| `/ck:content` | `[fast\|good\|enhance\|cro] <request>` |
+| `/ck:cook` | `<plan-path>` |
+| `/ck:debug` | `<issue>` |
+| `/ck:design` | `[fast\|good\|3d\|screenshot\|describe\|ui-ux-pro-max] <request>` |
+| `/ck:docs` | `[init\|update\|summarize]` |
+| `/ck:fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
+| `/ck:git` | `[cm\|cp\|pr\|merge]` |
+| `/ck:integrate:sepay` | SePay payment integration |
+| `/ck:journal` | `<entry>` |
+| `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
+| `/ck:review:codebase` | Full codebase review |
+| `/ck:scout` | `<prompt> [scale] [-ext]` |
+| `/ck:seo` | `[audit\|keywords\|schema] <target>` |
+| `/ck:skill` | `[-add\|-create\|-optimize\|-fix-logs] <args>` |
+| `/ck:team` | `<task>` |
+| `/ck:test` | `<scope>` |
+| `/ck:use-mcp` | MCP server management |
+| `/ck:watzup` | Project status overview |
+| `/ck:xia` | `<task>` |
 
 ### Workflows
 

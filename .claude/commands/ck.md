@@ -7,17 +7,15 @@ Use `/ck:<subcommand>` (or `/ck:<group>:<subcommand>`) to access ClauKit command
 
 ## Top-level commands
 
-`ask`, `bootstrap`, `brainstorm`, `code`, `content`, `cook`, `debug`, `design`, `docs`, `fix`, `git`, `journal`, `plan`, `scout`, `seo`, `skill`, `team`, `test`, `use-mcp`, `watzup`, `xia`
+`ask`, `bootstrap`, `brainstorm`, `content`, `cook`, `debug`, `design`, `docs`, `fix`, `git`, `journal`, `plan`, `scout`, `seo`, `skill`, `team`, `test`, `use-mcp`, `watzup`, `xia`
 
-## Grouped subcommands
+## Grouped subcommands (standalone files)
 
-| Group | Subcommands |
+| Group | Subcommand |
 |---|---|
-| `content` | `cro`, `enhance` |
-| `docs` | `init`, `summarize`, `update` |
-| `fix` | `ci`, `logs`, `test`, `types`, `ui` |
 | `integrate` | `sepay` |
-| `plan` | `ci`, `cro`, `two` |
 | `review` | `codebase` |
 
-Examples: `/ck:cook`, `/ck:fix:test`, `/ck:docs:summarize`, `/ck:integrate:sepay`.
+> Dispatcher commands (`fix`, `docs`, `plan`, `content`, `git`) use positional args — e.g. `/ck:fix ci`, `/ck:docs init`, `/ck:plan two`.
+
+Examples: `/ck:cook`, `/ck:fix ci`, `/ck:docs init`, `/ck:integrate:sepay`.
