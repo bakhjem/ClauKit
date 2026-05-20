@@ -1,5 +1,5 @@
 ---
-description: ⚡ Analyze the codebase and update documentation
+description: ⚡ Analyze the codebase and produce a summary report
 argument-hint: [focused-topics] [should-scan-codebase]
 ---
 
