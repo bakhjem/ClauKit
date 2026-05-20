@@ -1,18 +1,18 @@
 ---
-description: SEO operations dispatcher (flags -audit -keywords -schema)
-argument-hint: -audit <url> [opts] | -keywords <topic> [opts] | -schema <type> [opts]
+description: SEO operations dispatcher (audit · keywords · schema)
+argument-hint: audit <url> [opts] | keywords <topic> [opts] | schema <type> [opts]
 ---
 
 ## Variables
 
-FLAG: $1 (one of `-audit`, `-keywords`, `-schema`)
+ACTION: $1 (one of `audit`, `keywords`, `schema`)
 REST: $2..$n (action-specific arguments/options)
 
 ## Workflow
 
-Activate the `seo` skill ([.claude/skills/marketing/seo/SKILL.md](.claude/skills/marketing/seo/SKILL.md)) and dispatch to the matching operation based on {FLAG}. Each operation loads its own reference file as single source of truth.
+Activate the `seo` skill ([.claude/skills/marketing/seo/SKILL.md](.claude/skills/marketing/seo/SKILL.md)) and dispatch to the matching operation based on {ACTION}. Each operation loads its own reference file as single source of truth.
 
-### `-audit` — comprehensive SEO audit of a URL
+### `audit` — comprehensive SEO audit of a URL
 
 **Input:** `<url-to-audit> [--compare <competitors>] [--trend --days=<n>] [--crawl --limit=<n>] [--full] [--mobile] [--technical]`
 
@@ -32,7 +32,7 @@ Load `references/audit-checklist.md` — single source of truth for the audit pi
 | `--mobile` | Mobile-specific audit |
 | `--technical` | Technical SEO deep-dive only |
 
-### `-keywords` — keyword research for a topic
+### `keywords` — keyword research for a topic
 
 **Input:** `<keyword-or-topic> [--serp-features] [--gap --competitors=<url>] [--cluster] [--brief]`
 
@@ -48,7 +48,7 @@ Seed Analysis → Keyword Expansion → Keyword Data (Volume/Difficulty/CPC/Inte
 | `--cluster` | Group keywords into semantic clusters |
 | `--brief` | Generate ready-to-write content brief |
 
-### `-schema` — generate JSON-LD schema markup
+### `schema` — generate JSON-LD schema markup
 
 **Input:** `<schema-type> [parameters] [--auto <url>] [--validate] [--nested] [--extract]`
 
@@ -75,30 +75,27 @@ Load `references/schema-templates.md` — single source of truth for schema-type
 - `Event` + `Offer` + `Location` + `Organization`
 
 ## Notes
-- If {FLAG} is missing or not one of the three above, print usage and exit.
+- If {ACTION} is missing or not one of the three above, print usage and exit.
 - Concise grammar in reports. List unresolved questions at end.
 
 ## Examples
 
-```bash
-# Audit
-/ck:seo -audit https://example.com/pricing
-/ck:seo -audit https://example.com/pricing --compare=https://comp1.com,https://comp2.com
-/ck:seo -audit https://example.com --crawl --limit=100
-/ck:seo -audit https://example.com --full --compare=https://comp1.com --trend --days=30
+```
+/ck:seo audit https://example.com/pricing
+/ck:seo audit https://example.com/pricing --compare=https://comp1.com,https://comp2.com
+/ck:seo audit https://example.com --crawl --limit=100
+/ck:seo audit https://example.com --full --compare=https://comp1.com --trend --days=30
 
-# Keywords
-/ck:seo -keywords "project management software"
-/ck:seo -keywords "project management software" --serp-features
-/ck:seo -keywords "saas pricing" --gap --competitors=https://comp1.com,https://comp2.com
-/ck:seo -keywords "how to use ai for business" --brief
-/ck:seo -keywords "project management" --serp-features --gap --competitors=https://asana.com --cluster --brief
+/ck:seo keywords "project management software"
+/ck:seo keywords "project management software" --serp-features
+/ck:seo keywords "saas pricing" --gap --competitors=https://comp1.com,https://comp2.com
+/ck:seo keywords "how to use ai for business" --brief
+/ck:seo keywords "project management" --serp-features --gap --competitors=https://asana.com --cluster --brief
 
-# Schema
-/ck:seo -schema product "My SaaS Product"
-/ck:seo -schema faq
-/ck:seo -schema article "Blog Post Title"
-/ck:seo -schema auto https://example.com/blog/post-title
-/ck:seo -schema validate --url=https://example.com
-/ck:seo -schema nested organization localbusiness --city="Hanoi" --country="VN"
+/ck:seo schema product "My SaaS Product"
+/ck:seo schema faq
+/ck:seo schema article "Blog Post Title"
+/ck:seo schema auto https://example.com/blog/post-title
+/ck:seo schema validate --url=https://example.com
+/ck:seo schema nested organization localbusiness --city="Hanoi" --country="VN"
 ```
