@@ -1,5 +1,6 @@
 ---
 description: ⚡ Run tests locally and analyze the summary report.
+argument-hint: (no args)
 ---
 
 Use the `tester` subagent to run tests locally and analyze the summary report.

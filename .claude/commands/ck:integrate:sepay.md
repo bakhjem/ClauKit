@@ -10,7 +10,7 @@ Plan & implement payment integration with [SePay.vn](https://developer.sepay.vn/
 
 ## Workflow
 - **Scout** — `scout` subagent → find existing payment-related resources, docs, code snippets.
-- **Plan** — `/ck:plan -fast <detailed-instruction-prompt>` → create implementation plan from scout report.
+- **Plan** — `/ck:plan fast <detailed-instruction-prompt>` → create implementation plan from scout report.
 - **Implementation** — `/ck:cook <plan>` → implement the plan.
 
 ## SePay
