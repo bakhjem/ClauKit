@@ -1,14 +1,14 @@
 ---
-description: ⚡⚡ Analyze and fix issues (variants -ci -logs -test -types -ui · combinable --auto --review --quick --parallel)
-argument-hint: [issues] [-ci|-logs|-test|-types|-ui] [--auto] [--review] [--quick] [--parallel]
+description: ⚡⚡ Analyze and fix issues (variants ci logs test types ui · combinable --auto --review --quick --parallel)
+argument-hint: [issues] [ci|logs|test|types|ui] [--auto] [--review] [--quick] [--parallel]
 ---
 
 ## Variables
 
 ARGS: `$ARGUMENTS` (full input)
-VARIANT: first single-dash flag if present (`-ci`, `-logs`, `-test`, `-types`, `-ui`)
+VARIANT: `$1` if it matches one of `ci`, `logs`, `test`, `types`, `ui`; else absent
 MODIFIERS: any `--auto`, `--review`, `--quick`, `--parallel` flags (combinable)
-ISSUES: ARGS minus the VARIANT and MODIFIERS
+ISSUES: ARGS minus VARIANT and MODIFIERS
 
 If there is an existing markdown implementation plan, use `/ck:cook <path-to-plan>` to implement it.
 
@@ -65,7 +65,7 @@ If there is an existing markdown implementation plan, use `/ck:cook <path-to-pla
 
 Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.claude/workflows/fix-pipeline.md)) with the differences listed.
 
-### `-logs` — log-driven (⚡)
+### `logs` — log-driven (⚡)
 
 **Input:** local `./logs.txt`
 <issue>{ISSUES}</issue>
@@ -81,7 +81,7 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 
 **Distinct:** input = local log file. Adds `scout` subagent to bridge logs → code location.
 
-### `-ci` — CI-failure-driven (⚡)
+### `ci` — CI-failure-driven (⚡)
 
 **Input:** GitHub Actions URL
 <url>{ISSUES}</url>
@@ -96,9 +96,9 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 - **Failure loop:** back to stage [3b] (re-scout).
 - If `gh` not available → instruct user to install + authorize GitHub CLI first.
 
-**Distinct:** input = GitHub Actions URL (remote, fetched via `gh`). Like `-logs` but for remote CI runs.
+**Distinct:** input = GitHub Actions URL (remote, fetched via `gh`). Like `logs` but for remote CI runs.
 
-### `-test` — test-first (⚡⚡)
+### `test` — test-first (⚡⚡)
 
 **Input:** running test suite
 <issues>{ISSUES}</issues>
@@ -113,7 +113,7 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 
 **Distinct:** input = running test suite. `tester` runs BEFORE `debugger` (inverse of other variants).
 
-### `-types` — typecheck-driven, minimal (⚡)
+### `types` — typecheck-driven, minimal (⚡)
 
 - **Stage [1]** (input): run `bun run typecheck` OR `tsc` OR `npx tsc`.
 - **Stages [3]–[5]** collapsed: direct fix loop — read errors, apply fix, re-run typecheck.
@@ -126,7 +126,7 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 
 **Distinct:** simplest variant — no subagents, no planner, no reviewer. Tight feedback loop directly against `tsc`/`bun typecheck`.
 
-### `-ui` — UI-specialist pipeline (⚡⚡)
+### `ui` — UI-specialist pipeline (⚡⚡)
 
 `ui-ux-designer` subagent reads `./docs/design-guidelines.md` then fixes:
 <issue>{ISSUES}</issue>
@@ -154,8 +154,8 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 - `/ck:fix --review session token leak in middleware` — full pipeline + code-reviewer.
 - `/ck:fix --auto refactor 3 unrelated services` — auto picks flags.
 - `/ck:fix --quick --review --parallel hot patches across 5 modules` — minimal stages but reviewed, run in parallel.
-- `/ck:fix -logs` — log-driven from `./logs.txt`.
-- `/ck:fix -ci https://github.com/org/repo/actions/runs/123` — CI-failure-driven.
-- `/ck:fix -test` — test-first.
-- `/ck:fix -types` — typecheck-driven minimal.
-- `/ck:fix -ui "card spacing on /pricing is off"` — UI specialist pipeline.
+- `/ck:fix logs` — log-driven from `./logs.txt`.
+- `/ck:fix ci https://github.com/org/repo/actions/runs/123` — CI-failure-driven.
+- `/ck:fix test` — test-first.
+- `/ck:fix types` — typecheck-driven minimal.
+- `/ck:fix ui "card spacing on /pricing is off"` — UI specialist pipeline.

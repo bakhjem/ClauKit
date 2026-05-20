@@ -1,6 +1,6 @@
 ---
-description: ⚡⚡⚡ Plan operations dispatcher (router · flags -fast -hard -two -ci -cro)
-argument-hint: [task] [-fast|-hard|-two|-ci|-cro]
+description: ⚡⚡⚡ Plan operations dispatcher (router · fast hard two ci cro)
+argument-hint: [task] [fast|hard|two|ci|cro]
 ---
 
 Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
@@ -8,23 +8,23 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 ## Your mission
 <task>$ARGUMENTS</task>
 
-## Mode dispatch (inspect `$ARGUMENTS` for flags)
+## Mode dispatch (inspect `$ARGUMENTS` for first word)
 
-| Flag | Mode | Thinking budget |
-|---|---|---|
-| *(none)* | **auto-detect** — analyze task, route to `-fast` or `-hard` | (router) |
-| `-fast` | **fast** — analysis + planning only, no research | Think |
-| `-hard` | **hard** — research-heavy, multi-researcher | Think harder |
-| `-two` | **2-approaches** — research + plan with ≥2 approaches + trade-offs | Think harder |
-| `-ci` | **CI-failure** — plan to fix GitHub Actions failures | Think harder |
-| `-cro` | **CRO plan** — Conversion Rate Optimization plan | Think harder |
+| Mode | Thinking budget |
+|---|---|
+| *(none)* | **auto-detect** — analyze task, route to `fast` or `hard` |
+| `fast` | **fast** — analysis + planning only, no research | Think |
+| `hard` | **hard** — research-heavy, multi-researcher | Think harder |
+| `two` | **2-approaches** — research + plan with ≥2 approaches + trade-offs | Think harder |
+| `ci` | **CI-failure** — plan to fix GitHub Actions failures | Think harder |
+| `cro` | **CRO plan** — Conversion Rate Optimization plan | Think harder |
 
 ## Default mode (no flag) — router
 
 1. Analyze the task; ask for more details if needed.
-2. **Decide complexity** → execute `-fast` or `-hard` mode below with an enhanced prompt (detailed-instructions version of the task description).
+2. **Decide complexity** → execute `fast` or `hard` mode below with an enhanced prompt (detailed-instructions version of the task description).
 
-## `-fast` — no research
+## `fast` — no research
 
 Use `planner` subagent to:
 1. Create directory `plans/YYYYMMDD-HHmm-plan-name` and pass path to every subagent.
@@ -33,9 +33,9 @@ Use `planner` subagent to:
 4. Gather information → create implementation plan.
 5. Ask user to review the plan.
 
-**Distinct from `-hard`:** Skip the research phase (no `researcher` agents, no scout). Pure analysis + planning from existing docs only.
+**Distinct from `hard`:** Skip the research phase (no `researcher` agents, no scout). Pure analysis + planning from existing docs only.
 
-## `-hard` — research-heavy
+## `hard` — research-heavy
 
 1. Create directory `plans/YYYYMMDD-HHmm-plan-name` and pass path to every subagent.
 2. Follow the **"Plan Creation & Organization"** rules + **Plan Directory Structure** + **Plan File Specification** defined in the `planning` skill (single source of truth).
@@ -47,9 +47,9 @@ Use `planner` subagent to:
 
 **Research output:** Each research markdown report ≤150 lines while covering all topics + citations.
 
-**Distinct from `-fast`:** Includes the research phase (multiple researchers in parallel + conditional scout).
+**Distinct from `fast`:** Includes the research phase (multiple researchers in parallel + conditional scout).
 
-## `-two` — 2-approach comparison (⚡⚡⚡⚡)
+## `two` — 2-approach comparison (⚡⚡⚡⚡)
 
 Think harder. Use `planner` subagent to create **2 detailed implementation plans**.
 
@@ -61,11 +61,11 @@ Think harder. Use `planner` subagent to create **2 detailed implementation plans
    **Output ≥2 implementation approaches with clear trade-offs + pros/cons + recommended approach.**
 6. Receive plan, ask user to review.
 
-**Distinct from `-hard`:** Mandatory 2+ approaches comparison with pros/cons table.
+**Distinct from `hard`:** Mandatory 2+ approaches comparison with pros/cons table.
 
-## `-ci` — CI-failure-driven plan
+## `ci` — CI-failure-driven plan
 
-Input: GitHub Actions URL = `$ARGUMENTS`
+Input: GitHub Actions URL = `$ARGUMENTS` (minus `ci`)
 
 Use `planner` subagent to:
 1. Read the GitHub Actions logs via `gh` command.
@@ -74,15 +74,15 @@ Use `planner` subagent to:
 
 **Output:** ≥2 implementation approaches with clear trade-offs + pros/cons + recommended approach.
 
-**Distinct from `-hard`:** Source of truth is CI logs (not codebase analysis); root-cause-first framing. Ask user for confirmation before implementing.
+**Distinct from `hard`:** Source of truth is CI logs (not codebase analysis); root-cause-first framing. Ask user for confirmation before implementing.
 
-## `-cro` — CRO plan (not direct rewrite)
+## `cro` — CRO plan (not direct rewrite)
 
-You are an expert in conversion optimization. Analyze the content based on `$ARGUMENTS`.
+You are an expert in conversion optimization. Analyze the content based on `$ARGUMENTS` (minus `cro`).
 
 **CRO Framework:** [.claude/workflows/cro-framework.md](.claude/workflows/cro-framework.md) — single source of truth for the 25-point CRO principles.
 
-**Distinct from `/ck:content -cro`** (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
+**Distinct from `/ck:content cro`** (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
 
 Workflow:
 - Screenshots / videos → `ai-multimodal` skill extracts detailed description.
