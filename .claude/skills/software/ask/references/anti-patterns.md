@@ -84,7 +84,7 @@ Common failure modes when answering technical questions. Each comes with the fai
 
 **Cause:** Conflating consultation with implementation. The `/ck:ask` skill is read-only.
 
-**Correction:** Stop at the recommendation. If implementation is needed, say "Want me to implement this? That'd be `/ck:code` or `/ck:plan` first." Then wait for user to confirm.
+**Correction:** Stop at the recommendation. If implementation is needed, say "Want me to implement this? That'd be `/ck:cook` or `/ck:plan` first." Then wait for user to confirm.
 
 ---
 

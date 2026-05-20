@@ -10,7 +10,7 @@ VARIANT: first single-dash flag if present (`-ci`, `-logs`, `-test`, `-types`, `
 MODIFIERS: any `--auto`, `--review`, `--quick`, `--parallel` flags (combinable)
 ISSUES: ARGS minus the VARIANT and MODIFIERS
 
-If there is an existing markdown implementation plan, use `/ck:code <path-to-plan>` to implement it.
+If there is an existing markdown implementation plan, use `/ck:cook <path-to-plan>` to implement it.
 
 ## Dispatch
 

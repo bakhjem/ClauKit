@@ -129,7 +129,7 @@ claukit/
 
 ### Slash Commands (55)
 
-**Development**: `/ck:plan`, `/ck:cook`, `/ck:code`, `/ck:test`, `/ck:ask`, `/ck:brainstorm`, `/ck:team`, `/ck:xia`
+**Development**: `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:brainstorm`, `/ck:team`, `/ck:xia`
 
 **Planning**: `/ck:plan -fast`, `/ck:plan -hard`, `/ck:plan:two`, `/ck:plan:ci`, `/ck:plan:cro`
 

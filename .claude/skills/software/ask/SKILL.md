@@ -28,7 +28,7 @@ Activate this skill when the user asks:
 - Any `/ck:ask <question>` invocation
 
 **Skip / hand off when:**
-- User asks to *implement* → not this skill (use `/ck:code`, `/ck:plan`)
+- User asks to *implement* → not this skill (use `/ck:cook`, `/ck:plan`)
 - User asks to *fix a bug* → `/ck:debug` + `debugging` skill
 - User asks to *design a new feature from scratch* → `/ck:brainstorm` + `brainstormer` agent
 - User asks for a *full plan* → `/ck:plan` + `planning` skill
@@ -105,7 +105,7 @@ Match depth to question complexity. Simple lookup → short direct answer with f
 
 ## Hard Rules
 
-- **No implementation.** This skill answers and advises only. If asked to code, say so and recommend `/ck:code` or `/ck:plan`.
+- **No implementation.** This skill answers and advises only. If asked to code, say so and recommend `/ck:cook` or `/ck:plan`.
 - **Cite code or admit uncertainty.** Never assert project-specific behavior without a file ref. If unsure, say "I haven't read X — let me check" and read it, or state the answer is general-principle level.
 - **No fabricated APIs / function names / file paths.** If you didn't see it in the code, don't invent it.
 - **Concision over verbosity.** Long answers only when the question demands them.

@@ -85,7 +85,6 @@ Provide a production-ready template that:
 - `/ck:ask [question]` - Expert technical consultation
 - `/ck:bootstrap` - Initialize new projects end-to-end
 - `/ck:brainstorm [question]` - Solution ideation and evaluation
-- `/ck:code` - Code generation and implementation
 
 **Debugging & Fixing**:
 - `/ck:debug [issues]` - Deep issue analysis

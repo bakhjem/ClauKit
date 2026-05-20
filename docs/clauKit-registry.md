@@ -226,7 +226,6 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:ask` | Answer technical and architectural questions |
 | `/ck:bootstrap [-auto\|-fast]` 🔁 | Bootstrap a new project — default: step-by-step · `-auto`: minimal Q&A · `-fast`: low-interaction parallel |
 | `/ck:brainstorm` 🔁 | Brainstorm a feature |
-| `/ck:code` | Start coding & testing an existing plan (kept as backup — equivalent to `/ck:cook <plan> --from-plan`) |
 | `/ck:content [-fast\|-good]` 🔁 | Write creative & smart copy — `-fast`: copywriter only · `-good`: researcher+planner+copywriter |
 | `/ck:cook` 🔁 | Drive feature spec → production (full lifecycle: research, plan, code, test, review) |
 | `/ck:debug` 🔁 | Debugging technical issues |
@@ -369,10 +368,9 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Journal | – | `journal-writer` | `/ck:journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/ck:brainstorm` |
 | Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/ck:team` |
-| Fix | – | (uses tester/debugger) | `/ck:fix`, `/fix:*` |
+| Fix | – | (uses tester/debugger) | `/ck:fix`, `/ck:fix:*` |
 | Ask | `ask` (4-persona consultation methodology) | – | `/ck:ask` |
 | Watchup | – | – | `/ck:watzup` |
-| Code (backup) | – | (uses team) | `/ck:code` (= `/ck:cook <plan> --from-plan`, kept for fallback) |
 | Cook (feature lifecycle) | `cook` (5-stage gated methodology) | (uses team) | `/ck:cook` |
 | Problem-solving | `problem-solving` | – | – |
 | Sequential thinking | `sequential-thinking` | – | – |

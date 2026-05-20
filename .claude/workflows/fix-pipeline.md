@@ -17,7 +17,7 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 ### Stage details
 
 **[1] Input intake** — read the issue source. Variant-specific:
-- `/ck:fix` → router (auto-detect complexity, route to `:fast` or `:hard`)
+- `/ck:fix` → router (auto-detect complexity, route to `--quick` or `--review`)
 - `/ck:fix --quick` → user-provided issue text
 - `/ck:fix --review` → user-provided issue text (complex)
 - `/ck:fix:logs` → `./logs.txt` (reproduce + pipe if missing)
@@ -31,21 +31,21 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 **[3] Diagnose** — variant-specific specialist:
 | Variant | Diagnostic agent |
 |---|---|
-| `:fast` / `:hard` / `:logs` / `:ci` | `debugger` subagent |
-| `:hard` (added) | `researcher` subagent (external research) |
-| `:test` | `tester` first → `debugger` for failures |
-| `:types` | direct: run typecheck → fix loop (no agent) |
-| `:ui` | `ui-ux-designer` subagent + `chrome-devtools` skill |
-| `:logs` / `:ci` (added) | `scout` subagent (locate issues in codebase) |
+| `--quick` / `--review` / `-logs` / `-ci` | `debugger` subagent |
+| `--review` (added) | `researcher` subagent (external research) |
+| `-test` | `tester` first → `debugger` for failures |
+| `-types` | direct: run typecheck → fix loop (no agent) |
+| `-ui` | `ui-ux-designer` subagent + `chrome-devtools` skill |
+| `-logs` / `-ci` (added) | `scout` subagent (locate issues in codebase) |
 
 **[4] Plan (optional)** — `planner` subagent creates implementation plan. Triggered for:
-- `:hard` (always)
-- `:logs` / `:ci` / `:test` (after diagnostic reports)
-- `:fast` / `:types` / `:ui` (skip — go straight to implement)
+- `--review` (always)
+- `-logs` / `-ci` / `-test` (after diagnostic reports)
+- `--quick` / `-types` / `-ui` (skip — go straight to implement)
 
 **[5] Implement** — main agent applies the fix based on diagnostic reports + plan.
 - `:ui` variant uses `ui-ux-designer` for implementation
-- `:hard` may use additional skills (`sequential-thinking`, `problem-solving`)
+- `--review` may use additional skills (`sequential-thinking`, `problem-solving`)
 
 **[6] Verify** — `tester` subagent runs tests + compile.
 - `:types` → loop tsc until zero errors (do NOT use `any` to pass)

@@ -13,7 +13,7 @@ A **feature lifecycle pipeline**: take one feature from written spec to producti
 
 Distinct from:
 - `[[bootstrap]]` — sets up a new project (one-time).
-- `/ck:code` command — implements code given an existing plan (one stage).
+- `/ck:cook <plan> -from-plan` — implements code given an existing plan (one stage).
 - `[[orchestrate]]` — multi-agent task delegation (parallel fan-out).
 
 `cook` is sequential, single-feature, gated.
@@ -22,7 +22,7 @@ Distinct from:
 
 The skill defines the methodology and gates. The `/ck:cook` command ([.claude/commands/cook.md](.claude/commands/cook.md)) is the workflow trigger that walks an agent through them with mode flags (`--fast`, `--auto`, `--from-plan`, `--no-test`). The skill is the source of truth; the command is sugar.
 
-The `/ck:code` command is kept as a backup / fast-path for "plan-already-exists" (equivalent to `/ck:cook <plan> --from-plan`).
+Use `/ck:cook <plan> -from-plan` as the fast-path for "plan-already-exists".
 
 ## When to Use
 

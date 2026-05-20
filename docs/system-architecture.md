@@ -157,7 +157,7 @@ Issues, blockers, or questions
 
 | Category | Commands |
 |----------|----------|
-| Development | `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:bootstrap`, `/ck:brainstorm`, `/ck:code` |
+| Development | `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:bootstrap`, `/ck:brainstorm` |
 | Debugging | `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix:ci`, `/ck:fix:test`, `/ck:fix:types`, `/ck:fix:logs`, `/ck:fix:ui` |
 | Design | `/ck:design --fast`, `/ck:design --good`, `/ck:design --3d`, `/ck:design --screenshot`, `/ck:design --video`, `/ck:design --describe`, `/ck:design --ui-ux-pro-max` |
 | Content | `/ck:content -fast`, `/ck:content -good`, `/ck:content:enhance`, `/ck:content:cro` |

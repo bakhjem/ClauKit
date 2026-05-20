@@ -124,7 +124,6 @@ Maps to **cook skill Stage 4 (Review)**. Follow `code-review` skill ([.claude/sk
 
 ## Relationship to Other Commands
 
-- `/ck:code` — legacy fast-path for "plan already exists". Equivalent to `/ck:cook <plan> -from-plan`. Will be deprecated; prefer `/ck:cook`.
 - `/ck:plan` — creates plan only; pair with `/ck:cook plan.md` to execute.
 - `/ck:team` — multi-agent parallel fan-out (different concept from cook's sequential gated pipeline).
 - `/ck:brainstorm` — architectural decisions before planning.

@@ -28,7 +28,7 @@ Activate when the user asks:
 
 **Hand off when:**
 - User wants a concrete plan → `/ck:plan` + `planning` skill + `planner` agent
-- User wants implementation → `/ck:code`
+- User wants implementation → `/ck:cook`
 - User asks "how is X *currently* implemented?" → `/ck:ask` + `ask` skill (read-the-code consultation)
 - User wants a bug fix → `/ck:debug` + `debugging` skill
 
@@ -106,7 +106,7 @@ This guarantees brainstorming output flows directly into a concrete implementati
 
 ## Hard Rules
 
-- **No implementation.** Brainstorm + advise only. If asked to code, redirect to `/ck:code` or `/ck:plan`.
+- **No implementation.** Brainstorm + advise only. If asked to code, redirect to `/ck:cook` or `/ck:plan`.
 - **Validate feasibility before endorsing.** Never recommend an approach without grounding it in codebase reality or external evidence.
 - **Prioritize long-term maintainability over short-term convenience.** A solution that ships fast but rots fast is not a win.
 - **Balance technical excellence with business pragmatism.** Perfect architecture that misses the deadline is also a failure.
