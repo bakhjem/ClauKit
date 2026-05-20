@@ -251,12 +251,9 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 
 | Command | Description |
 |---|---|
-| `/ck:docs -init` | Create initial docs (alias of `/ck:docs:init`) |
-| `/ck:docs -update [requests]` | Update docs (alias of `/ck:docs:update`) |
-| `/ck:docs -summarize [topics] [scan?]` | Summary report (alias of `/ck:docs:summarize`) |
-| `/ck:docs:init` | Create initial docs |
-| `/ck:docs:summarize` | Summarize codebase docs |
-| `/ck:docs:update` | Update docs |
+| `/ck:docs init` | Create initial docs from scratch |
+| `/ck:docs update [requests]` | Update existing docs |
+| `/ck:docs summarize [topics] [scan?]` | Summary report (read-only) |
 
 ### `fix:*` (5) 🔁 tester / debugger — specialized inputs/agents
 
