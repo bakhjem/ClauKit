@@ -1,7 +1,7 @@
 # ClauKit
 
-**Version**: 1.1.6
-**Last Updated**: 2026-05-20
+**Version**: 1.1.7
+**Last Updated**: 2026-05-21
 **Repository**: https://github.com/trungdo9/ClauKit
 
 A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
