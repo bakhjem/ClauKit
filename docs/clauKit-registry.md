@@ -302,14 +302,14 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/seo keywords <topic>` | Keyword research |
 | `/seo schema <type>` | JSON-LD schema |
 
-### `skill` (dispatcher, 4 flags) 🔁 skill-creator
+### `cc-skill` (dispatcher, 4 flags) 🔁 skill-creator
 
 | Invocation | Description |
 |---|---|
-| `/skill add` | Add files/scripts to a skill |
-| `/skill create` | Create new skill |
-| `/skill fix-logs` | Fix skill from logs |
-| `/skill optimize` | Optimize existing skill (plan-first) |
+| `/cc-skill add` | Add files/scripts to a skill |
+| `/cc-skill create` | Create new skill |
+| `/cc-skill fix-logs` | Fix skill from logs |
+| `/cc-skill optimize` | Optimize existing skill (plan-first) |
 
 ---
 
@@ -360,7 +360,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Security | `vulnerability-scanner`, `cti-expert` | `security-auditor` | `/review` |
 | Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
 | MCP | – | `mcp-manager` | `/use-mcp` |
-| Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/skill:*` |
+| Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/cc-skill` |
 | Database | `databases`, `supabase-postgres-best-practices` | `database-admin` | – |
 | Journal | – | `journal-writer` | `/journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/brainstorm` |
