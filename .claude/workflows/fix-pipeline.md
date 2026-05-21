@@ -20,11 +20,11 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 - `/ck:fix` → router (auto-detect complexity, route to `--quick` or `--review`)
 - `/ck:fix --quick` → user-provided issue text
 - `/ck:fix --review` → user-provided issue text (complex)
-- `/ck:fix:logs` → `./logs.txt` (reproduce + pipe if missing)
-- `/ck:fix:ci` → GitHub Actions URL (via `gh` command)
-- `/ck:fix:test` → run test suite first, then diagnose failures
-- `/ck:fix:types` → run `tsc` / `bun typecheck` / `npx tsc` first
-- `/ck:fix:ui` → user-provided UI issue + design guidelines
+- `/ck:fix logs` → `./logs.txt` (reproduce + pipe if missing)
+- `/ck:fix ci` → GitHub Actions URL (via `gh` command)
+- `/ck:fix test` → run test suite first, then diagnose failures
+- `/ck:fix types` → run `tsc` / `bun typecheck` / `npx tsc` first
+- `/ck:fix ui` → user-provided UI issue + design guidelines
 
 **[2] Multimodal extract** — if user provided screenshots/videos → `ai-multimodal` skill describes in detail so root causes are predictable.
 
@@ -85,8 +85,8 @@ For variants `:hard` and `:ui`:
 | `/ck:fix` | router | – | – | – | – |
 | `/ck:fix --quick` | text | – | – | – | – |
 | `/ck:fix --review` | text | ✓ | ✓ | ✓ | ✓ |
-| `/ck:fix:logs` | `logs.txt` | ✓ | – | ✓ | – |
-| `/ck:fix:ci` | GH Actions URL | ✓ | – | ✓ | – |
-| `/ck:fix:test` | test suite | ✓ | – | ✓ | – |
-| `/ck:fix:types` | `tsc` errors | – | – | – | – |
-| `/ck:fix:ui` | UI + design guide | – | – | – | ✓ |
+| `/ck:fix logs` | `logs.txt` | ✓ | – | ✓ | – |
+| `/ck:fix ci` | GH Actions URL | ✓ | – | ✓ | – |
+| `/ck:fix test` | test suite | ✓ | – | ✓ | – |
+| `/ck:fix types` | `tsc` errors | – | – | – | – |
+| `/ck:fix ui` | UI + design guide | – | – | – | ✓ |

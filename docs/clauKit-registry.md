@@ -217,7 +217,7 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 ## 3 · Commands (55)
 
-All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix:ci`). **`/ck:orchestrate` removed 2026-05-17** (superseded by `/ck:team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/ck:fix:ci`, `/ck:plan:two`).
+All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix ci`). **`/ck:orchestrate` removed 2026-05-17** (superseded by `/ck:team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/ck:fix ci`, `/ck:plan two`).
 
 ### Top-level (16) — single-action + flagged-variant entrypoints
 
@@ -244,8 +244,8 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 
 | Command | Description |
 |---|---|
-| `/ck:content:cro` | CRO content optimization |
-| `/ck:content:enhance` | Analyze + enhance copy |
+| `/ck:content cro` | CRO content optimization |
+| `/ck:content enhance` | Analyze + enhance copy |
 
 ### `docs` (dispatcher) + `docs:*` (3) 🔁 docs-manager
 
@@ -259,57 +259,57 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 
 | Command | Description |
 |---|---|
-| `/ck:fix:ci` | Fix CI/GitHub Actions issues |
-| `/ck:fix:logs` | Fix from log analysis |
-| `/ck:fix:test` | Run tests + fix |
-| `/ck:fix:types` | Fix type errors |
-| `/ck:fix:ui` | Fix UI issues |
+| `/ck:fix ci` | Fix CI/GitHub Actions issues |
+| `/ck:fix logs` | Fix from log analysis |
+| `/ck:fix test` | Run tests + fix |
+| `/ck:fix types` | Fix type errors |
+| `/ck:fix ui` | Fix UI issues |
 
 ### `git` (dispatcher) 🔁 git-manager
 
 | Command | Description |
 |---|---|
-| `/ck:git -cm` | Stage + commit |
-| `/ck:git -cp` | Stage + commit + push |
-| `/ck:git -pr [to] [from]` | Create pull request |
-| `/ck:git -merge [pr#\|branch]` | Merge PR or branch (interactive) |
+| `/ck:git cm` | Stage + commit |
+| `/ck:git cp` | Stage + commit + push |
+| `/ck:git pr [to] [from]` | Create pull request |
+| `/ck:git merge [pr#\|branch]` | Merge PR or branch (interactive) |
 
 ### `integrate:*` (1) 🔁 integration-agent
 
 | Command | Description |
 |---|---|
-| `/ck:integrate:sepay` | SePay.vn payment integration |
+| `/ck:sepay` | SePay.vn payment integration |
 
 ### `plan:*` (3) 🔁 planner — specialized planning shapes
 
 | Command | Description |
 |---|---|
-| `/ck:plan:ci` | Plan to fix CI issues |
-| `/ck:plan:cro` | CRO plan |
-| `/ck:plan:two` | Plan w/ 2 approaches |
+| `/ck:plan ci` | Plan to fix CI issues |
+| `/ck:plan cro` | CRO plan |
+| `/ck:plan two` | Plan w/ 2 approaches |
 
 ### `review:*` (1) 🔁 code-reviewer + security-auditor
 
 | Command | Description |
 |---|---|
-| `/ck:review:codebase` | Scan + analyze codebase |
+| `/ck:review` | Scan + analyze codebase |
 
 ### `seo` (dispatcher) 🔁 seo skill
 
 | Command | Description |
 |---|---|
-| `/ck:seo -audit <url>` | SEO audit URL |
-| `/ck:seo -keywords <topic>` | Keyword research |
-| `/ck:seo -schema <type>` | JSON-LD schema |
+| `/ck:seo audit <url>` | SEO audit URL |
+| `/ck:seo keywords <topic>` | Keyword research |
+| `/ck:seo schema <type>` | JSON-LD schema |
 
 ### `skill` (dispatcher, 4 flags) 🔁 skill-creator
 
 | Invocation | Description |
 |---|---|
-| `/ck:skill -add` | Add files/scripts to a skill |
-| `/ck:skill -create` | Create new skill |
-| `/ck:skill -fix-logs` | Fix skill from logs |
-| `/ck:skill -optimize` | Optimize existing skill (plan-first) |
+| `/ck:skill add` | Add files/scripts to a skill |
+| `/ck:skill create` | Create new skill |
+| `/ck:skill fix-logs` | Fix skill from logs |
+| `/ck:skill optimize` | Optimize existing skill (plan-first) |
 
 ---
 
@@ -328,15 +328,15 @@ These are the *intended* trios where Skill = knowledge, Agent = persona, Command
 **Batch 1** (4 trios): `brainstorm`, `planning`, `code-review`, `debugging`
 **Batch 2** (5 trios): `research`, `scout`/`scout-external`, `docs`, `bootstrap`, `payment-integration`
 **Batch 3** (5 trios): `git`, `xia`, `journal`, `fix`, `ask`
-**Batch 4** (1 trio): `seo` (dispatcher with 3 flags: `/ck:seo -audit`, `/ck:seo -keywords`, `/ck:seo -schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references. Collapsed from `seo:*` namespace to flag-style dispatcher 2026-05-18.
+**Batch 4** (1 trio): `seo` (dispatcher with 3 flags: `/ck:seo audit`, `/ck:seo keywords`, `/ck:seo schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references. Collapsed from `seo:*` namespace to flag-style dispatcher 2026-05-18.
 **Batch 5** (4 cleanups): `content/cro` + `plan/cro` (cross-command CRO duplicate), `design/3d` (plan-structure duplicate), `design/*` (skill-activation boilerplate), `skill/*` (input-handling boilerplate).
-- **CRO framework** — 25-point Conversion Optimization Framework extracted to [.claude/workflows/cro-framework.md](../../.claude/workflows/cro-framework.md). Both `/ck:content:cro` and `/ck:plan:cro` reference it instead of duplicating.
+- **CRO framework** — 25-point Conversion Optimization Framework extracted to [.claude/workflows/cro-framework.md](../../.claude/workflows/cro-framework.md). Both `/ck:content cro` and `/ck:plan cro` reference it instead of duplicating.
 - **`design/*`** — removed repeated `aesthetic`+`frontend-design` skill-activation block from 5 commands (`ui-ux-designer` agent already auto-activates these). `design/3d`, `design/screenshot`, `design/describe` now reference `planning` skill for plan structure.
 - **`skill`** — collapsed 4 subcommands (`/ck:skill:add|create|optimize|fix-logs`) into a single dispatcher `/ck:skill` with `-add`/`-create`/`-optimize`/`-fix-logs` flags (mirrors `/ck:git` pattern). Skill-creator canonical; `-optimize` references `planning` skill for plan structure.
 
 Notable extensions:
-- `bootstrap` skill extended with **"Canonical Bootstrap Workflow"** (10-phase pipeline) — `/ck:bootstrap`, `/ck:bootstrap -auto`, `/ck:bootstrap -fast` only document variant differences.
-- `fix` family — no skill/agent existed → created [.claude/workflows/fix-pipeline.md](../../.claude/workflows/fix-pipeline.md) as canonical 7-stage pipeline; 8 commands (`/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix:logs`, `/ck:fix:ci`, `/ck:fix:test`, `/ck:fix:types`, `/ck:fix:ui`) reference it + document variant deltas.
+- `bootstrap` skill extended with **"Canonical Bootstrap Workflow"** (10-phase pipeline) — `/ck:bootstrap`, `/ck:bootstrap auto`, `/ck:bootstrap fast` only document variant differences.
+- `fix` family — no skill/agent existed → created [.claude/workflows/fix-pipeline.md](../../.claude/workflows/fix-pipeline.md) as canonical 7-stage pipeline; 8 commands (`/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix logs`, `/ck:fix ci`, `/ck:fix test`, `/ck:fix types`, `/ck:fix ui`) reference it + document variant deltas.
 - `scout-external` agent references `scout` agent as canonical methodology — variant-only differences (external Gemini/OpenCode vs internal Explore).
 - `docs-manager` agent + `journal-writer` agent serve as canonical sources (no dedicated knowledge skill exists for those concepts).
 - `git-manager` agent retains haiku-optimized 2-3 tool execution workflow as agent-specific knowledge (skill = conventional-commits methodology).
@@ -347,17 +347,17 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 |---|---|---|---|
 | Planning | `planning` | `planner` | `/ck:plan`, `/plan:*` |
 | Research / Scout | `research` | `researcher`, `scout`, `scout-external` | `/ck:scout`, `/ck:scout -ext` |
-| Code review | `code-review` | `code-reviewer` | `/ck:review:codebase` |
+| Code review | `code-review` | `code-reviewer` | `/ck:review` |
 | Debugging | `debugging` | `debugger` | `/ck:debug` |
-| Testing | `web-testing` (developer toolkit), `test-automation` (QA/automation engineering) | `tester` | `/ck:test`, `/ck:fix:test` |
+| Testing | `web-testing` (developer toolkit), `test-automation` (QA/automation engineering) | `tester` | `/ck:test`, `/ck:fix test` |
 | Docs | `mintlify`, `llms`, `markdown-novel-viewer`, `tech-graph`, `document-skills/*` | `docs-manager` | `/docs:*` |
 | Design | 10 design skills | `ui-ux-designer` | `/design:*` |
 | Content | `show-off` | `copywriter` | `/content:*` |
-| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/ck:seo -audit\|-keywords\|-schema` |
+| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/ck:seo audit\|-keywords\|-schema` |
 | Git | `git`, `worktree` | `git-manager` | `/git:*` |
-| Bootstrap | `bootstrap` (knowledge) | – | `/ck:bootstrap`, `/ck:bootstrap -auto*` |
+| Bootstrap | `bootstrap` (knowledge) | – | `/ck:bootstrap`, `/ck:bootstrap auto*` |
 | Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/ck:xia` |
-| Security | `vulnerability-scanner`, `cti-expert` | `security-auditor` | `/ck:review:codebase` |
+| Security | `vulnerability-scanner`, `cti-expert` | `security-auditor` | `/ck:review` |
 | Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
 | MCP | – | `mcp-manager` | `/ck:use-mcp` |
 | Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/skill:*` |
@@ -365,7 +365,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Journal | – | `journal-writer` | `/ck:journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/ck:brainstorm` |
 | Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/ck:team` |
-| Fix | – | (uses tester/debugger) | `/ck:fix`, `/ck:fix:*` |
+| Fix | – | (uses tester/debugger) | `/ck:fix`, `/ck:fix <variant>` |
 | Ask | `ask` (4-persona consultation methodology) | – | `/ck:ask` |
 | Watchup | – | – | `/ck:watzup` |
 | Cook (feature lifecycle) | `cook` (5-stage gated methodology) | (uses team) | `/ck:cook` |
@@ -427,7 +427,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | `fix` | `/ck:fix*` |
 | `docs` | `/docs:*` + `docs-manager` |
 | `copywriting` | `/content:*` + `copywriter` |
-| `security` | `/ck:review:codebase` + `security-auditor` |
+| `security` | `/ck:review` + `security-auditor` |
 | `use-mcp` | `/ck:use-mcp` + `mcp-manager` |
 | `project-management` | `project-manager` agent |
 | `team` | `team` skill + `/ck:team` (parallel multi-session) — `/ck:orchestrate` command + `orchestrator` agent both removed 2026-05-17, superseded by `team` |
@@ -445,7 +445,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 
 | Action | Agent | Notes |
 |---|---|---|
-| Removed | `seo-specialist` | `marketing/` folder emptied + removed. `/ck:seo -audit`, `/ck:seo -keywords`, `/ck:seo -schema` commands now run directly with `seo` skill + references (no dedicated agent). Frontmatter had non-standard fields (`mode`, `temperature`, `skills`) — legacy from OpenCode/agentgateway. |
+| Removed | `seo-specialist` | `marketing/` folder emptied + removed. `/ck:seo audit`, `/ck:seo keywords`, `/ck:seo schema` commands now run directly with `seo` skill + references (no dedicated agent). Frontmatter had non-standard fields (`mode`, `temperature`, `skills`) — legacy from OpenCode/agentgateway. |
 
 ---
 

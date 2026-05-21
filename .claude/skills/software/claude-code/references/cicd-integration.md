@@ -20,7 +20,7 @@ jobs:
 
       - uses: anthropic/claude-code-action@v1
         with:
-          command: '/ck:fix:types && /ck:test'
+          command: '/ck:fix types && /ck:test'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 ```
@@ -88,7 +88,7 @@ jobs:
         if: steps.test.outcome == 'failure'
         uses: anthropic/claude-code-action@v1
         with:
-          command: '/ck:fix:test check test output and fix failures'
+          command: '/ck:fix test check test output and fix failures'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
@@ -120,7 +120,7 @@ jobs:
       - name: Update Documentation
         uses: anthropic/claude-code-action@v1
         with:
-          command: '/ck:docs:update'
+          command: '/ck:docs update'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
 
@@ -150,7 +150,7 @@ claude-review:
   script:
     - npm install -g @anthropic-ai/claude-code
     - claude login --api-key $ANTHROPIC_API_KEY
-    - claude '/ck:fix:types && /ck:test'
+    - claude '/ck:fix types && /ck:test'
   only:
     - merge_requests
 ```
@@ -174,7 +174,7 @@ before_script:
 lint:
   stage: lint
   script:
-    - claude '/ck:fix:types'
+    - claude '/ck:fix types'
   artifacts:
     paths:
       - src/
@@ -183,7 +183,7 @@ lint:
 test:
   stage: test
   script:
-    - npm test || claude '/ck:fix:test analyze failures and fix'
+    - npm test || claude '/ck:fix test analyze failures and fix'
   coverage: '/Coverage: \d+\.\d+%/'
 
 review:
@@ -224,7 +224,7 @@ fix-on-failure:
   after_script:
     - |
       if [ $CI_JOB_STATUS == 'failed' ]; then
-        claude '/ck:fix:test analyze CI logs and fix issues'
+        claude '/ck:fix test analyze CI logs and fix issues'
         git add .
         git commit -m "fix: auto-fix from CI"
         git push origin HEAD:$CI_COMMIT_REF_NAME
@@ -263,7 +263,7 @@ Run Claude only on certain conditions:
   if: ${{ github.event.pull_request.changed_files > 10 }}
   uses: anthropic/claude-code-action@v1
   with:
-    command: '/ck:review:codebase analyze changes'
+    command: '/ck:review analyze changes'
 ```
 
 ### Cost Control

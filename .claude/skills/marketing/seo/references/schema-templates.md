@@ -1,6 +1,6 @@
 # JSON-LD Schema Templates — Canonical Reference
 
-Single source of truth for `/ck:seo -schema` command. Defines schema-type taxonomy + JSON-LD templates + implementation guide.
+Single source of truth for `/ck:seo schema` command. Defines schema-type taxonomy + JSON-LD templates + implementation guide.
 
 ## Supported Schema Types
 
@@ -194,6 +194,6 @@ Add to HTML:
 Test at: https://search.google.com/test/rich-results
 
 ## Next Steps
-/ck:seo -audit [url]  # Verify schema is present
+/ck:seo audit [url]  # Verify schema is present
 /ck:content [type] [title]  # Create content with this schema
 ```

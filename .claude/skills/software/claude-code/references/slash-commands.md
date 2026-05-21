@@ -84,231 +84,231 @@ Complex issues requiring planning and subagents.
 
 **When to use**: Complex bugs requiring deep investigation
 
-### /ck:fix:types
+### /ck:fix types
 Fix TypeScript type errors.
 
 ```bash
-/ck:fix:types
+/ck:fix types
 ```
 
 **When to use**: TypeScript compilation errors
 
-### /ck:fix:test [issue]
+### /ck:fix test [issue]
 Fix test failures.
 
 ```bash
-/ck:fix:test the user service tests are failing
-/ck:fix:test integration tests timing out
+/ck:fix test the user service tests are failing
+/ck:fix test integration tests timing out
 ```
 
 **When to use**: Test suite failures
 
-### /ck:fix:ui [issue]
+### /ck:fix ui [issue]
 Fix UI issues.
 
 ```bash
-/ck:fix:ui button alignment on mobile
-/ck:fix:ui dark mode colors inconsistent
+/ck:fix ui button alignment on mobile
+/ck:fix ui dark mode colors inconsistent
 ```
 
 **When to use**: Visual or interaction issues
 
-### /ck:fix:ci [url]
+### /ck:fix ci [url]
 Analyze GitHub Actions logs and fix CI/CD issues.
 
 ```bash
-/ck:fix:ci https://github.com/owner/repo/actions/runs/123456
+/ck:fix ci https://github.com/owner/repo/actions/runs/123456
 ```
 
 **When to use**: Build or deployment failures
 
-### /ck:fix:logs [issue]
+### /ck:fix logs [issue]
 Analyze logs and fix issues.
 
 ```bash
-/ck:fix:logs server error logs showing memory leaks
+/ck:fix logs server error logs showing memory leaks
 ```
 
 **When to use**: Production issues with log evidence
 
 ## Documentation Commands
 
-Dispatcher: `/ck:docs` with flags `-init` · `-update` · `-summarize`. Subcommand aliases (`/ck:docs:init`, `/ck:docs:update`, `/ck:docs:summarize`) remain supported.
+Dispatcher: `/ck:docs` with flags `-init` · `-update` · `-summarize`. Subcommand aliases (`/ck:docs init`, `/ck:docs update`, `/ck:docs summarize`) remain supported.
 
-### /ck:docs -init (alias: /ck:docs:init)
+### /ck:docs -init (alias: /ck:docs init)
 Create initial documentation structure.
 
 ```bash
 /ck:docs -init
-# or: /ck:docs:init
+# or: /ck:docs init
 ```
 
 **When to use**: New projects needing documentation
 
-### /ck:docs -update (alias: /ck:docs:update)
+### /ck:docs -update (alias: /ck:docs update)
 Update existing documentation based on code changes.
 
 ```bash
 /ck:docs -update
 /ck:docs -update "focus on the new auth module"
-# or: /ck:docs:update
+# or: /ck:docs update
 ```
 
 **When to use**: After significant code changes
 
-### /ck:docs -summarize (alias: /ck:docs:summarize)
+### /ck:docs -summarize (alias: /ck:docs summarize)
 Summarize codebase and create overview.
 
 ```bash
 /ck:docs -summarize
 /ck:docs -summarize "auth, payments" true
-# or: /ck:docs:summarize
+# or: /ck:docs summarize
 ```
 
 **When to use**: Generate project summaries
 
 ## Git Commands
 
-### /ck:git -cm
+### /ck:git cm
 Stage all files and create commit (no push).
 
 ```bash
-/ck:git -cm
+/ck:git cm
 ```
 
 **When to use**: Commit changes with automatic message
 
-### /ck:git -cp
+### /ck:git cp
 Stage, commit, and push all code in current branch.
 
 ```bash
-/ck:git -cp
+/ck:git cp
 ```
 
 **When to use**: Commit and push in one command
 
-### /ck:git -pr [branch] [from-branch]
+### /ck:git pr [branch] [from-branch]
 Create pull request.
 
 ```bash
-/ck:git -pr feature-branch main
-/ck:git -pr bugfix-auth develop
+/ck:git pr feature-branch main
+/ck:git pr bugfix-auth develop
 ```
 
 **When to use**: Creating PRs with automatic descriptions
 
-### /ck:git -merge [pr-number|target-branch]
+### /ck:git merge [pr-number|target-branch]
 Merge PR or local branch (interactive — prompts for strategy).
 
 ```bash
-/ck:git -merge          # merge PR of current branch (or local)
-/ck:git -merge 123      # merge PR #123
-/ck:git -merge develop  # merge current branch into develop
+/ck:git merge          # merge PR of current branch (or local)
+/ck:git merge 123      # merge PR #123
+/ck:git merge develop  # merge current branch into develop
 ```
 
 **When to use**: Finalizing a PR or branch merge with user-chosen strategy
 
 ## Planning Commands
 
-### /ck:plan:two [task]
+### /ck:plan two [task]
 Create implementation plan with 2 alternative approaches.
 
 ```bash
-/ck:plan:two implement caching layer
+/ck:plan two implement caching layer
 ```
 
 **When to use**: Need to evaluate multiple approaches
 
-### /ck:plan:ci [url]
+### /ck:plan ci [url]
 Analyze GitHub Actions logs and create fix plan.
 
 ```bash
-/ck:plan:ci https://github.com/owner/repo/actions/runs/123456
+/ck:plan ci https://github.com/owner/repo/actions/runs/123456
 ```
 
 **When to use**: CI/CD failure analysis
 
-### /ck:plan:cro [issue]
+### /ck:plan cro [issue]
 Create conversion rate optimization plan.
 
 ```bash
-/ck:plan:cro landing page conversion improvement
+/ck:plan cro landing page conversion improvement
 ```
 
 **When to use**: Marketing/conversion optimization
 
 ## Content Commands
 
-### /ck:content -fast [request]
+### /ck:content fast [request]
 Quick copy writing.
 
 ```bash
-/ck:content -fast write product description for new feature
+/ck:content fast write product description for new feature
 ```
 
 **When to use**: Fast content generation
 
-### /ck:content -good [request]
+### /ck:content good [request]
 High-quality, conversion-focused copy.
 
 ```bash
-/ck:content -good write landing page hero section
+/ck:content good write landing page hero section
 ```
 
 **When to use**: Marketing copy requiring polish
 
-### /ck:content:enhance [issue]
+### /ck:content enhance [issue]
 Enhance existing content.
 
 ```bash
-/ck:content:enhance improve clarity of pricing page
+/ck:content enhance improve clarity of pricing page
 ```
 
 **When to use**: Improving existing copy
 
-### /ck:content:cro [issue]
+### /ck:content cro [issue]
 Conversion rate optimization for content.
 
 ```bash
-/ck:content:cro optimize email campaign copy
+/ck:content cro optimize email campaign copy
 ```
 
 **When to use**: Conversion-focused content improvements
 
 ## Design Commands
 
-### /ck:design --fast [task]
+### /ck:design fast [task]
 Quick design implementation.
 
 ```bash
-/ck:design --fast create dashboard layout
+/ck:design fast create dashboard layout
 ```
 
 **When to use**: Rapid prototyping
 
-### /ck:design --good [task]
+### /ck:design good [task]
 High-quality, polished design.
 
 ```bash
-/ck:design --good create landing page for SaaS product
+/ck:design good create landing page for SaaS product
 ```
 
 **When to use**: Production-ready designs
 
-### /ck:design --3d [task]
+### /ck:design 3d [task]
 Create 3D designs with Three.js.
 
 ```bash
-/ck:design --3d create interactive 3D product viewer
+/ck:design 3d create interactive 3D product viewer
 ```
 
 **When to use**: 3D visualization needs
 
-### /ck:design --screenshot [path]
+### /ck:design screenshot [path]
 Create design based on screenshot.
 
 ```bash
-/ck:design --screenshot screenshot.png
+/ck:design screenshot screenshot.png
 ```
 
 **When to use**: Recreating designs from images
@@ -335,11 +335,11 @@ Check deployment readiness.
 
 ## Integration Commands
 
-### /ck:integrate:sepay [tasks]
+### /ck:sepay [tasks]
 Implement payment integration with SePay.vn.
 
 ```bash
-/ck:integrate:sepay add Vietnamese payment gateway
+/ck:sepay add Vietnamese payment gateway
 ```
 
 **When to use**: SePay payment integration
@@ -391,11 +391,11 @@ Bootstrap new project step by step.
 
 **When to use**: New project setup
 
-### /ck:bootstrap -auto [requirements]
+### /ck:bootstrap auto [requirements]
 Bootstrap new project automatically.
 
 ```bash
-/ck:bootstrap -auto create Next.js app
+/ck:bootstrap auto create Next.js app
 ```
 
 **When to use**: Automated project setup
@@ -409,11 +409,11 @@ Write journal entries for development log.
 
 **When to use**: Development documentation
 
-### /ck:review:codebase [prompt]
+### /ck:review [prompt]
 Scan and analyze codebase.
 
 ```bash
-/ck:review:codebase analyze architecture patterns
+/ck:review analyze architecture patterns
 ```
 
 **When to use**: Codebase analysis
@@ -471,7 +471,7 @@ Include:
 
 ### Multiple Arguments
 ```bash
-/ck:git -pr feature-branch main
+/ck:git pr feature-branch main
 # Arguments: "feature-branch", "main"
 ```
 

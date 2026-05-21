@@ -1,6 +1,6 @@
 # SEO Keyword Research — Canonical Process
 
-Single source of truth for `/ck:seo -keywords` command. Defines the research pipeline + SERP-features taxonomy + output template.
+Single source of truth for `/ck:seo keywords` command. Defines the research pipeline + SERP-features taxonomy + output template.
 
 ## Research Process (7 phases)
 
@@ -144,7 +144,7 @@ Generated: [Date]
 1. [Keyword] — [reason]
 
 ## NEXT STEPS
-/ck:seo -audit [url]
-/ck:seo -schema [type]
+/ck:seo audit [url]
+/ck:seo schema [type]
 /ck:content [content-type] [title]
 ```

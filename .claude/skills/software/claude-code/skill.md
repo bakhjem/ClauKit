@@ -107,35 +107,35 @@ Load these references when needed for detailed guidance:
 ```bash
 /ck:fix --quick the login button is not working
 /ck:debug the API returns 500 errors intermittently
-/ck:fix:types  # Fix TypeScript errors
+/ck:fix types  # Fix TypeScript errors
 ```
 
 ### Code Review & Testing
 ```bash
 claude "review my latest commit"
 /ck:test
-/ck:fix:test the user service tests are failing
+/ck:fix test the user service tests are failing
 ```
 
 ### Documentation
 ```bash
-/ck:docs -init       # Create initial documentation (alias: /ck:docs:init)
-/ck:docs -update     # Update existing docs        (alias: /ck:docs:update)
-/ck:docs -summarize  # Summarize changes           (alias: /ck:docs:summarize)
+/ck:docs -init       # Create initial documentation (alias: /ck:docs init)
+/ck:docs -update     # Update existing docs        (alias: /ck:docs update)
+/ck:docs -summarize  # Summarize changes           (alias: /ck:docs summarize)
 ```
 
 ### Git Operations
 ```bash
-/ck:git -cm                       # Stage and commit
-/ck:git -cp                       # Stage, commit, and push
-/ck:git -pr feature-branch main   # Create pull request
-/ck:git -merge 123                # Merge PR (interactive strategy)
+/ck:git cm                       # Stage and commit
+/ck:git cp                       # Stage, commit, and push
+/ck:git pr feature-branch main   # Create pull request
+/ck:git merge 123                # Merge PR (interactive strategy)
 ```
 
 ### Design & Content
 ```bash
-/ck:design --fast create landing page for SaaS product
-/ck:content -good write product description for new feature
+/ck:design fast create landing page for SaaS product
+/ck:content good write product description for new feature
 ```
 
 ## Instructions for Claude
