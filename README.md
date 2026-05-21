@@ -143,10 +143,10 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/ck:docs` | `[init\|update\|summarize]` |
 | `/ck:fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
 | `/ck:git` | `[cm\|cp\|pr\|merge]` |
-| `/ck:integrate:sepay` | SePay payment integration |
+| `/ck:sepay` | SePay payment integration |
 | `/ck:journal` | `<entry>` |
 | `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
-| `/ck:review:codebase` | Full codebase review |
+| `/ck:review` | Full codebase review |
 | `/ck:scout` | `<prompt> [scale] [-ext]` |
 | `/ck:seo` | `[audit\|keywords\|schema] <target>` |
 | `/ck:skill` | `[-add\|-create\|-optimize\|-fix-logs] <args>` |
