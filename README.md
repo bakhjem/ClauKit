@@ -129,32 +129,32 @@ claukit/
 
 ### Slash Commands (23)
 
-All dispatcher commands use **positional args** (no dash prefix) for mode selection. Only `ck:fix` uses `--flags` for combinable modifiers.
+All dispatcher commands use **positional args** (no dash prefix) for mode selection. Only `/fix` uses `--flags` for combinable modifiers.
 
 | Command | Modes / Usage |
 |---------|---------------|
-| `/ck:ask` | `<question>` |
-| `/ck:bootstrap` | `[auto\|fast]` |
-| `/ck:brainstorm` | `<topic>` |
-| `/ck:content` | `[fast\|good\|enhance\|cro] <request>` |
-| `/ck:cook` | `<plan-path>` |
-| `/ck:debug` | `<issue>` |
-| `/ck:design` | `[fast\|good\|3d\|screenshot\|describe\|ui-ux-pro-max] <request>` |
-| `/ck:docs` | `[init\|update\|summarize]` |
-| `/ck:fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
-| `/ck:git` | `[cm\|cp\|pr\|merge]` |
-| `/ck:sepay` | SePay payment integration |
-| `/ck:journal` | `<entry>` |
-| `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
-| `/ck:review` | Full codebase review |
-| `/ck:scout` | `<prompt> [scale] [-ext]` |
-| `/ck:seo` | `[audit\|keywords\|schema] <target>` |
-| `/ck:skill` | `[-add\|-create\|-optimize\|-fix-logs] <args>` |
-| `/ck:team` | `<task>` |
-| `/ck:test` | `<scope>` |
-| `/ck:use-mcp` | MCP server management |
-| `/ck:watzup` | Project status overview |
-| `/ck:xia` | `<task>` |
+| `/ask` | `<question>` |
+| `/bootstrap` | `[auto\|fast]` |
+| `/brainstorm` | `<topic>` |
+| `/content` | `[fast\|good\|enhance\|cro] <request>` |
+| `/cook` | `<plan-path>` |
+| `/debug` | `<issue>` |
+| `/design` | `[fast\|good\|3d\|screenshot\|describe\|ui-ux-pro-max] <request>` |
+| `/docs` | `[init\|update\|summarize]` |
+| `/fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
+| `/git` | `[cm\|cp\|pr\|merge]` |
+| `/sepay` | SePay payment integration |
+| `/journal` | `<entry>` |
+| `/plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
+| `/review` | Full codebase review |
+| `/scout` | `<prompt> [scale] [-ext]` |
+| `/seo` | `[audit\|keywords\|schema] <target>` |
+| `/skill` | `[-add\|-create\|-optimize\|-fix-logs] <args>` |
+| `/team` | `<task>` |
+| `/test` | `<scope>` |
+| `/use-mcp` | MCP server management |
+| `/watzup` | Project status overview |
+| `/xia` | `<task>` |
 
 ### Workflows
 

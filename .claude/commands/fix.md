@@ -10,7 +10,7 @@ VARIANT: `$1` if it matches one of `ci`, `logs`, `test`, `types`, `ui`; else abs
 MODIFIERS: any `--auto`, `--review`, `--quick`, `--parallel` flags (combinable)
 ISSUES: ARGS minus VARIANT and MODIFIERS
 
-If there is an existing markdown implementation plan, use `/ck:cook <path-to-plan>` to implement it.
+If there is an existing markdown implementation plan, use `/cook <path-to-plan>` to implement it.
 
 ## Dispatch
 
@@ -146,16 +146,16 @@ Each variant follows the **Fix Pipeline** ([.claude/workflows/fix-pipeline.md](.
 
 **Companion skills:** `ai-multimodal` (generate + verify visual assets), `ImageMagick` (image edits — bg removal, crop, resize), `chrome-devtools` (browser verification).
 
-**Distinct:** specialist agent = `ui-ux-designer` (not `debugger`). Multi-layer visual verification (screenshot + AI analysis + chrome-devtools). Post-impl docs update + commit flow (like `/ck:fix --review`).
+**Distinct:** specialist agent = `ui-ux-designer` (not `debugger`). Multi-layer visual verification (screenshot + AI analysis + chrome-devtools). Post-impl docs update + commit flow (like `/fix --review`).
 
 ## Examples
-- `/ck:fix payment webhook 500s` — default full pipeline.
-- `/ck:fix --quick typo in login button label` — minimal pipeline.
-- `/ck:fix --review session token leak in middleware` — full pipeline + code-reviewer.
-- `/ck:fix --auto refactor 3 unrelated services` — auto picks flags.
-- `/ck:fix --quick --review --parallel hot patches across 5 modules` — minimal stages but reviewed, run in parallel.
-- `/ck:fix logs` — log-driven from `./logs.txt`.
-- `/ck:fix ci https://github.com/org/repo/actions/runs/123` — CI-failure-driven.
-- `/ck:fix test` — test-first.
-- `/ck:fix types` — typecheck-driven minimal.
-- `/ck:fix ui "card spacing on /pricing is off"` — UI specialist pipeline.
+- `/fix payment webhook 500s` — default full pipeline.
+- `/fix --quick typo in login button label` — minimal pipeline.
+- `/fix --review session token leak in middleware` — full pipeline + code-reviewer.
+- `/fix --auto refactor 3 unrelated services` — auto picks flags.
+- `/fix --quick --review --parallel hot patches across 5 modules` — minimal stages but reviewed, run in parallel.
+- `/fix logs` — log-driven from `./logs.txt`.
+- `/fix ci https://github.com/org/repo/actions/runs/123` — CI-failure-driven.
+- `/fix test` — test-first.
+- `/fix types` — typecheck-driven minimal.
+- `/fix ui "card spacing on /pricing is off"` — UI specialist pipeline.

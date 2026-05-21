@@ -81,21 +81,21 @@ Load `references/schema-templates.md` — single source of truth for schema-type
 ## Examples
 
 ```
-/ck:seo audit https://example.com/pricing
-/ck:seo audit https://example.com/pricing --compare=https://comp1.com,https://comp2.com
-/ck:seo audit https://example.com --crawl --limit=100
-/ck:seo audit https://example.com --full --compare=https://comp1.com --trend --days=30
+/seo audit https://example.com/pricing
+/seo audit https://example.com/pricing --compare=https://comp1.com,https://comp2.com
+/seo audit https://example.com --crawl --limit=100
+/seo audit https://example.com --full --compare=https://comp1.com --trend --days=30
 
-/ck:seo keywords "project management software"
-/ck:seo keywords "project management software" --serp-features
-/ck:seo keywords "saas pricing" --gap --competitors=https://comp1.com,https://comp2.com
-/ck:seo keywords "how to use ai for business" --brief
-/ck:seo keywords "project management" --serp-features --gap --competitors=https://asana.com --cluster --brief
+/seo keywords "project management software"
+/seo keywords "project management software" --serp-features
+/seo keywords "saas pricing" --gap --competitors=https://comp1.com,https://comp2.com
+/seo keywords "how to use ai for business" --brief
+/seo keywords "project management" --serp-features --gap --competitors=https://asana.com --cluster --brief
 
-/ck:seo schema product "My SaaS Product"
-/ck:seo schema faq
-/ck:seo schema article "Blog Post Title"
-/ck:seo schema auto https://example.com/blog/post-title
-/ck:seo schema validate --url=https://example.com
-/ck:seo schema nested organization localbusiness --city="Hanoi" --country="VN"
+/seo schema product "My SaaS Product"
+/seo schema faq
+/seo schema article "Blog Post Title"
+/seo schema auto https://example.com/blog/post-title
+/seo schema validate --url=https://example.com
+/seo schema nested organization localbusiness --city="Hanoi" --country="VN"
 ```

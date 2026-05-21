@@ -111,18 +111,18 @@ spark-dev/
 
 | Category | Commands |
 |----------|----------|
-| Development | `/ck:plan`, `/ck:cook`, `/ck:test`, `/ck:ask`, `/ck:bootstrap`, `/ck:bootstrap auto`, `/ck:bootstrap fast`, `/ck:brainstorm`, `/ck:team` |
-| Debugging | `/ck:debug`, `/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix ci`, `/ck:fix test`, `/ck:fix types`, `/ck:fix logs`, `/ck:fix ui` |
-| Design | `/ck:design fast`, `/ck:design good`, `/ck:design 3d`, `/ck:design screenshot`, `/ck:design describe`, `/ck:design ui-ux-pro-max` |
-| Content | `/ck:content fast`, `/ck:content good`, `/ck:content enhance`, `/ck:content cro` |
-| Documentation | `/ck:docs -init`, `/ck:docs -update`, `/ck:docs -summarize` (aliases: `/ck:docs init`, `/ck:docs update`, `/ck:docs summarize`) |
-| SEO | `/ck:seo audit`, `/ck:seo keywords`, `/ck:seo schema` |
-| Git Operations | `/ck:git cm`, `/ck:git cp`, `/ck:git pr`, `/ck:git merge` |
-| Planning | `/ck:plan fast`, `/ck:plan hard`, `/ck:plan two`, `/ck:plan ci`, `/ck:plan cro` |
-| Session | `/ck:watzup`, `/ck:journal`, `/ck:scout`, `/ck:scout -ext` |
-| Skills | `/ck:skill:add`, `/ck:skill:create`, `/ck:skill:optimize`, `/ck:skill:fix-logs` |
-| Integration | `/ck:sepay`, `/ck:use-mcp` |
-| Review | `/ck:review` |
+| Development | `/plan`, `/cook`, `/test`, `/ask`, `/bootstrap`, `/bootstrap auto`, `/bootstrap fast`, `/brainstorm`, `/team` |
+| Debugging | `/debug`, `/fix`, `/fix --quick`, `/fix --review`, `/fix ci`, `/fix test`, `/fix types`, `/fix logs`, `/fix ui` |
+| Design | `/design fast`, `/design good`, `/design 3d`, `/design screenshot`, `/design describe`, `/design ui-ux-pro-max` |
+| Content | `/content fast`, `/content good`, `/content enhance`, `/content cro` |
+| Documentation | `/docs -init`, `/docs -update`, `/docs -summarize` (aliases: `/docs init`, `/docs update`, `/docs summarize`) |
+| SEO | `/seo audit`, `/seo keywords`, `/seo schema` |
+| Git Operations | `/git cm`, `/git cp`, `/git pr`, `/git merge` |
+| Planning | `/plan fast`, `/plan hard`, `/plan two`, `/plan ci`, `/plan cro` |
+| Session | `/watzup`, `/journal`, `/scout`, `/scout -ext` |
+| Skills | `/skill:add`, `/skill:create`, `/skill:optimize`, `/skill:fix-logs` |
+| Integration | `/sepay`, `/use-mcp` |
+| Review | `/review` |
 
 ### 3. Skills Library
 

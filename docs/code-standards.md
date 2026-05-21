@@ -71,13 +71,12 @@ project-root/
 - Examples: `planner.md`, `tester.md`, `git-manager.md`
 
 **Commands** (`.claude/commands/`, `.opencode/command/`):
-- Namespace dispatcher: `ck.md` at root → `/ck`
-- Subcommands: `ck/<name>.md` → `/ck:<name>`
+- Format: `<name>.md` (flat, all at root — no subdirectories)
 - Dispatcher commands handle variants via positional args (not separate files)
 - Examples:
-  - `ck/plan.md` → `/ck:plan [fast|hard|two|ci|cro]`
-  - `ck/fix.md` → `/ck:fix [ci|logs|test|types|ui]`
-  - `ck/git.md` → `/ck:git [cm|cp|pr|merge]`
+  - `plan.md` → `/plan [fast|hard|two|ci|cro]`
+  - `fix.md` → `/fix [ci|logs|test|types|ui]`
+  - `git.md` → `/git [cm|cp|pr|merge]`
 
 **Skills** (`.claude/skills/`):
 - Format: `[skill-name]/SKILL.md`

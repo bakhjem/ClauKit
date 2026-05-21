@@ -36,32 +36,32 @@ This document provides design guidelines, principles, and best practices for pro
 ### Quick Design
 
 ```bash
-/ck:design fast "Create a login page"
+/design fast "Create a login page"
 ```
 
 ### Immersive Design
 
 ```bash
-/ck:design good "Design a dashboard with charts"
+/design good "Design a dashboard with charts"
 ```
 
 ### 3D Designs
 
 ```bash
-/ck:design 3d "Create 3D product visualization"
+/design 3d "Create 3D product visualization"
 ```
 
 ### From References
 
 ```bash
-/ck:design screenshot "path/to/screenshot.png"
-/ck:design video "path/to/video.mp4"
+/design screenshot "path/to/screenshot.png"
+/design video "path/to/video.mp4"
 ```
 
 ### UI/UX Pro Max
 
 ```bash
-/ck:design ui-ux-pro-max "Create complete design system"
+/design ui-ux-pro-max "Create complete design system"
 ```
 
 ## Component Design

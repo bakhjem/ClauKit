@@ -41,7 +41,7 @@ Use `planner` subagent to:
 2. Follow the **"Plan Creation & Organization"** rules + **Plan Directory Structure** + **Plan File Specification** defined in the `planning` skill (single source of truth).
 3. Use up to **2 `researcher` agents in parallel** — each researches a different aspect, max 5 tool calls each.
 4. Analyze codebase: read `docs/codebase-summary.md`, `docs/code-standards.md`, `docs/system-architecture.md`, `docs/project-overview-pdr.md`.
-   - **Only if** `codebase-summary.md` missing or >3 days old → use `/ck:scout` to discover relevant files.
+   - **Only if** `codebase-summary.md` missing or >3 days old → use `/scout` to discover relevant files.
 5. Main agent passes all research + scout report filepaths to `planner` subagent to produce the implementation plan.
 6. Receive plan from `planner`, ask user to review.
 
@@ -82,13 +82,13 @@ You are an expert in conversion optimization. Analyze the content based on `$ARG
 
 **CRO Framework:** [.claude/workflows/cro-framework.md](.claude/workflows/cro-framework.md) — single source of truth for the 25-point CRO principles.
 
-**Distinct from `/ck:content cro`** (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
+**Distinct from `/content cro`** (which **rewrites** copy directly), this command produces a **CRO plan document** with framework-driven recommendations. Wait for user approval before implementation.
 
 Workflow:
 - Screenshots / videos → `ai-multimodal` skill extracts detailed description.
 - URL → `web_fetch` retrieves content for analysis.
 - Screenshot capture → screenshot tools + `ai-multimodal` / `gemini-video-understanding` / `gemini-document-processing` as needed.
-- `/ck:scout -ext` (preferred) or `/ck:scout` (fallback) → codebase discovery.
+- `/scout -ext` (preferred) or `/scout` (fallback) → codebase discovery.
 - `planner` agent applies the 25-point framework + follows planning skill's directory/file structure.
 - **DO NOT implement** — wait for user approval.
 

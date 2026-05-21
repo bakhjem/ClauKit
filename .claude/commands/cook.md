@@ -34,7 +34,7 @@ Think harder to drive the following feature end-to-end. Follow the cook skill me
 | `--from-plan` | Skip research + plan; jump straight to implementation (auto-set when arg is a plan path) |
 | `--no-test` | Skip test stage; **log waiver** per cook skill gating rule |
 
-Flags are composable (e.g. `/ck:cook plan.md --auto`).
+Flags are composable (e.g. `/cook plan.md --auto`).
 
 ## Workflow
 
@@ -57,7 +57,7 @@ Flags are composable (e.g. `/ck:cook plan.md --auto`).
 
 **Skip if `--from-plan`.**
 
-* Delegate to `planner` agent to create an implementation plan in `./plans/<YYMMDD-HHMM>-<slug>/ck:plan`.
+* Delegate to `planner` agent to create an implementation plan in `./plans/<YYMMDD-HHMM>-<slug>/plan`.
 * Use `bash -c 'date +%y%m%d-%H%M'` for the timestamp prefix.
 * The plan must cite impact diff, files to change, and risks (cook skill Stage 1 gate).
 * **Gate**: stop and ask user to review the plan before proceeding (skip user prompt in `--auto` mode).
@@ -86,7 +86,7 @@ Flags are composable (e.g. `/ck:cook plan.md --auto`).
 
 Maps to **cook skill Stage 4 (Review)**. Follow `code-review` skill ([.claude/skills/software/code-review/SKILL.md](.claude/skills/software/code-review/SKILL.md)) — single source of truth for review protocol.
 
-* **5a. Edge-case scout (optional, recommended for complex changes):** `/ck:scout edge cases for <feature>` — surfaces files affected beyond modified, data-flow paths, side effects. Hand report to reviewer.
+* **5a. Edge-case scout (optional, recommended for complex changes):** `/scout edge cases for <feature>` — surfaces files affected beyond modified, data-flow paths, side effects. Hand report to reviewer.
 * **5b. Get SHAs:** `BASE_SHA=$(git rev-parse HEAD~1)`, `HEAD_SHA=$(git rev-parse HEAD)`. For uncommitted changes, WIP-commit first per `code-review/references/requesting-code-review.md`.
 * **5c. Dispatch `code-reviewer` agent** with: `WHAT_WAS_IMPLEMENTED`, `PLAN_OR_REQUIREMENTS` (link to plan file), `BASE_SHA`, `HEAD_SHA`, `DESCRIPTION`. Agent emits severity buckets: Critical / High / Medium / Low.
 * **Gate decision:**
@@ -114,19 +114,19 @@ Maps to **cook skill Stage 4 (Review)**. Follow `code-review` skill ([.claude/sk
 ## Mode Quick Reference
 
 ```
-/ck:cook "add user profile"                      → full pipeline, interactive gates
-/ck:cook "prototype landing hero" --fast          → skip research, still test + review
-/ck:cook "add OAuth login" --auto                 → autonomous; auto-approve if clean review
-/ck:cook plans/260517-1430-auth/plan.md          → auto --from-plan; jump to impl
-/ck:cook plans/.../plan.md --auto                 → autonomous execution of existing plan
-/ck:cook "experimental UI tweak" --no-test        → skip test stage (waiver logged)
+/cook "add user profile"                      → full pipeline, interactive gates
+/cook "prototype landing hero" --fast          → skip research, still test + review
+/cook "add OAuth login" --auto                 → autonomous; auto-approve if clean review
+/cook plans/260517-1430-auth/plan.md          → auto --from-plan; jump to impl
+/cook plans/.../plan.md --auto                 → autonomous execution of existing plan
+/cook "experimental UI tweak" --no-test        → skip test stage (waiver logged)
 ```
 
 ## Relationship to Other Commands
 
-- `/ck:plan` — creates plan only; pair with `/ck:cook plan.md` to execute.
-- `/ck:team` — multi-agent parallel fan-out (different concept from cook's sequential gated pipeline).
-- `/ck:brainstorm` — architectural decisions before planning.
+- `/plan` — creates plan only; pair with `/cook plan.md` to execute.
+- `/team` — multi-agent parallel fan-out (different concept from cook's sequential gated pipeline).
+- `/brainstorm` — architectural decisions before planning.
 
 **REMEMBER:**
 - Cook skill methodology is the source of truth; this command is the workflow trigger.
