@@ -81,8 +81,8 @@ ck help              # Show help information
 ```
 claukit/
 ├── .claude/                    # Claude Code configuration
-│   ├── agents/                 # Specialized agent definitions (22 agents)
-│   ├── commands/               # Slash command implementations (55 commands)
+│   ├── agents/                 # Specialized agent definitions (21 agents)
+│   ├── commands/               # Slash command implementations (22 commands)
 │   ├── hooks/                  # Git hooks and scripts
 │   ├── skills/                 # Specialized skills library (78 skills)
 │   ├── workflows/              # Development workflow definitions
@@ -127,7 +127,7 @@ claukit/
 | Implementation | `scout`, `scout-external`, `ui-ux-designer` |
 | Specialized | `copywriter` |
 
-### Slash Commands (23)
+### Slash Commands (22)
 
 All dispatcher commands use **positional args** (no dash prefix) for mode selection. Only `/fix` uses `--flags` for combinable modifiers.
 
@@ -137,7 +137,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/bootstrap` | `[auto\|fast]` |
 | `/brainstorm` | `<topic>` |
 | `/content` | `[fast\|good\|enhance\|cro] <request>` |
-| `/cook` | `<plan-path>` |
+| `/cook` | `[task or plan-path] [--fast\|--auto\|--from-plan\|--no-test]` |
 | `/debug` | `<issue>` |
 | `/design` | `[fast\|good\|3d\|screenshot\|describe\|ui-ux-pro-max] <request>` |
 | `/docs` | `[init\|update\|summarize]` |
