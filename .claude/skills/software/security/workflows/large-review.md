@@ -1,0 +1,32 @@
+<!-- Adapted from https://github.com/tanviet12/vbsec@main:skills/vbs-scan-security/workflows/large-review.md (MIT) -->
+
+# Large Review Workflow (LARGE mode)
+
+For repos: >20 main-lang files OR >30 total files OR >14 days (commit scope).
+Main agent = orchestrator only. Sub-agents do the scanning.
+
+## L1 — Setup
+Create `.security-tmp/` workspace. Read `references/chunking-strategy.md` and divide files into chunks.
+
+## L2 — Track progress
+Use TodoWrite for each chunk (enables resume if interrupted).
+
+## L3 — Spawn sub-agents
+Spawn up to 3 sub-agents in parallel. Each receives:
+- File list for its chunk
+- Full prompt from `references/sub-agent-prompts.md` (self-contained, no file loading)
+- Output path: `.security-tmp/findings-<chunk-slug>.md`
+
+On sub-agent failure: retry once with emphasis on output format. Persistent failure → log as "failed chunk" in final report.
+
+## L4 — Aggregate findings
+Parse all `.security-tmp/findings-*.md`. Validate against 21 canonical rule IDs. Deduplicate by (file, line, rule_id). Run global cross-checks (CSRF middleware, outdated deps across all chunks).
+
+## L5 — Render & save
+Translate to $LANG. Follow `references/output-format.md`. Write to `security-reports/scan-<timestamp>.md`.
+
+## L6 — Cleanup
+Delete `.security-tmp/` after successful aggregation. Preserve `security-reports/`.
+
+## Performance target
+15 chunks → 5-10 minutes with parallel processing.
