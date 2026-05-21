@@ -1,6 +1,6 @@
 # ClauKit
 
-**Version**: 1.1.9
+**Version**: 1.2.0
 **Last Updated**: 2026-05-21
 **Repository**: https://github.com/trungdo9/ClauKit
 
@@ -149,7 +149,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/review` | Full codebase review |
 | `/scout` | `<prompt> [scale] [-ext]` |
 | `/seo` | `[audit\|keywords\|schema] <target>` |
-| `/skill` | `[add\|create\|optimize\|fix-logs] <args>` |
+| `/cc-skill` | `[add\|create\|optimize\|fix-logs] <args>` |
 | `/team` | `<task>` |
 | `/test` | `<scope>` |
 | `/use-mcp` | MCP server management |
