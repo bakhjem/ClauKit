@@ -53,6 +53,12 @@ async function main() {
       process.exit(0);
     }
 
+    // Skip documentation files — 200 LOC rule applies to code only
+    if (filePath.endsWith('.md') || filePath.endsWith('.txt')) {
+      debugLog('Documentation file, skipping LOC check.');
+      process.exit(0);
+    }
+
     // Check if file exists and is readable
     if (!fs.existsSync(filePath)) {
       debugLog(`File not found at path: ${filePath}`);

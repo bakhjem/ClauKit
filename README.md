@@ -149,7 +149,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/review` | Full codebase review |
 | `/scout` | `<prompt> [scale] [-ext]` |
 | `/seo` | `[audit\|keywords\|schema] <target>` |
-| `/skill` | `[-add\|-create\|-optimize\|-fix-logs] <args>` |
+| `/skill` | `[add\|create\|optimize\|fix-logs] <args>` |
 | `/team` | `<task>` |
 | `/test` | `<scope>` |
 | `/use-mcp` | MCP server management |
