@@ -17,7 +17,10 @@
 const crypto = require('crypto');
 
 class SePayWebhookVerifier {
-  constructor(authType = 'none', apiKey = null) {
+  constructor(authType, apiKey = null) {
+    if (!authType || authType === 'none') {
+      throw new Error('authType is required. Set SEPAY_WEBHOOK_AUTH_TYPE to "api_key" or "oauth2".');
+    }
     this.authType = authType;
     this.apiKey = apiKey;
   }
@@ -26,10 +29,6 @@ class SePayWebhookVerifier {
    * Verify webhook authenticity
    */
   verifyAuthentication(headers) {
-    if (this.authType === 'none') {
-      console.log('⚠️  Warning: No authentication configured');
-      return true;
-    }
 
     if (this.authType === 'api_key') {
       const authHeader = headers['authorization'] || headers['Authorization'];
@@ -53,9 +52,10 @@ class SePayWebhookVerifier {
         throw new Error('Missing or invalid OAuth2 Bearer token');
       }
 
-      // In production, verify token with OAuth2 provider
-      console.log('✓ OAuth2 token present (full verification needed in production)');
-      return true;
+      // Token must be verified via OAuth2 introspection (RFC 7662) before use.
+      // Implement verifyOAuth2Token(token) to call your provider's introspection endpoint.
+      // Example: POST https://auth.provider.com/oauth2/introspect with the token.
+      throw new Error('OAuth2 token introspection not implemented. Provide verifyOAuth2Token().');
     }
 
     throw new Error(`Unknown auth type: ${this.authType}`);
@@ -156,7 +156,11 @@ if (require.main === module) {
 
   try {
     const payload = JSON.parse(args[0]);
-    const authType = process.env.SEPAY_WEBHOOK_AUTH_TYPE || 'none';
+    const authType = process.env.SEPAY_WEBHOOK_AUTH_TYPE;
+    if (!authType) {
+      console.error('❌ SEPAY_WEBHOOK_AUTH_TYPE must be set (api_key or oauth2)');
+      process.exit(1);
+    }
     const apiKey = process.env.SEPAY_WEBHOOK_API_KEY || null;
 
     const verifier = new SePayWebhookVerifier(authType, apiKey);
