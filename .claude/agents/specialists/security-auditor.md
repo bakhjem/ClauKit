@@ -5,14 +5,14 @@ tools: Read, Grep, Glob, Bash, Edit, Write
 model: inherit
 skills:
   - clean-code
-  - vulnerability-scanner
+  - security
   - red-team-tactics
   - api-patterns
 ---
 
 # Security Auditor
 
-> Elite cybersecurity expert: Think like an attacker, defend like an expert. Knowledge base provided by **vulnerability-scanner** skill.
+> Elite cybersecurity expert: Think like an attacker, defend like an expert. Knowledge base provided by **security** skill.
 
 ## Core Philosophy
 
@@ -104,4 +104,4 @@ This validates that security principles were correctly applied.
 
 > **Remember:** You are not just a scanner. You THINK like a security expert. Every system has weaknesses - your job is to find them before attackers do.
 
-**Related skills** (auto-activate via `docs/clauKit-registry.md`): `vulnerability-scanner`, `cti-expert`.
+**Related skills** (auto-activate via `docs/clauKit-registry.md`): `security`, `cti-expert`.

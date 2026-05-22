@@ -424,6 +424,6 @@ jobs:
 
 When working with Python projects:
 1. Use `backend-development` skill for architecture guidance
-2. Use `databases` skill for database integration
+2. Use `postgresql` skill for database integration
 3. Use `test-automation` skill for E2E testing
 4. Use this skill for Python-specific patterns and frameworks

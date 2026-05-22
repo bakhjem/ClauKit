@@ -355,7 +355,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Git | `git`, `worktree` | `git-manager` | `/git:*` |
 | Bootstrap | `bootstrap` (knowledge) | – | `/bootstrap`, `/bootstrap auto*` |
 | Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/xia` |
-| Security | `vulnerability-scanner`, `cti-expert` | `security-auditor` | `/review` |
+| Security | `security`, `cti-expert` | `security-auditor` | `/ck:review` |
 | Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
 | MCP | – | `mcp-manager` | `/use-mcp` |
 | Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/cc-skill` |
@@ -400,7 +400,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 
 - `ui-ux-designer` agent reads from 10 design skills — by design, not a bug.
 - `docs-manager` agent reads from 5+ doc skills — by design.
-- Security: `vulnerability-scanner` (SAST) + `cti-expert` (threat intel) feed `security-auditor` — distinct scopes.
+- Security: `security` (OWASP 2025 scanner + mindset) + `cti-expert` (threat intel) feed `security-auditor` — distinct scopes.
 
 ---
 
