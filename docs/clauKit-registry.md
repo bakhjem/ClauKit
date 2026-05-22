@@ -221,93 +221,93 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 
 | Command | Description |
 |---|---|
-| `/ask` | Answer technical and architectural questions |
-| `/bootstrap [-auto\|-fast]` 🔁 | Bootstrap a new project — default: step-by-step · `-auto`: minimal Q&A · `-fast`: low-interaction parallel |
-| `/brainstorm` 🔁 | Brainstorm a feature |
-| `/content [-fast\|-good]` 🔁 | Write creative & smart copy — `-fast`: copywriter only · `-good`: researcher+planner+copywriter |
-| `/cook` 🔁 | Drive feature spec → production (full lifecycle: research, plan, code, test, review) |
-| `/debug` 🔁 | Debugging technical issues |
-| `/design [--fast\|--good] [--3d\|--screenshot\|--describe\|--ui-ux-pro-max]` 🔁 | Design UI/UX — workflow flags: `--fast` (minimal) · `--good` (research-driven). Output-type flags: `--3d` (Three.js immersive) · `--screenshot` (match reference) · `--describe` (plan only, no impl) · `--ui-ux-pro-max` (Style Intelligence: 50+ styles · 21 palettes · 50 fonts) |
-| `/fix [--auto] [--review] [--quick] [--parallel]` 🔁 | Analyze and fix issues — combinable flags: `--auto` (auto-pick flags) · `--review` (+code-reviewer) · `--quick` (minimal pipeline) · `--parallel` (parallel subagents) |
-| `/journal` 🔁 | Write journal entries |
-| `/plan [-fast\|-hard]` 🔁 | Intelligent plan creation — router (auto-detect) · `-fast`: no research · `-hard`: research-heavy |
-| `/scout [-ext]` 🔁 | Scout codebase — default: internal Explore subagents · `-ext`: external gemini/opencode |
-| `/team` 🔁 | Orchestrate parallel multi-session collaboration with independent Claude Code teammates (paired with `team` skill) |
-| `/test` 🔁 | Run tests locally, analyze report |
-| `/use-mcp` 🔁 | Utilize MCP server tools |
-| `/watzup` | Review recent changes, wrap up work |
-| `/xia` 🔁 | Port & refactor feature from public GitHub repo |
+| `/ck:ask` | Answer technical and architectural questions |
+| `/ck:bootstrap [auto\|fast]` 🔁 | Bootstrap a new project — default: step-by-step · `auto`: minimal Q&A · `fast`: low-interaction parallel |
+| `/ck:brainstorm` 🔁 | Brainstorm a feature |
+| `/ck:content [fast\|good\|enhance\|cro]` 🔁 | Write creative & smart copy — `fast`: copywriter only · `good`: researcher+planner+copywriter |
+| `/ck:cook` 🔁 | Drive feature spec → production (full lifecycle: research, plan, code, test, review) |
+| `/ck:debug` 🔁 | Debugging technical issues |
+| `/ck:design [fast\|good] [3d\|screenshot\|describe\|ui-ux-pro-max]` 🔁 | Design UI/UX — workflow flags: `fast` (minimal) · `good` (research-driven). Output-type flags: `3d` · `screenshot` · `describe` · `ui-ux-pro-max` (Style Intelligence) |
+| `/ck:fix [--auto] [--review] [--quick] [--parallel]` 🔁 | Analyze and fix issues — combinable flags: `--auto` · `--review` · `--quick` · `--parallel` |
+| `/ck:journal` 🔁 | Write journal entries |
+| `/ck:plan [fast\|hard\|two\|ci\|cro]` 🔁 | Intelligent plan creation — router (auto-detect) · `fast`: no research · `hard`: research-heavy |
+| `/ck:scout [-ext]` 🔁 | Scout codebase — default: internal Explore subagents · `-ext`: external gemini/opencode |
+| `/ck:team` 🔁 | Orchestrate parallel multi-session collaboration with independent Claude Code teammates (paired with `team` skill) |
+| `/ck:test` 🔁 | Run tests locally, analyze report |
+| `/ck:use-mcp` 🔁 | Utilize MCP server tools |
+| `/ck:watzup` | Review recent changes, wrap up work |
+| `/ck:xia` 🔁 | Port & refactor feature from public GitHub repo |
 
-### `content:*` (2) 🔁 copywriter — specialized actions
-
-| Command | Description |
-|---|---|
-| `/content cro` | CRO content optimization |
-| `/content enhance` | Analyze + enhance copy |
-
-### `docs` (dispatcher) + `docs:*` (3) 🔁 docs-manager
+### `content` variants (2) 🔁 copywriter — specialized actions
 
 | Command | Description |
 |---|---|
-| `/docs init` | Create initial docs from scratch |
-| `/docs update [requests]` | Update existing docs |
-| `/docs summarize [topics] [scan?]` | Summary report (read-only) |
+| `/ck:content cro` | CRO content optimization |
+| `/ck:content enhance` | Analyze + enhance copy |
 
-### `fix:*` (5) 🔁 tester / debugger — specialized inputs/agents
-
-| Command | Description |
-|---|---|
-| `/fix ci` | Fix CI/GitHub Actions issues |
-| `/fix logs` | Fix from log analysis |
-| `/fix test` | Run tests + fix |
-| `/fix types` | Fix type errors |
-| `/fix ui` | Fix UI issues |
-
-### `git` (dispatcher) 🔁 git-manager
+### `docs` (dispatcher, 3) 🔁 docs-manager
 
 | Command | Description |
 |---|---|
-| `/git cm` | Stage + commit |
-| `/git cp` | Stage + commit + push |
-| `/git pr [to] [from]` | Create pull request |
-| `/git merge [pr#\|branch]` | Merge PR or branch (interactive) |
+| `/ck:docs init` | Create initial docs from scratch |
+| `/ck:docs update [requests]` | Update existing docs |
+| `/ck:docs summarize [topics] [scan?]` | Summary report (read-only) |
 
-### `integrate:*` (1) 🔁 integration-agent
-
-| Command | Description |
-|---|---|
-| `/sepay` | SePay.vn payment integration |
-
-### `plan:*` (3) 🔁 planner — specialized planning shapes
+### `fix` variants (5) 🔁 tester / debugger — specialized inputs/agents
 
 | Command | Description |
 |---|---|
-| `/plan ci` | Plan to fix CI issues |
-| `/plan cro` | CRO plan |
-| `/plan two` | Plan w/ 2 approaches |
+| `/ck:fix ci` | Fix CI/GitHub Actions issues |
+| `/ck:fix logs` | Fix from log analysis |
+| `/ck:fix test` | Run tests + fix |
+| `/ck:fix types` | Fix type errors |
+| `/ck:fix ui` | Fix UI issues |
 
-### `review:*` (1) 🔁 code-reviewer + security-auditor
-
-| Command | Description |
-|---|---|
-| `/review` | Scan + analyze codebase |
-
-### `seo` (dispatcher) 🔁 seo skill
+### `git` (dispatcher, 4) 🔁 git-manager
 
 | Command | Description |
 |---|---|
-| `/seo audit <url>` | SEO audit URL |
-| `/seo keywords <topic>` | Keyword research |
-| `/seo schema <type>` | JSON-LD schema |
+| `/ck:git cm` | Stage + commit |
+| `/ck:git cp` | Stage + commit + push |
+| `/ck:git pr [to] [from]` | Create pull request |
+| `/ck:git merge [pr#\|branch]` | Merge PR or branch (interactive) |
 
-### `cc-skill` (dispatcher, 4 flags) 🔁 skill-creator
+### `sepay` 🔁 integration-agent
+
+| Command | Description |
+|---|---|
+| `/ck:sepay` | SePay.vn payment integration |
+
+### `plan` variants (3) 🔁 planner — specialized planning shapes
+
+| Command | Description |
+|---|---|
+| `/ck:plan ci` | Plan to fix CI issues |
+| `/ck:plan cro` | CRO plan |
+| `/ck:plan two` | Plan w/ 2 approaches |
+
+### `review` 🔁 code-reviewer + security-auditor
+
+| Command | Description |
+|---|---|
+| `/ck:review` | Scan + analyze codebase |
+
+### `seo` (dispatcher, 3) 🔁 seo skill
+
+| Command | Description |
+|---|---|
+| `/ck:seo audit <url>` | SEO audit URL |
+| `/ck:seo keywords <topic>` | Keyword research |
+| `/ck:seo schema <type>` | JSON-LD schema |
+
+### `cc-skill` (dispatcher, 4) 🔁 skill-creator
 
 | Invocation | Description |
 |---|---|
-| `/cc-skill add` | Add files/scripts to a skill |
-| `/cc-skill create` | Create new skill |
-| `/cc-skill fix-logs` | Fix skill from logs |
-| `/cc-skill optimize` | Optimize existing skill (plan-first) |
+| `/ck:cc-skill add` | Add files/scripts to a skill |
+| `/ck:cc-skill create` | Create new skill |
+| `/ck:cc-skill fix-logs` | Fix skill from logs |
+| `/ck:cc-skill optimize` | Optimize existing skill (plan-first) |
 
 ---
 
@@ -326,15 +326,15 @@ These are the *intended* trios where Skill = knowledge, Agent = persona, Command
 **Batch 1** (4 trios): `brainstorm`, `planning`, `code-review`, `debugging`
 **Batch 2** (5 trios): `research`, `scout`/`scout-external`, `docs`, `bootstrap`, `payment-integration`
 **Batch 3** (5 trios): `git`, `xia`, `journal`, `fix`, `ask`
-**Batch 4** (1 trio): `seo` (dispatcher with 3 flags: `/seo audit`, `/seo keywords`, `/seo schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references. Collapsed from `seo:*` namespace to flag-style dispatcher 2026-05-18.
+**Batch 4** (1 trio): `seo` (dispatcher with 3 flags: `/ck:seo audit`, `/ck:seo keywords`, `/ck:seo schema`) — extracted detailed pipelines/templates from commands into `seo/references/{audit-checklist,keyword-research,schema-templates}.md`. Commands dropped 840→109 lines (−87%); single source of truth = skill + references. Collapsed from `seo:*` namespace to flag-style dispatcher 2026-05-18.
 **Batch 5** (4 cleanups): `content/cro` + `plan/cro` (cross-command CRO duplicate), `design/3d` (plan-structure duplicate), `design/*` (skill-activation boilerplate), `skill/*` (input-handling boilerplate).
-- **CRO framework** — 25-point Conversion Optimization Framework extracted to [.claude/workflows/cro-framework.md](../../.claude/workflows/cro-framework.md). Both `/content cro` and `/plan cro` reference it instead of duplicating.
+- **CRO framework** — 25-point Conversion Optimization Framework extracted to [.claude/workflows/cro-framework.md](../../.claude/workflows/cro-framework.md). Both `/ck:content cro` and `/ck:plan cro` reference it instead of duplicating.
 - **`design/*`** — removed repeated `aesthetic`+`frontend-design` skill-activation block from 5 commands (`ui-ux-designer` agent already auto-activates these). `design/3d`, `design/screenshot`, `design/describe` now reference `planning` skill for plan structure.
-- **`skill`** — collapsed 4 subcommands (`/skill:add|create|optimize|fix-logs`) into a single dispatcher `/skill` with `-add`/`-create`/`-optimize`/`-fix-logs` flags (mirrors `/git` pattern). Skill-creator canonical; `-optimize` references `planning` skill for plan structure.
+- **`cc-skill`** — collapsed 4 subcommands (`/ck:cc-skill add|create|optimize|fix-logs`) into a single dispatcher `/ck:cc-skill` with positional action arg (mirrors `/ck:git` pattern). Skill-creator canonical; `optimize` references `planning` skill for plan structure.
 
 Notable extensions:
-- `bootstrap` skill extended with **"Canonical Bootstrap Workflow"** (10-phase pipeline) — `/bootstrap`, `/bootstrap auto`, `/bootstrap fast` only document variant differences.
-- `fix` family — no skill/agent existed → created [.claude/workflows/fix-pipeline.md](../../.claude/workflows/fix-pipeline.md) as canonical 7-stage pipeline; 8 commands (`/fix`, `/fix --quick`, `/fix --review`, `/fix logs`, `/fix ci`, `/fix test`, `/fix types`, `/fix ui`) reference it + document variant deltas.
+- `bootstrap` skill extended with **"Canonical Bootstrap Workflow"** (10-phase pipeline) — `/ck:bootstrap`, `/ck:bootstrap auto`, `/ck:bootstrap fast` only document variant differences.
+- `fix` family — no skill/agent existed → created [.claude/workflows/fix-pipeline.md](../../.claude/workflows/fix-pipeline.md) as canonical 7-stage pipeline; 8 commands (`/ck:fix`, `/ck:fix --quick`, `/ck:fix --review`, `/ck:fix logs`, `/ck:fix ci`, `/ck:fix test`, `/ck:fix types`, `/ck:fix ui`) reference it + document variant deltas.
 - `scout-external` agent references `scout` agent as canonical methodology — variant-only differences (external Gemini/OpenCode vs internal Explore).
 - `docs-manager` agent + `journal-writer` agent serve as canonical sources (no dedicated knowledge skill exists for those concepts).
 - `git-manager` agent retains haiku-optimized 2-3 tool execution workflow as agent-specific knowledge (skill = conventional-commits methodology).
@@ -343,30 +343,30 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 
 | Concept | Skill | Agent | Command |
 |---|---|---|---|
-| Planning | `planning` | `planner` | `/plan`, `/plan:*` |
-| Research / Scout | `research` | `researcher`, `scout`, `scout-external` | `/scout`, `/scout -ext` |
-| Code review | `code-review` | `code-reviewer` | `/review` |
-| Debugging | `debugging` | `debugger` | `/debug` |
-| Testing | `web-testing` (developer toolkit), `test-automation` (QA/automation engineering) | `tester` | `/test`, `/fix test` |
-| Docs | `mintlify`, `llms`, `markdown-novel-viewer`, `tech-graph`, `document-skills/*` | `docs-manager` | `/docs:*` |
-| Design | 10 design skills | `ui-ux-designer` | `/design:*` |
-| Content | `show-off` | `copywriter` | `/content:*` |
-| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/seo audit\|-keywords\|-schema` |
-| Git | `git`, `worktree` | `git-manager` | `/git:*` |
-| Bootstrap | `bootstrap` (knowledge) | – | `/bootstrap`, `/bootstrap auto*` |
-| Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/xia` |
+| Planning | `planning` | `planner` | `/ck:plan` |
+| Research / Scout | `research` | `researcher`, `scout`, `scout-external` | `/ck:scout`, `/ck:scout -ext` |
+| Code review | `code-review` | `code-reviewer` | `/ck:review` |
+| Debugging | `debugging` | `debugger` | `/ck:debug` |
+| Testing | `web-testing` (developer toolkit), `test-automation` (QA/automation engineering) | `tester` | `/ck:test`, `/ck:fix test` |
+| Docs | `mintlify`, `llms`, `markdown-novel-viewer`, `tech-graph`, `document-skills/*` | `docs-manager` | `/ck:docs [init\|update\|summarize]` |
+| Design | 10 design skills | `ui-ux-designer` | `/ck:design` |
+| Content | `show-off` | `copywriter` | `/ck:content` |
+| SEO/GEO | `seo`, `geo` | – (agent removed 2026-05-17) | `/ck:seo [audit\|keywords\|schema]` |
+| Git | `git`, `worktree` | `git-manager` | `/ck:git [cm\|cp\|pr\|merge]` |
+| Bootstrap | `bootstrap` (knowledge) | – | `/ck:bootstrap` |
+| Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/ck:xia` |
 | Security | `security`, `cti-expert` | `security-auditor` | `/ck:review` |
-| Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
-| MCP | – | `mcp-manager` | `/use-mcp` |
-| Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/cc-skill` |
-| Database | `databases`, `supabase` | `database-admin` | – |
-| Journal | – | `journal-writer` | `/journal` |
-| Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/brainstorm` |
-| Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/team` |
-| Fix | – | (uses tester/debugger) | `/fix`, `/fix <variant>` |
-| Ask | `ask` (4-persona consultation methodology) | – | `/ask` |
-| Watchup | – | – | `/watzup` |
-| Cook (feature lifecycle) | `cook` (5-stage gated methodology) | (uses team) | `/cook` |
+| Payments | `payment-integration` | `integration-agent` | `/ck:sepay` |
+| MCP | – | `mcp-manager` | `/ck:use-mcp` |
+| Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/ck:cc-skill` |
+| Database | `postgresql`, `supabase` | `database-admin` | – |
+| Journal | – | `journal-writer` | `/ck:journal` |
+| Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/ck:brainstorm` |
+| Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/ck:team` |
+| Fix | – | (uses tester/debugger) | `/ck:fix` |
+| Ask | `ask` (4-persona consultation methodology) | – | `/ck:ask` |
+| Watchup | – | – | `/ck:watzup` |
+| Cook (feature lifecycle) | `cook` (5-stage gated methodology) | (uses team) | `/ck:cook` |
 | Problem-solving | `problem-solving` | – | – |
 | Sequential thinking | `sequential-thinking` | – | – |
 | Misc skills (knowledge only) | `better-auth`, `csharp-expert`, `preview`, `llms`, `markdown-novel-viewer`, `mintlify`, `tech-graph`, `cti-expert`, design subskills, `mobile-development` | – | – |

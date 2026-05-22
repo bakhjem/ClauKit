@@ -23,10 +23,10 @@ A comprehensive guide to all available slash commands in ClauKit.
 Slash commands are powerful shortcuts that trigger specialized AI agents and workflows in ClauKit. They follow the simple syntax:
 
 ```bash
-/<command-name> [arguments]
+/ck:<command-name> [arguments]
 ```
 
-Commands are stored in `.claude/commands/` directory and can be customized for your project needs.
+Commands are stored in `.claude/commands/ck/` and invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix ci`).
 
 ### Benefits
 
@@ -39,30 +39,30 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 
 ## Core Development Commands
 
-### `/ask`
+### `/ck:ask`
 
 **Description**: Answer technical and architectural questions with expert consultation.
 
 **Usage**:
 ```bash
-/ask [technical-question]
+/ck:ask [technical-question]
 ```
 
 **Examples**:
 ```bash
-/ask "Should we use Redis or Memcached for our caching layer?"
-/ask "How can we scale our database to handle 1M concurrent users?"
+/ck:ask "Should we use Redis or Memcached for our caching layer?"
+/ck:ask "How can we scale our database to handle 1M concurrent users?"
 ```
 
 ---
 
-### `/bootstrap`
+### `/ck:bootstrap`
 
 **Description**: Bootstrap a new project from scratch with complete setup.
 
 **Usage**:
 ```bash
-/bootstrap
+/ck:bootstrap
 ```
 
 **Workflow**:
@@ -78,30 +78,30 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 
 ---
 
-### `/brainstorm`
+### `/ck:brainstorm`
 
 **Description**: Brainstorm solutions for features or technical challenges.
 
 **Usage**:
 ```bash
-/brainstorm [feature-or-question]
+/ck:brainstorm [feature-or-question]
 ```
 
 **Examples**:
 ```bash
-/brainstorm "How should we implement user authentication?"
-/brainstorm "Best way to handle file uploads for large files?"
+/ck:brainstorm "How should we implement user authentication?"
+/ck:brainstorm "Best way to handle file uploads for large files?"
 ```
 
 ---
 
-### `/cook`
+### `/ck:cook`
 
 **Description**: Drive a feature spec → production through the full lifecycle (research, plan, code, test, review). Backed by the `cook` skill methodology (5-stage gated pipeline).
 
 **Usage**:
 ```bash
-/cook [task hoặc plan path] [--fast|--auto|--from-plan|--no-test]
+/ck:cook [task hoặc plan path] [--fast|--auto|--from-plan|--no-test]
 ```
 
 **Modes**:
@@ -124,97 +124,75 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 7. **PM + Docs** — `project-manager` + `docs-manager` in parallel
 8. **Onboarding + Final Report** — user instructions, optional `git-manager` commit
 
-**Relationship to `/code`**: `/code` is a backup fast-path for "plan-already-exists" — equivalent to `/cook <plan> --from-plan`. Prefer `/cook`; `/code` is kept available as fallback.
+**Tip**: pass a plan path directly (e.g. `/ck:cook plans/.../plan.md`) to auto-enable `--from-plan` and jump straight to implementation.
 
 **Examples**:
 ```bash
-/cook "add user profile page with avatar upload"
-/cook "implement OAuth2 authentication with Google" --auto
-/cook plans/260517-1430-auth/plan.md
-/cook plans/.../plan.md --auto
-/cook "prototype landing hero" --fast
+/ck:cook "add user profile page with avatar upload"
+/ck:cook "implement OAuth2 authentication with Google" --auto
+/ck:cook plans/260517-1430-auth/plan.md
+/ck:cook plans/.../plan.md --auto
+/ck:cook "prototype landing hero" --fast
 ```
 
 ---
 
-### `/debug`
+### `/ck:debug`
 
 **Description**: Analyze and debug technical issues without implementing fixes.
 
 **Usage**:
 ```bash
-/debug [issue-description]
+/ck:debug [issue-description]
 ```
 
 **Examples**:
 ```bash
-/debug "Memory leak in user service"
-/debug "API responses are slow after deployment"
+/ck:debug "Memory leak in user service"
+/ck:debug "API responses are slow after deployment"
 ```
 
-**Note**: Use `/fix:*` commands to implement fixes.
+**Note**: Use `/ck:fix:*` commands to implement fixes.
 
 ---
 
-### `/journal`
+### `/ck:journal`
 
 **Description**: Write journal entries about recent development work.
 
 **Usage**:
 ```bash
-/journal
+/ck:journal
 ```
 
 ---
 
-### `/plan`
+### `/ck:plan`
 
 **Description**: Research, analyze, and create implementation plan without coding.
 
 **Usage**:
 ```bash
-/plan [task-description]
+/ck:plan [task-description]
 ```
 
 **Examples**:
 ```bash
-/plan "implement WebSocket real-time notifications"
-/plan "add multi-language support with i18n"
+/ck:plan "implement WebSocket real-time notifications"
+/ck:plan "add multi-language support with i18n"
 ```
 
-**Note**: `/plan` stops before implementation. After the user reviews and approves the plan, the user should run `/clear` before starting `/code` in a fresh context.
+**Note**: `/ck:plan` stops before implementation. After reviewing the plan, run `/ck:cook plans/.../plan.md` to execute it.
 
 ---
 
-### `/code`
-
-**Description**: Implement and test an existing approved plan.
-
-**Usage**:
-```bash
-/code @plans/.../plan.md
-```
-
-**Workflow**:
-1. Read the approved plan
-2. Implement by phase
-3. Type checking / compile
-4. Test writing + execution
-5. Debugging loop (if needed)
-6. Code Review
-7. Documentation / project update
-
-**Note**: `/code` is the recommended executor after `/plan` review and `/clear`. It should consume an approved plan, not re-plan from scratch.
-
----
-
-### `/scout`
+### `/ck:scout`
 
 **Description**: Fast codebase search to find files needed for a task.
 
 **Usage**:
 ```bash
-/scout [user-prompt] [scale]
+/ck:scout [user-prompt] [scale]
 ```
 
 **Arguments**:
@@ -223,316 +201,305 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 
 **Examples**:
 ```bash
-/scout "authentication related files" 3
-/scout "database models and migrations" 5
+/ck:scout "authentication related files" 3
+/ck:scout "database models and migrations" 5
 ```
 
 ---
 
-### `/test`
+### `/ck:test`
 
 **Description**: Run tests and analyze results without implementing fixes.
 
 **Usage**:
 ```bash
-/test
+/ck:test
 ```
 
 ---
 
-### `/watzup`
+### `/ck:watzup`
 
 **Description**: Review recent changes and wrap up work session.
 
 **Usage**:
 ```bash
-/watzup
+/ck:watzup
 ```
 
 ---
 
 ## Content Creation Commands
 
-### `/content:enhance`
+### `/ck:content:enhance`
 
 **Description**: Analyze and enhance existing copy based on reported issues.
 
 **Usage**:
 ```bash
-/content:enhance [issues-description]
+/ck:content:enhance [issues-description]
 ```
 
 ---
 
-### `/content:fast`
+### `/ck:content:fast`
 
 **Description**: Write creative & smart copy quickly.
 
 **Usage**:
 ```bash
-/content:fast [user-request]
+/ck:content:fast [user-request]
 ```
 
 **Examples**:
 ```bash
-/content:fast "Write hero section for SaaS landing page"
-/content:fast "Create compelling CTA button text"
+/ck:content:fast "Write hero section for SaaS landing page"
+/ck:content:fast "Create compelling CTA button text"
 ```
 
 ---
 
-### `/content:good`
+### `/ck:content:good`
 
 **Description**: Write high-quality creative & smart copy with research.
 
 **Usage**:
 ```bash
-/content:good [user-request]
+/ck:content:good [user-request]
 ```
 
 ---
 
 ## Design Commands
 
-### `/design:fast`
+### `/ck:design:fast`
 
 **Description**: Create a quick design implementation.
 
 **Usage**:
 ```bash
-/design:fast [design-requirements]
+/ck:design:fast [design-requirements]
 ```
 
 ---
 
-### `/design:good`
+### `/ck:design:good`
 
 **Description**: Create immersive, award-winning quality design.
 
 **Usage**:
 ```bash
-/design:good [design-requirements]
+/ck:design:good [design-requirements]
 ```
 
 ---
 
-### `/design:3d`
+### `/ck:design:3d`
 
 **Description**: Create immersive interactive 3D designs with Three.js.
 
 **Usage**:
 ```bash
-/design:3d [3d-design-requirements]
+/ck:design:3d [3d-design-requirements]
 ```
 
 ---
 
-### `/design:screenshot`
+### `/ck:design:screenshot`
 
 **Description**: Create design based on a screenshot.
 
 **Usage**:
 ```bash
-/design:screenshot [screenshot-path-or-url]
+/ck:design:screenshot [screenshot-path-or-url]
 ```
 
 ---
 
-### `/design:video`
+### `/ck:design:video`
 
 **Description**: Create design based on a video reference.
 
 **Usage**:
 ```bash
-/design:video [video-path-or-url]
+/ck:design:video [video-path-or-url]
 ```
 
 ---
 
-### `/design:describe`
+### `/ck:design:describe`
 
 **Description**: Describe a design from screenshot/video without implementing.
 
 **Usage**:
 ```bash
-/design:describe [screenshot-or-video]
+/ck:design:describe [screenshot-or-video]
 ```
 
 ---
 
 ## Documentation Commands
 
-### `/docs:init`
+### `/ck:docs:init`
 
 **Description**: Analyze codebase and create initial documentation.
 
 **Usage**:
 ```bash
-/docs:init
+/ck:docs:init
 ```
 
 ---
 
-### `/docs:summarize`
+### `/ck:docs:summarize`
 
 **Description**: Update codebase summary documentation.
 
 **Usage**:
 ```bash
-/docs:summarize
+/ck:docs:summarize
 ```
 
 ---
 
-### `/docs:update`
+### `/ck:docs:update`
 
 **Description**: Comprehensively update all documentation.
 
 **Usage**:
 ```bash
-/docs:update [additional-requests]
+/ck:docs:update [additional-requests]
 ```
 
 ---
 
 ## Fix & Debug Commands
 
-### `/fix:ci`
+### `/ck:fix:ci`
 
 **Description**: Analyze GitHub Actions logs and fix CI/CD issues.
 
 **Usage**:
 ```bash
-/fix:ci [github-actions-url]
+/ck:fix:ci [github-actions-url]
 ```
 
 ---
 
-### `/fix:fast`
+### `/ck:fix:fast`
 
 **Description**: Quickly analyze and fix issues.
 
 **Usage**:
 ```bash
-/fix:fast [issue-description]
+/ck:fix:fast [issue-description]
 ```
 
 ---
 
-### `/fix:hard`
+### `/ck:fix:hard`
 
 **Description**: Plan and fix hard issues with full workflow.
 
 **Usage**:
 ```bash
-/fix:hard [complex-issue-description]
+/ck:fix:hard [complex-issue-description]
 ```
 
 ---
 
-### `/fix:logs`
+### `/ck:fix:logs`
 
 **Description**: Analyze logs file and fix issues.
 
 **Usage**:
 ```bash
-/fix:logs [issue-context]
+/ck:fix:logs [issue-context]
 ```
 
 **Requirement**: Must have `./logs.txt` file.
 
 ---
 
-### `/fix:test`
+### `/ck:fix:test`
 
 **Description**: Run test suite and fix all failures.
 
 **Usage**:
 ```bash
-/fix:test [issue-context]
+/ck:fix:test [issue-context]
 ```
 
 ---
 
-### `/fix:types`
+### `/ck:fix:types`
 
 **Description**: Fix TypeScript type errors.
 
 **Usage**:
 ```bash
-/fix:types
+/ck:fix:types
 ```
 
 ---
 
 ## Git Commands
 
-### `/git:cm`
+### `/ck:git:cm`
 
 **Description**: Stage all files and create a commit.
 
 **Usage**:
 ```bash
-/git:cm
+/ck:git:cm
 ```
 
 ---
 
-### `/git:cp`
+### `/ck:git:cp`
 
 **Description**: Stage, commit, and push all changes.
 
 **Usage**:
 ```bash
-/git:cp
+/ck:git:cp
 ```
 
 ---
 
 ## Planning Commands
 
-### `/plan:ci`
+### `/ck:plan:ci`
 
 **Description**: Analyze GitHub Actions and provide fix plan (no implementation).
 
 **Usage**:
 ```bash
-/plan:ci [github-actions-url]
+/ck:plan:ci [github-actions-url]
 ```
 
 ---
 
-### `/plan:two`
+### `/ck:plan:two`
 
 **Description**: Create implementation plan with 2+ approaches.
 
 **Usage**:
 ```bash
-/plan:two [task-description]
+/ck:plan:two [task-description]
 ```
 
 ---
 
 ## Integration Commands
 
-### `/integrate:polar`
-
-**Description**: Implement payment integration with Polar.sh.
-
-**Usage**:
-```bash
-/integrate:polar [requirements]
-```
-
----
-
-### `/integrate:sepay`
+### `/ck:sepay`
 
 **Description**: Implement payment integration with SePay (Vietnamese payment gateway).
 
 **Usage**:
 ```bash
-/integrate:sepay [requirements]
+/ck:sepay [requirements]
 ```
 
 ---
@@ -542,28 +509,23 @@ Commands are stored in `.claude/commands/` directory and can be customized for y
 ### Choosing the Right Command
 
 **For Planning**:
-- `/plan` - Single approach
-- `/plan:two` - Compare approaches
-- `/brainstorm` - Exploratory discussion
-- `/ask` - Architectural consultation
+- `/ck:plan` - Single approach
+- `/ck:plan two` - Compare 2 approaches
+- `/ck:brainstorm` - Exploratory discussion
+- `/ck:ask` - Architectural consultation
 
 **For Implementation**:
-- `/cook` - Full lifecycle: research → plan → code → test → review (primary)
-- `/cook <plan.md>` or `/cook ... --from-plan` - Execute an approved plan in a fresh context
-- `/code` - Backup fast-path (= `/cook <plan> --from-plan`); kept as fallback
-- `/bootstrap` - New projects
-- `/design:*` - UI/UX work
-- `/integrate:*` - Third-party services
-
-**About `/clear`**:
-- `/clear` is a **user-triggered context reset between planning and coding**
-- `/clear` is **not** an internal subagent step
+- `/ck:cook` - Full lifecycle: research → plan → code → test → review (primary)
+- `/ck:cook plans/.../plan.md` or `/ck:cook ... --from-plan` - Execute an approved plan
+- `/ck:bootstrap` - New projects
+- `/ck:design` - UI/UX work
+- `/ck:sepay` - Payment integration
 
 **For Fixing Issues**:
-- `/fix:fast` - Simple bugs
-- `/fix:hard` - Complex issues
-- `/fix:types` - TypeScript errors
-- `/fix:test` - Test failures
+- `/ck:fix --quick` - Simple bugs
+- `/ck:fix` - Full fix pipeline
+- `/ck:fix types` - TypeScript errors
+- `/ck:fix test` - Test failures
 
 ---
 
@@ -585,6 +547,6 @@ ck help
 
 ---
 
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-05-22
 
 Repository: https://github.com/trungdo9/ClauKit
