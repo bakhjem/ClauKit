@@ -100,7 +100,7 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
-| `databases` | ✅ | `database/databases/` | MongoDB + PostgreSQL unified guide |
+| `postgresql` | ✅ | `database/databases/` | PostgreSQL guide — SQL queries, schema design, performance, psql CLI, backups, replication |
 | `supabase` | ✅ | `database/supabase/` | Complete Supabase skill — platform layer (Auth/RLS, SDK, Storage, Realtime, Edge Functions, CLI) + Postgres layer (query optimization, indexing, connection pooling, schema, locking, monitoring). Merged from `supabase-postgres-best-practices` 2026-05-22 |
 
 #### `software/design/` (9)
