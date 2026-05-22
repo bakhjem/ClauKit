@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-22
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 78 skills (78 active + 0 scaffold) · 21 agents · 22 commands · **121 total entries**
+**Counts**: 80 skills (80 active + 0 scaffold) · 21 agents · 25 commands · **126 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -43,7 +43,7 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 | `geo` | ✅ | `marketing/geo/` |
 | `seo` | ✅ | `marketing/seo/` |
 
-### Software · Top-level standalone (36)
+### Software · Top-level standalone (38)
 
 All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent).
 
@@ -68,7 +68,9 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `llms` | ✅ | `software/llms/` | |
 | `markdown-novel-viewer` | ✅ | `software/markdown-novel-viewer/` | |
 | `mintlify` | ✅ | `software/mintlify/` | |
+| `onboarding` 🔁 | ✅ | `software/onboarding/` | 6-phase codebase tour methodology — paired with `/ck:onboard` |
 | `payment-integration` | ✅ | `software/payment-integration/` | |
+| `refactor` 🔁 | ✅ | `software/refactor/` | Large mechanical refactor (rename · extract · migrate · codemod) — 7-phase pipeline w/ atomic commits + rollback; paired with `/ck:refactor` |
 | `planning` 🔁 | ✅ | `software/planning/` | Now includes "Predictive planning" subsection (merged from removed `predict` scaffold) |
 | `plans-kanban` | ✅ | `software/plans-kanban/` | Kanban methodology applied to plans/ folder |
 | `preview` | ✅ | `software/preview/` | |
@@ -213,11 +215,11 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 ---
 
-## 3 · Commands (22)
+## 3 · Commands (26)
 
 All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix ci`). **`/orchestrate` removed 2026-05-17** (superseded by `/ck:team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/ck:fix ci`, `/ck:plan two`).
 
-### Top-level (16) — single-action + flagged-variant entrypoints
+### Top-level (20) — single-action + flagged-variant entrypoints
 
 | Command | Description |
 |---|---|
@@ -228,9 +230,13 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:cook` 🔁 | Drive feature spec → production (full lifecycle: research, plan, code, test, review) |
 | `/ck:debug` 🔁 | Debugging technical issues |
 | `/ck:design [fast\|good] [3d\|screenshot\|describe\|ui-ux-pro-max]` 🔁 | Design UI/UX — workflow flags: `fast` (minimal) · `good` (research-driven). Output-type flags: `3d` · `screenshot` · `describe` · `ui-ux-pro-max` (Style Intelligence) |
+| `/ck:find` 🔁 | Recommend ClauKit skill/agent/command for a task — local registry first, external skills fallback |
 | `/ck:fix [--auto] [--review] [--quick] [--parallel]` 🔁 | Analyze and fix issues — combinable flags: `--auto` · `--review` · `--quick` · `--parallel` |
 | `/ck:journal` 🔁 | Write journal entries |
+| `/ck:onboard` 🔁 | Guided 6-phase codebase tour for new/returning devs (10-min orientation) |
 | `/ck:plan [fast\|hard\|two\|ci\|cro]` 🔁 | Intelligent plan creation — router (auto-detect) · `fast`: no research · `hard`: research-heavy |
+| `/ck:refactor` 🔁 | Large mechanical refactor — rename · extract · migrate · codemod. 7-phase pipeline w/ atomic-commit + rollback gates |
+| `/ck:research` 🔁 | Technical research — technology evaluation, best practices, solution design (uses `research` skill) |
 | `/ck:scout [-ext]` 🔁 | Scout codebase — default: internal Explore subagents · `-ext`: external gemini/opencode |
 | `/ck:team` 🔁 | Orchestrate parallel multi-session collaboration with independent Claude Code teammates (paired with `team` skill) |
 | `/ck:test` 🔁 | Run tests locally, analyze report |
@@ -344,7 +350,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Concept | Skill | Agent | Command |
 |---|---|---|---|
 | Planning | `planning` | `planner` | `/ck:plan` |
-| Research / Scout | `research` | `researcher`, `scout`, `scout-external` | `/ck:scout`, `/ck:scout -ext` |
+| Research / Scout | `research` | `researcher`, `scout`, `scout-external` | `/ck:research`, `/ck:scout`, `/ck:scout -ext` |
 | Code review | `code-review` | `code-reviewer` | `/ck:review` |
 | Debugging | `debugging` | `debugger` | `/ck:debug` |
 | Testing | `web-testing` (developer toolkit), `test-automation` (QA/automation engineering) | `tester` | `/ck:test`, `/ck:fix test` |
@@ -363,6 +369,9 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Journal | – | `journal-writer` | `/ck:journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/ck:brainstorm` |
 | Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/ck:team` |
+| Onboarding (6-phase codebase tour) | `onboarding` | – | `/ck:onboard` |
+| Refactor (7-phase mechanical change pipeline) | `refactor` | – (uses `scout`, `tester`, `code-reviewer`, `git-manager`) | `/ck:refactor` |
+| Discoverability (local-first tool finder) | – (uses `find-skills` skill for external fallback) | – | `/ck:find` |
 | Fix | – | (uses tester/debugger) | `/ck:fix` |
 | Ask | `ask` (4-persona consultation methodology) | – | `/ck:ask` |
 | Watchup | – | – | `/ck:watzup` |
@@ -452,11 +461,11 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 |---|---:|---:|---:|
 | Skills · `global/` | 1 | 0 | 1 |
 | Skills · `marketing/` | 2 | 0 | 2 |
-| Skills · `software/` | 72 | 0 | 72 |
-| **Skills total** | **75** | **0** | **75** |
+| Skills · `software/` | 74 | 0 | 74 |
+| **Skills total** | **77** | **0** | **77** |
 | Agents | 22 | 0 | 22 |
-| Commands | 55 | 0 | 55 |
-| **Grand total entries** | | | **152** |
+| Commands | 58 | 0 | 58 |
+| **Grand total entries** | | | **157** |
 
 ## 7 · Open Issues
 

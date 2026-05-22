@@ -76,15 +76,259 @@ ck help              # Show help information
 
 > `ck init` only copies `.claude/`. Other assets shipped in the package (`.opencode/`, `AGENTS.md`, `docs/`, `CLAUDE.md`) are only available via Option 3 (clone-as-template).
 
+## Use Cases & Workflows
+
+This section maps **every common situation** a developer faces to the exact ClauKit commands to use. Start with the master decision tree, then drill into the matching flow.
+
+### 🧭 Master decision tree — which flow do I need?
+
+```mermaid
+flowchart TD
+    Start([I want to use ClauKit]) --> Q1{What's the situation?}
+    Q1 -->|Brand new project| F1[Flow 1<br/>Bootstrap]
+    Q1 -->|Cloned existing repo| F2[Flow 2<br/>Onboard]
+    Q1 -->|Build new feature| F3[Flow 3<br/>Feature]
+    Q1 -->|Fix a bug| F4[Flow 4<br/>Debug + Fix]
+    Q1 -->|Rename / migrate at scale| F5[Flow 5<br/>Refactor]
+    Q1 -->|Port from public repo| F6[Flow 6<br/>Port]
+    Q1 -->|Daily session start / end| F7[Flow 7<br/>Daily]
+    Q1 -->|Not sure which tool| Find[/ck:find &lt;task&gt;]
+    Find -.recommends.-> Q1
+```
+
+> **Lost?** Run `/ck:find <task description>` — it recommends the best skill / agent / command for your task from the local registry.
+
+---
+
+### Flow 1 — 🆕 Brand new project (greenfield)
+
+Start from zero — scaffold project, decide architecture, ship first version.
+
+```mermaid
+flowchart LR
+    A[npm i -g ClauKit] --> B[ck init]
+    B --> C{Bootstrap style?}
+    C -->|step-by-step| D[/ck:bootstrap]
+    C -->|minimal Q&A| E[/ck:bootstrap auto]
+    C -->|parallel fast| F[/ck:bootstrap fast]
+    D --> G
+    E --> G
+    F --> G[/ck:brainstorm<br/>optional architecture]
+    G --> H[/ck:plan]
+    H --> I[user approves<br/>then /clear]
+    I --> J[/ck:cook]
+    J --> K[/ck:test]
+    K --> L[/ck:review]
+    L --> M[/ck:git pr]
+```
+
+**When to use**: empty folder, fresh idea. Pick `auto` if you trust ClauKit defaults; `fast` for max parallelism; default for full control.
+
+---
+
+### Flow 2 — 👋 Joined existing project (onboarding)
+
+Just cloned a repo — get oriented in 10 minutes, ready to work.
+
+```mermaid
+flowchart LR
+    A[git clone repo] --> B[/ck:onboard<br/>6-phase tour]
+    B --> C{Need more?}
+    C -->|drill into files| D[/ck:scout]
+    C -->|architectural Q| E[/ck:ask]
+    C -->|recent activity| F[/ck:watzup]
+    D --> G[Ready to work]
+    E --> G
+    F --> G
+```
+
+**When to use**: new joiner OR returning after long absence. `/ck:onboard` reads existing docs + maps entry points + suggests first task — does NOT regenerate docs.
+
+---
+
+### Flow 3 — ✨ Build a new feature
+
+Feature idea → production. Primary workflow.
+
+```mermaid
+flowchart LR
+    A[Feature idea] --> B{Architectural<br/>uncertainty?}
+    B -->|yes| C[/ck:brainstorm]
+    B -->|no| D[skip]
+    C --> E[/ck:plan]
+    D --> E
+    E --> F[user approves plan]
+    F --> G[/clear<br/>fresh context]
+    G --> H[/ck:cook]
+    H --> I[/ck:test]
+    I --> J{Tests pass?}
+    J -->|no| K[/ck:fix test]
+    K --> I
+    J -->|yes| L[/ck:review]
+    L --> M[/ck:git pr]
+```
+
+**When to use**: any non-trivial change with feature semantics (new endpoint, new screen, new flow). Skip `/ck:brainstorm` for well-understood patterns.
+
+---
+
+### Flow 4 — 🐛 Fix a bug
+
+Investigate → fix → verify → ship.
+
+```mermaid
+flowchart LR
+    A[Bug report] --> B[/ck:debug]
+    B --> C{Root cause?}
+    C -->|simple| D[/ck:fix &lt;variant&gt;]
+    C -->|complex| E[/ck:plan]
+    E --> D
+    D --> F[/ck:test]
+    F --> G{Pass?}
+    G -->|yes| H[/ck:git cm]
+    G -->|no| B
+```
+
+**`/ck:fix` variants** — pick the matching context:
+
+| Variant | Use when |
+|---|---|
+| `/ck:fix ci` | GitHub Actions / CI pipeline failing |
+| `/ck:fix logs` | Error logs from server / runtime |
+| `/ck:fix test` | Failing tests |
+| `/ck:fix types` | TypeScript / mypy errors |
+| `/ck:fix ui` | UI / styling / layout issues |
+
+Combinable flags: `--auto` · `--review` · `--quick` · `--parallel`.
+
+---
+
+### Flow 5 — 🔄 Refactor at scale
+
+Rename · extract · migrate · codemod. Behavior-preserving mechanical change.
+
+```mermaid
+flowchart LR
+    A[Mechanical change<br/>needed] --> B[/ck:refactor &lt;pattern&gt;]
+    B --> C{Pre-flight gate}
+    C -->|fail| X[Fix:<br/>clean tree<br/>tests green<br/>on branch]
+    X --> C
+    C -->|pass| D[Scope + dry-run]
+    D --> E[Atomic batch N]
+    E --> F[/ck:test]
+    F --> G{Pass?}
+    G -->|no| H[git reset<br/>rethink]
+    H --> D
+    G -->|yes| I[Commit batch]
+    I --> J{More batches?}
+    J -->|yes| E
+    J -->|no| K[/ck:review]
+    K --> L[/ck:git pr]
+```
+
+**When to use**: distinct from `/ck:cook` (feature) and `/ck:fix` (bug). If the change alters behavior → use `/ck:cook` instead. Pre-flight gate blocks if working tree dirty, tests red, or on `main`.
+
+---
+
+### Flow 6 — 📦 Port a feature from a public GitHub repo
+
+Found a feature in someone else's repo, want to bring it in (and improve / adapt).
+
+```mermaid
+flowchart LR
+    A[Spotted feature<br/>in GitHub repo] --> B[/ck:xia &lt;url&gt;]
+    B --> C[External scout<br/>+ analyze]
+    C --> D[/ck:plan adapt to<br/>local conventions]
+    D --> E[/ck:cook]
+    E --> F[/ck:test]
+    F --> G[/ck:review]
+    G --> H[/ck:git pr]
+```
+
+**Flags**: `--improve` (apply local-codebase patterns) · `--compare` (side-by-side diff with existing).
+
+---
+
+### Flow 7 — 📅 Daily working session
+
+Resume → work → wrap up. Lightweight loop.
+
+```mermaid
+flowchart LR
+    A[Session start] --> B[/ck:watzup<br/>see recent activity]
+    B --> C[Work]
+    C --> D{Stuck on<br/>tool choice?}
+    D -->|yes| E[/ck:find &lt;task&gt;]
+    D -->|no| F[Continue]
+    E --> F
+    F --> G[Session end]
+    G --> H[/ck:journal<br/>capture decisions]
+    H --> I[/ck:git cm or cp]
+```
+
+**Tip**: `/ck:find` is your meta-helper across 80 skills + 25 commands. Use it whenever you think "there's probably a ClauKit tool for this".
+
+---
+
+### 📋 Quick reference — scenario → command
+
+Specialized journeys with single-command entry points.
+
+| Scenario | Command | Chain after |
+|---|---|---|
+| 🆕 New project scaffold | `/ck:bootstrap [auto\|fast]` | → `/ck:plan` → `/ck:cook` |
+| 👋 Tour codebase | `/ck:onboard [focus]` | → `/ck:scout` / `/ck:ask` |
+| ❓ Codebase Q&A (read-only) | `/ck:ask <question>` | (standalone) |
+| 🔍 Find files / symbols | `/ck:scout <prompt> [-ext]` | (standalone) |
+| 🌐 External research | `/ck:research <topic>` | → `/ck:plan` |
+| 💡 Architectural debate | `/ck:brainstorm <topic>` | → `/ck:plan` |
+| 📋 Plan implementation | `/ck:plan [fast\|hard\|two\|ci\|cro]` | → `/clear` → `/ck:cook` |
+| 🍳 Implement feature | `/ck:cook` | → `/ck:test` → `/ck:review` |
+| 🧪 Run tests | `/ck:test` | → `/ck:fix test` if failing |
+| 🔍 Code review | `/ck:review` | → `/ck:fix` |
+| 🐛 Debug issue | `/ck:debug <issue>` | → `/ck:fix` |
+| 🔧 Fix issue | `/ck:fix [ci\|logs\|test\|types\|ui]` | → `/ck:test` |
+| 🔄 Large refactor | `/ck:refactor <pattern>` | → `/ck:test` → `/ck:review` |
+| 📦 Port from GitHub | `/ck:xia <url> [--improve\|--compare]` | → `/ck:cook` |
+| 🎨 UI / UX design | `/ck:design [fast\|good\|3d\|...]` | → `/ck:cook` |
+| 🖼 Fix UI issue | `/ck:fix ui` | → `/ck:test` |
+| 📚 Init docs | `/ck:docs init` | (one-shot) |
+| 📚 Update docs | `/ck:docs update` | (after feature) |
+| 📚 Docs summary | `/ck:docs summarize` | (read-only) |
+| ✍️ Marketing copy | `/ck:content [fast\|good\|enhance\|cro]` | (standalone) |
+| 🔎 SEO work | `/ck:seo [audit\|keywords\|schema] <target>` | → `/ck:content cro` |
+| 💳 SePay payment | `/ck:sepay <tasks>` | → `/ck:test` |
+| 🔌 Use MCP server | `/ck:use-mcp <server-name>` | (standalone) |
+| 👥 Parallel team | `/ck:team <template> [...]` | (orchestration) |
+| 🧩 Create / edit skill | `/ck:cc-skill [create\|add\|optimize\|fix-logs]` | (extend ClauKit) |
+| 📝 Write journal | `/ck:journal` | (end-of-session) |
+| 📊 Recent changes | `/ck:watzup` | (start-of-session) |
+| 📤 Git commit | `/ck:git cm` | (or `cp` to push) |
+| 🔀 Open PR | `/ck:git pr [to] [from]` | (after `cm`) |
+| 🔀 Merge PR | `/ck:git merge [pr#\|branch]` | (interactive) |
+| 🤷 Don't know which tool | `/ck:find <task>` | recommends + chains |
+
+---
+
+### 🎯 Workflow patterns at a glance
+
+**The trio rule**: most concepts have a `skill` (knowledge) + `agent` (persona) + `command` (trigger). Always start with the command — the skill/agent activate automatically. See [`docs/clauKit-registry.md`](./docs/clauKit-registry.md) for the full map.
+
+**Plan → /clear → Cook**: for non-trivial features, always plan first, then `/clear` to reset context, then implement. This is enforced in `primary-workflow.md`.
+
+**Gated pipelines**: `/ck:refactor` and `/ck:cook` enforce pre-flight + verification gates. Don't bypass — they exist because skipping them caused incidents.
+
+**Dispatcher commands** (positional args, no dash): `/ck:plan`, `/ck:fix`, `/ck:git`, `/ck:docs`, `/ck:cc-skill`, `/ck:seo`, `/ck:content`, `/ck:design`, `/ck:bootstrap`, `/ck:scout`. Only `/ck:fix` uses combinable `--flags`.
+
 ## Project Structure
 
 ```
 claukit/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # Specialized agent definitions (21 agents)
-│   ├── commands/               # Slash command implementations (22 commands)
+│   ├── commands/               # Slash command implementations (25 commands)
 │   ├── hooks/                  # Git hooks and scripts
-│   ├── skills/                 # Specialized skills library (78 skills)
+│   ├── skills/                 # Specialized skills library (80 skills)
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
@@ -127,7 +371,7 @@ claukit/
 | Implementation | `scout`, `scout-external`, `ui-ux-designer` |
 | Specialized | `copywriter` |
 
-### Slash Commands (22)
+### Slash Commands (26)
 
 All dispatcher commands use **positional args** (no dash prefix) for mode selection. Only `/ck:fix` uses `--flags` for combinable modifiers.
 
@@ -142,10 +386,14 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/ck:debug` | `<issue>` |
 | `/ck:design` | `[fast\|good\|3d\|screenshot\|describe\|ui-ux-pro-max] <request>` |
 | `/ck:docs` | `[init\|update\|summarize]` |
+| `/ck:find` | `<task-description>` |
 | `/ck:fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
 | `/ck:git` | `[cm\|cp\|pr\|merge]` |
 | `/ck:journal` | `(no args)` |
+| `/ck:onboard` | `[optional-focus-area]` |
 | `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
+| `/ck:refactor` | `<refactor-pattern>` |
+| `/ck:research` | `<topic>` |
 | `/ck:review` | `[tasks-or-prompt]` |
 | `/ck:scout` | `<prompt> [scale] [-ext]` |
 | `/ck:seo` | `[audit\|keywords\|schema] <target>` |
