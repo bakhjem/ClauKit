@@ -1,6 +1,6 @@
 # ClauKit
 
-**Version**: 1.2.1
+**Version**: 1.2.2
 **Last Updated**: 2026-05-22
 **Repository**: https://github.com/trungdo9/ClauKit
 
