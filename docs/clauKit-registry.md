@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-17
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 75 skills (75 active + 0 scaffold) · 21 agents · 55 commands · **151 total entries**
+**Counts**: 78 skills (78 active + 0 scaffold) · 21 agents · 22 commands · **121 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -26,7 +26,7 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 ---
 
-## 1 · Skills (72)
+## 1 · Skills (78)
 
 ### Global (1) — `.claude/skills/global/`
 
@@ -83,7 +83,6 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `skill-creator` | ✅ | `software/skill-creator/` | |
 | `tech-graph` | ✅ | `software/tech-graph/` | |
 | `template-skill` | ✅ | `software/template-skill/` | (still a 5-LOC stub — see open issue) |
-| `vulnerability-scanner` 🔁 | ✅ | `software/vulnerability-scanner/` | |
 | `web-testing` | ✅ | `software/web-testing/` (developer toolkit; Playwright deep-dive lives in `test-automation`) | |
 | `xia` 🔁 | ✅ | `software/xia/` (port & refactor from GitHub) | |
 
@@ -97,13 +96,12 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `ai-multimodal` | ✅ |
 | `remotion` | ✅ |
 
-#### `software/database/` (3)
+#### `software/database/` (2)
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
-| `databases` | ✅ | `database/databases/` | |
-| `supabase` 🔁 | ✅ | `database/supabase/` | Supabase platform (Auth+RLS app-layer, Client SDK, Storage, Realtime, Edge Functions, CLI migrations) — added 2026-05-16. Complements `supabase-postgres-best-practices` |
-| `supabase-postgres-best-practices` | ✅ | `database/supabase-postgres-best-practices/` | Postgres performance + RLS at the SQL level |
+| `databases` | ✅ | `database/databases/` | MongoDB + PostgreSQL unified guide |
+| `supabase` | ✅ | `database/supabase/` | Complete Supabase skill — platform layer (Auth/RLS, SDK, Storage, Realtime, Edge Functions, CLI) + Postgres layer (query optimization, indexing, connection pooling, schema, locking, monitoring). Merged from `supabase-postgres-best-practices` 2026-05-22 |
 
 #### `software/design/` (9)
 
@@ -361,7 +359,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
 | MCP | – | `mcp-manager` | `/use-mcp` |
 | Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/cc-skill` |
-| Database | `databases`, `supabase-postgres-best-practices` | `database-admin` | – |
+| Database | `databases`, `supabase` | `database-admin` | – |
 | Journal | – | `journal-writer` | `/journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/brainstorm` |
 | Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/team` |
@@ -385,7 +383,6 @@ All 8 violations (spec requires `name:` lowercase+hyphen and == folder) fixed:
 | `software/expo/skills/expo-ui-jetpack-compose/` | `Expo UI Jetpack Compose` → `expo-ui-jetpack-compose` | edit `name:` |
 | `software/expo/skills/expo-ui-swift-ui/` | `Expo UI SwiftUI` → `expo-ui-swift-ui` | edit `name:` |
 | `software/development/frontend-development/` | `frontend-dev-guidelines` → `frontend-development` | edit `name:` |
-| `software/database/supabase-postgres/` → `software/database/supabase-postgres-best-practices/` | `name:` kept (upstream `skills-lock.json`) | **rename folder** |
 | `marketing/geo/` | `geo-fundamentals` → `geo` (also updated `seo-specialist.md` agent ref) | edit `name:` + caller |
 | `marketing/seo/` | `seo-fundamentals` → `seo` (also updated `seo-specialist.md` agent ref) | edit `name:` + caller |
 

@@ -1,53 +1,65 @@
 ---
 name: supabase
-description: Supabase platform usage — Auth + RLS policies, Client SDK (JS/Dart/Swift), Storage, Realtime, Edge Functions, and migrations via Supabase CLI. Use this skill when integrating Supabase into an app, writing RLS policies, calling supabase-js, handling storage uploads, subscribing to realtime, deploying Edge Functions, or running CLI migrations. Complements `supabase-postgres-best-practices` (which focuses on raw Postgres performance/SQL).
+description: Complete Supabase skill — platform layer (Auth, RLS policies, Client SDK JS/Dart/Swift, Storage, Realtime, Edge Functions, CLI migrations) + Postgres SQL layer (query optimization, indexing, connection pooling, schema design, locking, monitoring). Use when integrating Supabase into an app, writing RLS policies, calling supabase-js, handling storage, subscribing to realtime, deploying Edge Functions, or optimizing Postgres queries and schema.
 license: MIT
 metadata:
   type: knowledge
   category: database/platform
-  version: "1.0.0"
-  date: 2026-05-16
+  version: "2.0.0"
+  date: 2026-05-22
 ---
 
-# Supabase Platform
+# Supabase — Complete Skill
 
-App-layer guidance for building with Supabase. Pairs with `supabase-postgres-best-practices` (Postgres tuning, indexing, schema) — this skill covers the platform pieces *above* SQL: Auth/RLS patterns from the app's point of view, client SDK ergonomics, Storage, Realtime, Edge Functions, and the CLI-driven migration workflow.
+Two complementary layers:
+- **Platform layer** — Auth/RLS (app-side), Client SDK, Storage, Realtime, Edge Functions, CLI migrations
+- **Postgres layer** — Query optimization, indexing, connection pooling, schema design, locking, monitoring
 
 ## When to Apply
 
-Read these references when:
-
+### Platform layer
 - Writing or reviewing RLS policies that reference `auth.uid()` / `auth.jwt()`
 - Deciding between `anon`, `authenticated`, and `service_role` keys
-- Calling Supabase from a client (supabase-js, Flutter, Swift) and want type-safe / error-safe patterns
+- Calling Supabase from a client (supabase-js, Flutter, Swift) — type-safe / error-safe patterns
 - Designing Storage buckets and access control
 - Subscribing to Realtime channels (postgres_changes, broadcast, presence)
 - Writing Edge Functions in Deno that talk to the database under a user's JWT
 - Running `supabase` CLI for local dev, `db diff`, `db push`, and policy deployment
 
-## Categories
-
-| Prefix | Category |
-|--------|----------|
-| `auth-` | Auth + RLS policies (app-layer) |
-| `client-` | Client SDK patterns (supabase-js focused, notes for Dart/Swift) |
-| `storage-` | Storage buckets, RLS on `storage.objects`, upload patterns |
-| `edge-` | Edge Functions (Deno runtime) |
-| `migration-` | Supabase CLI, local dev, schema/policy deployment |
-
-## How to Use
-
-Each reference in `references/` follows the format:
-
-- Frontmatter: `title`, `impact`, `impactDescription`, `tags`
-- A 1–2 sentence "why it matters"
-- **Incorrect** example showing the common mistake
-- **Correct** example with explanation
-- Links to official docs
-
-For Postgres-internal concerns (indexes, EXPLAIN, vacuum, connection pooling, RLS *performance* like wrapping `auth.uid()` in `(select auth.uid())`), see the sibling skill `supabase-postgres-best-practices`.
+### Postgres layer
+- Writing SQL queries or designing schemas
+- Implementing indexes or query optimization
+- Reviewing database performance issues
+- Configuring connection pooling or scaling
+- Optimizing for Postgres-specific features
+- Working with Row-Level Security at the SQL performance level
 
 ## References
+
+### Platform Layer
+
+| Prefix | Category | Files |
+|--------|----------|-------|
+| `auth-` | Auth + RLS policies (app-layer) | auth-rls-policies, auth-custom-claims, auth-service-role-vs-anon |
+| `client-` | Client SDK (supabase-js, Dart, Swift) | client-typed-queries, client-error-handling, client-realtime-channels |
+| `storage-` | Storage buckets + RLS on `storage.objects` | storage-rls-policies, storage-upload-patterns |
+| `edge-` | Edge Functions (Deno runtime) | edge-functions-auth, edge-functions-deno |
+| `migration-` | Supabase CLI, local dev, schema/policy deploy | migration-supabase-cli, migration-rls-deploy |
+
+### Postgres Layer (by priority)
+
+| Priority | Prefix | Category | Impact |
+|----------|--------|----------|--------|
+| 1 | `query-` | Query performance + indexes | CRITICAL |
+| 2 | `conn-` | Connection management | CRITICAL |
+| 3 | `security-` | RLS performance (SQL level) | CRITICAL |
+| 4 | `schema-` | Schema design | HIGH |
+| 5 | `lock-` | Concurrency & locking | MEDIUM-HIGH |
+| 6 | `data-` | Data access patterns | MEDIUM |
+| 7 | `monitor-` | Monitoring & diagnostics | LOW-MEDIUM |
+| 8 | `advanced-` | Full-text search, JSONB | LOW |
+
+## Official Docs
 
 - https://supabase.com/docs
 - https://supabase.com/docs/guides/auth
@@ -57,3 +69,5 @@ For Postgres-internal concerns (indexes, EXPLAIN, vacuum, connection pooling, RL
 - https://supabase.com/docs/guides/realtime
 - https://supabase.com/docs/guides/functions
 - https://supabase.com/docs/guides/local-development
+- https://www.postgresql.org/docs/current/
+- https://wiki.postgresql.org/wiki/Performance_Optimization

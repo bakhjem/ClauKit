@@ -84,7 +84,7 @@ claukit/
 │   ├── agents/                 # Specialized agent definitions (21 agents)
 │   ├── commands/               # Slash command implementations (22 commands)
 │   ├── hooks/                  # Git hooks and scripts
-│   ├── skills/                 # Specialized skills library (79 skills)
+│   ├── skills/                 # Specialized skills library (78 skills)
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
