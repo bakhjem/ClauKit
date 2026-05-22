@@ -40,7 +40,7 @@ argument-hint: <template> [context] [--devs N|--researchers N|--reviewers N|--de
 | `--plan-approval` | Require lead approval before teammates start implementation |
 | `--delegate` | Lead coordinates only — never touches code directly |
 
-Flags are composable (e.g. `/team cook "auth + notifications" --devs 3 --plan-approval`).
+Flags are composable (e.g. `/ck:team cook "auth + notifications" --devs 3 --plan-approval`).
 
 **Step 3 — Validate environment:** confirm Agent Teams is enabled (Claude Code ≥ 2.1.33 or `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`). If unavailable, **fall back to direct subagent delegation via the Agent tool** with the same task and warn the user.
 
@@ -93,11 +93,11 @@ Per skill's Failure Recovery section:
 ## Quick Reference
 
 ```
-/team cook "implement auth + notifications + dashboard" --devs 3
-/team research "compare React state management options" --researchers 2
-/team review --reviewers 2
-/team debug "race condition in payment flow" --plan-approval
-/team cook "checkout flow" --devs 2 --delegate     # lead coordinates only
+/ck:team cook "implement auth + notifications + dashboard" --devs 3
+/ck:team research "compare React state management options" --researchers 2
+/ck:team review --reviewers 2
+/ck:team debug "race condition in payment flow" --plan-approval
+/ck:team cook "checkout flow" --devs 2 --delegate     # lead coordinates only
 ```
 
 ---
@@ -105,9 +105,9 @@ Per skill's Failure Recovery section:
 ## Relationship to Other Commands
 
 - **Subagents** — single-session multi-agent delegation via `Agent` tool. Use when work is sequential or fan-out without persistent teammates.
-- `/cook` — gated feature lifecycle (Plan → Code → Test → Docs → Deploy) for a single feature. Use `/team cook` only when 3+ features can be developed in parallel.
-- `/plan` — generates a plan; pair with `/team cook plan.md` to parallelize implementation across devs.
-- `/debug` — single-session debug. Use `/team debug` only when competing hypotheses need head-to-head evaluation.
+- `/ck:cook` — gated feature lifecycle (Plan → Code → Test → Docs → Deploy) for a single feature. Use `/ck:team cook` only when 3+ features can be developed in parallel.
+- `/ck:plan` — generates a plan; pair with `/ck:team cook plan.md` to parallelize implementation across devs.
+- `/ck:debug` — single-session debug. Use `/ck:team debug` only when competing hypotheses need head-to-head evaluation.
 
 ---
 

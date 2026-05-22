@@ -136,6 +136,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/ck:ask` | `<question>` |
 | `/ck:bootstrap` | `[auto\|fast]` |
 | `/ck:brainstorm` | `<topic>` |
+| `/ck:cc-skill` | `[add\|create\|optimize\|fix-logs] <args>` |
 | `/ck:content` | `[fast\|good\|enhance\|cro] <request>` |
 | `/ck:cook` | `[task or plan-path] [--fast\|--auto\|--from-plan\|--no-test]` |
 | `/ck:debug` | `<issue>` |
@@ -143,17 +144,16 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/ck:docs` | `[init\|update\|summarize]` |
 | `/ck:fix` | `[ci\|logs\|test\|types\|ui] [--auto] [--review] [--quick] [--parallel] <issue>` |
 | `/ck:git` | `[cm\|cp\|pr\|merge]` |
-| `/ck:sepay` | SePay payment integration |
-| `/ck:journal` | `<entry>` |
+| `/ck:journal` | `(no args)` |
 | `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
 | `/ck:review` | `[tasks-or-prompt]` |
 | `/ck:scout` | `<prompt> [scale] [-ext]` |
 | `/ck:seo` | `[audit\|keywords\|schema] <target>` |
-| `/ck:cc-skill` | `[add\|create\|optimize\|fix-logs] <args>` |
-| `/ck:team` | `<task>` |
-| `/ck:test` | `<scope>` |
-| `/ck:use-mcp` | MCP server management |
-| `/ck:watzup` | Project status overview |
+| `/ck:sepay` | `<tasks>` |
+| `/ck:team` | `<template> [context] [--devs\|--reviewers\|--researchers\|--debuggers N]` |
+| `/ck:test` | `(no args)` |
+| `/ck:use-mcp` | `<server-name>` |
+| `/ck:watzup` | `(no args)` |
 | `/ck:xia` | `<github-url> [feature] [--improve\|--compare]` |
 
 ### Workflows

@@ -1,4 +1,4 @@
-<!-- Extracted from vulnerability-scanner skill (local). Strategic security layer. -->
+<!-- Part of security skill. Strategic security layer. -->
 
 ## 1. Security Expert Mindset
 

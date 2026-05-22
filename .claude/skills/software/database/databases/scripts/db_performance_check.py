@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database performance analysis tool for MongoDB and PostgreSQL.
+Database performance analysis tool for PostgreSQL.
 Analyzes slow queries, recommends indexes, and generates reports.
 """
 
@@ -10,12 +10,6 @@ import sys
 from dataclasses import dataclass, asdict
 from datetime import datetime
 from typing import Dict, List, Optional
-
-try:
-    from pymongo import MongoClient
-    MONGO_AVAILABLE = True
-except ImportError:
-    MONGO_AVAILABLE = False
 
 try:
     import psycopg2
@@ -59,48 +53,28 @@ class PerformanceReport:
 
 
 class PerformanceAnalyzer:
-    """Analyzes database performance."""
+    """Analyzes PostgreSQL database performance."""
 
-    def __init__(self, db_type: str, connection_string: str, threshold_ms: int = 100):
+    def __init__(self, connection_string: str, threshold_ms: int = 100):
         """
         Initialize performance analyzer.
 
         Args:
-            db_type: Database type ('mongodb' or 'postgres')
-            connection_string: Database connection string
+            connection_string: PostgreSQL connection string
             threshold_ms: Slow query threshold in milliseconds
         """
-        self.db_type = db_type.lower()
         self.connection_string = connection_string
         self.threshold_ms = threshold_ms
-
-        self.client = None
-        self.db = None
         self.conn = None
 
     def connect(self) -> bool:
         """Connect to database."""
+        if not POSTGRES_AVAILABLE:
+            print("Error: psycopg2 not installed. Run: pip install psycopg2-binary")
+            return False
         try:
-            if self.db_type == "mongodb":
-                if not MONGO_AVAILABLE:
-                    print("Error: pymongo not installed")
-                    return False
-                self.client = MongoClient(self.connection_string)
-                self.db = self.client.get_default_database()
-                self.client.server_info()
-                return True
-
-            elif self.db_type == "postgres":
-                if not POSTGRES_AVAILABLE:
-                    print("Error: psycopg2 not installed")
-                    return False
-                self.conn = psycopg2.connect(self.connection_string)
-                return True
-
-            else:
-                print(f"Error: Unsupported database type: {self.db_type}")
-                return False
-
+            self.conn = psycopg2.connect(self.connection_string)
+            return True
         except Exception as e:
             print(f"Connection error: {e}")
             return False
@@ -108,8 +82,6 @@ class PerformanceAnalyzer:
     def disconnect(self):
         """Disconnect from database."""
         try:
-            if self.client:
-                self.client.close()
             if self.conn:
                 self.conn.close()
         except Exception as e:
@@ -123,101 +95,10 @@ class PerformanceAnalyzer:
             PerformanceReport if successful, None otherwise
         """
         try:
-            if self.db_type == "mongodb":
-                return self._analyze_mongodb()
-            elif self.db_type == "postgres":
-                return self._analyze_postgres()
-            else:
-                return None
-
+            return self._analyze_postgres()
         except Exception as e:
             print(f"Analysis error: {e}")
             return None
-
-    def _analyze_mongodb(self) -> PerformanceReport:
-        """Analyze MongoDB performance."""
-        slow_queries = []
-        index_recommendations = []
-
-        # Enable profiling if not enabled
-        profiling_level = self.db.command("profile", -1)
-        if profiling_level.get("was", 0) == 0:
-            self.db.command("profile", 1, slowms=self.threshold_ms)
-
-        # Get slow queries from system.profile
-        for doc in self.db.system.profile.find(
-            {"millis": {"$gte": self.threshold_ms}},
-            limit=50
-        ).sort("millis", -1):
-
-            query_str = json.dumps(doc.get("command", {}), default=str)
-
-            slow_queries.append(SlowQuery(
-                query=query_str,
-                execution_time_ms=doc.get("millis", 0),
-                count=1,
-                collection_or_table=doc.get("ns", "").split(".")[-1] if "ns" in doc else None,
-                index_used=doc.get("planSummary")
-            ))
-
-        # Analyze collections for index recommendations
-        for coll_name in self.db.list_collection_names():
-            if coll_name.startswith("system."):
-                continue
-
-            coll = self.db[coll_name]
-
-            # Check for collections scans
-            stats = coll.aggregate([
-                {"$collStats": {"storageStats": {}}}
-            ]).next()
-
-            # Check if collection has indexes
-            indexes = list(coll.list_indexes())
-
-            if len(indexes) <= 1:  # Only _id index
-                # Recommend indexes based on common patterns
-                # Sample documents to find frequently queried fields
-                sample = list(coll.find().limit(100))
-
-                if sample:
-                    # Find fields that appear in most documents
-                    field_freq = {}
-                    for doc in sample:
-                        for field in doc.keys():
-                            if field != "_id":
-                                field_freq[field] = field_freq.get(field, 0) + 1
-
-                    # Recommend index on most common field
-                    if field_freq:
-                        top_field = max(field_freq.items(), key=lambda x: x[1])[0]
-                        index_recommendations.append(IndexRecommendation(
-                            collection_or_table=coll_name,
-                            fields=[top_field],
-                            reason="Frequently queried field without index",
-                            estimated_benefit="High"
-                        ))
-
-        # Get database metrics
-        server_status = self.client.admin.command("serverStatus")
-        db_stats = self.db.command("dbStats")
-
-        metrics = {
-            "connections": server_status.get("connections", {}).get("current", 0),
-            "operations_per_sec": server_status.get("opcounters", {}).get("query", 0),
-            "database_size_mb": db_stats.get("dataSize", 0) / (1024 * 1024),
-            "index_size_mb": db_stats.get("indexSize", 0) / (1024 * 1024),
-            "collections": db_stats.get("collections", 0)
-        }
-
-        return PerformanceReport(
-            database_type="mongodb",
-            database_name=self.db.name,
-            timestamp=datetime.now(),
-            slow_queries=slow_queries[:10],  # Top 10
-            index_recommendations=index_recommendations,
-            database_metrics=metrics
-        )
 
     def _analyze_postgres(self) -> PerformanceReport:
         """Analyze PostgreSQL performance."""
@@ -359,7 +240,7 @@ class PerformanceAnalyzer:
             for i, query in enumerate(report.slow_queries, 1):
                 print(f"\n{i}. Execution Time: {query.execution_time_ms:.2f}ms | Count: {query.count}")
                 if query.collection_or_table:
-                    print(f"   Collection/Table: {query.collection_or_table}")
+                    print(f"   Table: {query.collection_or_table}")
                 if query.index_used:
                     print(f"   Index Used: {query.index_used}")
                 print(f"   Query: {query.query[:200]}...")
@@ -374,13 +255,8 @@ class PerformanceAnalyzer:
                 print(f"   Fields: {', '.join(rec.fields)}")
                 print(f"   Reason: {rec.reason}")
                 print(f"   Estimated Benefit: {rec.estimated_benefit}")
-
-                if report.database_type == "mongodb":
-                    index_spec = {field: 1 for field in rec.fields}
-                    print(f"   Command: db.{rec.collection_or_table}.createIndex({json.dumps(index_spec)})")
-                elif report.database_type == "postgres":
-                    fields_str = ", ".join(rec.fields)
-                    print(f"   Command: CREATE INDEX idx_{rec.collection_or_table.replace('.', '_')}_{rec.fields[0]} ON {rec.collection_or_table}({fields_str});")
+                fields_str = ", ".join(rec.fields)
+                print(f"   Command: CREATE INDEX idx_{rec.collection_or_table.replace('.', '_')}_{rec.fields[0]} ON {rec.collection_or_table}({fields_str});")
         else:
             print("No index recommendations")
 
@@ -388,7 +264,6 @@ class PerformanceAnalyzer:
 
     def save_report(self, report: PerformanceReport, filename: str):
         """Save report to JSON file."""
-        # Convert dataclasses to dict
         report_dict = {
             "database_type": report.database_type,
             "database_name": report.database_name,
@@ -406,23 +281,21 @@ class PerformanceAnalyzer:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description="Database performance analysis tool")
-    parser.add_argument("--db", required=True, choices=["mongodb", "postgres"],
-                       help="Database type")
-    parser.add_argument("--uri", required=True, help="Database connection string")
+    parser = argparse.ArgumentParser(description="PostgreSQL performance analysis tool")
+    parser.add_argument("--uri", required=True, help="PostgreSQL connection string")
     parser.add_argument("--threshold", type=int, default=100,
                        help="Slow query threshold in milliseconds (default: 100)")
     parser.add_argument("--output", help="Save report to JSON file")
 
     args = parser.parse_args()
 
-    analyzer = PerformanceAnalyzer(args.db, args.uri, args.threshold)
+    analyzer = PerformanceAnalyzer(args.uri, args.threshold)
 
     if not analyzer.connect():
         sys.exit(1)
 
     try:
-        print(f"Analyzing {args.db} performance (threshold: {args.threshold}ms)...")
+        print(f"Analyzing PostgreSQL performance (threshold: {args.threshold}ms)...")
         report = analyzer.analyze()
 
         if report:

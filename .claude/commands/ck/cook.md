@@ -114,19 +114,19 @@ Maps to **cook skill Stage 4 (Review)**. Follow `code-review` skill ([.claude/sk
 ## Mode Quick Reference
 
 ```
-/cook "add user profile"                      → full pipeline, interactive gates
-/cook "prototype landing hero" --fast          → skip research, still test + review
-/cook "add OAuth login" --auto                 → autonomous; auto-approve if clean review
-/cook plans/260517-1430-auth/plan.md          → auto --from-plan; jump to impl
-/cook plans/.../plan.md --auto                 → autonomous execution of existing plan
-/cook "experimental UI tweak" --no-test        → skip test stage (waiver logged)
+/ck:cook "add user profile"                      → full pipeline, interactive gates
+/ck:cook "prototype landing hero" --fast          → skip research, still test + review
+/ck:cook "add OAuth login" --auto                 → autonomous; auto-approve if clean review
+/ck:cook plans/260517-1430-auth/plan.md          → auto --from-plan; jump to impl
+/ck:cook plans/.../plan.md --auto                 → autonomous execution of existing plan
+/ck:cook "experimental UI tweak" --no-test        → skip test stage (waiver logged)
 ```
 
 ## Relationship to Other Commands
 
-- `/plan` — creates plan only; pair with `/cook plan.md` to execute.
-- `/team` — multi-agent parallel fan-out (different concept from cook's sequential gated pipeline).
-- `/brainstorm` — architectural decisions before planning.
+- `/ck:plan` — creates plan only; pair with `/ck:cook plan.md` to execute.
+- `/ck:team` — multi-agent parallel fan-out (different concept from cook's sequential gated pipeline).
+- `/ck:brainstorm` — architectural decisions before planning.
 
 **REMEMBER:**
 - Cook skill methodology is the source of truth; this command is the workflow trigger.

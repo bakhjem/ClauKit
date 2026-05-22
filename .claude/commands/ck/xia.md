@@ -53,7 +53,7 @@ Save to `plans/<plan-name>/reports/xia-<repo>-{inspect,compare,port}.md`. If no 
 ## Important
 
 - All methodology rules + guardrails → `xia` skill (skill enforces license-first, provenance headers, no-drive-by-deps).
-- Port is not "done" until `/test` (or `tester` agent) passes — surface this to user explicitly.
+- Port is not "done" until `/ck:test` (or `tester` agent) passes — surface this to user explicitly.
 - Concise grammar in reports. List unresolved questions at end.
 
 **Related:** `scout-external` agent (locate source files), `code-reviewer` agent (Phase 4), `tester` agent / `/test` (Phase 5), `git-manager` agent (commit port).

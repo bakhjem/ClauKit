@@ -58,9 +58,9 @@ Dispatch to the matching operation based on {ACTION}.
 - `SKILL.md` + reference files must be token-efficient for **progressive disclosure**.
 
 ## Examples
-- `/cc-skill add my-skill "add reference doc for X API"` — extend existing skill.
-- `/cc-skill create "create skill for parsing CSV with edge cases"` — new skill from prompt.
-- `/cc-skill create https://docs.example.com/api` — new skill from docs URL.
-- `/cc-skill optimize my-skill "reduce token usage"` — plan-first refactor.
-- `/cc-skill optimize` — optimize all skills (`*`).
-- `/cc-skill fix-logs` — diagnose & fix from `./logs.txt`.
+- `/ck:cc-skill add my-skill "add reference doc for X API"` — extend existing skill.
+- `/ck:cc-skill create "create skill for parsing CSV with edge cases"` — new skill from prompt.
+- `/ck:cc-skill create https://docs.example.com/api` — new skill from docs URL.
+- `/ck:cc-skill optimize my-skill "reduce token usage"` — plan-first refactor.
+- `/ck:cc-skill optimize` — optimize all skills (`*`).
+- `/ck:cc-skill fix-logs` — diagnose & fix from `./logs.txt`.

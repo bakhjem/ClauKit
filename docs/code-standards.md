@@ -1,12 +1,12 @@
 # Code Standards & Codebase Structure
 
-**Last Updated**: 2026-01-31
-**Version**: 1.0.1
-**Applies To**: All code within spark-dev project
+**Last Updated**: 2026-05-22
+**Version**: 1.1.0
+**Applies To**: All code within ClauKit project
 
 ## Overview
 
-This document defines coding standards, file organization patterns, naming conventions, and best practices for spark-dev. All code must adhere to these standards to ensure consistency, maintainability, and quality.
+This document defines coding standards, file organization patterns, naming conventions, and best practices for ClauKit. All code must adhere to these standards to ensure consistency, maintainability, and quality.
 
 ## Core Development Principles
 
@@ -70,13 +70,13 @@ project-root/
 - Descriptive, role-based names
 - Examples: `planner.md`, `tester.md`, `git-manager.md`
 
-**Commands** (`.claude/commands/`, `.opencode/command/`):
-- Format: `<name>.md` (flat, all at root — no subdirectories)
+**Commands** (`.claude/commands/ck/`, `.opencode/command/`):
+- Format: `ck/<name>.md` → invoked as `/ck:<name>`
 - Dispatcher commands handle variants via positional args (not separate files)
 - Examples:
-  - `plan.md` → `/plan [fast|hard|two|ci|cro]`
-  - `fix.md` → `/fix [ci|logs|test|types|ui]`
-  - `git.md` → `/git [cm|cp|pr|merge]`
+  - `ck/plan.md` → `/ck:plan [fast|hard|two|ci|cro]`
+  - `ck/fix.md` → `/ck:fix [ci|logs|test|types|ui]`
+  - `ck/git.md` → `/ck:git [cm|cp|pr|merge]`
 
 **Skills** (`.claude/skills/`):
 - Format: `[skill-name]/SKILL.md`
@@ -85,10 +85,10 @@ project-root/
 - Supporting files in `references/` or `scripts/`
 - Examples:
   - `better-auth/SKILL.md`
-  - `cloudflare-workers/SKILL.md`
-  - `mongodb/SKILL.md`
   - `csharp-expert/SKILL.md`
-  - `security-audit/SKILL.md`
+  - `security/SKILL.md`
+  - `postgresql/SKILL.md`
+  - `supabase/SKILL.md`
   - `seo/SKILL.md`
 
 **Documentation** (`docs/`):
@@ -281,7 +281,7 @@ GET    /api/users/:userId/posts
  * Handles user authentication, registration, and profile management.
  *
  * @module services/user-service
- * @author spark-dev
+ * @author ClauKit
  * @version 1.0.0
  */
 ```

@@ -86,10 +86,10 @@ Input: `[product-type] [style] [industry]` (e.g. `SaaS minimal fintech`, `landin
 - Concise grammar in reports. List unresolved questions at end.
 
 ## Examples
-- `/design hero section with carousel` — default fast minimal workflow.
-- `/design good landing page with storytelling` — research-driven award-quality.
-- `/design 3d interactive product showcase` — Three.js immersive scene.
-- `/design good 3d portfolio hero` — research + 3D.
-- `/design screenshot ref.png` — match the screenshot.
-- `/design describe ref.png` — describe + plan only.
-- `/design ui-ux-pro-max SaaS minimal fintech` — Style Intelligence.
+- `/ck:design hero section with carousel` — default fast minimal workflow.
+- `/ck:design good landing page with storytelling` — research-driven award-quality.
+- `/ck:design 3d interactive product showcase` — Three.js immersive scene.
+- `/ck:design good 3d portfolio hero` — research + 3D.
+- `/ck:design screenshot ref.png` — match the screenshot.
+- `/ck:design describe ref.png` — describe + plan only.
+- `/ck:design ui-ux-pro-max SaaS minimal fintech` — Style Intelligence.

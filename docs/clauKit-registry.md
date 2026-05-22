@@ -1,6 +1,6 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-05-17
+**Last Updated**: 2026-05-22
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
 **Counts**: 78 skills (78 active + 0 scaffold) · 21 agents · 22 commands · **121 total entries**
 
@@ -163,9 +163,9 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 ---
 
-## 2 · Agents (22)
+## 2 · Agents (21)
 
-### `engineering/` (11)
+### `engineering/` (10)
 
 | Name | Status | Model | File |
 |---|:---:|---|---|
@@ -213,9 +213,9 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 ---
 
-## 3 · Commands (55)
+## 3 · Commands (22)
 
-All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/<name>` (e.g. `/cook`, `/fix ci`). **`/orchestrate` removed 2026-05-17** (superseded by `/team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/fix ci`, `/plan two`).
+All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix ci`). **`/orchestrate` removed 2026-05-17** (superseded by `/ck:team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/ck:fix ci`, `/ck:plan two`).
 
 ### Top-level (16) — single-action + flagged-variant entrypoints
 
