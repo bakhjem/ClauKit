@@ -1,15 +1,15 @@
 # ClauKit — The Opinionated Multi-Agent Orchestration Framework for Claude Code
 
-*80 skills · 21 agents · 25 gated commands · atomic-commit safety · MCP-ready*
+*80 skills · 21 agents · 26 gated commands · atomic-commit safety · MCP-ready*
 
 [![GitHub stars](https://img.shields.io/github/stars/trungdo9/ClauKit?style=social)](https://github.com/trungdo9/ClauKit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Version](https://img.shields.io/github/v/release/trungdo9/ClauKit)](https://github.com/trungdo9/ClauKit/releases)
 [![Topic](https://img.shields.io/badge/topic-claude--code--template-blue)](https://github.com/topics/claude-code-template)
 
-Claude Code is powerful, but raw — you're left to invent your own workflows, manage parallel agents by hand, and hope you don't `git push` a broken refactor. Most Claude Code templates throw a thousand skills at the wall and call it a day.
+Claude Code gives you the primitives — but no opinions on how to combine them. You're left to invent your own workflows, manage parallel agents by hand, and hope you don't `git push` a broken refactor. Most Claude Code templates throw a thousand skills at the wall and call it a day.
 
-**ClauKit is the opinionated alternative.** 80 curated skills, 21 specialized agents, 25 gated commands — each one earns its place. Built-in pre-flight checks block destructive operations. Multi-agent orchestration via `/ck:team` runs parallel Claude Code sessions safely.
+**ClauKit is the opinionated alternative.** 80 curated skills, 21 specialized agents, 26 gated commands — each one earns its place. Built-in pre-flight checks block destructive operations. Multi-agent orchestration via `/ck:team` runs parallel Claude Code sessions safely.
 
 > Plan once. `/clear` context. Cook with confidence. That's the ClauKit workflow.
 
@@ -270,7 +270,7 @@ flowchart LR
     H --> I["/ck:git cm or cp"]
 ```
 
-**Tip**: `/ck:find` is your meta-helper across 80 skills + 25 commands. Use it whenever you think "there's probably a ClauKit tool for this".
+**Tip**: `/ck:find` is your meta-helper across 80 skills + 26 commands. Use it whenever you think "there's probably a ClauKit tool for this".
 
 ---
 
@@ -326,9 +326,9 @@ Specialized journeys with single-command entry points.
 
 ## ClauKit vs Other AI Coding Tools
 
-Different tools for different jobs. **Cursor** and **Windsurf** are agentic IDEs — they replace your editor. **Everything Claude Code** is an all-in-one Claude Code template — 1000+ skills, kitchen-sink approach. **Google Antigravity** is an autonomous agent runtime. **ClauKit** is a curated framework that runs *inside* Claude Code — opinionated workflows, gated safety, multi-agent orchestration. Use them together where they fit.
+Different tools for different jobs. **Cursor** and **Windsurf** are agentic IDEs — they replace your editor. **Aggregate Claude Code templates** (community-curated, often 1000+ skills) take the kitchen-sink approach. **Google Antigravity** is an autonomous agent runtime. **ClauKit** is a curated framework that runs *inside* Claude Code — opinionated workflows, gated safety, multi-agent orchestration. Pick the right tool for the job; they're complementary, not exclusive.
 
-| Capability | ClauKit | Everything Claude Code | Cursor | Windsurf | Antigravity |
+| Capability | ClauKit | Aggregate CC templates | Cursor | Windsurf | Antigravity |
 |---|---|---|---|---|---|
 | Category | Framework | Template | Agentic IDE | Agentic IDE | Autonomous runtime |
 | Multi-agent orchestration | ✅ `/ck:team` | Partial | Composer | Cascade | ✅ |
@@ -341,9 +341,9 @@ Different tools for different jobs. **Cursor** and **Windsurf** are agentic IDEs
 
 ### When NOT to use ClauKit
 
-ClauKit isn't for everyone. If you want an editor with AI baked in → use [Cursor](https://cursor.com) or [Windsurf](https://windsurf.com). If you want every Claude Code skill ever published → use [Everything Claude Code](https://github.com/topics/claude-code). If you need a fully autonomous agent that runs unsupervised → look at AutoGPT or Antigravity. ClauKit is for developers who want **opinionated workflows inside Claude Code** with safety gates and curation — not raw scale.
+ClauKit isn't for everyone. If you want an editor with AI baked in → use [Cursor](https://cursor.com) or [Windsurf](https://windsurf.com). If you want every Claude Code skill ever published → browse [`github.com/topics/claude-code-template`](https://github.com/topics/claude-code-template) for aggregate templates. If you need a fully autonomous agent that runs unsupervised → look at AutoGPT or Antigravity. ClauKit is for developers who want **opinionated workflows inside Claude Code** with safety gates and curation — not raw scale.
 
-> *Competitive feature data verified against vendor docs as of 2026-05-23.*
+> *Comparison reflects published feature sets as of 2026-05-23. Sources: [Cursor docs](https://docs.cursor.com/), [Windsurf docs](https://docs.windsurf.com/), [Anthropic Claude Code](https://code.claude.com/docs), [Google Antigravity blog](https://antigravity.google/). Capabilities marked ✅/❌/Partial reflect each vendor's flagship offering and may evolve.*
 
 ## Project Structure
 
@@ -351,7 +351,7 @@ ClauKit isn't for everyone. If you want an editor with AI baked in → use [Curs
 claukit/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # Specialized agent definitions (21 agents)
-│   ├── commands/               # Slash command implementations (25 commands)
+│   ├── commands/               # Slash command implementations (26 commands)
 │   ├── hooks/                  # Git hooks and scripts
 │   ├── skills/                 # Specialized skills library (80 skills)
 │   ├── workflows/              # Development workflow definitions
@@ -376,7 +376,7 @@ claukit/
 ├── package.json                # Node.js dependencies
 ├── .releaserc.json             # Semantic release configuration
 ├── .commitlintrc.json          # Commit linting rules
-├── CHANGELOG.md                # Version history (generated by semantic-release on next release)
+├── (CHANGELOG.md)              # Auto-generated by semantic-release on first release
 └── LICENSE                     # MIT License
 ```
 
@@ -438,7 +438,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 
 ## Development Principles
 
-- **YANGI** - You Aren't Gonna Need It
+- **YAGNI** - You Aren't Gonna Need It
 - **KISS** - Keep It Simple, Stupid
 - **DRY** - Don't Repeat Yourself
 - Files under 200 lines for optimal context management
@@ -484,9 +484,9 @@ All documentation is maintained in `./docs`:
 ## Frequently Asked Questions
 
 <details>
-<summary><strong>What is ClauKit and how is it different from Everything Claude Code?</strong></summary>
+<summary><strong>What is ClauKit and how is it different from aggregate Claude Code templates?</strong></summary>
 
-ClauKit is an opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 25 gated commands. Unlike Everything Claude Code (1000+ skills, kitchen-sink approach), ClauKit hand-selects each skill, enforces pre-flight safety gates on destructive operations, and ships a trio architecture (skill + agent + command) so every concept has exactly one entry point. See the [comparison table](#claukit-vs-other-ai-coding-tools) for side-by-side capabilities.
+ClauKit is an opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 26 gated commands. Unlike aggregate Claude Code templates (often 1000+ skills, kitchen-sink approach), ClauKit hand-selects each skill, enforces pre-flight safety gates on destructive operations, and ships a trio architecture (skill + agent + command) so every concept has exactly one entry point. See the [comparison table](#claukit-vs-other-ai-coding-tools) for side-by-side capabilities.
 
 </details>
 
@@ -528,7 +528,7 @@ Cursor and Windsurf are agentic IDEs — they replace your editor. ClauKit is a 
 <details>
 <summary><strong>How do I automate my Claude Code workflow with ClauKit?</strong></summary>
 
-ClauKit ships 25 commands that codify common Claude Code workflows: `/ck:plan` → `/ck:cook` → `/ck:test` → `/ck:review` → `/ck:git pr`. Each command activates the right skill + agent automatically. For full visual workflow maps see [Use Cases & Workflows](#use-cases--workflows) — covers greenfield, onboarding, feature build, bug fix, refactor, and daily session loops.
+ClauKit ships 26 commands that codify common Claude Code workflows: `/ck:plan` → `/ck:cook` → `/ck:test` → `/ck:review` → `/ck:git pr`. Each command activates the right skill + agent automatically. For full visual workflow maps see [Use Cases & Workflows](#use-cases--workflows) — covers greenfield, onboarding, feature build, bug fix, refactor, and daily session loops.
 
 </details>
 
@@ -569,7 +569,7 @@ eligibility in SERP.
   "name": "ClauKit",
   "applicationCategory": "DeveloperApplication",
   "operatingSystem": "Cross-platform",
-  "description": "Opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 25 gated commands.",
+  "description": "Opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 26 gated commands.",
   "url": "https://github.com/trungdo9/ClauKit",
   "license": "https://opensource.org/licenses/MIT",
   "author": { "@type": "Person", "name": "trungdo9" },
@@ -583,8 +583,8 @@ eligibility in SERP.
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is ClauKit and how is it different from Everything Claude Code?",
-      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit is an opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 25 gated commands. Unlike Everything Claude Code (1000+ skills, kitchen-sink approach), ClauKit hand-selects each skill, enforces pre-flight safety gates on destructive operations, and ships a trio architecture (skill + agent + command)." }
+      "name": "What is ClauKit and how is it different from aggregate Claude Code templates?",
+      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit is an opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 26 gated commands. Unlike aggregate Claude Code templates (often 1000+ skills, kitchen-sink approach), ClauKit hand-selects each skill, enforces pre-flight safety gates on destructive operations, and ships a trio architecture (skill + agent + command)." }
     },
     {
       "@type": "Question",
@@ -614,7 +614,7 @@ eligibility in SERP.
     {
       "@type": "Question",
       "name": "How do I automate my Claude Code workflow with ClauKit?",
-      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit ships 25 commands that codify common Claude Code workflows: /ck:plan → /ck:cook → /ck:test → /ck:review → /ck:git pr. Each command activates the right skill + agent automatically. Visual workflow maps in the Use Cases & Workflows section cover greenfield, onboarding, feature build, bug fix, refactor, and daily session loops." }
+      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit ships 26 commands that codify common Claude Code workflows: /ck:plan → /ck:cook → /ck:test → /ck:review → /ck:git pr. Each command activates the right skill + agent automatically. Visual workflow maps in the Use Cases & Workflows section cover greenfield, onboarding, feature build, bug fix, refactor, and daily session loops." }
     },
     {
       "@type": "Question",

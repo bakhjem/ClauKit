@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-05-22
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 80 skills (80 active + 0 scaffold) · 21 agents · 25 commands · **126 total entries**
+**Counts**: 80 skills (80 active + 0 scaffold) · 21 agents · 26 commands · **127 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
