@@ -1,67 +1,67 @@
-# ClauKit
+# ClauKit — The Opinionated Multi-Agent Orchestration Framework for Claude Code
 
-**Version**: 1.2.2
-**Last Updated**: 2026-05-22
-**Repository**: https://github.com/trungdo9/ClauKit
+*80 skills · 21 agents · 25 gated commands · atomic-commit safety · MCP-ready*
 
-A development template for building AI-powered applications with Claude Code. Built on ClaudeKit Engineer foundation, it provides a standardized foundation for AI-assisted development with pre-configured agents, commands, skills, and workflows.
+[![GitHub stars](https://img.shields.io/github/stars/trungdo9/ClauKit?style=social)](https://github.com/trungdo9/ClauKit/stargazers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/github/v/release/trungdo9/ClauKit)](https://github.com/trungdo9/ClauKit/releases)
+[![Topic](https://img.shields.io/badge/topic-claude--code--template-blue)](https://github.com/topics/claude-code-template)
+
+Claude Code is powerful, but raw — you're left to invent your own workflows, manage parallel agents by hand, and hope you don't `git push` a broken refactor. Most Claude Code templates throw a thousand skills at the wall and call it a day.
+
+**ClauKit is the opinionated alternative.** 80 curated skills, 21 specialized agents, 25 gated commands — each one earns its place. Built-in pre-flight checks block destructive operations. Multi-agent orchestration via `/ck:team` runs parallel Claude Code sessions safely.
+
+> Plan once. `/clear` context. Cook with confidence. That's the ClauKit workflow.
+
+## Why ClauKit
+
+- **Gated pipelines, not gambling.** `/ck:refactor` and `/ck:cook` enforce pre-flight gates — clean working tree, tests green, not on `main`. See [`.claude/workflows/primary-workflow.md`](./.claude/workflows/primary-workflow.md). Skip the gates and the command refuses to run.
+- **Trio architecture — one concept, one entry point.** Every skill (knowledge) maps to an agent (persona) and a command (`/ck:<name>` trigger). No tool roulette. Full map in [`docs/clauKit-registry.md`](./docs/clauKit-registry.md).
+- **Curated, not crawled.** 80 skills hand-selected for AI dev workflows — research, planning, refactoring, testing, code review, SEO, payments. Each maintained, each documented, each in the registry. No abandoned scaffolds.
 
 ## Quick Start
 
-### Prerequisites
+```bash
+# 1. Install from GitHub (not yet on npm)
+npm install -g https://github.com/trungdo9/ClauKit.git
 
+# 2. Drop ClauKit into your project
+cd /path/to/your-project && ck init
+
+# 3. Launch Claude Code — try /ck:find to discover commands
+claude
+```
+
+> Pull latest with `ck update`. Other install paths (npx, clone-as-template, MCP setup) are collapsed below.
+
+<details>
+<summary><strong>Other install options (npx · clone · MCP)</strong></summary>
+
+### Prerequisites
 - [Claude Code](https://code.claude.com) installed and configured
 - Git for version control
 - Node.js 18.0.0 or higher
 
-### Installation
-
-> **Note**: ClauKit is not published on the npm registry yet. All install methods below pull directly from the GitHub repository, so a git URL (or `github:` shorthand) is required.
-
-#### Option 1: Install via Git (Recommended)
+### Option 2: Run without installation
 
 ```bash
-# Install globally from GitHub
-npm install -g https://github.com/trungdo9/ClauKit.git
-
-# Initialize in your project
-cd /path/to/your-project
-ck init
-
-# Later, pull the latest version
-ck update
-```
-
-#### Option 2: Run without installation
-
-```bash
-# Initialize directly using npx (no global install)
 npx github:trungdo9/ClauKit init
 ```
 
-#### Option 3: Clone and customize
+### Option 3: Clone and customize
 
 ```bash
-# Clone this repository
 git clone https://github.com/trungdo9/ClauKit.git your-project-name
 cd your-project-name
-
-# Start Claude Code
 claude
 ```
 
-#### Option 4: GitHub MCP Integration (Optional)
-
-For GitHub integration via MCP:
+### Option 4: GitHub MCP Integration (Optional)
 
 ```bash
-# Copy environment template
 cp .claude/.env.example .claude/.env
-
-# Add your GitHub Personal Access Token
-# Get token at: https://github.com/settings/tokens/new?scopes=repo
+# Add your GitHub Personal Access Token from https://github.com/settings/tokens/new?scopes=repo
 # Edit .claude/.env and set GITHUB_TOKEN=ghp_xxx...
-
 # Restart Claude Code to activate MCP
 ```
 
@@ -69,12 +69,16 @@ cp .claude/.env.example .claude/.env
 
 ```bash
 ck init              # Copy .claude folder to current directory
-ck init --force      # Overwrite existing files (use after backing up local changes)
-ck update            # Check GitHub for the latest version and update the global install
+ck init --force      # Overwrite existing files (back up local changes first)
+ck update            # Pull latest version from GitHub
 ck help              # Show help information
 ```
 
 > `ck init` only copies `.claude/`. Other assets shipped in the package (`.opencode/`, `AGENTS.md`, `docs/`, `CLAUDE.md`) are only available via Option 3 (clone-as-template).
+
+</details>
+
+---
 
 ## Use Cases & Workflows
 
