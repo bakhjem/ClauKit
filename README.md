@@ -535,7 +535,7 @@ ClauKit ships 26 commands that codify common Claude Code workflows: `/ck:plan` �
 <details>
 <summary><strong>Is ClauKit production-ready? Can I use it on commercial projects?</strong></summary>
 
-ClauKit is MIT-licensed — commercial use is allowed. Version 1.2.2 ships gated workflows that block destructive operations (dirty tree refactors, refactors on `main`, tests-red commits). See [`.claude/workflows/primary-workflow.md`](./.claude/workflows/primary-workflow.md) for safety guarantees and [GitHub Releases](https://github.com/trungdo9/ClauKit/releases) for release history. The framework is in active use; expect breaking changes between minor versions until 2.0.
+ClauKit is MIT-licensed — commercial use is allowed. Version 1.3.0 ships gated workflows that block destructive operations (dirty tree refactors, refactors on `main`, tests-red commits). See [`.claude/workflows/primary-workflow.md`](./.claude/workflows/primary-workflow.md) for safety guarantees and [GitHub Releases](https://github.com/trungdo9/ClauKit/releases) for release history. The framework is in active use; expect breaking changes between minor versions until 2.0.
 
 </details>
 
@@ -619,7 +619,7 @@ eligibility in SERP.
     {
       "@type": "Question",
       "name": "Is ClauKit production-ready? Can I use it on commercial projects?",
-      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit is MIT-licensed — commercial use is allowed. Version 1.2.2 ships gated workflows that block destructive operations (dirty tree refactors, refactors on main, tests-red commits). The framework is in active use; expect breaking changes between minor versions until 2.0." }
+      "acceptedAnswer": { "@type": "Answer", "text": "ClauKit is MIT-licensed — commercial use is allowed. Version 1.3.0 ships gated workflows that block destructive operations (dirty tree refactors, refactors on main, tests-red commits). The framework is in active use; expect breaking changes between minor versions until 2.0." }
     }
   ]
 }
