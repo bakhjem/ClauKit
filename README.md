@@ -481,6 +481,64 @@ All documentation is maintained in `./docs`:
 - [Design Guidelines](./docs/design-guidelines.md)
 - [Deployment Guide](./docs/deployment-guide.md)
 
+## Frequently Asked Questions
+
+<details>
+<summary><strong>What is ClauKit and how is it different from Everything Claude Code?</strong></summary>
+
+ClauKit is an opinionated multi-agent orchestration framework for Claude Code with 80 curated skills, 21 agents, and 25 gated commands. Unlike Everything Claude Code (1000+ skills, kitchen-sink approach), ClauKit hand-selects each skill, enforces pre-flight safety gates on destructive operations, and ships a trio architecture (skill + agent + command) so every concept has exactly one entry point. See the [comparison table](#claukit-vs-other-ai-coding-tools) for side-by-side capabilities.
+
+</details>
+
+<details>
+<summary><strong>How do I write a good CLAUDE.md file with ClauKit?</strong></summary>
+
+CLAUDE.md best practices in ClauKit: keep workflows in `.claude/workflows/` (referenced from CLAUDE.md), point to `docs/clauKit-registry.md` as single source of truth for available tools, and enforce the trio rule (skill = knowledge, agent = persona, command = trigger). See this repo's [CLAUDE.md](./CLAUDE.md) as a working example. To bootstrap a new project's CLAUDE.md, run `/ck:docs init`.
+
+</details>
+
+<details>
+<summary><strong>Can I run multiple Claude Code agents in parallel?</strong></summary>
+
+Yes — via `/ck:team <template>`. ClauKit spins up independent Claude Code sessions (devs, reviewers, researchers, debuggers) and coordinates outputs through a shared report directory. Pre-flight gates ensure no session pushes broken code. See [Flow 7 — Daily working session](#use-cases--workflows) and the [`team` skill](./.claude/skills/software/team/SKILL.md) for parallel agent execution patterns.
+
+</details>
+
+<details>
+<summary><strong>How does ClauKit handle Claude Code multi-session coordination?</strong></summary>
+
+Each `/ck:team` session writes atomic commits to its own branch or worktree, with results aggregated into a shared `plans/<plan-name>/reports/` directory. The orchestrator session reads these reports and produces a unified outcome. Multi-session coordination is gated — no session can push without passing `/ck:test` and `/ck:review`. See [`worktree` skill](./.claude/skills/software/git/worktree/SKILL.md) for isolation patterns.
+
+</details>
+
+<details>
+<summary><strong>Does ClauKit support MCP (Model Context Protocol) servers?</strong></summary>
+
+Yes. Run `/ck:use-mcp <server-name>` to integrate any MCP server (GitHub, Atlassian, Linear, Notion, Slack, custom). Configuration template at [`.claude/.mcp.json.example`](./.claude/.mcp.json.example). The `mcp-manager` agent handles server discovery and tool selection automatically based on task context.
+
+</details>
+
+<details>
+<summary><strong>How is ClauKit different from Cursor or Windsurf?</strong></summary>
+
+Cursor and Windsurf are agentic IDEs — they replace your editor. ClauKit is a framework that runs *inside* Claude Code (which itself runs alongside your editor). They are complementary: use Cursor/Windsurf as your IDE, then invoke ClauKit's `/ck:cook` or `/ck:plan` when you need structured multi-agent workflows. See the [full comparison table](#claukit-vs-other-ai-coding-tools).
+
+</details>
+
+<details>
+<summary><strong>How do I automate my Claude Code workflow with ClauKit?</strong></summary>
+
+ClauKit ships 25 commands that codify common Claude Code workflows: `/ck:plan` → `/ck:cook` → `/ck:test` → `/ck:review` → `/ck:git pr`. Each command activates the right skill + agent automatically. For full visual workflow maps see [Use Cases & Workflows](#use-cases--workflows) — covers greenfield, onboarding, feature build, bug fix, refactor, and daily session loops.
+
+</details>
+
+<details>
+<summary><strong>Is ClauKit production-ready? Can I use it on commercial projects?</strong></summary>
+
+ClauKit is MIT-licensed — commercial use is allowed. Version 1.2.2 ships gated workflows that block destructive operations (dirty tree refactors, refactors on `main`, tests-red commits). See [`.claude/workflows/primary-workflow.md`](./.claude/workflows/primary-workflow.md) for safety guarantees and [CHANGELOG.md](./CHANGELOG.md) for release history. The framework is in active use; expect breaking changes between minor versions until 2.0.
+
+</details>
+
 ## Dependencies
 
 **Development**:
