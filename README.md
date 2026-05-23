@@ -324,6 +324,27 @@ Specialized journeys with single-command entry points.
 
 **Dispatcher commands** (positional args, no dash): `/ck:plan`, `/ck:fix`, `/ck:git`, `/ck:docs`, `/ck:cc-skill`, `/ck:seo`, `/ck:content`, `/ck:design`, `/ck:bootstrap`, `/ck:scout`. Only `/ck:fix` uses combinable `--flags`.
 
+## ClauKit vs Other AI Coding Tools
+
+Different tools for different jobs. **Cursor** and **Windsurf** are agentic IDEs — they replace your editor. **Everything Claude Code** is an all-in-one Claude Code template — 1000+ skills, kitchen-sink approach. **Google Antigravity** is an autonomous agent runtime. **ClauKit** is a curated framework that runs *inside* Claude Code — opinionated workflows, gated safety, multi-agent orchestration. Use them together where they fit.
+
+| Capability | ClauKit | Everything Claude Code | Cursor | Windsurf | Antigravity |
+|---|---|---|---|---|---|
+| Category | Framework | Template | Agentic IDE | Agentic IDE | Autonomous runtime |
+| Multi-agent orchestration | ✅ `/ck:team` | Partial | Composer | Cascade | ✅ |
+| Pre-flight safety gates | ✅ atomic commits | ❌ | ❌ | ❌ | Partial |
+| Skill + agent + command trio | ✅ | Skills only | ❌ | ❌ | ❌ |
+| MCP server integration | ✅ | ✅ | ✅ | ✅ | Partial |
+| Runs inside Claude Code | ✅ | ✅ | ❌ own runtime | ❌ own runtime | ❌ |
+| Curated vs comprehensive | Curated (80) | Comprehensive (1000+) | N/A | N/A | N/A |
+| License | MIT | MIT | Commercial | Commercial | Commercial |
+
+### When NOT to use ClauKit
+
+ClauKit isn't for everyone. If you want an editor with AI baked in → use [Cursor](https://cursor.com) or [Windsurf](https://windsurf.com). If you want every Claude Code skill ever published → use [Everything Claude Code](https://github.com/topics/claude-code). If you need a fully autonomous agent that runs unsupervised → look at AutoGPT or Antigravity. ClauKit is for developers who want **opinionated workflows inside Claude Code** with safety gates and curation — not raw scale.
+
+> *Competitive feature data verified against vendor docs as of 2026-05-23.*
+
 ## Project Structure
 
 ```
