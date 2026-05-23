@@ -92,7 +92,7 @@ flowchart TD
     Q1 -->|Rename / migrate at scale| F5[Flow 5<br/>Refactor]
     Q1 -->|Port from public repo| F6[Flow 6<br/>Port]
     Q1 -->|Daily session start / end| F7[Flow 7<br/>Daily]
-    Q1 -->|Not sure which tool| Find[/ck:find &lt;task&gt;]
+    Q1 -->|Not sure which tool| Find["/ck:find &lt;task&gt;"]
     Find -.recommends.-> Q1
 ```
 
@@ -108,18 +108,18 @@ Start from zero — scaffold project, decide architecture, ship first version.
 flowchart LR
     A[npm i -g ClauKit] --> B[ck init]
     B --> C{Bootstrap style?}
-    C -->|step-by-step| D[/ck:bootstrap]
-    C -->|minimal Q&A| E[/ck:bootstrap auto]
-    C -->|parallel fast| F[/ck:bootstrap fast]
+    C -->|step-by-step| D["/ck:bootstrap"]
+    C -->|minimal Q&A| E["/ck:bootstrap auto"]
+    C -->|parallel fast| F["/ck:bootstrap fast"]
     D --> G
     E --> G
-    F --> G[/ck:brainstorm<br/>optional architecture]
-    G --> H[/ck:plan]
-    H --> I[user approves<br/>then /clear]
-    I --> J[/ck:cook]
-    J --> K[/ck:test]
-    K --> L[/ck:review]
-    L --> M[/ck:git pr]
+    F --> G["/ck:brainstorm<br/>optional architecture"]
+    G --> H["/ck:plan"]
+    H --> I["user approves<br/>then /clear"]
+    I --> J["/ck:cook"]
+    J --> K["/ck:test"]
+    K --> L["/ck:review"]
+    L --> M["/ck:git pr"]
 ```
 
 **When to use**: empty folder, fresh idea. Pick `auto` if you trust ClauKit defaults; `fast` for max parallelism; default for full control.
@@ -132,11 +132,11 @@ Just cloned a repo — get oriented in 10 minutes, ready to work.
 
 ```mermaid
 flowchart LR
-    A[git clone repo] --> B[/ck:onboard<br/>6-phase tour]
+    A[git clone repo] --> B["/ck:onboard<br/>6-phase tour"]
     B --> C{Need more?}
-    C -->|drill into files| D[/ck:scout]
-    C -->|architectural Q| E[/ck:ask]
-    C -->|recent activity| F[/ck:watzup]
+    C -->|drill into files| D["/ck:scout"]
+    C -->|architectural Q| E["/ck:ask"]
+    C -->|recent activity| F["/ck:watzup"]
     D --> G[Ready to work]
     E --> G
     F --> G
@@ -153,19 +153,19 @@ Feature idea → production. Primary workflow.
 ```mermaid
 flowchart LR
     A[Feature idea] --> B{Architectural<br/>uncertainty?}
-    B -->|yes| C[/ck:brainstorm]
+    B -->|yes| C["/ck:brainstorm"]
     B -->|no| D[skip]
-    C --> E[/ck:plan]
+    C --> E["/ck:plan"]
     D --> E
     E --> F[user approves plan]
-    F --> G[/clear<br/>fresh context]
-    G --> H[/ck:cook]
-    H --> I[/ck:test]
+    F --> G["/clear<br/>fresh context"]
+    G --> H["/ck:cook"]
+    H --> I["/ck:test"]
     I --> J{Tests pass?}
-    J -->|no| K[/ck:fix test]
+    J -->|no| K["/ck:fix test"]
     K --> I
-    J -->|yes| L[/ck:review]
-    L --> M[/ck:git pr]
+    J -->|yes| L["/ck:review"]
+    L --> M["/ck:git pr"]
 ```
 
 **When to use**: any non-trivial change with feature semantics (new endpoint, new screen, new flow). Skip `/ck:brainstorm` for well-understood patterns.
@@ -178,14 +178,14 @@ Investigate → fix → verify → ship.
 
 ```mermaid
 flowchart LR
-    A[Bug report] --> B[/ck:debug]
+    A[Bug report] --> B["/ck:debug"]
     B --> C{Root cause?}
-    C -->|simple| D[/ck:fix &lt;variant&gt;]
-    C -->|complex| E[/ck:plan]
+    C -->|simple| D["/ck:fix &lt;variant&gt;"]
+    C -->|complex| E["/ck:plan"]
     E --> D
-    D --> F[/ck:test]
+    D --> F["/ck:test"]
     F --> G{Pass?}
-    G -->|yes| H[/ck:git cm]
+    G -->|yes| H["/ck:git cm"]
     G -->|no| B
 ```
 
@@ -209,21 +209,21 @@ Rename · extract · migrate · codemod. Behavior-preserving mechanical change.
 
 ```mermaid
 flowchart LR
-    A[Mechanical change<br/>needed] --> B[/ck:refactor &lt;pattern&gt;]
+    A[Mechanical change<br/>needed] --> B["/ck:refactor &lt;pattern&gt;"]
     B --> C{Pre-flight gate}
     C -->|fail| X[Fix:<br/>clean tree<br/>tests green<br/>on branch]
     X --> C
     C -->|pass| D[Scope + dry-run]
     D --> E[Atomic batch N]
-    E --> F[/ck:test]
+    E --> F["/ck:test"]
     F --> G{Pass?}
     G -->|no| H[git reset<br/>rethink]
     H --> D
     G -->|yes| I[Commit batch]
     I --> J{More batches?}
     J -->|yes| E
-    J -->|no| K[/ck:review]
-    K --> L[/ck:git pr]
+    J -->|no| K["/ck:review"]
+    K --> L["/ck:git pr"]
 ```
 
 **When to use**: distinct from `/ck:cook` (feature) and `/ck:fix` (bug). If the change alters behavior → use `/ck:cook` instead. Pre-flight gate blocks if working tree dirty, tests red, or on `main`.
@@ -236,13 +236,13 @@ Found a feature in someone else's repo, want to bring it in (and improve / adapt
 
 ```mermaid
 flowchart LR
-    A[Spotted feature<br/>in GitHub repo] --> B[/ck:xia &lt;url&gt;]
+    A[Spotted feature<br/>in GitHub repo] --> B["/ck:xia &lt;url&gt;"]
     B --> C[External scout<br/>+ analyze]
-    C --> D[/ck:plan adapt to<br/>local conventions]
-    D --> E[/ck:cook]
-    E --> F[/ck:test]
-    F --> G[/ck:review]
-    G --> H[/ck:git pr]
+    C --> D["/ck:plan adapt to<br/>local conventions"]
+    D --> E["/ck:cook"]
+    E --> F["/ck:test"]
+    F --> G["/ck:review"]
+    G --> H["/ck:git pr"]
 ```
 
 **Flags**: `--improve` (apply local-codebase patterns) · `--compare` (side-by-side diff with existing).
@@ -255,15 +255,15 @@ Resume → work → wrap up. Lightweight loop.
 
 ```mermaid
 flowchart LR
-    A[Session start] --> B[/ck:watzup<br/>see recent activity]
+    A[Session start] --> B["/ck:watzup<br/>see recent activity"]
     B --> C[Work]
     C --> D{Stuck on<br/>tool choice?}
-    D -->|yes| E[/ck:find &lt;task&gt;]
+    D -->|yes| E["/ck:find &lt;task&gt;"]
     D -->|no| F[Continue]
     E --> F
     F --> G[Session end]
-    G --> H[/ck:journal<br/>capture decisions]
-    H --> I[/ck:git cm or cp]
+    G --> H["/ck:journal<br/>capture decisions"]
+    H --> I["/ck:git cm or cp"]
 ```
 
 **Tip**: `/ck:find` is your meta-helper across 80 skills + 25 commands. Use it whenever you think "there's probably a ClauKit tool for this".
