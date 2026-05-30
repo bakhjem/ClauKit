@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-05-30 (security command added)
+**Last Updated**: 2026-05-30 (registry audit — add kit-builder + python-development, fix counts)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 78 skills (78 active + 0 scaffold) · 22 agents · 59 commands · **159 total entries**
+**Counts**: 72 skills (72 active + 0 scaffold) · 21 agents · 59 commands · **152 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -36,12 +36,13 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 > Note: `global/common/` does NOT contain a SKILL.md (only `README.md` + `api_key_helper.py`). It is a shared utility folder, not a skill. Earlier catalog listed it incorrectly — removed.
 
-### Marketing (2) — `.claude/skills/marketing/`
+### Marketing (3) — `.claude/skills/marketing/`
 
-| Name | Status | Folder |
-|---|:---:|---|
-| `geo` | ✅ | `marketing/geo/` |
-| `seo` | ✅ | `marketing/seo/` |
+| Name | Status | Folder | Scope |
+|---|:---:|---|---|
+| `geo` | ✅ | `marketing/geo/` | |
+| `kit-builder` | ✅ | `marketing/kit-builder/` | Build custom ClauKit marketing components — skills, agents, workflows tailored to specific business needs |
+| `seo` | ✅ | `marketing/seo/` | |
 
 ### Software · Top-level standalone (39)
 
@@ -131,6 +132,7 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 | `react-specialist` | ✅ | `development/react-specialist/` | React 18+ specialist — advanced patterns, concurrent rendering, state management, performance — sourced from VoltAgent/awesome-claude-code-subagents |
 | `test-automation` | ✅ | `development/test-automation/` (QA engineering — Playwright canonical, BDD, mobile, API) |
 | `nextjs-developer` | ✅ | `development/nextjs-developer/` | Next.js 14+ full-stack — App Router, Server Components, Server Actions, Core Web Vitals > 90, SEO > 95 — sourced from VoltAgent/awesome-claude-code-subagents |
+| `python-development` | ✅ | `development/python-development/` | FastAPI, Django, Flask, data/ML integration — comprehensive Python backends, APIs, data pipelines |
 
 #### `software/document-skills/` (4)
 
@@ -477,12 +479,12 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | Pool | Active | Scaffold | Total |
 |---|---:|---:|---:|
 | Skills · `global/` | 1 | 0 | 1 |
-| Skills · `marketing/` | 2 | 0 | 2 |
-| Skills · `software/` | 75 | 0 | 75 |
-| **Skills total** | **78** | **0** | **78** |
-| Agents | 22 | 0 | 22 |
+| Skills · `marketing/` | 3 | 0 | 3 |
+| Skills · `software/` | 68 | 0 | 68 |
+| **Skills total** | **72** | **0** | **72** |
+| Agents | 21 | 0 | 21 |
 | Commands | 59 | 0 | 59 |
-| **Grand total entries** | | | **159** |
+| **Grand total entries** | | | **152** |
 
 ## 7 · Open Issues
 
