@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-05-30 (registry audit — add kit-builder + python-development, fix counts)
+**Last Updated**: 2026-05-30 (add typescript-pro language specialist skill)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 72 skills (72 active + 0 scaffold) · 21 agents · 59 commands · **152 total entries**
+**Counts**: 73 skills (73 active + 0 scaffold) · 21 agents · 59 commands · **153 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -46,7 +46,7 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 ### Software · Top-level standalone (39)
 
-All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent; `node-specialist` added 2026-05-29 sourced from VoltAgent/awesome-claude-code-subagents). `nextjs-developer` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents; `web-frameworks` removed (Next.js refs migrated, turborepo/remix-icon dropped).
+All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent; `node-specialist` added 2026-05-29 sourced from VoltAgent/awesome-claude-code-subagents). `nextjs-developer` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents; `web-frameworks` removed (Next.js refs migrated, turborepo/remix-icon dropped). `typescript-pro` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents (subcategorized under `software/development/`).
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
@@ -121,7 +121,7 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 | `ui-ux-pro-max` | ✅ |
 | `web-design-guidelines` | ✅ |
 
-#### `software/development/` (8)
+#### `software/development/` (9)
 
 | Name (frontmatter) | Status | Folder |
 |---|:---:|---|
@@ -133,6 +133,7 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 | `test-automation` | ✅ | `development/test-automation/` (QA engineering — Playwright canonical, BDD, mobile, API) |
 | `nextjs-developer` | ✅ | `development/nextjs-developer/` | Next.js 14+ full-stack — App Router, Server Components, Server Actions, Core Web Vitals > 90, SEO > 95 — sourced from VoltAgent/awesome-claude-code-subagents |
 | `python-development` | ✅ | `development/python-development/` | FastAPI, Django, Flask, data/ML integration — comprehensive Python backends, APIs, data pipelines |
+| `typescript-pro` | ✅ | `development/typescript-pro/` | TypeScript 5.0+ type system, advanced generics, type-level programming, full-stack type safety, tRPC, build tooling — sourced from VoltAgent/awesome-claude-code-subagents |
 
 #### `software/document-skills/` (4)
 
