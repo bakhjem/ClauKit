@@ -14,7 +14,7 @@ This guide covers deployment options and configurations for projects built with 
 
 ```bash
 # Clone and setup
-git clone https://github.com/trungdo9/spark-dev.git your-project
+git clone https://github.com/trungdo9/ClauKit.git your-project
 cd your-project
 
 # Install dependencies

@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-01-31
 **Version**: 1.0.1
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 ## Overview
 
@@ -319,7 +319,7 @@ Supports: context7, sequential-thinking, SearchAPI, and more
 **Current**: v1.0.1
 **License**: MIT
 **Author**: Trung Dev
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 ## Unresolved Questions
 

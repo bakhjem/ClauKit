@@ -4,7 +4,7 @@
 **Version**: 1.0.1
 **Last Updated**: 2026-01-31
 **Status**: Active Development
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 ## Executive Summary
 
@@ -533,5 +533,5 @@ Provide a production-ready template that:
 
 ## Support & Community
 
-- GitHub Issues: https://github.com/trungdo9/spark-dev/issues
-- Repository: https://github.com/trungdo9/spark-dev
+- GitHub Issues: https://github.com/trungdo9/ClauKit/issues
+- Repository: https://github.com/trungdo9/ClauKit

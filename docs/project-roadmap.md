@@ -2,7 +2,7 @@
 
 **Last Updated**: 2026-01-31
 **Current Version**: 1.0.1
-**Repository**: https://github.com/trungdo9/spark-dev
+**Repository**: https://github.com/trungdo9/ClauKit
 
 ## Executive Summary
 
