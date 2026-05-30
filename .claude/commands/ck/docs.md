@@ -55,8 +55,8 @@ Dispatch to the matching operation based on {ACTION}.
 - **IMPORTANT**: For `init` and `update`, **do not** start implementing code — docs only.
 
 ## Examples
-- `/docs init` — bootstrap initial documentation for the project.
-- `/docs update` — refresh all docs to match current codebase.
-- `/docs update "focus on the new auth module"` — targeted update.
-- `/docs summarize` — quick summary report from existing docs.
-- `/docs summarize "auth, payments" true` — focused summary with codebase scan.
+- `/ck:docs init` — bootstrap initial documentation for the project.
+- `/ck:docs update` — refresh all docs to match current codebase.
+- `/ck:docs update "focus on the new auth module"` — targeted update.
+- `/ck:docs summarize` — quick summary report from existing docs.
+- `/ck:docs summarize "auth, payments" true` — focused summary with codebase scan.

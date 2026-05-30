@@ -20,7 +20,7 @@ Conduct cyber threat intelligence investigations using OSINT and forensic analys
 - Supporting incident response with contextual threat intelligence
 - Evaluating threat actor capabilities and historical targeting patterns
 
-**Do NOT use when**: Scanning live systems for vulnerabilities (use `vulnerability-scanner`), designing security controls (use `security`), or performing real-time threat hunting on internal systems (use SIEM + specialized tools).
+**Do NOT use when**: Scanning live systems for vulnerabilities (use `security`), designing security controls (use `security`), or performing real-time threat hunting on internal systems (use SIEM + specialized tools).
 
 ## Workflow
 
@@ -133,4 +133,4 @@ Never claim "certain attribution" based solely on TTPs; support with technical u
 - [OSINT Framework](https://osintframework.com/) — Curated collection of open-source intelligence gathering tools and resources (free tools, Google Dorks, registration-required databases)
 - [Recorded Future Threat Intelligence](https://www.recordedfuture.com/threat-intelligence) — Four intelligence types framework; contextualizing raw data into actionable insights for strategic, tactical, operational, and technical audiences
 
-See also: `security` (pre-incident threat modeling), `vulnerability-scanner` (post-incident technical validation).
+See also: `security` (pre-incident threat modeling + post-incident technical validation).

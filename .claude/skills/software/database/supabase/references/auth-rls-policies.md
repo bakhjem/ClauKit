@@ -64,7 +64,7 @@ create policy posts_delete on posts
 
 Notes:
 
-- Always wrap `auth.uid()` in `(select auth.uid())`. Postgres caches the subquery result per statement instead of re-calling the function per row. See `supabase-postgres-best-practices/security-rls-performance.md`.
+- Always wrap `auth.uid()` in `(select auth.uid())`. Postgres caches the subquery result per statement instead of re-calling the function per row. See `security-rls-performance.md` (same `supabase/references/` folder).
 - `to authenticated` excludes the `anon` role from these policies — anonymous calls see nothing. Add a separate `to anon` policy only if public access is intentional.
 - For multi-tenant designs, replace `author_id = auth.uid()` with a `tenant_id` lookup, typically via a `security definer` helper function that reads the caller's tenant from a `members` table.
 
