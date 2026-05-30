@@ -65,11 +65,9 @@ Several skills require external CLI tools:
 - **Docker**: https://docs.docker.com/get-docker/
 - **Google Cloud CLI**: https://cloud.google.com/sdk/docs/install
 
-#### better-auth, repomix, shopify
+#### repomix
 - **Node.js 18+**: https://nodejs.org/
-- **Better Auth**: `npm install better-auth`
 - **Repomix**: `npm install -g repomix`
-- **Shopify CLI**: `npm install -g @shopify/cli @shopify/theme`
 
 #### databases
 - **PostgreSQL client**: `sudo apt-get install postgresql-client` (Linux)
@@ -101,7 +99,7 @@ sudo apt-get install -y ffmpeg imagemagick postgresql-client
 # Node.js and tools
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt-get install -y nodejs
-npm install -g pnpm wrangler repomix @shopify/cli
+npm install -g pnpm wrangler repomix
 ```
 
 ### macOS
@@ -120,7 +118,7 @@ brew install ffmpeg imagemagick postgresql
 
 # Node.js and tools
 brew install node
-npm install -g pnpm wrangler repomix @shopify/cli
+npm install -g pnpm wrangler repomix
 ```
 
 ### Windows
@@ -138,7 +136,7 @@ pip install -r requirements.txt
 choco install ffmpeg imagemagick nodejs
 
 # Node.js tools
-npm install -g pnpm wrangler repomix @shopify/cli
+npm install -g pnpm wrangler repomix
 ```
 
 ## Testing Dependencies
@@ -228,7 +226,7 @@ sudo apt-get install ffmpeg imagemagick
 ```
 
 **For other skills:**
-Most other skills (better-auth, repomix, shopify, devops, web-frameworks, ui-styling, databases) use only Python stdlib and require no `pip install`.
+Most other skills (repomix, devops, web-frameworks, ui-styling, databases) use only Python stdlib and require no `pip install`.
 
 ## Development Setup
 
@@ -264,10 +262,6 @@ pytest .claude/skills/*/scripts/tests/ --cov=.claude/skills --cov-report=html
 - Cloudflare: Requires `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
 - GCloud: Requires `GOOGLE_APPLICATION_CREDENTIALS` path to service account JSON
 - Docker: Must have Docker daemon running
-
-### shopify
-- Requires Shopify CLI authentication: `shopify auth login`
-- Partner account needed for app development
 
 ## Getting Help
 

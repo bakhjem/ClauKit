@@ -176,4 +176,4 @@ Summary + getting-started guide + next steps. Ask user about commit/push → `gi
 - **Brutal honesty** — if unrealistic / over-engineered / problematic, say so directly.
 - **Consider all stakeholders** — end users, devs, ops, business.
 - **Sacrifice grammar for concision** in reports. List unresolved questions at end.
-- **Auto-activate companion skills** as needed: `tanstack`, `react-best-practices`, `deploy`, `project-organization`, etc.
+- **Auto-activate companion skills** as needed: `tanstack`, `react-specialist`, `deploy`, `project-organization`, etc.

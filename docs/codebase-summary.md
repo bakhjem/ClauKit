@@ -17,7 +17,7 @@ spark-dev/
 │   ├── commands/               # 54 slash command implementations
 │   ├── hooks/                  # Git hooks and scripts
 │   │   └── scout-block.js      # Scout Block Hook dispatcher
-│   ├── skills/                 # 74 skills (3-tier: global/, software/, marketing/)
+│   ├── skills/                 # 75 skills (3-tier: global/, software/, marketing/)
 │   ├── workflows/              # Development workflow definitions
 │   ├── settings.json           # Claude Code settings
 │   ├── metadata.json           # Project metadata
@@ -126,12 +126,12 @@ spark-dev/
 
 ### 3. Skills Library
 
-**Skills Organization** (`.claude/skills/` — 74 SKILL.md files, 3-tier):
+**Skills Organization** (`.claude/skills/` — 75 SKILL.md files, 3-tier):
 
 - `global/` (1): `docs-seeker` — cross-cutting
 - `marketing/` (2): `seo`, `geo`
-- `software/` (71): top-level standalone + subcategories
-  - Subcategories: `ai/`, `database/`, `design/`, `development/`, `document-skills/`, `git/`, `react-native/`
+- `software/` (66): top-level standalone + subcategories
+  - Subcategories: `ai/`, `database/`, `design/`, `development/`, `document-skills/`, `git/`
   - 12 stubs awaiting research-fill: `agentize`, `ck-graphify`, `coding-level`, `context-engineering`, `cook`, `gkg`, `plans-kanban`, `predict`, `project-organization`, `retro`, `scenario`, `xia`
 
 Single source of truth: `docs/clauKit-registry.md` (covers skills + agents + commands + duplicate detection). Skills auto-activate by description match; commands/agents cross-link to related skills via `Related skills` footer.

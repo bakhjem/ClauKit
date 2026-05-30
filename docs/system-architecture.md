@@ -269,7 +269,7 @@ Explore different approaches simultaneously
 - **Databases**: MongoDB, PostgreSQL
 - **Web Frameworks**: Next.js, Turborepo
 - **UI Styling**: shadcn/ui, Tailwind CSS
-- **Individual Skills**: better-auth, chrome-devtools, debugging, docs-seeker, document-skills, ffmpeg, imagemagick, gemini-audio, gemini-video-understanding, mcp-builder, problem-solving, shopify
+- **Individual Skills**: chrome-devtools, debugging, docs-seeker, document-skills, ffmpeg, imagemagick, gemini-audio, gemini-video-understanding, mcp-builder, problem-solving, shopify
 - **Specialized**: csharp-expert, security-audit, seo
 
 #### 5.2 Skill Invocation

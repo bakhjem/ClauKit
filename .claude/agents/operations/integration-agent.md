@@ -28,7 +28,6 @@ The agent covers **4 integration domains**:
 ### 2. Authentication Providers
 - Supabase Auth · Auth0 · Firebase Auth
 - OAuth 2.0 / OIDC flows
-- → Companion skill: `better-auth`
 
 ### 3. External APIs
 - Third-party REST / GraphQL APIs
@@ -96,5 +95,5 @@ async function verifyWebhook(payload: string, signature: string, secret: string)
 ## Agent-Specific Notes
 
 - **Token efficiency** while maintaining high quality.
-- **Skills catalog:** auto-activate `payment-integration`, `better-auth`, `test-automation` as relevant.
+- **Skills catalog:** auto-activate `payment-integration`, `test-automation` as relevant.
 - **Sacrifice grammar for concision** in reports. List unresolved questions at end.

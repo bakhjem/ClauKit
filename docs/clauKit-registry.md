@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-05-17
+**Last Updated**: 2026-05-30 (security command added)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 75 skills (75 active + 0 scaffold) · 21 agents · 55 commands · **151 total entries**
+**Counts**: 73 skills (73 active + 0 scaffold) · 22 agents · 56 commands · **151 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -26,7 +26,7 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 ---
 
-## 1 · Skills (72)
+## 1 · Skills (74)
 
 ### Global (1) — `.claude/skills/global/`
 
@@ -43,9 +43,9 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 | `geo` | ✅ | `marketing/geo/` |
 | `seo` | ✅ | `marketing/seo/` |
 
-### Software · Top-level standalone (36)
+### Software · Top-level standalone (37)
 
-All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent).
+All 37 are active as of 2026-05-29 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent; `node-specialist` added 2026-05-29 sourced from VoltAgent/awesome-claude-code-subagents). `nextjs-developer` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents; `web-frameworks` removed (Next.js refs migrated, turborepo/remix-icon dropped).
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
@@ -53,14 +53,14 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `ask` 🔁 | ✅ | `software/ask/` | Technical/architectural consultation methodology — 4 advisor personas, grounded-context protocol, synthesis |
 | `chrome-devtools` | ✅ | `software/chrome-devtools/` | Puppeteer CLI scripts with persistent sessions + JSON output |
 | `agentize` | ✅ | `software/agentize/` | Convert codebase to CLI + MCP server for AI agents |
-| `better-auth` | ✅ | `software/better-auth/` | |
 | `brainstorm` 🔁 | ✅ | `software/brainstorm/` | Architecture/solution advisory methodology — 5 pillars, 7-phase process, YAGNI/KISS/DRY, brutally-honest alternatives debate |
 | `ck-graphify` | ✅ | `software/ck-graphify/` | AST → queryable code graph (syntactic) |
 | `code-review` 🔁 | ✅ | `software/code-review/` | 4 practices — pre-review edge-case scout, receiving feedback (no performative agreement), requesting code-reviewer subagent, verification gates (evidence before claims) |
 | `coding-level` | ✅ | `software/coding-level/` | Developer proficiency (0-5) → output tuning |
 | `context-engineering` | ✅ | `software/context-engineering/` | Curate token flow into AI agents (6-layer model) |
 | `cook` 🔁 | ✅ | `software/cook/` | Feature lifecycle pipeline with gates — methodology source for `/cook` command |
-| `csharp-expert` | ✅ | `software/development/csharp-expert/` | |
+| `csharp-developer` | ✅ | `software/development/csharp-developer/` | ASP.NET Core, Blazor, EF Core, cloud-native .NET — sourced from VoltAgent/awesome-claude-code-subagents |
+| `node-specialist` | ✅ | `software/development/node-specialist/` | Node.js backend — event loop, async patterns, streams, Express/Fastify/NestJS, performance profiling, security — sourced from VoltAgent/awesome-claude-code-subagents |
 | `cti-expert` | ✅ | `software/cti-expert/` | |
 | `debugging` 🔁 | ✅ | `software/debugging/` | |
 | `find-skills` | ✅ | `software/find-skills/` | |
@@ -83,7 +83,7 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `skill-creator` | ✅ | `software/skill-creator/` | |
 | `tech-graph` | ✅ | `software/tech-graph/` | |
 | `template-skill` | ✅ | `software/template-skill/` | (still a 5-LOC stub — see open issue) |
-| `vulnerability-scanner` 🔁 | ✅ | `software/vulnerability-scanner/` | |
+| `security` 🔁 | ✅ | `software/security/` | Renamed from `vulnerability-scanner` 2026-05-29 — path updated to match `software/security/SKILL.md` on disk |
 | `web-testing` | ✅ | `software/web-testing/` (developer toolkit; Playwright deep-dive lives in `test-automation`) | |
 | `xia` 🔁 | ✅ | `software/xia/` (port & refactor from GitHub) | |
 
@@ -97,13 +97,12 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `ai-multimodal` | ✅ |
 | `remotion` | ✅ |
 
-#### `software/database/` (3)
+#### `software/database/` (2)
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
 | `databases` | ✅ | `database/databases/` | |
-| `supabase` 🔁 | ✅ | `database/supabase/` | Supabase platform (Auth+RLS app-layer, Client SDK, Storage, Realtime, Edge Functions, CLI migrations) — added 2026-05-16. Complements `supabase-postgres-best-practices` |
-| `supabase-postgres-best-practices` | ✅ | `database/supabase-postgres-best-practices/` | Postgres performance + RLS at the SQL level |
+| `supabase` 🔁 | ✅ | `database/supabase/` | Supabase patterns Claude gets wrong — RLS per-operation policies (`with check` vs `using`), `(select auth.uid())` perf trick, `service_role` key security — updated 2026-05-29 (merged from `supabase-postgres-best-practices`) |
 
 #### `software/design/` (9)
 
@@ -119,21 +118,17 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `ui-ux-pro-max` | ✅ |
 | `web-design-guidelines` | ✅ |
 
-#### `software/development/` (11)
+#### `software/development/` (8)
 
 | Name (frontmatter) | Status | Folder |
 |---|:---:|---|
 | `backend-development` | ✅ | `development/backend-development/` |
 | `bootstrap` 🔁 | ✅ | `development/bootstrap/` |
-| `deploy` | ✅ | `development/deploy/` |
 | `frontend-development` | ✅ | `development/frontend-development/` |
-| `mobile-development` | ✅ | `development/mobile-development/` |
-| `python-development` | ✅ | `development/python-development/` |
-| `react-best-practices` | ✅ | `development/react-best-practices/` |
-| `shopify` | ✅ | `development/shopify/` |
-| `tanstack` | ✅ | `development/tanstack/` |
+| `python-pro` | ✅ | `software/development/python-pro/` | Python 3.11+, type-safe async APIs, mypy strict, pytest 90%+ — sourced from VoltAgent/awesome-claude-code-subagents |
+| `react-specialist` | ✅ | `development/react-specialist/` | React 18+ specialist — advanced patterns, concurrent rendering, state management, performance — sourced from VoltAgent/awesome-claude-code-subagents |
 | `test-automation` | ✅ | `development/test-automation/` (QA engineering — Playwright canonical, BDD, mobile, API) |
-| `web-frameworks` | ✅ | `development/web-frameworks/` |
+| `nextjs-developer` | ✅ | `development/nextjs-developer/` | Next.js 14+ full-stack — App Router, Server Components, Server Actions, Core Web Vitals > 90, SEO > 95 — sourced from VoltAgent/awesome-claude-code-subagents |
 
 #### `software/document-skills/` (4)
 
@@ -144,7 +139,7 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `pptx` | ✅ |
 | `xlsx` | ✅ |
 
-> `software/expo/` (12 sub-skills, 9515 LOC) **removed 2026-05-16** per user direction. Mobile Expo work now relies on `mobile-development` skill (decision/mindset level only) — note this trade-off: deep Expo SDK-55 implementation knowledge is no longer in the catalog. Re-add via `npx skills add expo/skills` (if upstream pkg exists) if needed.
+> `software/expo/` (12 sub-skills, 9515 LOC) **removed 2026-05-16** per user direction. `mobile-development` skill also **removed 2026-05-29** per user direction — no dedicated mobile skill remains. Re-add via `npx skills add expo/skills` (if upstream pkg exists) if needed.
 
 #### `software/git/` (2) 🔁
 
@@ -153,15 +148,11 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 | `git` | ✅ | `software/git/SKILL.md` |
 | `worktree` | ✅ | `software/git/worktree/SKILL.md` |
 
-#### `software/react-native/` (5)
+#### `software/infrastructure/` (1)
 
-| Name | Status |
-|---|:---:|
-| `github` | ✅ |
-| `github-actions` | ✅ |
-| `react-native-best-practices` | ✅ |
-| `react-native-brownfield-migration` | ✅ |
-| `upgrading-react-native` | ✅ |
+| Name | Status | Folder | Scope |
+|---|:---:|---|---|
+| `docker-expert` | ✅ | `infrastructure/docker-expert/` | Production Docker: multi-stage builds, image optimization, security hardening, supply chain security — sourced from VoltAgent/awesome-claude-code-subagents |
 
 ---
 
@@ -219,7 +210,7 @@ All 36 are active as of 2026-05-16 (10 scaffolds filled in earlier batch; `predi
 
 All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/<name>` (e.g. `/cook`, `/fix ci`). **`/orchestrate` removed 2026-05-17** (superseded by `/team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/fix ci`, `/plan two`).
 
-### Top-level (16) — single-action + flagged-variant entrypoints
+### Top-level (17) — single-action + flagged-variant entrypoints
 
 | Command | Description |
 |---|---|
@@ -234,6 +225,7 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/journal` 🔁 | Write journal entries |
 | `/plan [-fast\|-hard]` 🔁 | Intelligent plan creation — router (auto-detect) · `-fast`: no research · `-hard`: research-heavy |
 | `/scout [-ext]` 🔁 | Scout codebase — default: internal Explore subagents · `-ext`: external gemini/opencode |
+| `/security [scope] [--en]` 🔁 | Security audit — OWASP 2025, 21 rules, SMALL/LARGE, bilingual |
 | `/team` 🔁 | Orchestrate parallel multi-session collaboration with independent Claude Code teammates (paired with `team` skill) |
 | `/test` 🔁 | Run tests locally, analyze report |
 | `/use-mcp` 🔁 | Utilize MCP server tools |
@@ -357,11 +349,11 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Git | `git`, `worktree` | `git-manager` | `/git:*` |
 | Bootstrap | `bootstrap` (knowledge) | – | `/bootstrap`, `/bootstrap auto*` |
 | Port & Refactor | `xia` | (uses `scout-external`, `code-reviewer`) | `/xia` |
-| Security | `vulnerability-scanner`, `cti-expert` | `security-auditor` | `/review` |
+| Security | `security`, `cti-expert` | `security-auditor` | `/review`, `/security` |
 | Payments | `payment-integration` | `integration-agent` | `/integrate:*` |
 | MCP | – | `mcp-manager` | `/use-mcp` |
 | Skill management | `skill-creator`, `find-skills`, `template-skill` | – | `/cc-skill` |
-| Database | `databases`, `supabase-postgres-best-practices` | `database-admin` | – |
+| Database | `databases`, `supabase` | `database-admin` | – |
 | Journal | – | `journal-writer` | `/journal` |
 | Brainstorm (7-phase advisory: Scout→Discovery→Research→Analysis→Debate→Consensus→Finalize→`planner`) | `brainstorm` (5-pillar methodology + 7-phase process) | `brainstormer` | `/brainstorm` |
 | Team (parallel multi-session) | `team` (templates: research/cook/review/debug) | – | `/team` |
@@ -371,7 +363,7 @@ Other trios (`testing` → covered by `web-testing`/`chrome-devtools`, `design` 
 | Cook (feature lifecycle) | `cook` (5-stage gated methodology) | (uses team) | `/cook` |
 | Problem-solving | `problem-solving` | – | – |
 | Sequential thinking | `sequential-thinking` | – | – |
-| Misc skills (knowledge only) | `better-auth`, `csharp-expert`, `preview`, `llms`, `markdown-novel-viewer`, `mintlify`, `tech-graph`, `cti-expert`, design subskills, `mobile-development` | – | – |
+| Misc skills (knowledge only) | `preview`, `llms`, `markdown-novel-viewer`, `mintlify`, `tech-graph`, `cti-expert`, design subskills | – | – |
 | Scaffold methodology (knowledge only, future) | 12 scaffolds | – | – |
 
 ### 4c · Naming inconsistencies — RESOLVED 2026-05-16
@@ -403,7 +395,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 
 - `ui-ux-designer` agent reads from 10 design skills — by design, not a bug.
 - `docs-manager` agent reads from 5+ doc skills — by design.
-- Security: `vulnerability-scanner` (SAST) + `cti-expert` (threat intel) feed `security-auditor` — distinct scopes.
+- Security: `security` (SAST/vuln scanning) + `cti-expert` (threat intel) feed `security-auditor` — distinct scopes.
 
 ---
 
@@ -441,6 +433,29 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 |---|---|---|
 | Merged | `predict` → `[[planning]]` | High overlap with planning; "Predictive planning" subsection added to `planning/SKILL.md` + `references/forecasting-outcomes.md`; `software/predict/` folder removed. |
 
+### Skill removal (2026-05-30)
+
+| Action | Skill | Notes |
+|---|---|---|
+| Deleted | `deploy` | `software/development/deploy/` removed — single-file, no references/, no paired command/agent. Platform selection content (Vercel/Render/Fly.io/etc.) is generic docs; `backend-devops.md` covers deployment strategies adequately. |
+
+### Skill merge (2026-05-29)
+
+| Action | Skill | Notes |
+|---|---|---|
+| Merged + deleted | `supabase-postgres-best-practices` → `supabase` | 42 files trimmed to 3 (only patterns Claude gets wrong). `security-rls-performance.md` ported to `supabase/references/`. 9 supabase refs deleted + 1 unlisted (`edge-functions-deno.md`). `supabase` SKILL.md rewritten v2.0.0. |
+| Renamed | `vulnerability-scanner` → `security` | Disk path `software/security/SKILL.md` was already correct; registry entry name and path updated to match. |
+| Removed from registry | `software/react-native/` (5 entries) | `github`, `github-actions`, `react-native-best-practices`, `react-native-brownfield-migration`, `upgrading-react-native` — no SKILL.md files on disk; ghost entries removed. |
+| Deleted | `mobile-development` | `software/development/mobile-development/` folder removed (SKILL.md + references/ + rules/). 2026-05-29 per user direction. |
+| Replaced | `react-best-practices` → `react-specialist` | Vercel 70-rule reference lib (SKILL.md + 70+ rule files) replaced by VoltAgent senior React 18+ specialist agent definition (single SKILL.md). 2026-05-30 per user direction. |
+
+### Skill swap (2026-05-30)
+
+| Action | Skill | Notes |
+|---|---|---|
+| Added | `nextjs-developer` | `software/development/nextjs-developer/` — Next.js 14+ agent persona adapted as knowledge skill. 4 Next.js refs migrated from `web-frameworks`. Sourced from VoltAgent/awesome-claude-code-subagents. |
+| Removed | `web-frameworks` | `software/development/web-frameworks/` deleted. Next.js refs (4) migrated to `nextjs-developer/references/`. Turborepo (3 refs), RemixIcon (1 ref), scripts (`nextjs_init.py`, `turborepo_migrate.py`) dropped per user direction. |
+
 ### Agent removal (2026-05-17)
 
 | Action | Agent | Notes |
@@ -455,18 +470,18 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 |---|---:|---:|---:|
 | Skills · `global/` | 1 | 0 | 1 |
 | Skills · `marketing/` | 2 | 0 | 2 |
-| Skills · `software/` | 72 | 0 | 72 |
-| **Skills total** | **75** | **0** | **75** |
+| Skills · `software/` | 70 | 0 | 70 |
+| **Skills total** | **73** | **0** | **73** |
 | Agents | 22 | 0 | 22 |
-| Commands | 55 | 0 | 55 |
-| **Grand total entries** | | | **152** |
+| Commands | 56 | 0 | 56 |
+| **Grand total entries** | | | **151** |
 
 ## 7 · Open Issues
 
 1. ~~**`web-testing` vs `test-automation`** scope overlap~~ — **RESOLVED 2026-05-16** (audience-based clarification; see § 4d).
 2. ~~**11 scaffolds** still need research-fill~~ — **RESOLVED 2026-05-16** (10 filled to active, `predict` merged into `planning`; see § 5).
 3. **`global/common/`** folder has utility files (no SKILL.md) — fine to keep but should NOT be counted as a skill.
-4. **Expo deep-knowledge gap** — `software/expo/` removed; `mobile-development` only covers decision-level. Re-add if implementation guidance needed.
+4. **Mobile deep-knowledge gap** — `software/expo/` removed 2026-05-16; `mobile-development` skill removed 2026-05-29. No dedicated mobile skill remains. Re-add if implementation guidance needed.
 5. **`template-skill/SKILL.md`** is a 5-LOC placeholder (`# Insert instructions below`). Should be expanded into a real reference template for new skill authors.
 
 ## 8 · How to Use This Registry

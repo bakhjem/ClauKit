@@ -1,59 +1,33 @@
 ---
 name: supabase
-description: Supabase platform usage — Auth + RLS policies, Client SDK (JS/Dart/Swift), Storage, Realtime, Edge Functions, and migrations via Supabase CLI. Use this skill when integrating Supabase into an app, writing RLS policies, calling supabase-js, handling storage uploads, subscribing to realtime, deploying Edge Functions, or running CLI migrations. Complements `supabase-postgres-best-practices` (which focuses on raw Postgres performance/SQL).
+description: Supabase-specific patterns Claude gets wrong — RLS per-operation policies (with check vs using), (select auth.uid()) performance trick, and service_role key security. Use when writing RLS policies, optimizing auth.uid() queries, or deciding which Supabase key to use.
 license: MIT
 metadata:
   type: knowledge
   category: database/platform
-  version: "1.0.0"
-  date: 2026-05-16
+  version: "2.0.0"
+  date: 2026-05-29
 ---
 
-# Supabase Platform
+# Supabase
 
-App-layer guidance for building with Supabase. Pairs with `supabase-postgres-best-practices` (Postgres tuning, indexing, schema) — this skill covers the platform pieces *above* SQL: Auth/RLS patterns from the app's point of view, client SDK ergonomics, Storage, Realtime, Edge Functions, and the CLI-driven migration workflow.
+Focused on the 3 patterns Claude consistently gets wrong. Everything else Claude already knows.
 
 ## When to Apply
 
-Read these references when:
-
-- Writing or reviewing RLS policies that reference `auth.uid()` / `auth.jwt()`
-- Deciding between `anon`, `authenticated`, and `service_role` keys
-- Calling Supabase from a client (supabase-js, Flutter, Swift) and want type-safe / error-safe patterns
-- Designing Storage buckets and access control
-- Subscribing to Realtime channels (postgres_changes, broadcast, presence)
-- Writing Edge Functions in Deno that talk to the database under a user's JWT
-- Running `supabase` CLI for local dev, `db diff`, `db push`, and policy deployment
-
-## Categories
-
-| Prefix | Category |
-|--------|----------|
-| `auth-` | Auth + RLS policies (app-layer) |
-| `client-` | Client SDK patterns (supabase-js focused, notes for Dart/Swift) |
-| `storage-` | Storage buckets, RLS on `storage.objects`, upload patterns |
-| `edge-` | Edge Functions (Deno runtime) |
-| `migration-` | Supabase CLI, local dev, schema/policy deployment |
-
-## How to Use
-
-Each reference in `references/` follows the format:
-
-- Frontmatter: `title`, `impact`, `impactDescription`, `tags`
-- A 1–2 sentence "why it matters"
-- **Incorrect** example showing the common mistake
-- **Correct** example with explanation
-- Links to official docs
-
-For Postgres-internal concerns (indexes, EXPLAIN, vacuum, connection pooling, RLS *performance* like wrapping `auth.uid()` in `(select auth.uid())`), see the sibling skill `supabase-postgres-best-practices`.
+- Writing or reviewing RLS policies (especially `with check` vs `using` per operation)
+- Any policy that calls `auth.uid()` — wrap it in `(select auth.uid())`
+- Deciding which Supabase key to expose (`anon` vs `service_role`)
 
 ## References
 
-- https://supabase.com/docs
+| File | Why it matters |
+|------|---------------|
+| `auth-rls-policies.md` | `with check` vs `using` per-operation — Claude routinely writes `for all` (footgun) or swaps the clauses |
+| `security-rls-performance.md` | `(select auth.uid())` pattern — 100x perf gain on large tables; extremely easy to miss |
+| `auth-service-role-vs-anon.md` | `NEXT_PUBLIC_SERVICE_ROLE_KEY` anti-pattern — concrete Next.js code Claude commonly pastes incorrectly |
+
+## References
+
 - https://supabase.com/docs/guides/auth
 - https://supabase.com/docs/guides/database/postgres/row-level-security
-- https://supabase.com/docs/reference/javascript
-- https://supabase.com/docs/guides/storage
-- https://supabase.com/docs/guides/realtime
-- https://supabase.com/docs/guides/functions
-- https://supabase.com/docs/guides/local-development

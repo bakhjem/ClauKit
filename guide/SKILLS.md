@@ -43,19 +43,6 @@ Or combine with slash commands:
 
 ## Development Framework Skills
 
-### better-auth
-
-**Framework-agnostic authentication for TypeScript**
-
-**Features:**
-- Email/password and OAuth 2.0
-- 2FA, passkeys, magic links, email OTP
-- Multi-tenant organization support
-- Works with Next.js, Nuxt, Svelte, Remix, etc.
-- SQLite, PostgreSQL, MySQL, MongoDB
-
----
-
 ### nextjs
 
 **Next.js React framework**
