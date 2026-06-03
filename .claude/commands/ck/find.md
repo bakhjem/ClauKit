@@ -8,7 +8,7 @@ argument-hint: [task-description]
 
 ## Purpose
 
-Given a task description, recommend the best ClauKit tool to use — **local registry first**, external skills ecosystem as fallback. Reduces the discoverability gap across 78 skills + 21 agents + 22 commands.
+Given a task description, recommend the best ClauKit tool to use — **local registry first**, external skills ecosystem as fallback. Reduces the discoverability gap across 74 skills + 21 agents + 60 commands (see `docs/clauKit-registry.md` for exact counts).
 
 ## Workflow
 
@@ -31,6 +31,7 @@ Read `docs/clauKit-registry.md` (single source of truth). Match the task against
 - Action verb → command (e.g. "review code" → `/ck:review`; "fix CI" → `/ck:fix ci`)
 - Domain knowledge → skill (e.g. "Postgres tuning" → `postgresql` skill)
 - Personas / delegated multi-step → agent (e.g. heavy parallel research → `researcher`)
+- **Controlled fan-out / audit / migration / cross-checked review / multi-angle plan** (deterministic, gated, no persistent discussion) → `/ck:flow` (or `/ck:fix --flow` / `/ck:review --flow`). Distinguish from `/ck:team` (persistent sessions + discussion + cross-session memory).
 
 ### Step 3 — Present 1–3 recommendations
 

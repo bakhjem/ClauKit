@@ -1,6 +1,6 @@
 # Project Roadmap
 
-**Last Updated**: 2026-01-31
+**Last Updated**: 2026-06-03
 **Current Version**: 1.0.1
 **Repository**: https://github.com/trungdo9/ClauKit
 
@@ -175,6 +175,9 @@ Enterprise-grade features and deployment options.
 - New agents: csharp-expert, security-auditor, seo-specialist
 - New commands: seo:audit, seo:keywords, seo:schema, design:ui-ux-pro-max
 - New skills: csharp-expert, security-audit, seo
+
+### Recent Additions (2026-06-03)
+- `/ck:flow` command with dynamic-workflow skill: controllable recreation of Claude Code's dynamic-workflow model on ClauKit primitives (markdown recipes + Agent-tool fan-out/pipeline, 4-axis inheritance, gated + cost-previewed). No native ultracode runtime. Supports run/save/list modes with `--flow` orchestrated variants on `/ck:fix` and `/ck:review`.
 
 ### In Development
 - Skills library expansion

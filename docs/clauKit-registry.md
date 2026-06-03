@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-06-03 (cook: add Stage 0 Exact-Requirements Gate)
+**Last Updated**: 2026-06-03 (add `/ck:flow` + `dynamic-workflow` skill — controllable orchestration)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 73 skills (73 active + 0 scaffold) · 21 agents · 59 commands · **153 total entries**
+**Counts**: 74 skills (74 active + 0 scaffold) · 21 agents · 60 commands · **155 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -26,7 +26,7 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 ---
 
-## 1 · Skills (78)
+## 1 · Skills (74)
 
 ### Global (1) — `.claude/skills/global/`
 
@@ -44,9 +44,9 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 | `kit-builder` | ✅ | `marketing/kit-builder/` | Build custom ClauKit marketing components — skills, agents, workflows tailored to specific business needs |
 | `seo` | ✅ | `marketing/seo/` | |
 
-### Software · Top-level standalone (39)
+### Software · Top-level standalone (40)
 
-All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent; `node-specialist` added 2026-05-29 sourced from VoltAgent/awesome-claude-code-subagents). `nextjs-developer` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents; `web-frameworks` removed (Next.js refs migrated, turborepo/remix-icon dropped). `typescript-pro` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents (subcategorized under `software/development/`).
+All 40 are active (`dynamic-workflow` added 2026-06-03, paired with `/ck:flow`; baseline 39 active as of 2026-05-30) (10 scaffolds filled in earlier batch; `predict` merged into `planning` and removed — see section 5; `chrome-devtools` added 2026-05-16; `ask` re-added 2026-05-16 as knowledge skill complementing the `/ask` command; `brainstorm` re-added 2026-05-16 as knowledge skill complementing the `/brainstorm` command + `brainstormer` agent; `node-specialist` added 2026-05-29 sourced from VoltAgent/awesome-claude-code-subagents). `nextjs-developer` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents; `web-frameworks` removed (Next.js refs migrated, turborepo/remix-icon dropped). `typescript-pro` added 2026-05-30 sourced from VoltAgent/awesome-claude-code-subagents (subcategorized under `software/development/`).
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
@@ -64,6 +64,7 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 | `node-specialist` | ✅ | `software/development/node-specialist/` | Node.js backend — event loop, async patterns, streams, Express/Fastify/NestJS, performance profiling, security — sourced from VoltAgent/awesome-claude-code-subagents |
 | `cti-expert` | ✅ | `software/cti-expert/` | |
 | `debugging` 🔁 | ✅ | `software/debugging/` | |
+| `dynamic-workflow` 🔁 | ✅ | `software/dynamic-workflow/` | Controllable re-creation of the dynamic-workflow model — fan-out/pipeline over the 21 agents, 4-axis inheritance, gated + cost-previewed; paired with `/ck:flow` (re-creates patterns, never native ultracode) |
 | `find-skills` | ✅ | `software/find-skills/` | |
 | `gkg` | ✅ | `software/gkg/` | Text → semantic knowledge graph (NLP) |
 | `llms` | ✅ | `software/llms/` | |
@@ -211,11 +212,11 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 
 ---
 
-## 3 · Commands (59)
+## 3 · Commands (60)
 
 All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-05-17** — every command lives under `.claude/commands/ck/`, invoked as `/ck:<name>` (e.g. `/ck:cook`, `/ck:fix ci`). **`/orchestrate` removed 2026-05-17** (superseded by `/ck:team`). **Flag-style variants applied 2026-05-17** — sibling variants of the same command (e.g. fast/hard/auto/good/ext) collapsed into flags rather than `:nested` namespace; namespaced commands now reserved for genuinely-distinct actions (e.g. `/ck:fix ci`, `/ck:plan two`).
 
-### Top-level (21) — single-action + flagged-variant entrypoints
+### Top-level (22) — single-action + flagged-variant entrypoints
 
 | Command | Description |
 |---|---|
@@ -227,7 +228,8 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:debug` 🔁 | Debugging technical issues |
 | `/ck:design [fast\|good] [3d\|screenshot\|describe\|ui-ux-pro-max]` 🔁 | Design UI/UX — workflow flags: `fast` (minimal) · `good` (research-driven). Output-type flags: `3d` · `screenshot` · `describe` · `ui-ux-pro-max` (Style Intelligence) |
 | `/ck:find` 🔁 | Recommend ClauKit skill/agent/command for a task — local registry first, external skills fallback |
-| `/ck:fix [--auto] [--review] [--quick] [--parallel]` 🔁 | Analyze and fix issues — combinable flags: `--auto` · `--review` · `--quick` · `--parallel` |
+| `/ck:flow [save\|list]` 🔁 | Controllable orchestration — plan phases, cost preview, fan-out/pipeline over the 21 agents, 4-axis inheritance, gated (re-creates dynamic workflows; never native ultracode). Paired with `dynamic-workflow` skill |
+| `/ck:fix [--auto] [--review] [--quick] [--parallel] [--flow]` 🔁 | Analyze and fix issues — combinable flags: `--auto` · `--review` · `--quick` · `--parallel` · `--flow` (orchestrated: gates as agent stages + adversarial-verify root cause before implement) |
 | `/ck:journal` 🔁 | Write journal entries |
 | `/ck:onboard` 🔁 | Guided 6-phase codebase tour for new/returning devs (10-min orientation) |
 | `/ck:plan [fast\|hard\|two\|ci\|cro]` 🔁 | Intelligent plan creation — router (auto-detect) · `fast`: no research · `hard`: research-heavy |
@@ -293,7 +295,7 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 
 | Command | Description |
 |---|---|
-| `/ck:review` | Scan + analyze codebase |
+| `/ck:review [--flow]` | Scan + analyze codebase — `--flow`: orchestrated dimension fan-out (bugs/security/perf) → adversarial-verify per finding → confirmed-only report |
 
 ### `seo` (dispatcher, 3) 🔁 seo skill
 
@@ -481,11 +483,11 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 |---|---:|---:|---:|
 | Skills · `global/` | 1 | 0 | 1 |
 | Skills · `marketing/` | 3 | 0 | 3 |
-| Skills · `software/` | 68 | 0 | 68 |
-| **Skills total** | **72** | **0** | **72** |
+| Skills · `software/` | 70 | 0 | 70 |
+| **Skills total** | **74** | **0** | **74** |
 | Agents | 21 | 0 | 21 |
-| Commands | 59 | 0 | 59 |
-| **Grand total entries** | | | **152** |
+| Commands | 60 | 0 | 60 |
+| **Grand total entries** | | | **155** |
 
 ## 7 · Open Issues
 

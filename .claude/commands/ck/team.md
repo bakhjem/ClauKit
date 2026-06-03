@@ -53,6 +53,7 @@ Flags are composable (e.g. `/ck:team cook "auth + notifications" --devs 3 --plan
 * Read [.claude/skills/software/team/SKILL.md](.claude/skills/software/team/SKILL.md) end-to-end.
 * Decide template, teammate count per role, and file-ownership boundaries (prevents merge conflicts).
 * If task is single-focused or fully sequential → **abort and recommend a subagent** to the user.
+* If task is a **deterministic fan-out** (whole-repo audit, N-file migration, cross-checked review — no persistent discussion / cross-session memory needed) → **recommend `/ck:flow`** (gated controlled orchestration) instead of spawning a team. Recommend only — never auto-switch; the user decides.
 
 ### Stage 1 — Spawn
 
@@ -105,6 +106,7 @@ Per skill's Failure Recovery section:
 ## Relationship to Other Commands
 
 - **Subagents** — single-session multi-agent delegation via `Agent` tool. Use when work is sequential or fan-out without persistent teammates.
+- `/ck:flow` — gated, inheritance-aware controlled orchestration (fan-out/pipeline over the 21 agents). Prefer it over a team for **deterministic fan-out + verify** (audit / migration / cross-checked review) that needs no discussion or cross-session memory. `/ck:team` is for persistent peers that must talk.
 - `/ck:cook` — gated feature lifecycle (Plan → Code → Test → Docs → Deploy) for a single feature. Use `/ck:team cook` only when 3+ features can be developed in parallel.
 - `/ck:plan` — generates a plan; pair with `/ck:team cook plan.md` to parallelize implementation across devs.
 - `/ck:debug` — single-session debug. Use `/ck:team debug` only when competing hypotheses need head-to-head evaluation.

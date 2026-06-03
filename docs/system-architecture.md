@@ -214,6 +214,12 @@ Main Agent → Planner → [Multiple Researchers in Parallel] → Planner → Ma
 ```
 Explore different approaches simultaneously
 
+**Controlled Dynamic Workflow (`/ck:flow`)**:
+```
+/ck:flow prompt → Phase plan (cost-previewed, gated) → fan-out/pipeline over 21 agents → gate → next phase
+```
+Re-creates Claude Code's dynamic-workflow model on ClauKit primitives — 4-axis inheritance, phase gates, cost preview; never uses native `ultracode`. Orchestrated variants: `/ck:fix --flow`, `/ck:review --flow`.
+
 #### 4.2 Standard Workflows
 
 **Feature Development Workflow**:

@@ -1,6 +1,6 @@
 ---
 description: ⚡⚡⚡ Scan & analyze the codebase.
-argument-hint: [tasks-or-prompt]
+argument-hint: [tasks-or-prompt] [--flow]
 ---
 
 Think harder to scan + analyze the codebase. Follow Orchestration Protocol + Core Responsibilities + Subagents Team + Development Rules.
@@ -37,6 +37,31 @@ Elite software engineering expert — system architecture + technical decision-m
 
 ## Distinct role
 **Orchestration-level command** (not just review trigger). Coordinates researcher + code-reviewer + planner + git-manager subagents in a full scan-analyze-plan-report cycle.
+
+## Orchestrated Variant (`--flow`)
+
+`/ck:review --flow` adds a **specific deterministic shape**: dimension fan-out → per-finding adversarial verify → dedup → confirmed-only report. It **complements** the default multi-agent review above; default behavior unchanged. Activates the `dynamic-workflow` skill ([.claude/skills/software/dynamic-workflow/SKILL.md](../../skills/software/dynamic-workflow/SKILL.md)) — source of truth for the pattern; no methodology duplication here.
+
+```
+Phase 1 · Review fan-out (parallel, persona=code-reviewer, inherit repo gates)
+  ├─ Agent[code-reviewer]: BUGS      → reports/review-bugs.md
+  ├─ Agent[code-reviewer]: SECURITY  → reports/review-security.md
+  └─ Agent[code-reviewer]: PERF      → reports/review-perf.md
+        ↓ (context/output inherited)
+Phase 2 · Adversarial Verify (per finding)
+  └─ for each finding → Agent: "refute; default refuted=true if unsure"
+        majority refute → DROP (log for inspect)
+        ↓
+Dedup → confirmed-only report (main-session orchestrator, gated/inspectable)
+```
+
+- **Persona axis:** every stage routes to `code-reviewer`; skeptics are independent `code-reviewer` instances prompted to refute.
+- **4-axis inheritance:** shared `reports/` (context), `code-reviewer` everywhere (persona), development-rules + repo conventions (gate), skeptics may use a cheaper model (model/budget).
+- **Cost preview** before the run; mid-run inspect/abort between phases (per `/ck:flow`).
+- **SECURITY dimension is always in the fan-out** (default) — proactively surfaces vulns even when unasked. A deep OWASP audit is still `/ck:security`; this is a quick pass. More dimensions = YAGNI; add later.
+- Confirmed-only report avoids alarm-fatigue from unverified findings; dropped findings logged for inspection.
+
+**Examples:** `/ck:review --flow` · `/ck:review --flow src/payments`
 
 ## Notes
 - Concise grammar, list unresolved questions at end.
