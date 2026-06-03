@@ -37,6 +37,7 @@ Activation phrases: *"cook this feature"*, *"take this from spec to deploy"*, *"
 
 | # | Stage | Gate to next |
 |---|---|---|
+| 0 | **Exact-Requirements Gate** — fill the 5 items below before planning | 5 fields filled & confirmed (or `[ASSUMED]`-logged in `--auto`) |
 | 1 | **Plan** — confirm spec; identify files to change; list risks | Spec linked + impact diff produced |
 | 2 | **Code** — implement, locally test | All new code under existing file-size limits; lint passes |
 | 3 | **Test** — unit + integration tests written and green | `[[scenario]]`-derived test cases cover at least 1 happy + 1 negative + 1 recovery |
@@ -47,6 +48,23 @@ Activation phrases: *"cook this feature"*, *"take this from spec to deploy"*, *"
 **Gating rule**: a stage cannot start until the prior gate passes. Skipping is a feature, not a bug — but it must be logged with a reason.
 
 **Review stage protocol**: follow `[[code-review]]` skill — get BASE_SHA/HEAD_SHA, optionally scout edge cases first, dispatch `code-reviewer` subagent with WHAT_WAS_IMPLEMENTED + PLAN_OR_REQUIREMENTS + DESCRIPTION. See [`code-review/references/requesting-code-review.md`](../code-review/references/requesting-code-review.md).
+
+## Stage 0 — Exact-Requirements Gate
+
+Before any planning, derive these 5 items from the task. This is a **hard gate**: if any item cannot be derived, STOP and ask the user ONE clarifying question at a time — do NOT fill fields by probability. AI coding fails far more often from a vague spec the model silently guesses around than from model weakness.
+
+1. **Expected output** — the concrete artifact the user will see/use (an endpoint, a screen, a CLI file — not "improve X").
+2. **Acceptance criteria** — input→output pass/fail conditions that are verifiable.
+3. **Scope boundary** — what is explicitly NOT done this round (anti scope-creep).
+4. **Non-negotiable constraints** — stack, file locations, naming, compatibility.
+5. **Touchpoints** — which module/file/contract will be touched (blast radius).
+
+**Mode behavior:**
+- **Default / `--fast`:** gate is mandatory. `--fast` only skips research, NOT this gate.
+- **`--auto`:** fill all 5 best-effort from context; LOG each assumed field marked `[ASSUMED]` (inline in run output / plan file, same place waivers go) instead of stopping to ask.
+- **`--from-plan`:** SKIP the gate — requirements were settled upstream when the plan was written.
+
+Gate passes only when all 5 are filled & user-confirmed (default / `--fast`) or all 5 are filled & `[ASSUMED]`-logged (`--auto`).
 
 ## Worked Example (CI: GitHub Actions)
 
@@ -74,6 +92,7 @@ Same stages map cleanly to GitLab CI, Buildkite, CircleCI, or a Makefile — met
 - **Stage 5 first**: deploying then writing tests. Cook order is non-negotiable; if you must hot-fix, do it outside cook.
 - **All stages in one PR**: huge diff, impossible review. Split per stage where reasonable, or at least segment commits by stage.
 - **No waiver log**: skipping gates silently. Force the waiver to be visible (PR comment, plan checkbox).
+- **Planning on a vague spec**: filling the 5 Stage-0 fields by probability instead of asking. If a field is unknowable from the task, ask ONE question — don't guess.
 
 ## References
 

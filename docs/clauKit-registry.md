@@ -1,6 +1,6 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-05-30 (add typescript-pro language specialist skill)
+**Last Updated**: 2026-06-03 (cook: add Stage 0 Exact-Requirements Gate)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
 **Counts**: 73 skills (73 active + 0 scaffold) · 21 agents · 59 commands · **153 total entries**
 
@@ -59,7 +59,7 @@ All 39 are active as of 2026-05-30 (10 scaffolds filled in earlier batch; `predi
 | `code-review` 🔁 | ✅ | `software/code-review/` | 4 practices — pre-review edge-case scout, receiving feedback (no performative agreement), requesting code-reviewer subagent, verification gates (evidence before claims) |
 | `coding-level` | ✅ | `software/coding-level/` | Developer proficiency (0-5) → output tuning |
 | `context-engineering` | ✅ | `software/context-engineering/` | Curate token flow into AI agents (6-layer model) |
-| `cook` 🔁 | ✅ | `software/cook/` | Feature lifecycle pipeline with gates — methodology source for `/cook` command |
+| `cook` 🔁 | ✅ | `software/cook/` | Feature lifecycle pipeline with gates — methodology source for `/cook` command; includes Stage 0 Exact-Requirements Gate (5-item hard-block before planning) |
 | `csharp-developer` | ✅ | `software/development/csharp-developer/` | ASP.NET Core, Blazor, EF Core, cloud-native .NET — sourced from VoltAgent/awesome-claude-code-subagents |
 | `node-specialist` | ✅ | `software/development/node-specialist/` | Node.js backend — event loop, async patterns, streams, Express/Fastify/NestJS, performance profiling, security — sourced from VoltAgent/awesome-claude-code-subagents |
 | `cti-expert` | ✅ | `software/cti-expert/` | |

@@ -28,21 +28,23 @@ Think harder to drive the following feature end-to-end. Follow the cook skill me
 
 | Flag | Effect |
 |---|---|
-| (default) | Full pipeline with user approval gates between major stages |
-| `--fast` | Skip research phase; keep plan + test + review |
-| `--auto` | Skip user approval gates; auto-approve if `Critical=0 AND High=0` in code-reviewer report |
-| `--from-plan` | Skip research + plan; jump straight to implementation (auto-set when arg is a plan path) |
+| (default) | Full pipeline with user approval gates between major stages; Exact-Requirements Gate enforced |
+| `--fast` | Skip research phase; keep gate + plan + test + review |
+| `--auto` | Skip user approval gates; gate fills 5 items best-effort with `[ASSUMED]` logging; auto-approve if `Critical=0 AND High=0` in code-reviewer report |
+| `--from-plan` | Skip research + plan + Exact-Requirements Gate; jump straight to implementation (auto-set when arg is a plan path) |
 | `--no-test` | Skip test stage; **log waiver** per cook skill gating rule |
 
 Flags are composable (e.g. `/cook plan.md --auto`).
 
 ## Workflow
 
-### Stage 0 — Analysis
+### Stage 0 — Analysis & Exact-Requirements Gate
 
-* Activate the `cook` skill; read its 5 stages + gate rules + anti-patterns.
+* Activate the `cook` skill; read its Stage 0 (Exact-Requirements Gate) + 5 stages + gate rules + anti-patterns.
+* **Run the Exact-Requirements Gate** (cook skill Stage 0): derive the 5 items — expected output, acceptance criteria, scope boundary, non-negotiable constraints, touchpoints. If any is missing, STOP and ask the user ONE question at a time (skip the stop in `--auto` — log `[ASSUMED]` fields instead).
+  * The gate is **UNSKIPPABLE by `--fast` and `--auto`**. Only `--from-plan` bypasses it.
 * Analyze the skills catalog and activate any other skills needed (e.g. `planning`, `research`, `code-review`, `scenario`, `test--automation`).
-* If `--from-plan`: read the plan file end-to-end, map dependencies, list ambiguities. Skip to Stage 3.
+* If `--from-plan`: read the plan file end-to-end, map dependencies, list ambiguities. **Gate skipped** (requirements settled in plan). Skip to Stage 3.
 * Else: continue to Stage 1.
 
 ### Stage 1 — Research (Plan gate)
