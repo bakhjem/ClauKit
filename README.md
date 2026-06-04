@@ -347,6 +347,114 @@ Specialized journeys with single-command entry points.
 
 **Controlled orchestration**: `/ck:flow` re-creates Claude Code's dynamic-workflow model on ClauKit's own controllable primitives (markdown recipes + Agent-tool fan-out/pipeline over the 21 agents, 4-axis inheritance, gated + cost-previewed) — it does **NOT** use the native `ultracode` runtime. Use it (or `/ck:fix --flow` / `/ck:review --flow`) for deterministic audits, migrations, and cross-checked reviews; use `/ck:team` when workstreams need persistent sessions + discussion.
 
+## Multi-Agent Orchestration: `/ck:team` vs `/ck:flow`
+
+ClauKit ships two orchestration commands — each for a different kind of parallel work. Picking the wrong one wastes tokens; picking the right one saves hours.
+
+### Quick decision
+
+| Situation | Use |
+|---|---|
+| 3+ workstreams that need to **discuss / hand off context** mid-flight | `/ck:team` |
+| Deterministic fan-out over repo/N-files, **gated + cost-previewed** | `/ck:flow` |
+| Single-turn parallel reads, no inter-agent discussion | direct Agent tool (cheapest) |
+| Full autonomous orchestration (no explicit control needed) | — ClauKit does not expose `ultracode` |
+
+---
+
+### `/ck:team` — Persistent multi-session teammates
+
+Spawns independent Claude Code sessions as **persistent teammates** — each with its own context window, task ownership, and cross-session memory (`.claude/agent-memory/<name>/`). Teammates communicate, discuss findings, and hand off context mid-flight. Unlike subagents (fire-and-forget), teammates are persistent and event-driven.
+
+**Templates**
+
+| Template | Teammates | Best for | Token budget |
+|---|---|---|---|
+| `research` | 2–4 researchers | Competitive analysis, multi-source investigation | 150–300K (haiku) |
+| `cook` | 1 lead + N devs | Parallel feature implementation | 400–800K (sonnet+haiku) |
+| `review` | 2–3 reviewers | Code quality, security, performance audits | 100–200K (haiku) |
+| `debug` | 3 debuggers | Root-cause via competing hypotheses | 200–400K (sonnet) |
+
+**Usage**
+```
+/ck:team <template> [context] [flags]
+
+/ck:team cook "implement auth + notifications + dashboard" --devs 3
+/ck:team debug "race condition in payment flow" --plan-approval
+/ck:team research "compare React state management" --researchers 2
+/ck:team review --reviewers 2
+```
+
+Flags: `--devs N` · `--researchers N` · `--reviewers N` · `--debuggers N` · `--plan-approval` (lead approves before teammates code) · `--delegate` (lead coordinates only, never touches code).
+
+> Requires Claude Code ≥ 2.1.33 (or `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` on older). Falls back to subagent delegation if unavailable.
+
+**Avoid** `/ck:team` when: task is single-focused, fully sequential, or token budget is tight — use a subagent instead.
+
+---
+
+### `/ck:flow` — Controllable deterministic fan-out
+
+Orchestrates from **within the main session** — decomposes a task into phases, fans out over the 21 ClauKit agents, gates between phases, and synthesizes a single confirmed-only report. Re-creates Claude Code's dynamic-workflow model on ClauKit's own primitives. **Does NOT use the native `ultracode` runtime or `Workflow` tool.**
+
+**4-stage execution**
+
+1. **PLAN** — decompose task → phases, each with a persona (`subagent_type`), shape (fan-out | pipeline), gate set, model.
+2. **PREVIEW (mandatory gate)** — cost estimate range shown; user approves / adjusts / aborts. Nothing runs without approval. `--dry-run` stops here.
+3. **ORCHESTRATE** — execute phases; inspect/abort offered between each phase (control advantage over the native runtime).
+4. **SYNTHESIZE** — orchestrator consolidates child reports into a single confirmed-only report.
+
+**Quality patterns** (borrowed from the native dynamic-workflow model, expressed as ClauKit fan-out/pipeline):
+
+| Pattern | What it does |
+|---|---|
+| **Adversarial verify** | N skeptic agents per finding, each prompted to *refute*. Filters plausible-but-wrong results. |
+| **Judge panel** | N independent attempts from different angles → score → synthesize from winner. |
+| **Loop-until-dry** | Re-spawn finders until K consecutive rounds yield nothing new. Catches the tail a single pass misses. |
+| **Multi-modal sweep** | Parallel agents each searching a different way (by-container, by-content, by-entity). |
+| **Completeness critic** | Final agent asks "what's missing?" → its findings become the next round. |
+
+**Usage**
+```
+/ck:flow <task>
+/ck:flow <task> --model opus --dry-run   # preview plan + estimate, no orchestration
+/ck:flow save <name>                     # persist last run as reusable recipe
+/ck:flow list                            # list saved recipes in .claude/workflows/
+```
+
+Flag variants on existing commands: `/ck:fix --flow` · `/ck:review --flow`.
+
+**Best for**: whole-repo security audit, N-file migration, cross-checked code review, multi-angle planning.
+
+---
+
+### ClauKit orchestration vs Claude Code native features
+
+Claude Code ships built-in primitives: the **Agent tool** (subagents), **dynamic workflows** (research preview, native `ultracode` runtime), and **worktrees**. ClauKit's two orchestration commands are built on top of — and extend — these primitives.
+
+| Capability | Claude Code native (Agent tool / ultracode) | `/ck:team` | `/ck:flow` |
+|---|---|---|---|
+| **Execution context** | Background JS runtime (ultracode) or inline subagent | Independent CC sessions | Main session — orchestrator stays in control |
+| **Inter-agent communication** | Structured output only | Full discussion + task messaging | Shared `plans/<plan>/reports/` dir |
+| **Persistent cross-session memory** | No | Yes (`.claude/agent-memory/`) | No |
+| **Cost preview gate** | No | No | Yes — mandatory before any fan-out |
+| **Mid-run inspect / abort** | No | Via `TaskList` | Yes — offered between every phase |
+| **Pre-flight safety gates** | No | Inherited from ClauKit | Inherited from ClauKit |
+| **Reusable saved recipes** | No | No | Yes — `/ck:flow save <name>` |
+| **Token budget** | — | Higher (N × full context windows) | Moderate (fan-out per phase, haiku/opus mix) |
+| **Best for** | One-turn quick reads | 3+ workstreams that need to discuss | Audits, migrations, cross-checked reviews |
+
+**Rule of thumb:**
+
+```
+one-turn parallel reads, no discussion  →  Agent tool directly (cheapest)
+3+ workstreams + discussion + handoff   →  /ck:team
+deterministic fan-out + gates + cost    →  /ck:flow
+ultracode / native dynamic-workflow     →  not used — /ck:flow is the ClauKit substitute
+```
+
+---
+
 ## ClauKit vs Other AI Coding Tools
 
 Different tools for different jobs. **Cursor** and **Windsurf** are agentic IDEs — they replace your editor. **Aggregate Claude Code templates** (community-curated, often 1000+ skills) take the kitchen-sink approach. **Google Antigravity** is an autonomous agent runtime. **ClauKit** is a curated framework that runs *inside* Claude Code — opinionated workflows, gated safety, multi-agent orchestration. Pick the right tool for the job; they're complementary, not exclusive.

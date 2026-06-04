@@ -65,7 +65,17 @@ function initCommand(options = {}) {
     
     // Copy .claude contents
     copyDirectory(sourceClauDir, targetClauDir);
-    
+
+    // npm pack excludes the .claude/skills symlink; copy from package-root skills/ if needed.
+    const targetSkillsDir = path.join(targetClauDir, "skills");
+    if (!fs.existsSync(targetSkillsDir)) {
+      const packageSkillsDir = path.join(__dirname, "..", "skills");
+      if (fs.existsSync(packageSkillsDir)) {
+        fs.mkdirSync(targetSkillsDir, { recursive: true });
+        copyDirectory(packageSkillsDir, targetSkillsDir);
+      }
+    }
+
     // Update metadata.json
     updateMetadata(targetClauDir);
     
@@ -99,20 +109,32 @@ function updateMetadata(clauDir) {
 }
 
 /**
- * Copy directory recursively
+ * Copy directory recursively (dereferences symlinked dirs -> real files).
+ * Ensures `ck init` consumers get real skills even when the dev repo's
+ * .claude/skills is a symlink to ../skills.
  */
 function copyDirectory(source, target) {
   const files = fs.readdirSync(source);
-  
+
   files.forEach(file => {
     const sourcePath = path.join(source, file);
     const targetPath = path.join(target, file);
-    const stat = fs.statSync(sourcePath);
-    
-    if (stat.isDirectory()) {
-      if (!fs.existsSync(targetPath)) {
-        fs.mkdirSync(targetPath, { recursive: true });
+    const lstat = fs.lstatSync(sourcePath);
+
+    if (lstat.isSymbolicLink()) {
+      const real = fs.realpathSync(sourcePath);
+      const realStat = fs.statSync(real);
+      if (realStat.isDirectory()) {
+        if (!fs.existsSync(targetPath)) fs.mkdirSync(targetPath, { recursive: true });
+        copyDirectory(real, targetPath);
+      } else {
+        fs.copyFileSync(real, targetPath);
       }
+      return;
+    }
+
+    if (lstat.isDirectory()) {
+      if (!fs.existsSync(targetPath)) fs.mkdirSync(targetPath, { recursive: true });
       copyDirectory(sourcePath, targetPath);
     } else {
       fs.copyFileSync(sourcePath, targetPath);
