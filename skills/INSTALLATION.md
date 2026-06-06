@@ -4,7 +4,23 @@ This guide explains how to install dependencies for Claude Code skills.
 
 ## Overview
 
-Skills are organized into groups with Python utility scripts. Each skill's scripts directory contains a `requirements.txt` file listing dependencies.
+Skills live at the repo root (`./skills/`) and are linked into `.claude/skills` so Claude Code can find them. This design lets you share one skills library across multiple projects or systems.
+
+## First-Time Setup: Link Skills into .claude
+
+Run **once** after cloning, before using any `/ck:` commands:
+
+**Mac / Linux**
+```bash
+ln -s ../skills .claude/skills
+```
+
+**Windows** (PowerShell — no admin required)
+```powershell
+cmd /c "mklink /J .claude\skills .\skills"
+```
+
+> `.claude/skills` is listed in `.claude/.gitignore` and is never committed — each system creates its own link.
 
 ## Quick Start
 

@@ -56,3 +56,6 @@ GoogleService-Info.plist
 
 .mcp.json
 .gemini/*
+
+# skills is a symlink/junction to ../skills (root) — created per-platform on first checkout
+skills
