@@ -58,6 +58,8 @@ repomix-output.xml
 .serena/cache
 plans/**/*
 !plans/templates/*
+!plans/marketing-kit/**
+!plans/marketing-kit/plan.md
 screenshots/*
 docs/screenshots/*
 docs/journals/*
