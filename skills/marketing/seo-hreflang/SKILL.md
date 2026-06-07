@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: seo-hreflang
+description: International SEO — hreflang tags, locale targeting, multi-regional sites.
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Seo Hreflang
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> International SEO — hreflang tags, locale targeting, multi-regional sites.
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the seo-hreflang skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/seo-hreflang.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references

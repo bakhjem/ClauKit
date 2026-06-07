@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: seo-ecommerce
+description: E-commerce SEO — product schema, faceted nav, canonicalization, pagination.
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Seo Ecommerce
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> E-commerce SEO — product schema, faceted nav, canonicalization, pagination.
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the seo-ecommerce skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/seo-ecommerce.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references

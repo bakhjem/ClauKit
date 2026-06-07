@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: ad-creative
+description: Paid ad creative — headlines, copy variants, image briefs, video scripts for ads.
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Ad Creative
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> Paid ad creative — headlines, copy variants, image briefs, video scripts for ads.
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the ad-creative skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/ad-creative.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references
@@ -43,8 +43,8 @@ When activated, this skill produces:
 - `plans/marketing-context.md` — required hub
 - `.claude/workflows/marketing-rules.md` — content quality rules
 - `skills/marketing/README.md` — full kit overview
-- `skills/marketing/seo/SKILL.md` — orchestrator (parent)
+
 
 ## Provenance
 
-Imported from `AgriciDaniel/claude-seo` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), references `plans/marketing-context.md`. For full original content, see source repo.
+Imported from `coreyhaines31/marketingskills` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), references `plans/marketing-context.md`. For full original content, see source repo.

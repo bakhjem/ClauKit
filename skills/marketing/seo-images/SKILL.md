@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: seo-images
+description: Image SEO — alt text, compression, lazy loading, image sitemaps.
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Seo Images
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> Image SEO — alt text, compression, lazy loading, image sitemaps.
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the seo-images skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/seo-images.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references

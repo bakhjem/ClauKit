@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: seo-programmatic
+description: Programmatic SEO — template-based page generation at scale (pSEO).
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Seo Programmatic
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> Programmatic SEO — template-based page generation at scale (pSEO).
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the seo-programmatic skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/seo-programmatic.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references

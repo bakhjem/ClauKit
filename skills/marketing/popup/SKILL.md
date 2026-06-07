@@ -1,19 +1,19 @@
 ---
-name: seo
-description: Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+name: popup
+description: Popup strategy — exit-intent, time-delay, scroll-trigger, A/B variants.
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Seo
+# Popup
 
-> Claude-SEO engine root — orchestrator. Detects industry, dispatches 24 sub-skills in parallel, synthesizes via 10-principle framework. Falsifiable findings.
+> Popup strategy — exit-intent, time-delay, scroll-trigger, A/B variants.
 
 ---
 
 ## When this skill activates
 
 **Implicit:** when the agent/task matches the skill's domain.
-**Explicit:** "Use the seo skill to [task]."
+**Explicit:** "Use the popup skill to [task]."
 
 ## Scope
 
@@ -35,7 +35,7 @@ This skill does NOT cover:
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/seo.md` — analysis / audit / brief
+- `plans/marketing/<campaign>/popup.md` — analysis / audit / brief
 - Inline recommendations in the conversation
 
 ## Cross-references
@@ -43,8 +43,8 @@ When activated, this skill produces:
 - `plans/marketing-context.md` — required hub
 - `.claude/workflows/marketing-rules.md` — content quality rules
 - `skills/marketing/README.md` — full kit overview
-- `skills/marketing/seo/SKILL.md` — orchestrator (parent)
+
 
 ## Provenance
 
-Imported from `AgriciDaniel/claude-seo` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), references `plans/marketing-context.md`. For full original content, see source repo.
+Imported from `coreyhaines31/marketingskills` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), references `plans/marketing-context.md`. For full original content, see source repo.
