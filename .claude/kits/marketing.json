@@ -1,0 +1,31 @@
+{
+  "name": "marketing",
+  "description": "Marketing Kit + Marketing Automation — /mk: namespace, 48 skills, 10 agents, 12 commands, 5 workflows, 5 MCP wrappers, 6 automation skills",
+  "namespace": "mk",
+  "version": "0.1.0",
+  "paths": {
+    "agents": [
+      ".claude/agents/marketing/",
+      ".claude/agents/automation/"
+    ],
+    "commands": [".claude/commands/mk/"],
+    "skills": [
+      "skills/marketing/",
+      "skills/automation/"
+    ],
+    "workflows": [
+      ".claude/workflows/marketing-workflow.md",
+      ".claude/workflows/sales-workflow.md",
+      ".claude/workflows/crm-workflow.md",
+      ".claude/workflows/video-workflow.md",
+      ".claude/workflows/design-workflow.md",
+      ".claude/workflows/marketing-rules.md",
+      ".claude/workflows/automation-rules.md"
+    ]
+  },
+  "requires": {
+    "shared": [
+      ".claude/agents/research/"
+    ]
+  }
+}

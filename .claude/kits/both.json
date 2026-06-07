@@ -1,0 +1,45 @@
+{
+  "name": "both",
+  "description": "Combined Engineer + Marketing Kit — /ck: and /mk: namespaces",
+  "namespace": "both",
+  "version": "1.0.0",
+  "extends": ["engineer", "marketing"],
+  "paths": {
+    "agents": [
+      ".claude/agents/engineering/",
+      ".claude/agents/specialists/",
+      ".claude/agents/operations/",
+      ".claude/agents/research/",
+      ".claude/agents/marketing/",
+      ".claude/agents/automation/"
+    ],
+    "commands": [
+      ".claude/commands/ck/",
+      ".claude/commands/mk/"
+    ],
+    "skills": [
+      "skills/software/",
+      "skills/global/",
+      "skills/marketing/",
+      "skills/automation/"
+    ],
+    "workflows": [
+      ".claude/workflows/primary-workflow.md",
+      ".claude/workflows/development-rules.md",
+      ".claude/workflows/orchestration-protocol.md",
+      ".claude/workflows/documentation-management.md",
+      ".claude/workflows/fix-pipeline.md",
+      ".claude/workflows/cro-framework.md",
+      ".claude/workflows/marketing-workflow.md",
+      ".claude/workflows/sales-workflow.md",
+      ".claude/workflows/crm-workflow.md",
+      ".claude/workflows/video-workflow.md",
+      ".claude/workflows/design-workflow.md",
+      ".claude/workflows/marketing-rules.md",
+      ".claude/workflows/automation-rules.md"
+    ]
+  },
+  "requires": {
+    "shared": []
+  }
+}

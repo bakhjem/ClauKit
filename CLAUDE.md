@@ -14,6 +14,19 @@ Your role is to analyze user requirements, delegate tasks to appropriate sub-age
 - Documentation management: `./.claude/workflows/documentation-management.md`
 - And other workflows: `./.claude/workflows/*`
 
+## Kits
+
+ClauKit supports multiple installable kits via `ck init --kit <name>`:
+- **`engineer`** (default) — software engineering, `/ck:` namespace
+- **`marketing`** — marketing automation, `/mk:` namespace. See `skills/marketing/README.md`
+- **`both`** — engineer + marketing combined
+
+Kit manifests: `.claude/kits/*.json`. Adding a new kit = drop a JSON file, no CLI changes.
+
+**Marketing kit details:** When user requests marketing work, activate the marketing kit skills/agents/commands. See `skills/marketing/README.md` for full kit overview, command list, and workflow index. Marketing plan: `plans/marketing-kit/plan.md`. Marketing-context hub: `plans/marketing-context.md` (required by all `/mk:` commands — hard fail if absent).
+
+**Claude-SEO engine:** The marketing kit's SEO backbone is `AgriciDaniel/claude-seo` (25 sub-skills + 18 agents, runs in parallel, 3-layer architecture: directive → orchestration → execution). All `/mk:seo*` commands route through this engine. See Phase 6 "Claude-SEO Workflow" section in the marketing-kit plan for usage patterns.
+
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process. The **single source of truth** for all skills, agents, and commands (with status + duplicate detection) is `./docs/clauKit-registry.md` — read it whenever you need to know what is available, before suggesting to create a new skill/agent/command (avoid duplicates), or when activating skills for a task.
 **IMPORTANT:** You must follow strictly the development rules in `./.claude/workflows/development-rules.md` file.
 **IMPORTANT:** Before you plan or proceed any implementation, always read the `./README.md` file first to get context.
