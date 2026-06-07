@@ -4,12 +4,19 @@
 
 ## What's included
 
-- **48 marketing skills** (SEO, content, email, ads, CRO, research, growth, etc.)
+- **50 marketing skills** (SEO, content, email, ads, CRO, research, growth, etc.)
 - **7 marketing agents** (content-strategist, market-researcher, email-specialist, 4 SEO specialists)
+- **3 automation agents** (campaign-manager, crm-specialist, video-producer)
 - **12 commands** under `/mk:` namespace
 - **5 workflow files** (marketing 10-phase, sales 5-phase, crm 5-phase, video 6-phase, design 5-phase)
 - **5 MCP wrappers** (ga4, gsc, sendgrid, resend, reviewweb) — with manual fallback
 - **6 automation skills** (5 MCP wrappers + marketing-orchestrator)
+
+**Skill breakdown (50 total):**
+- 25 from `AgriciDaniel/claude-seo` (1 root + 24 sub-skills: audit, technical, content, schema, geo, local, page, images, sitemap, drift, cluster, content-brief, competitor-pages, ecommerce, hreflang, programmatic, backlinks, sxo, flow, plan, maps, dataforseo, google, image-gen)
+- 23 from `coreyhaines31/marketingskills` (curated subset: ad-creative, ads, analytics, cold-email, competitor-*, content-strategy, copy-editing, copywriting, cro, customer-research, email-sequence, emails, launch, marketing-ideas, paywalls, popup, programmatic-seo, signup, sms, social-content, user-onboarding)
+- 1 ClauKit-authored: `product-marketing` (context hub)
+- 1 kept: `kit-builder` (build custom marketing components)
 
 ## Quick start
 
@@ -26,22 +33,24 @@ mk:plan
 mk:campaign <campaign-name>
 ```
 
+**Hard-fail rule:** Every `/mk:` command requires `plans/marketing-context.md`. If absent, you'll be directed to run `/mk:plan` first. See `.claude/workflows/marketing-rules.md`.
+
 ## Commands
 
 | Command | Purpose | Skills activated |
 |---|---|---|
-| `/mk:plan` | Create marketing context (ICP, positioning, brand voice) | product-marketing, marketing-plan, marketing-psychology |
-| `/mk:seo` | SEO operations (uses claude-seo engine) | claude-seo (25 sub-skills) |
-| `/mk:content` | Content creation (blog, social, video, copy) | content-strategy, copywriting, copy-editing, social, video |
-| `/mk:email` | Email & messaging (campaign, cold, drip, sms) | emails, cold-email, sms |
-| `/mk:ads` | Paid advertising (google, meta, creative, ab-test) | ads, ad-creative, ab-testing |
-| `/mk:cro` | Conversion optimization (audit, landing, signup, email) | cro, signup, paywalls, popups |
-| `/mk:research` | Market research (market, competitor, customer, icp) | customer-research, competitor-profiling, competitors, marketing-ideas |
-| `/mk:growth` | Growth tactics (launch, referral, free-tool) | launch, free-tools, co-marketing, community-marketing |
-| `/mk:campaign` | Full marketing campaign pipeline (10-phase) | marketing-orchestrator + all workflow skills |
-| `/mk:leads` | Lead generation pipeline (sales 5-phase) | cold-email, prospecting, email-specialist |
-| `/mk:nurture` | Lifecycle nurture sequence (crm 5-phase) | crm-specialist, email-specialist, customer-research |
-| `/mk:video` | AI video production (video 6-phase) | video-producer, copywriting, ai-artist, remotion |
+| `/mk:plan` | Bootstrap or update marketing context (ICP, positioning, voice) | `product-marketing`, `customer-research` |
+| `/mk:seo` | SEO operations — routes through `AgriciDaniel/claude-seo` engine (25 sub-skills parallel) | `seo` (orchestrator), `seo-{audit,technical,content,schema,geo,...}` |
+| `/mk:content` | Content creation (blog, social, video, copy) | `copywriting`, `seo-content`, `copy-editing`, `social-content` |
+| `/mk:email` | Email & SMS (campaign, cold, drip, sms) | `emails`, `cold-email`, `email-sequence`, `sms` |
+| `/mk:ads` | Paid advertising (google, meta, creative, ab-test) | `ads`, `ad-creative`, `cro` |
+| `/mk:cro` | Conversion optimization (audit, landing, signup, email) | `cro`, `signup`, `copywriting` |
+| `/mk:research` | Market research (market, competitor, customer, icp) | `customer-research`, `competitor-profiling`, `competitors`, `marketing-ideas` |
+| `/mk:growth` | Growth tactics (launch, referral, free-tool) | `launch`, `marketing-ideas`, `content-strategy` |
+| `/mk:campaign` | Full 10-phase campaign pipeline (plan → research → insights → strategy → create → edit → publish → promote → measure → optimize loop) | `marketing-orchestrator` + all workflow skills |
+| `/mk:leads` | 5-phase lead pipeline (generate → qualify → nurture → convert → retain) | `cold-email`, `email-specialist`, `crm-specialist` |
+| `/mk:nurture` | 5-phase lifecycle nurture (calendar → forms → tasks → gmail → bigquery) | `crm-specialist`, `user-onboarding`, `email-sequence` |
+| `/mk:video` | 6-phase AI video (script → voiceover → visuals → edit → render → distribute) | `video-producer`, `copywriting`, `ai-multimodal`, `ai-artist`, `remotion` |
 
 ## Workflows
 
@@ -161,7 +170,7 @@ The kit includes 5 MCP skill wrappers. **You provide the MCP server** — wrappe
 | **Marketing manager** | Standardized process | All workflows (5) |
 | **Agency** | Client delivery framework | All commands + workflows |
 | **B2B SaaS** | Lead pipeline | `/mk:leads` + `/mk:nurture` |
-| **Content creator** | Multi-platform content | `/mk:content` + `/mk:social` |
+| **Content creator** | Multi-platform content | `/mk:content` + `/mk:video` |
 | **E-commerce** | Product + ads | `/mk:ads` + `/mk:cro` |
 | **Local business** | Local SEO | `/mk:seo` + `seo-local` skill |
 
@@ -177,6 +186,8 @@ All `/mk:` commands require `plans/marketing-context.md` (created by `/mk:plan`)
 
 - `CLAUDE.md` (root) — ClauKit master instructions
 - `.claude/workflows/primary-workflow.md` — engineering workflow
+- `.claude/workflows/marketing-rules.md` — marketing content quality rules
+- `.claude/workflows/automation-rules.md` — MCP + idempotency + PII rules
 - `docs/clauKit-registry.md` — full resource catalog
 - `plans/marketing-kit/plan.md` — implementation plan (Phases 0.5-8)
 - `skills/automation/` — MCP wrapper skills
