@@ -10,7 +10,9 @@ REST: $2..$n (action-specific arguments/options)
 
 ## Workflow
 
-Activate the `seo` skill ([.claude/skills/marketing/seo/SKILL.md](.claude/skills/marketing/seo/SKILL.md)) and dispatch to the matching operation based on {ACTION}. Each operation loads its own reference file as single source of truth.
+> **Marketing-kit note (260607):** the underlying SEO engine is now `AgriciDaniel/claude-seo` (25 sub-skills + 18 agents, runs in parallel). The skill at [skills/marketing/seo/SKILL.md](../../skills/marketing/seo/SKILL.md) is the orchestrator. For the full marketing-kit SEO experience, see `/mk:seo`. This `/ck:seo` command continues to work as a lightweight dispatcher for engineering contexts.
+
+Activate the `seo` skill ([skills/marketing/seo/SKILL.md](../../skills/marketing/seo/SKILL.md)) and dispatch to the matching operation based on {ACTION}. Each operation loads its own reference file as single source of truth.
 
 ### `audit` — comprehensive SEO audit of a URL
 
