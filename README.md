@@ -1,6 +1,6 @@
 # ClauKit — The Opinionated Multi-Agent Orchestration Framework for Claude Code
 
-*74 skills · 21 agents · 60 gated commands · atomic-commit safety · MCP-ready*
+*128 skills · 31 agents · 72 gated commands · atomic-commit safety · MCP-ready · 3 installable kits*
 
 [![GitHub stars](https://img.shields.io/github/stars/trungdo9/ClauKit?style=social)](https://github.com/trungdo9/ClauKit/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -9,7 +9,7 @@
 
 Claude Code gives you the primitives — but no opinions on how to combine them. You're left to invent your own workflows, manage parallel agents by hand, and hope you don't `git push` a broken refactor. Most Claude Code templates throw a thousand skills at the wall and call it a day.
 
-**ClauKit is the opinionated alternative.** 74 curated skills, 21 specialized agents, 60 gated commands — each one earns its place. Built-in pre-flight checks block destructive operations. Multi-agent orchestration via `/ck:team` and `/ck:flow` runs parallel Claude Code work safely.
+**ClauKit is the opinionated alternative.** 128 curated skills, 31 specialized agents, 72 gated commands — each one earns its place. Built-in pre-flight checks block destructive operations. Multi-agent orchestration via `/ck:team` and `/ck:flow` runs parallel Claude Code work safely. **3 installable kits** — engineer (default), marketing, both.
 
 > Plan once. `/clear` context. Cook with confidence. That's the ClauKit workflow.
 
@@ -25,8 +25,12 @@ Claude Code gives you the primitives — but no opinions on how to combine them.
 # 1. Install from GitHub (not yet on npm)
 npm install -g https://github.com/trungdo9/ClauKit.git
 
-# 2. Drop ClauKit into your project
-cd /path/to/your-project && ck init
+# 2. Drop ClauKit into your project — pick a kit
+cd /path/to/your-project
+ck init                       # Engineer kit (default): /ck: namespace
+ck init --kit marketing       # Marketing + automation: /mk: namespace
+ck init --kit both            # Both kits combined
+ck init --kit list            # List available kits
 
 # 3. Launch Claude Code — try /ck:find to discover commands
 claude

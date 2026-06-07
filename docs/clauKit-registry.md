@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-06-03 (add `/ck:flow` + `dynamic-workflow` skill — controllable orchestration)
+**Last Updated**: 2026-06-07 (Marketing Kit v2.0.0 milestone — 50 marketing skills + 6 automation + 10 agents + 12 commands)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 74 skills (74 active + 0 scaffold) · 21 agents · 60 commands · **155 total entries**
+**Counts**: 128 skills (128 active + 0 scaffold) · 31 agents · 72 commands · **231 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -36,13 +36,83 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 
 > Note: `global/common/` does NOT contain a SKILL.md (only `README.md` + `api_key_helper.py`). It is a shared utility folder, not a skill. Earlier catalog listed it incorrectly — removed.
 
-### Marketing (3) — `.claude/skills/marketing/`
+### Marketing (50) — `.claude/skills/marketing/`
+
+**Claude-SEO engine (25 — imported from `AgriciDaniel/claude-seo`, replaces old `seo`/`geo`):**
+
+| Name | Status | Folder | Source |
+|---|:---:|---|---|
+| `seo` | ✅ | `marketing/seo/` | claude-seo root (orchestrator) |
+| `seo-audit` | ✅ | `marketing/seo-audit/` | claude-seo |
+| `seo-technical` | ✅ | `marketing/seo-technical/` | claude-seo |
+| `seo-content` | ✅ | `marketing/seo-content/` | claude-seo |
+| `seo-schema` | ✅ | `marketing/seo-schema/` | claude-seo |
+| `seo-geo` | ✅ | `marketing/seo-geo/` | claude-seo (replaces old `geo`) |
+| `seo-local` | ✅ | `marketing/seo-local/` | claude-seo |
+| `seo-page` | ✅ | `marketing/seo-page/` | claude-seo |
+| `seo-images` | ✅ | `marketing/seo-images/` | claude-seo |
+| `seo-sitemap` | ✅ | `marketing/seo-sitemap/` | claude-seo |
+| `seo-drift` | ✅ | `marketing/seo-drift/` | claude-seo |
+| `seo-cluster` | ✅ | `marketing/seo-cluster/` | claude-seo |
+| `seo-content-brief` | ✅ | `marketing/seo-content-brief/` | claude-seo |
+| `seo-competitor-pages` | ✅ | `marketing/seo-competitor-pages/` | claude-seo |
+| `seo-ecommerce` | ✅ | `marketing/seo-ecommerce/` | claude-seo |
+| `seo-hreflang` | ✅ | `marketing/seo-hreflang/` | claude-seo |
+| `seo-programmatic` | ✅ | `marketing/seo-programmatic/` | claude-seo |
+| `seo-backlinks` | ✅ | `marketing/seo-backlinks/` | claude-seo |
+| `seo-sxo` | ✅ | `marketing/seo-sxo/` | claude-seo |
+| `seo-flow` | ✅ | `marketing/seo-flow/` | claude-seo |
+| `seo-plan` | ✅ | `marketing/seo-plan/` | claude-seo |
+| `seo-maps` | ✅ | `marketing/seo-maps/` | claude-seo |
+| `seo-dataforseo` | ✅ | `marketing/seo-dataforseo/` | claude-seo |
+| `seo-google` | ✅ | `marketing/seo-google/` | claude-seo |
+| `seo-image-gen` | ✅ | `marketing/seo-image-gen/` | claude-seo |
+
+**Coreyhaines31 (23 — imported from `coreyhaines31/marketingskills`, curated subset):**
+
+| Name | Status | Folder | Notes |
+|---|:---:|---|---|
+| `ad-creative` | ✅ | `marketing/ad-creative/` | |
+| `ads` | ✅ | `marketing/ads/` | |
+| `analytics` | ✅ | `marketing/analytics/` | |
+| `cold-email` | ✅ | `marketing/cold-email/` | |
+| `competitor-alternatives` | ✅ | `marketing/competitor-alternatives/` | |
+| `competitor-profiling` | ✅ | `marketing/competitor-profiling/` | |
+| `competitors` | ✅ | `marketing/competitors/` | |
+| `content-strategy` | ✅ | `marketing/content-strategy/` | |
+| `copy-editing` | ✅ | `marketing/copy-editing/` | |
+| `copywriting` | ✅ | `marketing/copywriting/` | |
+| `cro` | ✅ | `marketing/cro/` | |
+| `customer-research` | ✅ | `marketing/customer-research/` | |
+| `email-sequence` | ✅ | `marketing/email-sequence/` | |
+| `emails` | ✅ | `marketing/emails/` | |
+| `launch` | ✅ | `marketing/launch/` | |
+| `marketing-ideas` | ✅ | `marketing/marketing-ideas/` | |
+| `paywalls` | ✅ | `marketing/paywalls/` | |
+| `popup` | ✅ | `marketing/popup/` | |
+| `programmatic-seo` | ✅ | `marketing/programmatic-seo/` | |
+| `signup` | ✅ | `marketing/signup/` | |
+| `sms` | ✅ | `marketing/sms/` | |
+| `social-content` | ✅ | `marketing/social-content/` | |
+| `user-onboarding` | ✅ | `marketing/user-onboarding/` | renamed from `onboarding` (collision with software/onboarding) |
+
+**ClauKit-authored (2):**
 
 | Name | Status | Folder | Scope |
 |---|:---:|---|---|
-| `geo` | ✅ | `marketing/geo/` | |
+| `product-marketing` | ✅ | `marketing/product-marketing/` | Hub skill — creates/updates `plans/marketing-context.md` (ICP, positioning, voice). Activated by `/mk:plan` |
 | `kit-builder` | ✅ | `marketing/kit-builder/` | Build custom ClauKit marketing components — skills, agents, workflows tailored to specific business needs |
-| `seo` | ✅ | `marketing/seo/` | |
+
+### Marketing Automation (6) — `skills/automation/`
+
+| Name | Status | Folder | Scope |
+|---|:---:|---|---|
+| `marketing-orchestrator` | ✅ | `automation/marketing-orchestrator/` | Multi-MCP coordinator for `/mk:campaign` + Phase 9 (Measure) |
+| `mcp-ga4` | ✅ | `automation/mcp-ga4/` | Google Analytics 4 wrapper (with manual fallback) |
+| `mcp-gsc` | ✅ | `automation/mcp-gsc/` | Google Search Console wrapper (with manual fallback) |
+| `mcp-sendgrid` | ✅ | `automation/mcp-sendgrid/` | SendGrid email wrapper (with manual fallback) |
+| `mcp-resend` | ✅ | `automation/mcp-resend/` | Resend email wrapper (with manual fallback) |
+| `mcp-reviewweb` | ✅ | `automation/mcp-reviewweb/` | ReviewWeb reputation wrapper (with manual fallback) |
 
 ### Software · Top-level standalone (40)
 
@@ -162,7 +232,27 @@ All 40 are active (`dynamic-workflow` added 2026-06-03, paired with `/ck:flow`; 
 
 ---
 
-## 2 · Agents (21)
+## 2 · Agents (31)
+
+### `marketing/` (7) — NEW in v2.0.0
+
+| Name | Status | Model | File |
+|---|:---:|---|---|
+| `content-strategist` | ✅ | sonnet | `marketing/content-strategist.md` |
+| `email-specialist` | ✅ | sonnet | `marketing/email-specialist.md` |
+| `market-researcher` | ✅ | sonnet | `marketing/market-researcher.md` |
+| `seo-content` | ✅ | sonnet | `marketing/seo-content.md` |
+| `seo-geo` | ✅ | sonnet | `marketing/seo-geo.md` |
+| `seo-schema` | ✅ | sonnet | `marketing/seo-schema.md` |
+| `seo-technical` | ✅ | sonnet | `marketing/seo-technical.md` |
+
+### `automation/` (3) — NEW in v2.0.0
+
+| Name | Status | Model | File |
+|---|:---:|---|---|
+| `campaign-manager` | ✅ | sonnet | `automation/campaign-manager.md` |
+| `crm-specialist` | ✅ | sonnet | `automation/crm-specialist.md` |
+| `video-producer` | ✅ | sonnet | `automation/video-producer.md` |
 
 ### `engineering/` (10)
 
@@ -304,6 +394,25 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:seo audit <url>` | SEO audit URL |
 | `/ck:seo keywords <topic>` | Keyword research |
 | `/ck:seo schema <type>` | JSON-LD schema |
+
+### `mk` (dispatcher, 12) 🔁 marketing kit — NEW in v2.0.0
+
+All commands under `/mk:` namespace. Each hard-fails if `plans/marketing-context.md` is missing.
+
+| Command | Description |
+|---|---|
+| `/mk:plan [fast\|full]` | Bootstrap or update marketing context (ICP, positioning, voice) |
+| `/mk:seo [audit\|keywords\|ai\|programmatic\|schema]` | SEO via AgriciDaniel/claude-seo engine (25 sub-skills parallel) |
+| `/mk:content [blog\|social\|video\|copy]` | Content creation |
+| `/mk:email [campaign\|cold\|drip\|sms]` | Email & SMS |
+| `/mk:ads [google\|meta\|creative\|ab-test]` | Paid advertising |
+| `/mk:cro [audit\|landing\|signup\|email]` | Conversion optimization |
+| `/mk:research [market\|competitor\|customer\|icp]` | Market research |
+| `/mk:growth [launch\|referral\|free-tool]` | Growth tactics |
+| `/mk:campaign` | Full 10-phase campaign pipeline (plan → optimize loop) |
+| `/mk:leads` | 5-phase lead pipeline (generate → retain) |
+| `/mk:nurture` | 5-phase lifecycle nurture (calendar → bigquery) |
+| `/mk:video` | 6-phase AI video (script → distribute) |
 
 ### `cc-skill` (dispatcher, 4) 🔁 skill-creator
 
@@ -482,12 +591,21 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | Pool | Active | Scaffold | Total |
 |---|---:|---:|---:|
 | Skills · `global/` | 1 | 0 | 1 |
-| Skills · `marketing/` | 3 | 0 | 3 |
+| Skills · `marketing/` | 50 | 0 | 50 |
+| Skills · `automation/` | 6 | 0 | 6 |
 | Skills · `software/` | 70 | 0 | 70 |
-| **Skills total** | **74** | **0** | **74** |
-| Agents | 21 | 0 | 21 |
-| Commands | 60 | 0 | 60 |
-| **Grand total entries** | | | **155** |
+| Skills · removed (v2.0.0: old `geo`, old `seo/references`) | — | — | — |
+| **Skills total** | **127** | **0** | **127** |
+| Agents · `engineering/` | 10 | 0 | 10 |
+| Agents · `specialists/` | 4 | 0 | 4 |
+| Agents · `operations/` | 3 | 0 | 3 |
+| Agents · `research/` | 3 | 0 | 3 |
+| Agents · `marketing/` (NEW) | 7 | 0 | 7 |
+| Agents · `automation/` (NEW) | 3 | 0 | 3 |
+| Agents · root | 1 | 0 | 1 |
+| **Agents total** | **31** | **0** | **31** |
+| Commands | 72 | 0 | 72 |
+| **Grand total entries** | | | **230** |
 
 ## 7 · Open Issues
 
