@@ -22,6 +22,8 @@ Initialize `plans/marketing/<campaign-name>/` with `README.md` (campaign brief).
 
 ## Phase 2 — Insights
 
+*Input:* `research.md` (Phase 1).
+
 Synthesize research into 3-5 actionable insights. Each insight: (1) observation, (2) implication, (3) falsifiability check.
 *Output:* `insights.md` (5 insights max).
 
@@ -37,27 +39,38 @@ Build execution plan: assets needed, owners (agent/skills), deadlines, dependenc
 
 ## Phase 5 — Create (parallel)
 
+*Input:* `plan.md` (Phase 4).
+
 **Track A:** Copy (blog, social, email, ads). Skills: `copywriting`, `copy-editing`, `content-strategy`.
-**Track B:** Visuals (images, video, infographics). Skills: `ai-artist`, `ai-multimodal`, `video-producer`.
+**Track B:** Visuals (images, infographics). Skills: `ai-artist`, `ai-multimodal`.
+**Track C:** Video — delegate to `/mk:video` (passes `<campaign-name>` as context). Agent: `video-producer`.
 *Output:* `content/`, `visuals/`, `video/` directories.
 
 ## Phase 6 — Edit
 
-Three parallel review tracks:
-- **Copy review** — brand voice, clarity, concision. Skill: `copy-editing`.
-- **SEO check** — E-E-A-T, keywords, schema. Skills: `seo-content`, `seo-schema`.
-- **CRO check** — value prop, CTA, friction. Skills: `cro`, `signup`.
-*Output:* edits applied, `edits-log.md` summary.
+*Input:* `content/`, `visuals/`, `video/` (Phase 5).
+
+Sequential review (order matters — each track appends to `edits-log.md`, do not overwrite):
+1. **Copy review** — brand voice, clarity, concision. Skill: `copy-editing`. Owns: `content/`.
+2. **SEO check** — E-E-A-T, keywords, schema. Skills: `seo-content`, `seo-schema`. Owns: headings, meta, schema fields.
+3. **CRO check** — value prop, CTA, friction. Load `.claude/workflows/cro-framework.md` (25-point checklist). Skills: `cro`, `signup`. Owns: CTAs, forms, above-fold copy.
+*Output:* edits applied in-place, `edits-log.md` (append-only, one section per track).
 
 ## Phase 7 — Publish
 
+*Input:* edited assets from Phase 6, `plan.md` (Phase 4).
+
 Deploy to channels. Use automation (MCP wrappers) where possible:
-- Blog/website → CMS (manual or MCP)
+- Blog/website → CMS (manual or MCP, including `mcp-wordpress` if configured)
 - Email → `mcp-sendgrid` or `mcp-resend` (with manual fallback)
 - Social → Buffer/Hootsuite (manual or MCP)
-*Output:* `published-log.md` (URLs, timestamps, per asset).
+
+**Before send:** dedup by content/recipient key (automation-rules R5). Redact PII from `published-log.md` (automation-rules R4).
+*Output:* `published-log.md` (URLs, timestamps, per asset — PII-redacted).
 
 ## Phase 8 — Promote
+
+*Input:* `published-log.md` (Phase 7).
 
 Paid + influencer amplification:
 - Paid ads (Google, Meta, LinkedIn). Skills: `ads`, `ad-creative`.
@@ -67,19 +80,30 @@ Paid + influencer amplification:
 
 ## Phase 9 — Measure
 
+*Input:* `published-log.md` (Phase 7), targets from `strategy.md` (Phase 3).
+
 Pull metrics. Use MCP wrappers (`mcp-ga4`, `mcp-gsc`) with manual fallback (CSV export).
 - Traffic, conversions, CTR, engagement, signups, revenue.
-*Output:* `metrics-report.md` (vs targets from Phase 3).
+**Redact user-level rows** from GA4/GSC before writing report (automation-rules R4).
+*Output:* `metrics-report.md` (vs targets from Phase 3 — aggregated only, no PII).
 
 ## Phase 10 — Optimize (loop)
 
-Analyze results. Identify 1-2 biggest wins/losses. Feed back to Phase 3 (Strategy) for next iteration.
+*Input:* `metrics-report.md` (Phase 9), prior `optimize-decisions.md` (if exists — read before deciding to avoid re-deciding).
+
+Analyze results. Identify 1-2 biggest wins/losses.
 - Win: scale, document, replicate.
 - Loss: diagnose, iterate, or kill.
 *Output:* `optimize-decisions.md` (3-5 actions for next cycle).
 
+**Loop exit — ask user:**
+> "Phase 9 metrics vs Phase 3 targets: [summary]. Continue to next cycle (Phase 3)? (y/n)"
+- `y` → loop back to Phase 3 with `optimize-decisions.md` as input.
+- `n` → campaign complete.
+- Auto-exit if targets met or budget exhausted (document reason in `optimize-decisions.md`).
+
 ---
 
-**Note:** Phases 1 (Research) + 1b (Trends) run in parallel to save time. Phase 10 loops back to Phase 3 — marketing is iterative, not linear.
+**Note:** Phase 1 Tracks A + B run in parallel within the phase. Phase 5 Tracks A/B/C run in parallel within the phase. Phase 10 loops back to Phase 3 — user confirms each cycle (ask before looping).
 
-**Conventions:** Each phase output is a markdown file in the campaign dir. Phase 9 metrics + Phase 10 decisions are the only required artifacts for retrospective.
+**Conventions:** Each phase output is a markdown file in the campaign dir. Phase 9 metrics + Phase 10 decisions are the only required artifacts for retrospective. Sub-workflows (`/mk:leads`, `/mk:nurture`, `/mk:video`) are orchestrated by this workflow — `<campaign-name>` is passed as context; they do not need to resolve it independently.

@@ -12,12 +12,13 @@ If a task needs GA4/GSC/SendGrid/Resend/ReviewWeb data:
 3. If no → use the skill's **manual fallback** (CSV export, template gen, paste-back)
 4. Never silently fail or skip the data step
 
-**Available MCP wrappers** (in `skills/automation/mcp-*/SKILL.md`):
+**Available MCP wrappers** (in `skills/automation/mcp-*/SKILL.md` or `skills/integrations/*/SKILL.md`):
 - `mcp-ga4` — Google Analytics 4
 - `mcp-gsc` — Google Search Console
 - `mcp-sendgrid` — SendGrid email
 - `mcp-resend` — Resend email
 - `mcp-reviewweb` — ReviewWeb reputation
+- `mcp-wordpress` — WordPress REST (env creds: `WP_SITE_URL`/`WP_USER`/`WP_APP_PASSWORD`)
 
 ## 2. Workflow chain integrity
 
@@ -27,6 +28,7 @@ When running `/mk:campaign` (10-phase marketing workflow), `/mk:leads` (5-phase 
 - Execute phases in order
 - Wait for phase completion before starting next
 - If user wants to skip → confirm explicitly: "Skip Phase 4 (Plan)? (y/n)"
+- **Exception:** Declared intra-phase parallel tracks (e.g. marketing Phase 1 Tracks A/B, Phase 5 Tracks A/B/C) are allowed — they run concurrently *within* a phase, not across phases. This does not violate the sequential-phase rule.
 
 ## 3. Data validation
 
@@ -59,7 +61,7 @@ When reading leads, customers, or review data:
 **Marketing automations must be re-runnable safely.**
 
 When executing campaigns, lead workflows, nurture sequences:
-- Use idempotency keys (campaign-name + timestamp + step) for API calls
+- Use idempotency keys (`campaign-name + step + recipient-id`) for API calls — **no timestamp** (timestamp changes on re-run → defeats idempotency → duplicate sends)
 - Check existing state before creating new resources (don't double-send emails)
 - Document re-run behavior in workflow outputs
 
@@ -74,6 +76,7 @@ Every MCP wrapper MUST support manual mode:
 | SendGrid | Generate email template + HTML → user sends manually |
 | Resend | Generate React Email component → user runs locally |
 | ReviewWeb | User pastes reviews → sentiment analysis |
+| WordPress | REST curl path (`WP_SITE_URL`/`WP_USER`/`WP_APP_PASSWORD`) or user pastes via admin UI. Never log credentials. |
 
 **Behavior:** Skill auto-detects MCP availability; if absent, instructs user on manual path.
 
@@ -90,10 +93,12 @@ Automation outputs go to:
 
 - ❌ Calling external API without checking MCP wrapper first
 - ❌ Logging PII (emails, phones, addresses)
+- ❌ Writing raw customer/lead PII into `plans/marketing/` files — redact per rule 4
 - ❌ Skipping a workflow phase without user confirmation
 - ❌ Using MCP response data without validation
 - ❌ Non-idempotent campaigns (re-running sends duplicates)
 - ❌ Skipping manual fallback when MCP unavailable
+- ❌ Using `timestamp` in an idempotency key
 
 ## 9. Cross-references
 

@@ -5,13 +5,20 @@ Lead generation → conversion pipeline. Linear.
 **Trigger:** `/mk:leads <icp-description>`
 **Agents:** `email-specialist`, `crm-specialist`
 **Required input:** `plans/marketing-context.md`
-**Output dir:** `plans/marketing/<campaign>/`
+**Output dir:** `plans/marketing/<campaign-name>/`
+**Orchestration:** Typically invoked by `/mk:campaign` (which resolves `<campaign-name>`). When run standalone, Phase 0 prompts for `<campaign-name>`.
 
 ---
 
+## Phase 0 — Setup (gate)
+
+Verify `plans/marketing-context.md` exists. If absent → hard-fail, direct to `/mk:plan`.
+If `<campaign-name>` not passed by orchestrator → prompt: "Campaign name? (used for output dir)".
+Confirm with user before each phase transition.
+
 ## Phase 1 — Generate
 
-Cold outreach to ICP. Skills: `cold-email`, `prospecting`, `email-specialist`.
+Cold outreach to ICP. Skills: `cold-email`, `email-specialist`.
 *Output:* outreach list (`leads-raw.csv` — PII-redacted per automation-rules.md).
 
 ## Phase 2 — Qualify
@@ -36,5 +43,6 @@ Customer success + lifecycle. Skills: `customer-research`, `crm-specialist`, `us
 
 ---
 
-**Idempotency:** Re-running must not duplicate outreach (use idempotency keys: lead-id + campaign-name + step).
-**Privacy:** All output CSVs PII-redacted. Full PII only in CRM (not committed to repo).
+**Idempotency:** Re-running must not duplicate outreach. Key: `campaign-name + step + recipient-id` (no timestamp). (See automation-rules R5.)
+**Privacy:** All output CSVs PII-redacted. Full PII only in CRM — never committed to repo. (automation-rules R4)
+**Phase-skip:** Confirm with user before skipping any phase (automation-rules R2).

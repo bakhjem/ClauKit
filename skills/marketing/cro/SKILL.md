@@ -4,7 +4,7 @@ description: Conversion Rate Optimization — landing pages, signup flows, popup
 allowed-tools: Read, Write, Glob, Grep
 ---
 
-# Cro
+# CRO
 
 > Conversion Rate Optimization — landing pages, signup flows, popups, A/B tests. 25-point framework.
 
@@ -12,39 +12,54 @@ allowed-tools: Read, Write, Glob, Grep
 
 ## When this skill activates
 
-**Implicit:** when the agent/task matches the skill's domain.
+**Implicit:** when the agent/task involves increasing conversions, reducing friction, or improving CTAs.
 **Explicit:** "Use the cro skill to [task]."
 
 ## Scope
 
 This skill covers:
-- [Core capability 1 — what it does well]
-- [Core capability 2 — what it does well]
-- [Core capability 3 — what it does well]
+- Auditing landing pages, signup flows, popups, and email CTAs against the 25-point framework
+- Identifying friction points and conversion blockers
+- Writing CRO-specific recommendations (headline rewrites, CTA copy, social proof placement, form reduction)
+- A/B test hypothesis generation (one variable at a time, per principle 16)
 
 This skill does NOT cover:
-- [Out-of-scope item 1 — refer to another skill]
-- [Out-of-scope item 2]
+- Full SEO audits → use `seo-content`, `seo-schema`
+- Analytics instrumentation → use `analytics`
+- Ad creative → use `ad-creative`
 
 ## Key concepts
 
-- **Concept 1** — one-line definition
-- **Concept 2** — one-line definition
-- **Concept 3** — one-line definition
+Load `.claude/workflows/cro-framework.md` before executing any audit — it contains the 25-point checklist that governs all CRO work.
+
+- **Above-fold value prop** — customer problem, no scroll required (principle 2)
+- **Single primary CTA** — one action per page; multiple CTAs split attention and drop conversions
+- **Social proof near CTA** — testimonials with faces/names/results placed at decision points (principle 6)
+- **Genuine urgency only** — fake timers destroy trust permanently (principle 9)
+- **Message match** — ad copy → landing headline must be consistent; broken promises = bounce (principle 5)
+
+## Process
+
+1. Load `plans/marketing-context.md` — pull ICP, brand voice, forbidden words.
+2. Load `.claude/workflows/cro-framework.md` — 25-point checklist is the audit baseline.
+3. Read the target asset (landing page, email, form, popup).
+4. Score against relevant framework principles (note which apply).
+5. Output ranked recommendations (highest-impact first).
+6. For each recommendation: state the principle, the current copy/state, and the proposed fix.
 
 ## Output
 
 When activated, this skill produces:
-- `plans/marketing/<campaign>/cro.md` — analysis / audit / brief
-- Inline recommendations in the conversation
+- `plans/marketing/<campaign>/cro-audit.md` — scored findings + ranked recommendations
+- Inline recommendations in the conversation (for quick checks)
 
 ## Cross-references
 
-- `plans/marketing-context.md` — required hub
-- `.claude/workflows/marketing-rules.md` — content quality rules
+- `.claude/workflows/cro-framework.md` — **required** 25-point framework (load before auditing)
+- `plans/marketing-context.md` — required hub (ICP, brand voice)
+- `.claude/workflows/marketing-rules.md` — quality gates (copy quality, brand voice, E-E-A-T)
 - `skills/marketing/README.md` — full kit overview
-
 
 ## Provenance
 
-Imported from `coreyhaines31/marketingskills` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), references `plans/marketing-context.md`. For full original content, see source repo.
+Imported from `coreyhaines31/marketingskills` and adapted for ClauKit. Adaptations: ClauKit frontmatter, scoped to marketing kit namespace (`/mk:`), wired to `cro-framework.md` 25-point checklist, references `plans/marketing-context.md`.

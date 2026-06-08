@@ -55,6 +55,7 @@ Marketing tasks should NEVER include code-implementation steps. If a marketing t
 - ❌ "Trust us" without proof points
 - ❌ Marketing copy that buries the value prop below the fold
 - ❌ Pasting external blog verbatim into our content (plagiarism)
+- ❌ Writing raw customer/lead PII into `plans/marketing/` content or audit files (redact per automation-rules R4)
 
 ## 8. Cross-references
 

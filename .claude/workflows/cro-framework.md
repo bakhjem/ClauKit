@@ -32,6 +32,15 @@ Single source of truth for Conversion Rate Optimization knowledge used by `/ck:c
 
 ## Used By
 
+This file is shared by both engineer and marketing kits.
+
+**Marketing kit (`/mk:`):**
+- `/mk:cro` — full CRO audit command
+- `/mk:content copy` — copy creation with CRO checks
+- `/mk:campaign` Phase 6 (Edit) CRO track — load before auditing
+
+**Engineer kit (`/ck:`):**
 - `/ck:content cro` — apply framework to optimize **existing** copy
 - `/ck:plan cro` — create CRO **plan** with framework-driven recommendations
-- `copywriter` agent — conversion copywriting persona references this for any high-converting copy task
+
+**Agents:** `copywriter` (specialists), `content-strategist` (marketing kit)

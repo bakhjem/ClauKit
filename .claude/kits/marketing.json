@@ -26,7 +26,8 @@
   },
   "requires": {
     "shared": [
-      ".claude/agents/research/"
+      ".claude/agents/research/",
+      ".claude/agents/specialists/copywriter.md"
     ]
   }
 }
