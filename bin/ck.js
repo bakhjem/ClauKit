@@ -12,12 +12,11 @@
  * metadata-writer, github-client, cli-parser).
  */
 
-const fs = require("fs");
 const path = require("path");
 const packageJson = require("../package.json");
 
 const { resolveKit, getKitPaths, checkKitPathsAvailable, printKitList } = require("./lib/kit-resolver");
-const { copyPath, listFiles } = require("./lib/file-copier");
+const { copyPath } = require("./lib/file-copier");
 const { writeMetadata } = require("./lib/metadata-writer");
 const { fetchLatestVersion, compareVersions } = require("./lib/github-client");
 const { parseArgs, showHelp } = require("./lib/cli-parser");
@@ -57,22 +56,6 @@ function initCommand(options = {}) {
   }
 
   writeMetadata(projectRoot, packageJson, kit);
-
-  // Create .claude/skills → ../skills so Claude Code can read skill files.
-  // Windows: junction (no admin required, absolute path). Unix: symlink (relative path).
-  const symlinkTarget = path.join(projectRoot, ".claude", "skills");
-  if (!fs.existsSync(symlinkTarget)) {
-    try {
-      if (process.platform === "win32") {
-        fs.symlinkSync(path.resolve(projectRoot, "skills"), symlinkTarget, "junction");
-      } else {
-        fs.symlinkSync("../skills", symlinkTarget);
-      }
-      console.log(`   🔗 .claude/skills → ../skills`);
-    } catch (e) {
-      console.warn(`   ⚠️  Could not create .claude/skills symlink: ${e.message}`);
-    }
-  }
 
   console.log(`\n✅ Kit '${kit.name}' installed!`);
   console.log(`   ${copied} paths copied · ${skipped} skipped`);

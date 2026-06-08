@@ -9,9 +9,9 @@
     ],
     "commands": [".claude/commands/mk/"],
     "skills": [
-      "skills/marketing/",
-      "skills/automation/",
-      "skills/integrations/"
+      ".claude/skills/marketing/",
+      ".claude/skills/automation/",
+      ".claude/skills/integrations/"
     ],
     "workflows": [
       ".claude/workflows/marketing-workflow.md",

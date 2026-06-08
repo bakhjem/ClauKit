@@ -8,7 +8,7 @@
       ".claude/agents/engineering/"
     ],
     "commands": [".claude/commands/ck/"],
-    "skills": ["skills/software/", "skills/global/"],
+    "skills": [".claude/skills/software/", ".claude/skills/global/"],
     "workflows": [
       ".claude/workflows/primary-workflow.md",
       ".claude/workflows/development-rules.md",

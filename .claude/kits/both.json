@@ -14,11 +14,11 @@
       ".claude/commands/mk/"
     ],
     "skills": [
-      "skills/software/",
-      "skills/global/",
-      "skills/marketing/",
-      "skills/automation/",
-      "skills/integrations/"
+      ".claude/skills/software/",
+      ".claude/skills/global/",
+      ".claude/skills/marketing/",
+      ".claude/skills/automation/",
+      ".claude/skills/integrations/"
     ],
     "workflows": [
       ".claude/workflows/primary-workflow.md",
