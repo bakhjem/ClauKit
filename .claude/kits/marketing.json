@@ -1,6 +1,6 @@
 {
   "name": "marketing",
-  "description": "Marketing Kit + Marketing Automation — /mk: namespace, 48 skills, 10 agents, 12 commands, 5 workflows, 5 MCP wrappers, 6 automation skills",
+  "description": "Marketing Kit + Marketing Automation — /mk: namespace, 48 skills, 10 agents, 12 commands, 5 workflows, 5 MCP wrappers, 6 automation skills, 2 integration skills (WordPress)",
   "namespace": "mk",
   "version": "0.1.0",
   "paths": {
@@ -11,7 +11,8 @@
     "commands": [".claude/commands/mk/"],
     "skills": [
       "skills/marketing/",
-      "skills/automation/"
+      "skills/automation/",
+      "skills/integrations/"
     ],
     "workflows": [
       ".claude/workflows/marketing-workflow.md",

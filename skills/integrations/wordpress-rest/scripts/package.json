@@ -1,0 +1,13 @@
+{
+  "name": "wordpress-rest-scripts",
+  "version": "1.0.0",
+  "description": "Helper scripts for the WordPress REST client skill (auth header + media upload)",
+  "keywords": [
+    "wordpress",
+    "rest-api",
+    "publishing",
+    "media"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -21,7 +21,8 @@
       "skills/software/",
       "skills/global/",
       "skills/marketing/",
-      "skills/automation/"
+      "skills/automation/",
+      "skills/integrations/"
     ],
     "workflows": [
       ".claude/workflows/primary-workflow.md",

@@ -1,8 +1,8 @@
 # ClauKit Registry
 
-**Last Updated**: 2026-06-07 (Marketing Kit v2.0.0 milestone — 50 marketing skills + 6 automation + 10 agents + 12 commands)
+**Last Updated**: 2026-06-08 (WordPress integration — `skills/integrations/` added: `wordpress-rest` + `mcp-wordpress`; reconciled prior 128/127 skills off-by-one to table-derived total)
 **Scope**: Single source of truth for every Skill, Agent, and Command in this project.
-**Counts**: 128 skills (128 active + 0 scaffold) · 31 agents · 72 commands · **231 total entries**
+**Counts**: 129 skills (129 active + 0 scaffold) · 31 agents · 72 commands · **232 total entries**
 
 Replaces previous `skills-catalog.md` (skills only). One file, all three resource types, with duplicate/overlap detection.
 
@@ -113,6 +113,13 @@ Replaces previous `skills-catalog.md` (skills only). One file, all three resourc
 | `mcp-sendgrid` | ✅ | `automation/mcp-sendgrid/` | SendGrid email wrapper (with manual fallback) |
 | `mcp-resend` | ✅ | `automation/mcp-resend/` | Resend email wrapper (with manual fallback) |
 | `mcp-reviewweb` | ✅ | `automation/mcp-reviewweb/` | ReviewWeb reputation wrapper (with manual fallback) |
+
+### Integrations (2) — `skills/integrations/` — NEW
+
+| Name | Status | Folder | Scope |
+|---|:---:|---|---|
+| `wordpress-rest` | ✅ | `integrations/wordpress-rest/` | WordPress REST client — publish/update posts & pages (draft→publish), media, taxonomies, Yoast/RankMath SEO meta, audit. Env-only auth, idempotent, draft-default. Adapted (consumer) from WordPress agent-skills (GPL v2+, attributed in TPN). |
+| `mcp-wordpress` | ✅ | `integrations/mcp-wordpress/` | WordPress MCP wrapper (BYO server) with curl fallback to `wordpress-rest`. |
 
 ### Software · Top-level standalone (40)
 
@@ -594,8 +601,9 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | Skills · `marketing/` | 50 | 0 | 50 |
 | Skills · `automation/` | 6 | 0 | 6 |
 | Skills · `software/` | 70 | 0 | 70 |
+| Skills · `integrations/` (NEW) | 2 | 0 | 2 |
 | Skills · removed (v2.0.0: old `geo`, old `seo/references`) | — | — | — |
-| **Skills total** | **127** | **0** | **127** |
+| **Skills total** | **129** | **0** | **129** |
 | Agents · `engineering/` | 10 | 0 | 10 |
 | Agents · `specialists/` | 4 | 0 | 4 |
 | Agents · `operations/` | 3 | 0 | 3 |
@@ -605,7 +613,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | Agents · root | 1 | 0 | 1 |
 | **Agents total** | **31** | **0** | **31** |
 | Commands | 72 | 0 | 72 |
-| **Grand total entries** | | | **230** |
+| **Grand total entries** | | | **232** |
 
 ## 7 · Open Issues
 

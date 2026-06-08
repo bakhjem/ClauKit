@@ -11,6 +11,7 @@
 - **5 workflow files** (marketing 10-phase, sales 5-phase, crm 5-phase, video 6-phase, design 5-phase)
 - **5 MCP wrappers** (ga4, gsc, sendgrid, resend, reviewweb) — with manual fallback
 - **6 automation skills** (5 MCP wrappers + marketing-orchestrator)
+- **2 integration skills** (`wordpress-rest` client + `mcp-wordpress` wrapper) — publish/update/audit WordPress content via `/mk:content publish` + `/mk:seo audit wp:<id>`
 
 **Skill breakdown (50 total):**
 - 25 from `AgriciDaniel/claude-seo` (1 root + 24 sub-skills: audit, technical, content, schema, geo, local, page, images, sitemap, drift, cluster, content-brief, competitor-pages, ecommerce, hreflang, programmatic, backlinks, sxo, flow, plan, maps, dataforseo, google, image-gen)
@@ -158,6 +159,7 @@ The kit includes 5 MCP skill wrappers. **You provide the MCP server** — wrappe
 | **SendGrid** | Transactional email, marketing campaigns, analytics | `SENDGRID_API_KEY` | Generate templates, manual send |
 | **Resend** | Developer-first email API, React Email | `RESEND_API_KEY` | Generate React Email components |
 | **ReviewWeb** | Reputation audit, review monitoring, sentiment | `REVIEWWEB_API_KEY` | Ask user to paste reviews |
+| **WordPress** | Publish/update posts & pages, media, taxonomies, SEO meta, audit | `WP_SITE_URL`, `WP_USER`, `WP_APP_PASSWORD` | curl REST path (`wordpress-rest` skill) |
 
 **Without MCP server:** Every wrapper has a **manual fallback mode** — generates templates, accepts CSV paste, or asks user to run steps manually. Kit still works.
 
@@ -196,4 +198,5 @@ All `/mk:` commands require `plans/marketing-context.md` (created by `/mk:plan`)
 
 - `AgriciDaniel/claude-seo` (8.4k stars) — SEO engine, 25 sub-skills + 18 agents
 - `coreyhaines31/marketingskills` — 23 marketing skills imported
-- Custom ClauKit — workflows, MCP wrappers, automation agents
+- `WordPress/agent-skills` — `wp-rest-api` knowledge (GPL v2+, adapted to a consumer client; see `skills/THIRD_PARTY_NOTICES.md`)
+- Custom ClauKit — workflows, MCP wrappers, automation agents, integration skills
