@@ -12,7 +12,7 @@ WP REST returns errors as JSON: `{ "code": "...", "message": "...", "data": { "s
 | 429 | — | security-plugin / host rate limit (WP has no native limit) | exponential backoff, retry |
 | 5xx | — | server / plugin fatal | check site health; retry once; surface to user |
 
-## Backoff pattern (429 / transient 5xx)
+## Backoff pattern (429 / transient 5xx) — READ requests only
 
 ```bash
 for attempt in 1 2 3; do
@@ -28,7 +28,10 @@ done
 - JSON body with `rest_cannot_*` → genuine WP capability issue (fix the role).
 - HTML body (WAF page) or empty → host/security-plugin block (allow-list the REST route or the agent IP).
 
+This loop is for **reads**. Never blind-retry a write here (risks duplicates) — re-run the idempotent slug lookup first, then decide create vs update.
+
 ## Never on error
 
 - Never retry a write blindly (risks duplicates) — re-run the idempotent upsert lookup first.
 - Never log `$WP_APP_PASSWORD` in error output. Redact auth headers before surfacing curl errors.
+- **Never run `curl -v` or `set -x` on an authenticated call** — both expose the Basic-auth credential. To debug, isolate the URL/body without creds, or use `scripts/wp-auth-header.js` (which never prints the password). The inline `-u "$WP_USER:$WP_APP_PASSWORD"` form is preferred for normal calls — it keeps creds out of argv-visible header args.

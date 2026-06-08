@@ -49,7 +49,7 @@ NEVER hardcode credentials. NEVER echo/log the password. Auth header = `Basic ba
 ## Scripts
 
 - `scripts/wp-auth-header.js` — build `Authorization: Basic <b64>` from env (password never printed)
-- `scripts/wp-media-upload.js` — multipart media upload helper to `/wp-json/wp/v2/media`
+- `scripts/wp-media-upload.js` — raw-binary media upload helper to `/wp-json/wp/v2/media`
 
 ## Implementation Workflow
 

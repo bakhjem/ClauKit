@@ -59,7 +59,7 @@ async function main() {
       method: "POST",
       headers: {
         Authorization: `Basic ${auth}`,
-        "Content-Disposition": `attachment; filename=${filename}`,
+        "Content-Disposition": `attachment; filename="${filename.replace(/"/g, "")}"`,
         "Content-Type": mime,
       },
       body,
