@@ -58,17 +58,19 @@ function initCommand(options = {}) {
 
   writeMetadata(projectRoot, packageJson, kit);
 
-  // Create .claude/skills symlink → ../skills so Claude Code can read skill files.
-  // Skipped on Windows (symlinks require elevated privileges there).
-  if (process.platform !== "win32") {
-    const symlinkTarget = path.join(projectRoot, ".claude", "skills");
-    if (!fs.existsSync(symlinkTarget)) {
-      try {
+  // Create .claude/skills → ../skills so Claude Code can read skill files.
+  // Windows: junction (no admin required, absolute path). Unix: symlink (relative path).
+  const symlinkTarget = path.join(projectRoot, ".claude", "skills");
+  if (!fs.existsSync(symlinkTarget)) {
+    try {
+      if (process.platform === "win32") {
+        fs.symlinkSync(path.resolve(projectRoot, "skills"), symlinkTarget, "junction");
+      } else {
         fs.symlinkSync("../skills", symlinkTarget);
-        console.log(`   🔗 .claude/skills → ../skills`);
-      } catch (e) {
-        console.warn(`   ⚠️  Could not create .claude/skills symlink: ${e.message}`);
       }
+      console.log(`   🔗 .claude/skills → ../skills`);
+    } catch (e) {
+      console.warn(`   ⚠️  Could not create .claude/skills symlink: ${e.message}`);
     }
   }
 
