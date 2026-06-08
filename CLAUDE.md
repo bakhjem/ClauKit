@@ -27,6 +27,8 @@ Kit manifests: `.claude/kits/*.json`. Adding a new kit = drop a JSON file, no CL
 
 **Claude-SEO engine:** The marketing kit's SEO backbone is `AgriciDaniel/claude-seo` (25 sub-skills + 18 agents, runs in parallel, 3-layer architecture: directive → orchestration → execution). All `/mk:seo*` commands route through this engine. See Phase 6 "Claude-SEO Workflow" section in the marketing-kit plan for usage patterns.
 
+**Integrations:** `skills/integrations/` (marketing + both kits) — `wordpress-rest` client + `mcp-wordpress` wrapper. WordPress publish via `/mk:content publish` (draft-default, idempotent, env-only creds: `WP_SITE_URL`/`WP_USER`/`WP_APP_PASSWORD`), WordPress audit via `/mk:seo audit wp:<id>` (read-only). See `skills/integrations/wordpress-rest/SKILL.md`.
+
 **IMPORTANT:** Analyze the skills catalog and activate the skills that are needed for the task during the process. The **single source of truth** for all skills, agents, and commands (with status + duplicate detection) is `./docs/clauKit-registry.md` — read it whenever you need to know what is available, before suggesting to create a new skill/agent/command (avoid duplicates), or when activating skills for a task.
 **IMPORTANT:** You must follow strictly the development rules in `./.claude/workflows/development-rules.md` file.
 **IMPORTANT:** Before you plan or proceed any implementation, always read the `./README.md` file first to get context.

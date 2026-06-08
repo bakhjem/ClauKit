@@ -4,6 +4,20 @@ THE FOLLOWING SETS FORTH ATTRIBUTION NOTICES FOR THIRD PARTY SOFTWARE THAT MAY B
 
 ---
 
+## **GNU General Public License v2.0 or later**
+
+The following knowledge source informed an ADAPTED (re-authored) skill in this product. No source code was copied; ClauKit's `wordpress-rest` skill is original work (MIT) that consumes the publicly documented WordPress REST API. Attribution per GPL provenance:
+
+**WordPress agent-skills (`wp-rest-api`)**, Copyright (c) WordPress contributors
+
+Source: [https://github.com/WordPress/agent-skills/tree/trunk/skills/wp-rest-api](https://github.com/WordPress/agent-skills/tree/trunk/skills/wp-rest-api)
+
+License: GNU GPL v2.0 or later (same as WordPress core) — full text: [https://www.gnu.org/licenses/old-licenses/gpl-2.0.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html)
+
+Note: the original skill is PHP-developer-focused (building REST endpoints inside a WordPress plugin). ClauKit's `skills/integrations/wordpress-rest/` is a CLIENT/consumer skill (publishing & auditing content over REST). Only the public API knowledge (endpoints, authentication model) was referenced — no GPL-licensed source code was incorporated.
+
+---
+
 ## **BSD 2-Clause License**
 
 The following components are licensed under BSD 2-Clause License reproduced below:
