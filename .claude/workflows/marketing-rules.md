@@ -61,4 +61,4 @@ Marketing tasks should NEVER include code-implementation steps. If a marketing t
 - `.claude/workflows/cro-framework.md` — CRO 25-point framework
 - `plans/marketing-context.md` — required context hub
 - `skills/marketing/README.md` — full kit overview
-- `plans/marketing-kit/plan.md` — implementation plan
+- `docs/marketing-kit/` — kit QA reports + implementation docs

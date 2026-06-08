@@ -23,7 +23,7 @@ ClauKit supports multiple installable kits via `ck init --kit <name>`:
 
 Kit manifests: `.claude/kits/*.json`. Adding a new kit = drop a JSON file, no CLI changes.
 
-**Marketing kit details:** When user requests marketing work, activate the marketing kit skills/agents/commands. See `skills/marketing/README.md` for full kit overview, command list, and workflow index. Marketing plan: `plans/marketing-kit/plan.md`. Marketing-context hub: `plans/marketing-context.md` (required by all `/mk:` commands — hard fail if absent).
+**Marketing kit details:** When user requests marketing work, activate the marketing kit skills/agents/commands. See `skills/marketing/README.md` for full kit overview, command list, and workflow index. Marketing kit docs: `docs/marketing-kit/` (QA + implementation reports). Marketing-context hub: `plans/marketing-context.md` (required by all `/mk:` commands — hard fail if absent).
 
 **Claude-SEO engine:** The marketing kit's SEO backbone is `AgriciDaniel/claude-seo` (25 sub-skills + 18 agents, runs in parallel, 3-layer architecture: directive → orchestration → execution). All `/mk:seo*` commands route through this engine. See Phase 6 "Claude-SEO Workflow" section in the marketing-kit plan for usage patterns.
 

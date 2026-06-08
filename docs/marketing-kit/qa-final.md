@@ -1,7 +1,7 @@
 # Marketing Kit v2.0.0 — Final QA Report
 
 **Date:** 260607
-**Plan:** `plans/marketing-kit/plan.md` v4
+**Plan:** marketing-kit plan v4 (working artifact — not tracked in repo)
 **Target version:** 2.0.0 ✅
 **Status:** All 10 phases complete · all 5 TS1-TS5 (Phase 0.5) + structural QA passing
 
@@ -25,7 +25,7 @@
 
 ### Phase 0.5 (Kit Manifest) — TS1-TS5
 
-See `plans/marketing-kit/qa-phase-0.5.md` for full details.
+See `docs/marketing-kit/qa-phase-0.5.md` for full details.
 
 | Test | Result |
 |---|---|

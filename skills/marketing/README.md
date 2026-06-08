@@ -191,7 +191,7 @@ All `/mk:` commands require `plans/marketing-context.md` (created by `/mk:plan`)
 - `.claude/workflows/marketing-rules.md` — marketing content quality rules
 - `.claude/workflows/automation-rules.md` — MCP + idempotency + PII rules
 - `docs/clauKit-registry.md` — full resource catalog
-- `plans/marketing-kit/plan.md` — implementation plan (Phases 0.5-8)
+- `docs/marketing-kit/` — kit QA reports + implementation docs
 - `skills/automation/` — MCP wrapper skills
 
 ## Source repos
