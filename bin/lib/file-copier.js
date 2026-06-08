@@ -44,7 +44,7 @@ function copyDirectory(source, target) {
       copyDirectory(sourcePath, targetPath);
     } else {
       try {
-        streamCopy(sourcePath, targetPath);
+        copyFileSafe(sourcePath, targetPath);
       } catch (e) {
         if (e.code === "ENOENT") {
           console.warn(`   ⚠️  Skipping missing file: ${path.relative(PACKAGE_ROOT, sourcePath)}`);

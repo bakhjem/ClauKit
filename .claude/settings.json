@@ -30,8 +30,6 @@
     "padding": 0
   },
   "permissions": {
-    "allow": [
-      "Edit(/.claude/skills/mobile-development/**)"
-    ]
+    "allow": []
   }
 }

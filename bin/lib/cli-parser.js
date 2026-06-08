@@ -3,13 +3,12 @@
  *
  * Supported flags:
  *   --force                  Overwrite existing files
- *   --path <dir>             Custom target directory
  *   --kit <name|list|file>   Install a specific kit
  */
 
 const COMMANDS = {
   init: "Initialize Claude configuration in current project",
-  update: "Check and download latest version from GitHub",
+  update: "Check for the latest version on GitHub",
   help: "Show help information"
 };
 
@@ -19,7 +18,7 @@ const COMMANDS = {
  * commandArgs: positional args (the command + extras)
  */
 function parseArgs(args) {
-  const options = { force: false, path: null, kit: null };
+  const options = { force: false, kit: null };
   const commandArgs = [];
 
   for (let i = 0; i < args.length; i++) {
@@ -27,9 +26,6 @@ function parseArgs(args) {
 
     if (arg === "--force") {
       options.force = true;
-    } else if (arg === "--path" && args[i + 1]) {
-      options.path = args[i + 1];
-      i++;
     } else if (arg === "--kit") {
       const next = args[i + 1];
       if (!next || next.startsWith("-")) {
@@ -70,7 +66,6 @@ Options for 'init':
   --kit <name>    Install a specific kit (engineer|marketing|both|<custom.json>)
   --kit list      List available kits
   --force         Overwrite existing files
-  --path <dir>    Target directory (default: current dir)
 
 Examples:
   ck init                              # Default: engineer kit

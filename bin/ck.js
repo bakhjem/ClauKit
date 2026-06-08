@@ -4,7 +4,7 @@
  * ClauKit CLI - Initialize Claude configuration in your project.
  *
  * Usage:
- *   ck init [--kit <name>] [--force] [--path <dir>]
+ *   ck init [--kit <name>] [--force]
  *   ck update
  *   ck help
  *
@@ -105,10 +105,7 @@ const cmd = commandArgs[0] || "help";
 switch (cmd) {
   case "init":
     if (options.kit === "list") printKitList();
-    else {
-      if (options.path) console.log(`📂 Custom path: ${options.path}`); // TODO
-      initCommand(options);
-    }
+    else initCommand(options);
     break;
   case "update":
     updateCommand();

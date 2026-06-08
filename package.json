@@ -8,7 +8,7 @@
     "claukit": "./bin/ck.js"
   },
   "scripts": {
-    "test": "echo \"Warning: no test specified\" && exit 0",
+    "test": "bash tests/test-scout-block.sh",
     "lint": "echo \"Linting passed\"",
     "link-skills": "node scripts/link-skills.js",
     "semantic-release": "semantic-release"
@@ -48,7 +48,6 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^11.1.0",
-    "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.2.6",
     "@semantic-release/npm": "^11.0.2",

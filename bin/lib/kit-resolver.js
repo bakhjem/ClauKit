@@ -24,6 +24,7 @@ function listKits() {
         const manifest = JSON.parse(fs.readFileSync(path.join(KITS_DIR, f), "utf8"));
         return { file: f, manifest };
       } catch (e) {
+        console.warn(`⚠️  Skipping malformed kit ${f}: ${e.message}`);
         return null;
       }
     })
