@@ -58,6 +58,20 @@ function initCommand(options = {}) {
 
   writeMetadata(projectRoot, packageJson, kit);
 
+  // Create .claude/skills symlink → ../skills so Claude Code can read skill files.
+  // Skipped on Windows (symlinks require elevated privileges there).
+  if (process.platform !== "win32") {
+    const symlinkTarget = path.join(projectRoot, ".claude", "skills");
+    if (!fs.existsSync(symlinkTarget)) {
+      try {
+        fs.symlinkSync("../skills", symlinkTarget);
+        console.log(`   🔗 .claude/skills → ../skills`);
+      } catch (e) {
+        console.warn(`   ⚠️  Could not create .claude/skills symlink: ${e.message}`);
+      }
+    }
+  }
+
   console.log(`\n✅ Kit '${kit.name}' installed!`);
   console.log(`   ${copied} paths copied · ${skipped} skipped`);
   if (skipped > 0 && !options.force) {
