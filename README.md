@@ -491,22 +491,21 @@ flowchart TD
 
 ### Marketing Flow 1 — 🚀 Full campaign (the flagship)
 
-`/mk:campaign` runs the complete 10-phase pipeline — research → insights → strategy → plan → create → edit → publish → promote → measure → optimize (loops back to strategy).
+`/mk:campaign` runs the complete 10-phase pipeline — research → insights → strategy → plan → create → edit → publish → promote → measure → optimize (loops back to strategy, user confirms each cycle).
 
 ```mermaid
 flowchart LR
     A["/mk:plan<br/>(one-time setup)"] --> B["/mk:campaign &lt;name&gt;"]
-    B --> C[Research + Insights]
-    C --> D[Strategy + Plan]
-    D --> E[Create<br/>copy · visual · video]
-    E --> F[Edit<br/>copy · SEO · CRO]
-    F --> G[Publish<br/>incl. WordPress]
-    G --> H[Promote<br/>paid · influencer]
-    H --> I[Measure<br/>GA4 · GSC]
-    I -->|optimize loop| D
+    B --> C["Phase 1–2<br/>Research · Insights<br/>(parallel tracks)"]
+    C --> D["Phase 3–4<br/>Strategy · Plan"]
+    D --> E["Phase 5 — Create<br/>Track A: copy<br/>Track B: visuals<br/>Track C: /mk:video"]
+    E --> F["Phase 6 — Edit (sequential)<br/>1 Copy → 2 SEO → 3 CRO<br/>(loads cro-framework.md)"]
+    F --> G["Phase 7 — Publish<br/>WP · email · social<br/>PII-redacted log"]
+    G --> H["Phase 8–9<br/>Promote · Measure<br/>GA4 · GSC"]
+    H -->|"Phase 10: ask user<br/>continue cycle? y/n"| D
 ```
 
-**When to use**: you want the whole machine. For a single asset, reach for the focused commands below instead.
+**When to use**: you want the whole machine. For a single asset, reach for the focused commands below instead. Sub-workflows (`/mk:leads`, `/mk:nurture`, `/mk:video`) are orchestrated by this pipeline — campaign name is passed automatically.
 
 ---
 
@@ -553,12 +552,12 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    A["/mk:leads"] --> B[Generate → Qualify<br/>→ Nurture → Convert → Retain]
+    A["/mk:leads"] --> B["Generate → Qualify<br/>→ Nurture → Convert → Retain<br/>(PII-redacted CSVs)"]
     B --> C["/mk:nurture<br/>lifecycle sequence"]
-    C --> D[Calendar → Forms → Tasks<br/>→ Gmail → BigQuery]
+    C --> D["Calendar → Forms → Tasks<br/>→ Email (SendGrid/Resend)<br/>→ BigQuery (manual schema)"]
 ```
 
-**When to use**: SaaS / B2B with a funnel. `/mk:leads` runs the 5-phase pipeline; `/mk:nurture` drives the lifecycle sequence per lead stage.
+**When to use**: SaaS / B2B with a funnel. `/mk:leads` runs the 5-phase pipeline; `/mk:nurture` drives the lifecycle sequence per lead stage. Both are orchestrated by `/mk:campaign` when running the full pipeline, or usable standalone (each prompts for campaign name).
 
 ---
 
@@ -589,6 +588,8 @@ flowchart LR
 **WordPress is draft-safe**: publishing is outward-facing and hard to reverse, so `/mk:content publish` always writes a **draft** first. Live publish requires `--publish` + an explicit confirmation echoing the target URL + title. Re-runs upsert by slug (idempotent).
 
 **MCP optional, fallback always**: GA4, GSC, SendGrid, Resend, ReviewWeb, and WordPress all have MCP wrappers — but each has a **manual fallback** (CSV paste, template generation, curl path). The kit works without any MCP server configured.
+
+**Idempotent by design**: every automation uses a deterministic key (`campaign-name + step + recipient-id`) — re-running a campaign never duplicates sends. Phase 10 optimize loop always asks the user before starting the next cycle.
 
 > Full kit reference — command list, agents, workflows, MCP setup — in [`skills/marketing/README.md`](./skills/marketing/README.md).
 

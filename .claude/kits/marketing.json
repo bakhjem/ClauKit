@@ -5,8 +5,7 @@
   "version": "0.1.0",
   "paths": {
     "agents": [
-      ".claude/agents/marketing/",
-      ".claude/agents/automation/"
+      ".claude/agents/marketing/"
     ],
     "commands": [".claude/commands/mk/"],
     "skills": [
@@ -26,8 +25,7 @@
   },
   "requires": {
     "shared": [
-      ".claude/agents/research/",
-      ".claude/agents/specialists/copywriter.md"
+      ".claude/agents/engineering/"
     ]
   }
 }

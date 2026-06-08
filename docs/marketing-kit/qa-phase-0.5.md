@@ -29,7 +29,6 @@
 
 Pre-flight catches 11 missing paths (expected — Phases 1+ create them):
 - `.claude/agents/marketing/`
-- `.claude/agents/automation/`
 - `.claude/commands/mk/`
 - `skills/automation/`
 - `.claude/workflows/{marketing,sales,crm,video,design}-workflow.md`

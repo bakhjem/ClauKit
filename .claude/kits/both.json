@@ -7,11 +7,7 @@
   "paths": {
     "agents": [
       ".claude/agents/engineering/",
-      ".claude/agents/specialists/",
-      ".claude/agents/operations/",
-      ".claude/agents/research/",
-      ".claude/agents/marketing/",
-      ".claude/agents/automation/"
+      ".claude/agents/marketing/"
     ],
     "commands": [
       ".claude/commands/ck/",

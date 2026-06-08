@@ -241,71 +241,46 @@ All 40 are active (`dynamic-workflow` added 2026-06-03, paired with `/ck:flow`; 
 
 ## 2 · Agents (31)
 
-### `marketing/` (7) — NEW in v2.0.0
+### `marketing/` (10) — marketing kit
 
 | Name | Status | Model | File |
 |---|:---:|---|---|
+| `campaign-manager` | ✅ | sonnet | `marketing/campaign-manager.md` |
 | `content-strategist` | ✅ | sonnet | `marketing/content-strategist.md` |
+| `crm-specialist` | ✅ | sonnet | `marketing/crm-specialist.md` |
 | `email-specialist` | ✅ | sonnet | `marketing/email-specialist.md` |
 | `market-researcher` | ✅ | sonnet | `marketing/market-researcher.md` |
 | `seo-content` | ✅ | sonnet | `marketing/seo-content.md` |
 | `seo-geo` | ✅ | sonnet | `marketing/seo-geo.md` |
 | `seo-schema` | ✅ | sonnet | `marketing/seo-schema.md` |
 | `seo-technical` | ✅ | sonnet | `marketing/seo-technical.md` |
+| `video-producer` | ✅ | sonnet | `marketing/video-producer.md` |
 
-### `automation/` (3) — NEW in v2.0.0
-
-| Name | Status | Model | File |
-|---|:---:|---|---|
-| `campaign-manager` | ✅ | sonnet | `automation/campaign-manager.md` |
-| `crm-specialist` | ✅ | sonnet | `automation/crm-specialist.md` |
-| `video-producer` | ✅ | sonnet | `automation/video-producer.md` |
-
-### `engineering/` (10)
+### `engineering/` (21) — engineer kit
 
 | Name | Status | Model | File |
 |---|:---:|---|---|
 | `backend-developer` | ✅ | sonnet | `engineering/backend-developer.md` |
+| `brainstormer` 🔁 | ✅ | opus | `engineering/brainstormer.md` |
 | `code-reviewer` 🔁 | ✅ | opus | `engineering/code-reviewer.md` |
+| `copywriter` 🔁 | ✅ | sonnet | `engineering/copywriter.md` |
+| `database-admin` 🔁 | ✅ | sonnet | `engineering/database-admin.md` |
 | `debugger` 🔁 | ✅ | opus | `engineering/debugger.md` |
 | `docs-manager` 🔁 | ✅ | sonnet | `engineering/docs-manager.md` |
 | `frontend-developer` | ✅ | sonnet | `engineering/frontend-developer.md` |
+| `git-manager` 🔁 | ✅ | haiku | `engineering/git-manager.md` |
+| `integration-agent` 🔁 | ✅ | sonnet | `engineering/integration-agent.md` |
 | `journal-writer` 🔁 | ✅ | sonnet | `engineering/journal-writer.md` |
+| `mcp-manager` 🔁 | ✅ | haiku | `engineering/mcp-manager.md` |
 | `performance-agent` | ✅ | sonnet | `engineering/performance-agent.md` |
 | `planner` 🔁 | ✅ | opus | `engineering/planner.md` |
 | `project-manager` | ✅ | haiku | `engineering/project-manager.md` |
+| `researcher` 🔁 | ✅ | haiku | `engineering/researcher.md` |
+| `scout` 🔁 | ✅ | haiku | `engineering/scout.md` |
+| `scout-external` 🔁 | ✅ | haiku | `engineering/scout-external.md` |
+| `security-auditor` 🔁 | ✅ | inherit | `engineering/security-auditor.md` |
 | `tester` 🔁 | ✅ | sonnet | `engineering/tester.md` |
-
-### `specialists/` (4)
-
-| Name | Status | Model |
-|---|:---:|---|
-| `copywriter` 🔁 | ✅ | sonnet |
-| `database-admin` 🔁 | ✅ | sonnet |
-| `security-auditor` 🔁 | ✅ | inherit |
-| `ui-ux-designer` 🔁 | ✅ | inherit |
-
-### `operations/` (3)
-
-| Name | Status | Model |
-|---|:---:|---|
-| `git-manager` 🔁 | ✅ | haiku |
-| `integration-agent` 🔁 | ✅ | sonnet |
-| `mcp-manager` 🔁 | ✅ | haiku |
-
-### `research/` (3)
-
-| Name | Status | Model |
-|---|:---:|---|
-| `researcher` 🔁 | ✅ | haiku |
-| `scout` 🔁 | ✅ | haiku |
-| `scout-external` 🔁 | ✅ | haiku |
-
-### Root (1)
-
-| Name | Status | Model |
-|---|:---:|---|
-| `brainstormer` 🔁 | ✅ | opus |
+| `ui-ux-designer` 🔁 | ✅ | inherit | `engineering/ui-ux-designer.md` |
 
 ---
 
@@ -604,13 +579,8 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 | Skills · `integrations/` (NEW) | 2 | 0 | 2 |
 | Skills · removed (v2.0.0: old `geo`, old `seo/references`) | — | — | — |
 | **Skills total** | **129** | **0** | **129** |
-| Agents · `engineering/` | 10 | 0 | 10 |
-| Agents · `specialists/` | 4 | 0 | 4 |
-| Agents · `operations/` | 3 | 0 | 3 |
-| Agents · `research/` | 3 | 0 | 3 |
-| Agents · `marketing/` (NEW) | 7 | 0 | 7 |
-| Agents · `automation/` (NEW) | 3 | 0 | 3 |
-| Agents · root | 1 | 0 | 1 |
+| Agents · `engineering/` | 21 | 0 | 21 |
+| Agents · `marketing/` | 10 | 0 | 10 |
 | **Agents total** | **31** | **0** | **31** |
 | Commands | 72 | 0 | 72 |
 | **Grand total entries** | | | **232** |
@@ -626,7 +596,7 @@ Verification: `for f in $(find .claude/skills -name SKILL.md); do …` returns z
 ## 8 · How to Use This Registry
 
 - **Add a skill** → create `.claude/skills/<group>/[<subcat>/]<name>/SKILL.md` and add a row to section 1.
-- **Add an agent** → create `.claude/agents/<role>/<name>.md` and add a row to section 2.
+- **Add an agent** → create `.claude/agents/engineering/<name>.md` (engineer kit) or `.claude/agents/marketing/<name>.md` (marketing kit) and add a row to section 2.
 - **Add a command** → create `.claude/commands/ck/[<ns>/]<name>.md` (always under `ck/` so it invokes as `/<name>` or `/<ns>:<name>`) and add a row to section 3.
 - **Before adding** → search this file: if a row with the same name already exists in another pool, decide whether you're adding (a) knowledge/skill, (b) persona/agent, or (c) trigger/command. Avoid creating a fourth entry for the same concept.
 - **On rename** → update both the SKILL/agent/command file frontmatter AND this registry in the same commit.

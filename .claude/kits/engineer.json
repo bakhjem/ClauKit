@@ -5,10 +5,7 @@
   "version": "1.3.1",
   "paths": {
     "agents": [
-      ".claude/agents/engineering/",
-      ".claude/agents/specialists/",
-      ".claude/agents/operations/",
-      ".claude/agents/research/"
+      ".claude/agents/engineering/"
     ],
     "commands": [".claude/commands/ck/"],
     "skills": ["skills/software/", "skills/global/"],
