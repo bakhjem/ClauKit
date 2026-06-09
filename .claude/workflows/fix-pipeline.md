@@ -2,7 +2,7 @@
 
 Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` command is a **variant** that selects which input source to use and which agents to invoke for diagnosis. The implementation→test→review→report cycle is shared across all variants.
 
-## Canonical Pipeline (9 stages)
+## Canonical Pipeline (7 stages)
 
 ```
 [1] Input intake       → variant-specific source
@@ -45,12 +45,12 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 **[3] Diagnose** — variant-specific specialist:
 | Variant | Diagnostic agent |
 |---|---|
-| `--quick` / `--review` / `-logs` / `-ci` | `debugger` subagent |
+| `--quick` / `--review` / `logs` / `ci` | `debugger` subagent |
 | `--review` (added) | `researcher` subagent (external research) |
-| `-test` | `tester` first → `debugger` for failures |
-| `-types` | direct: run typecheck → fix loop (no agent) |
-| `-ui` | `ui-ux-designer` subagent + `chrome-devtools` skill |
-| `-logs` / `-ci` (added) | `scout` subagent (locate issues in codebase) |
+| `test` | `tester` first → `debugger` for failures |
+| `types` | direct: run typecheck → fix loop (no agent) |
+| `ui` | `ui-ux-designer` subagent + `chrome-devtools` skill |
+| `logs` / `ci` (added) | `scout` subagent (locate issues in codebase) |
 
 **[3.5] Exact-Root-Cause Gate (MANDATORY — blocks Stage [4] and [5])** — after Diagnose, agent must answer all 6 questions before proceeding. If any answer is "unknown", go back to Stage [3] with new evidence.
 
@@ -67,16 +67,16 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 
 **[4] Plan (optional)** — `planner` subagent creates implementation plan. Triggered for:
 - `--review` (always)
-- `-logs` / `-ci` / `-test` (after diagnostic reports)
-- `--quick` / `-types` / `-ui` (skip — go straight to implement)
+- `logs` / `ci` / `test` (after diagnostic reports)
+- `--quick` / `types` / `ui` (skip — go straight to implement)
 
 **[5] Implement** — main agent applies the fix based on diagnostic reports + plan.
-- `:ui` variant uses `ui-ux-designer` for implementation
+- `ui` variant uses `ui-ux-designer` for implementation
 - `--review` may use additional skills (`sequential-thinking`, `problem-solving`)
 
 **[6] Verify** — `tester` subagent runs tests + compile.
-- `:types` → loop tsc until zero errors (do NOT use `any` to pass)
-- `:ui` → screenshot capture + `ai-multimodal` analysis to verify design match
+- `types` → loop tsc until zero errors (do NOT use `any` to pass)
+- `ui` → screenshot capture + `ai-multimodal` analysis to verify design match
 - All others → standard test run
 
 **Failure handling (circuit breaker):**
@@ -92,7 +92,7 @@ Single source of truth for the `/ck:fix` family of commands. Each `/ck:fix*` com
 
 ### Post-implementation (variant-specific, optional)
 
-For variants `:hard` and `:ui`:
+For variants `--review` and `ui` (those with plan/docs update in the Variant Matrix):
 - **Project mgmt + docs update:** if user approves → `project-manager` + `docs-manager` subagents in parallel update `./docs/*` + `./docs/project-roadmap.md` + plan task status.
 - **Commit:** ask user about commit/push → `git-manager` subagent.
 
@@ -117,10 +117,10 @@ For variants `:hard` and `:ui`:
 ## Companion Skills (auto-activate)
 
 - `problem-solving` — root-cause synthesis (all variants)
-- `sequential-thinking` — break complex problems into steps (`:hard`)
+- `sequential-thinking` — break complex problems into steps (`--review`)
 - `debugging` — 4-technique framework activated by `debugger` agent (all variants)
 - `ai-multimodal` — screenshot/video analysis (any variant with visual input)
-- `chrome-devtools` — UI verification (`:ui`)
+- `chrome-devtools` — UI verification (`ui`)
 
 ## Shared Rules
 
