@@ -95,10 +95,33 @@ function getKitPaths(kitOrManifest) {
 }
 
 /**
+ * Resolve a manifest-declared relPath to its REAL location inside the package.
+ *
+ * Manifests reference `.claude/skills/...`, but in the dev repo `.claude/skills`
+ * is a symlink → `../skills`. npm does NOT publish symlinks (nor their targets
+ * under the symlinked path), so on an installed package `.claude/skills/...`
+ * does not exist while the real files live under `skills/...`. Fall back to the
+ * de-symlinked location so install works from a published tarball.
+ *
+ * Returns an absolute path that exists, or the original `.claude/...` absolute
+ * path (non-existent) when no fallback applies — caller still detects "missing".
+ */
+function resolveSourcePath(relPath) {
+  const primary = path.join(PACKAGE_ROOT, relPath);
+  if (fs.existsSync(primary)) return primary;
+  // Strip a leading `.claude/` and retry at package root (covers the
+  // `.claude/skills → ../skills` symlink that npm drops on publish).
+  const stripped = relPath.replace(/^\.claude[\\/]/, "");
+  const fallback = path.join(PACKAGE_ROOT, stripped);
+  if (stripped !== relPath && fs.existsSync(fallback)) return fallback;
+  return primary;
+}
+
+/**
  * Verify all kit paths exist in the package. Returns array of missing paths.
  */
 function checkKitPathsAvailable(kitOrManifest) {
-  return getKitPaths(kitOrManifest).filter(p => !fs.existsSync(path.join(PACKAGE_ROOT, p)));
+  return getKitPaths(kitOrManifest).filter(p => !fs.existsSync(resolveSourcePath(p)));
 }
 
 /**
@@ -123,6 +146,7 @@ module.exports = {
   listKits,
   resolveKit,
   getKitPaths,
+  resolveSourcePath,
   checkKitPathsAvailable,
   printKitList
 };
