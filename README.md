@@ -310,7 +310,7 @@ Specialized journeys with single-command entry points.
 | 🔍 Find files / symbols | `/ck:scout <prompt> [-ext]` | (standalone) |
 | 🌐 External research | `/ck:research <topic>` | → `/ck:plan` |
 | 💡 Architectural debate | `/ck:brainstorm <topic>` | → `/ck:plan` |
-| 📋 Plan implementation | `/ck:plan [fast\|hard\|two\|ci\|cro]` | → `/clear` → `/ck:cook` |
+| 📋 Plan implementation | `/ck:plan [fast\|hard\|two\|ci\|cro] [-o md\|html]` | → `/clear` → `/ck:cook` |
 | 🍳 Implement feature | `/ck:cook` | → `/ck:test` → `/ck:review` |
 | 🧪 Run tests | `/ck:test` | → `/ck:fix test` if failing |
 | 🔍 Code review | `/ck:review` | → `/ck:fix` |
@@ -344,6 +344,8 @@ Specialized journeys with single-command entry points.
 **The trio rule**: most concepts have a `skill` (knowledge) + `agent` (persona) + `command` (trigger). Always start with the command — the skill/agent activate automatically. See [`docs/clauKit-registry.md`](./docs/clauKit-registry.md) for the full map.
 
 **Plan → /clear → Cook**: for non-trivial features, always plan first, then `/clear` to reset context, then implement. This is enforced in `primary-workflow.md`.
+
+**Plan output formats**: `/ck:plan` writes markdown by default (`plan.md` + `phase-*.md`) — always the source of truth that `/ck:cook` consumes. Add `-o html` to ALSO render a single self-contained `plan.html` view (TOC nav, collapsible phases, status badges + progress bar, diagrams, highlighted code — opens offline, zero dependencies). It's a one-directional snapshot; markdown stays primary. Re-render anytime — including for a plan made earlier — with `/ck:plan <path-to-plan.md> -o html` (skips planning, just converts).
 
 **Gated pipelines**: `/ck:refactor` and `/ck:cook` enforce pre-flight + verification gates. Don't bypass — they exist because skipping them caused incidents.
 
@@ -687,7 +689,7 @@ All dispatcher commands use **positional args** (no dash prefix) for mode select
 | `/ck:git` | `[cm\|cp\|pr\|merge]` |
 | `/ck:journal` | `(no args)` |
 | `/ck:onboard` | `[optional-focus-area]` |
-| `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task>` |
+| `/ck:plan` | `[fast\|hard\|two\|ci\|cro] <task> [-o md\|html]` · `<plan.md> -o html` (convert existing plan → HTML) |
 | `/ck:refactor` | `<refactor-pattern>` |
 | `/ck:research` | `<topic>` |
 | `/ck:review` | `[tasks-or-prompt]` |
