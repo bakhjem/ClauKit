@@ -56,7 +56,7 @@ Load: `references/forecasting-outcomes.md`
 ## Output Formats
 
 - **Default: Markdown** — `plan.md` + `phase-*.md` (the structure below). Always the single source of truth; `/ck:cook` consumes these.
-- **`-o html` (opt-in):** ADDITIONALLY render one self-contained `plan.html` view, derived from the markdown. Markdown stays primary; html is a one-directional snapshot. Full template + fill procedure: `references/html-output.md` (single source — do not duplicate HTML guidance elsewhere).
+- **`-o html` (opt-in):** ADDITIONALLY render one self-contained `plan.html` view, derived from the markdown. Markdown stays primary; html is a one-directional snapshot. Also supports **convert mode** — `/ck:plan <existing-plan.md> -o html` re-renders `plan.html` from an existing plan without re-planning. Full template + fill procedure: `references/html-output.md` (single source — do not duplicate HTML guidance elsewhere).
 
 ## Output Requirements
 

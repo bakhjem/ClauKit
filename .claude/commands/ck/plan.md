@@ -27,6 +27,16 @@ Strip `-o md|html` from `$ARGUMENTS` before mode dispatch. Default (no `-o`, or 
 
 If `-o html`: after the `planner` subagent returns the finished markdown plan (any mode above), the **MAIN agent** (not the subagent) renders ONE self-contained `plan.html` into the plan dir as a final step, derived from `plan.md` + `phase-*.md`. Do this BEFORE the "ask user to review" prompt. Follow `planning` skill reference [html-output.md](.claude/skills/software/planning/references/html-output.md) (single source of truth for the template + fill procedure). Markdown stays source-of-truth; html is a one-directional snapshot (re-run `-o html` to refresh). Does NOT change cook — cook reads markdown only.
 
+## Convert mode — existing plan → HTML (`<path>.md -o html`)
+
+**Detect FIRST, before mode dispatch:** if the stripped `$ARGUMENTS` is (or starts with) a path to an EXISTING `.md` file under `plans/` AND `-o html` is set → this is a **convert**, not a new plan.
+
+- SKIP all research/planning. Do NOT spawn `planner`. Do NOT create a new plan dir.
+- Resolve the plan dir = the file's parent (if given a dir or `plan.md`, use that dir; if given a `phase-*.md`, use its dir).
+- The MAIN agent reads `plan.md` + all `phase-*.md` in that dir and renders ONE `plan.html` there, per [html-output.md](.claude/skills/software/planning/references/html-output.md) fill procedure (same as above).
+- Overwrite any existing `plan.html` (it's a regenerated snapshot). Report the path. No user-review gate (pure render).
+- Use this to refresh a stale `plan.html` after editing the markdown.
+
 ## Default mode (no flag) — router
 
 1. Analyze the task; ask for more details if needed.

@@ -4,9 +4,13 @@ Single DRY source for rendering a plan as a self-contained `plan.html`. The `/ck
 
 ## When to use
 
-ONLY when `-o html` is passed to `/ck:plan`. Default (no flag) = markdown only; do NOT generate html.
+When `-o html` is passed to `/ck:plan`. Two entry points, SAME fill procedure below:
+1. **At plan creation** — `/ck:plan <task> -o html`: render `plan.html` right after the markdown plan is written.
+2. **Convert existing plan** — `/ck:plan <path-to-plan.md> -o html`: skip planning, just (re)render `plan.html` from an existing plan dir's markdown (refresh a stale snapshot).
 
-Markdown (`plan.md` + `phase-*.md`) is the SINGLE SOURCE OF TRUTH. `plan.html` is a one-directional, hand-authored **view** derived from the markdown. Never edit html by hand; never read it back; cook never touches it.
+Default (no flag) = markdown only; do NOT generate html.
+
+Markdown (`plan.md` + `phase-*.md`) is the SINGLE SOURCE OF TRUTH. `plan.html` is a one-directional, hand-authored **view** derived from the markdown. Never edit html by hand; never read it back; cook never touches it. Re-running either entry point overwrites `plan.html` with a fresh snapshot.
 
 ## Hard constraints (checklist — all must hold)
 
