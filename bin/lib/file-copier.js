@@ -92,13 +92,15 @@ function copyFileSafe(src, dst) {
 function copyPath(src, dst, options = {}) {
   if (!fs.existsSync(src)) return "skipped";
 
-  const relSrc = path.relative(PACKAGE_ROOT, src);
+  // Label by destination (what the user gets), not source — source may be a
+  // de-symlinked location (skills/) while dest keeps the .claude/ layout.
+  const relDst = path.relative(process.cwd(), dst);
 
   if (fs.existsSync(dst)) {
     if (options.force) {
       fs.rmSync(dst, { recursive: true, force: true });
     } else {
-      console.log(`   ⚠️  SKIP (exists): ${relSrc}`);
+      console.log(`   ⚠️  SKIP (exists): ${relDst}`);
       return "skipped";
     }
   }
@@ -109,7 +111,7 @@ function copyPath(src, dst, options = {}) {
   } else {
     copyFileSafe(src, dst);
   }
-  console.log(`   ✅ ${relSrc}`);
+  console.log(`   ✅ ${relDst}`);
   return "copied";
 }
 

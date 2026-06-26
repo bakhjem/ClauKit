@@ -15,7 +15,7 @@
 const path = require("path");
 const packageJson = require("../package.json");
 
-const { resolveKit, getKitPaths, checkKitPathsAvailable, printKitList } = require("./lib/kit-resolver");
+const { resolveKit, getKitPaths, resolveSourcePath, checkKitPathsAvailable, printKitList } = require("./lib/kit-resolver");
 const { copyPath } = require("./lib/file-copier");
 const { writeMetadata } = require("./lib/metadata-writer");
 const { fetchLatestVersion, compareVersions } = require("./lib/github-client");
@@ -46,8 +46,11 @@ function initCommand(options = {}) {
 
   let copied = 0, skipped = 0;
   for (const relPath of getKitPaths(kit)) {
+    // Source may resolve to a de-symlinked location (e.g. skills/ instead of
+    // .claude/skills/) on a published tarball; destination keeps the manifest
+    // path so the project gets the expected .claude/ layout.
     const result = copyPath(
-      path.resolve(__dirname, "..", relPath),
+      resolveSourcePath(relPath),
       path.join(projectRoot, relPath),
       options
     );
