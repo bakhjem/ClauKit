@@ -23,7 +23,7 @@ List affected files with:
 2. **Research Phase** → Spawn researchers in parallel, investigate approaches
 3. **Synthesis** → Analyze reports, identify optimal solution
 4. **Design Phase** → Create architecture, implementation design
-5. **Plan Documentation** → Write comprehensive plan in Markdown
+5. **Plan Documentation** → Write comprehensive plan in Markdown (source of truth). If `-o html` passed, also render `plan.html` per `html-output.md`.
 6. **Review & Refine** → Ensure completeness, clarity, actionability
 
 ## Output Requirements

@@ -35,5 +35,6 @@ Apply these "how to think" tools alongside the skill's process:
 - **Token efficiency:** High quality, tight tokens.
 - **Skills catalog:** Auto-activate relevant skills (`context-engineering`, `scenario`, `plans-kanban`, `sequential-thinking`, `predict` merged into planning).
 - **Respect** `./docs/development-rules.md` and `./.claude/workflows/development-rules.md`.
+- **Output format:** markdown by default. If `-o html` is passed, ALSO render a self-contained `plan.html` per the planning skill's `references/html-output.md` (markdown stays source of truth).
 - **DO NOT implement** — respond with summary + plan file path only.
 - **List unresolved questions** at the end of reports if any.

@@ -1,6 +1,6 @@
 ---
-description: ⚡⚡⚡ Plan operations dispatcher (router · fast hard two ci cro)
-argument-hint: [task] [fast|hard|two|ci|cro]
+description: ⚡⚡⚡ Plan operations dispatcher (router · fast hard two ci cro · -o md|html)
+argument-hint: [task] [fast|hard|two|ci|cro] [-o md|html]
 ---
 
 Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
@@ -18,6 +18,12 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 | `two` | **2-approaches** — research + plan with ≥2 approaches + trade-offs | Think harder |
 | `ci` | **CI-failure** — plan to fix GitHub Actions failures | Think harder |
 | `cro` | **CRO plan** — Conversion Rate Optimization plan | Think harder |
+
+## Output format (`-o`) — orthogonal to mode
+
+Strip `-o md|html` from `$ARGUMENTS` before mode dispatch. Default (no `-o`, or `-o md`) = markdown only (current behavior).
+
+If `-o html`: after the markdown plan is fully written (any mode above), render ONE self-contained `plan.html` into the plan dir, derived from `plan.md` + `phase-*.md`. Follow `planning` skill reference [html-output.md](.claude/skills/software/planning/references/html-output.md) (single source of truth for the template + fill procedure). Markdown stays source-of-truth; html is a one-directional snapshot (re-run `-o html` to refresh). Does NOT change cook — cook reads markdown only.
 
 ## Default mode (no flag) — router
 

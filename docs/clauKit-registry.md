@@ -304,7 +304,7 @@ All commands are ✅ active. Grouped by namespace. **Prefix `ck:` applied 2026-0
 | `/ck:fix [--auto] [--review] [--quick] [--parallel] [--flow]` 🔁 | Analyze and fix issues — combinable flags: `--auto` · `--review` · `--quick` · `--parallel` · `--flow` (orchestrated: gates as agent stages + adversarial-verify root cause before implement) |
 | `/ck:journal` 🔁 | Write journal entries |
 | `/ck:onboard` 🔁 | Guided 6-phase codebase tour for new/returning devs (10-min orientation) |
-| `/ck:plan [fast\|hard\|two\|ci\|cro]` 🔁 | Intelligent plan creation — router (auto-detect) · `fast`: no research · `hard`: research-heavy |
+| `/ck:plan [fast\|hard\|two\|ci\|cro] [-o md\|html]` 🔁 | Intelligent plan creation — router (auto-detect) · `fast`: no research · `hard`: research-heavy · `-o html`: also render self-contained `plan.html` view (md stays source of truth) |
 | `/ck:refactor` 🔁 | Large mechanical refactor — rename · extract · migrate · codemod. 7-phase pipeline w/ atomic-commit + rollback gates |
 | `/ck:research` 🔁 | Technical research — technology evaluation, best practices, solution design (uses `research` skill) |
 | `/ck:scout [-ext]` 🔁 | Scout codebase — default: internal Explore subagents · `-ext`: external gemini/opencode |
