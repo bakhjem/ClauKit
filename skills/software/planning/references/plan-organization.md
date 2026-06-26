@@ -21,7 +21,8 @@ plans/
 │   │   ├── scout-report.md
 │   │   ├── researcher-report.md
 │   │   └── ...
-│   ├── plan.md                                # Overview access point
+│   ├── plan.md                                # Overview access point (source of truth)
+│   ├── plan.html                              # Optional: `-o html` snapshot view → see references/html-output.md
 │   ├── phase-01-setup-environment.md          # Setup environment
 │   ├── phase-02-implement-database.md         # Database models
 │   ├── phase-03-implement-api-endpoints.md    # API endpoints

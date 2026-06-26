@@ -1,6 +1,6 @@
 ---
-description: ⚡⚡⚡ Plan operations dispatcher (router · fast hard two ci cro)
-argument-hint: [task] [fast|hard|two|ci|cro]
+description: ⚡⚡⚡ Plan operations dispatcher (router · fast hard two ci cro · -o md|html)
+argument-hint: [task] [fast|hard|two|ci|cro] [-o md|html]
 ---
 
 Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/skills/software/planning/SKILL.md)).
@@ -10,6 +10,8 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 
 ## Mode dispatch (inspect `$ARGUMENTS` for first word)
 
+> First strip any trailing `-o md|html` from `$ARGUMENTS` (handled in "Output format" section below); it is independent of the mode word.
+
 | Mode | Thinking budget |
 |---|---|
 | *(none)* | **auto-detect** — analyze task, route to `fast` or `hard` |
@@ -18,6 +20,22 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 | `two` | **2-approaches** — research + plan with ≥2 approaches + trade-offs | Think harder |
 | `ci` | **CI-failure** — plan to fix GitHub Actions failures | Think harder |
 | `cro` | **CRO plan** — Conversion Rate Optimization plan | Think harder |
+
+## Output format (`-o`) — orthogonal to mode
+
+Strip `-o md|html` from `$ARGUMENTS` before mode dispatch. Default (no `-o`, or `-o md`) = markdown only (current behavior).
+
+If `-o html`: after the `planner` subagent returns the finished markdown plan (any mode above), the **MAIN agent** (not the subagent) renders ONE self-contained `plan.html` into the plan dir as a final step, derived from `plan.md` + `phase-*.md`. Do this BEFORE the "ask user to review" prompt. Follow `planning` skill reference [html-output.md](.claude/skills/software/planning/references/html-output.md) (single source of truth for the template + fill procedure). Markdown stays source-of-truth; html is a one-directional snapshot (re-run `-o html` to refresh). Does NOT change cook — cook reads markdown only.
+
+## Convert mode — existing plan → HTML (`<path>.md -o html`)
+
+**Detect FIRST, before mode dispatch:** if the stripped `$ARGUMENTS` is (or starts with) a path to an EXISTING `.md` file under `plans/` AND `-o html` is set → this is a **convert**, not a new plan.
+
+- SKIP all research/planning. Do NOT spawn `planner`. Do NOT create a new plan dir.
+- Resolve the plan dir = the file's parent (if given a dir or `plan.md`, use that dir; if given a `phase-*.md`, use its dir).
+- The MAIN agent reads `plan.md` + all `phase-*.md` in that dir and renders ONE `plan.html` there, per [html-output.md](.claude/skills/software/planning/references/html-output.md) fill procedure (same as above).
+- Overwrite any existing `plan.html` (it's a regenerated snapshot). Report the path. No user-review gate (pure render).
+- Use this to refresh a stale `plan.html` after editing the markdown.
 
 ## Default mode (no flag) — router
 
