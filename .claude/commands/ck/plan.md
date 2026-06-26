@@ -10,6 +10,8 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 
 ## Mode dispatch (inspect `$ARGUMENTS` for first word)
 
+> First strip any trailing `-o md|html` from `$ARGUMENTS` (handled in "Output format" section below); it is independent of the mode word.
+
 | Mode | Thinking budget |
 |---|---|
 | *(none)* | **auto-detect** — analyze task, route to `fast` or `hard` |
@@ -23,7 +25,7 @@ Activate `planning` skill ([.claude/skills/software/planning/SKILL.md](.claude/s
 
 Strip `-o md|html` from `$ARGUMENTS` before mode dispatch. Default (no `-o`, or `-o md`) = markdown only (current behavior).
 
-If `-o html`: after the markdown plan is fully written (any mode above), render ONE self-contained `plan.html` into the plan dir, derived from `plan.md` + `phase-*.md`. Follow `planning` skill reference [html-output.md](.claude/skills/software/planning/references/html-output.md) (single source of truth for the template + fill procedure). Markdown stays source-of-truth; html is a one-directional snapshot (re-run `-o html` to refresh). Does NOT change cook — cook reads markdown only.
+If `-o html`: after the `planner` subagent returns the finished markdown plan (any mode above), the **MAIN agent** (not the subagent) renders ONE self-contained `plan.html` into the plan dir as a final step, derived from `plan.md` + `phase-*.md`. Do this BEFORE the "ask user to review" prompt. Follow `planning` skill reference [html-output.md](.claude/skills/software/planning/references/html-output.md) (single source of truth for the template + fill procedure). Markdown stays source-of-truth; html is a one-directional snapshot (re-run `-o html` to refresh). Does NOT change cook — cook reads markdown only.
 
 ## Default mode (no flag) — router
 

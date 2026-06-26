@@ -99,14 +99,17 @@ Token palette: `kw` (keyword), `str` (string), `com` (comment), `fn` (function/n
   .bar-fill{height:100%;background:var(--done)}
   .pct{font-size:13px;color:var(--muted);margin-left:4px}
   nav{margin:20px 0;padding:14px 16px;background:var(--card);border:1px solid var(--border);border-radius:8px}
+  nav strong{display:block;margin-bottom:6px;font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
   nav a{color:var(--accent);text-decoration:none;display:block;padding:3px 0}
   nav a:hover{text-decoration:underline}
   section{margin:14px 0}
   details{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px}
+  details>*:not(summary){margin-left:4px}
   summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none}
   summary::-webkit-details-marker{display:none}
   summary::before{content:"▸ ";color:var(--muted)}
   details[open] summary::before{content:"▾ "}
+  h3{font-size:15px;margin:16px 0 6px;color:var(--accent)}
   .badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;margin-left:8px;vertical-align:middle}
   .badge.done{background:rgba(46,160,67,.18);color:var(--done)}
   .badge.in-progress{background:rgba(210,153,34,.18);color:var(--prog)}
@@ -114,14 +117,17 @@ Token palette: `kw` (keyword), `str` (string), `com` (comment), `fn` (function/n
   .diagram{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0;overflow-x:auto}
   .diagram.col{flex-direction:column;align-items:flex-start}
   .node{border:1px solid var(--border);background:var(--bg);border-radius:6px;padding:8px 12px;white-space:nowrap}
+  .node.src{border-color:var(--done)}
   .arrow{color:var(--muted)}
+  .chk{color:var(--done)}.unchk{color:var(--todo)}
   pre{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:12px;overflow-x:auto}
   code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:13px}
   table{border-collapse:collapse;width:100%;display:block;overflow-x:auto}
   th,td{border:1px solid var(--border);padding:6px 10px;text-align:left}
+  th{background:var(--bg)}
   .kw{color:var(--kw)}.str{color:var(--str)}.com{color:var(--com)}.fn{color:var(--fn)}.num{color:var(--num)}
   footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
-  @media print{details{display:block}details summary::before{content:""}body{background:#fff;color:#000}}
+  @media print{details{display:block}details summary::before{content:""}body{background:#fff;color:#000}.node,pre,nav,details{background:#fff}}
 </style>
 </head>
 <body>
@@ -149,7 +155,7 @@ Token palette: `kw` (keyword), `str` (string), `com` (comment), `fn` (function/n
 1. Read `plan.md` + every `phase-*.md` in the plan dir.
 2. `{{PLAN_TITLE}}`, `{{DATE}}`, `{{STATUS}}` ← from `plan.md` header.
 3. Per phase: count Todo checkboxes → `done`/`total`; phase badge = done/in-progress/todo. Roll up phases: `{{DONE}}` = phases fully done, `{{TOTAL}}` = phase count, `{{PCT}} = round(DONE/TOTAL*100)`.
-4. Convert md → html per phase body: headings → `<h2>/<h3>`, lists → `<ul>/<ol>`, tables → `<table>`, code fences → tokenized `<pre><code>` (technique 4), ascii/`mermaid`-style diagrams → flex boxes (technique 3), checkboxes → `<input type="checkbox" disabled checked?>` + label or a `✓/☐` glyph.
+4. Convert md → html per phase body: headings → `<h2>/<h3>`, lists → `<ul>/<ol>`, tables → `<table>`, code fences → tokenized `<pre><code>` (technique 4), ascii/`mermaid`-style diagrams → flex boxes (technique 3), checkboxes → glyph spans `<span class="chk">✓</span>` (done) / `<span class="unchk">☐</span>` (open) + label.
 5. Build `{{TOC_LINKS}}` and `{{PHASE_SECTIONS}}`.
 6. Write the single `plan.html` into the plan dir alongside `plan.md`. Do NOT modify any `.md`.
 
