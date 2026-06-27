@@ -383,7 +383,7 @@ All commands under `/mk:` namespace. Each hard-fails if `plans/marketing-context
 
 | Command | Description |
 |---|---|
-| `/mk:plan [fast\|full]` | Bootstrap or update marketing context (ICP, positioning, voice) |
+| `/mk:plan [fast\|full] [-o md\|html]` | Bootstrap or update marketing context (ICP, positioning, voice) · `-o html`: also render `marketing-context.html` view · `<path>.md -o html`: convert existing context → HTML |
 | `/mk:seo [audit\|keywords\|ai\|programmatic\|schema]` | SEO via AgriciDaniel/claude-seo engine (25 sub-skills parallel) |
 | `/mk:content [blog\|social\|video\|copy]` | Content creation |
 | `/mk:email [campaign\|cold\|drip\|sms]` | Email & SMS |
