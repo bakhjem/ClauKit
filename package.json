@@ -41,7 +41,8 @@
     "CLAUDE.md",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "!.claude/settings.local.json"
   ],
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
