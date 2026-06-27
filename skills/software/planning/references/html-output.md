@@ -1,16 +1,20 @@
 # HTML Output (`-o html`)
 
-Single DRY source for rendering a plan as a self-contained `plan.html`. The `/ck:plan` command, the `planning` SKILL, and the `planner` agent only POINT here — all HTML guidance lives in this file once.
+Single DRY source for rendering a markdown doc as a self-contained `.html` view. `/ck:plan`, `/mk:plan`, the `planning` SKILL, and the `planner` agent only POINT here — all HTML guidance lives in this file once.
 
 ## When to use
 
-When `-o html` is passed to `/ck:plan`. Two entry points, SAME fill procedure below:
-1. **At plan creation** — `/ck:plan <task> -o html`: render `plan.html` right after the markdown plan is written.
-2. **Convert existing plan** — `/ck:plan <path-to-plan.md> -o html`: skip planning, just (re)render `plan.html` from an existing plan dir's markdown (refresh a stale snapshot).
+When `-o html` is passed to a supporting command. Two entry points, SAME fill procedure below:
+1. **At creation** — `/ck:plan <task> -o html` (or `/mk:plan … -o html`): render the `.html` right after the markdown is written.
+2. **Convert existing** — `<path-to.md> -o html`: skip creation, just (re)render the `.html` from existing markdown (refresh a stale snapshot).
 
 Default (no flag) = markdown only; do NOT generate html.
 
-Markdown (`plan.md` + `phase-*.md`) is the SINGLE SOURCE OF TRUTH. `plan.html` is a one-directional, hand-authored **view** derived from the markdown. Never edit html by hand; never read it back; cook never touches it. Re-running either entry point overwrites `plan.html` with a fresh snapshot.
+Two document shapes use this same template:
+- **Phased plan** (`/ck:plan`) — `plan.md` + `phase-*.md`; renders progress bar + per-phase badges from checkbox counts. → `plan.html`.
+- **Non-phase doc** (`/mk:plan` → `marketing-context.md`) — single markdown file, no phases/checkboxes; OMIT the progress bar + phase badges, render its `##` headings as collapsible sections. → `<same-basename>.html` (e.g. `marketing-context.html`). See "Non-phase documents" below.
+
+Markdown is the SINGLE SOURCE OF TRUTH. The `.html` is a one-directional, hand-authored **view** derived from it. Never edit html by hand; never read it back; cook never touches it. Re-running either entry point overwrites the `.html` with a fresh snapshot.
 
 ## Hard constraints (checklist — all must hold)
 
@@ -163,13 +167,23 @@ Token palette: `kw` (keyword), `str` (string), `com` (comment), `fn` (function/n
 5. Build `{{TOC_LINKS}}` and `{{PHASE_SECTIONS}}`.
 6. Write the single `plan.html` into the plan dir alongside `plan.md`. Do NOT modify any `.md`.
 
+## Non-phase documents (e.g. `/mk:plan` → `marketing-context.md`)
+
+A single markdown file with no phases/checkboxes (ICP, positioning, voice, competitors, channels…). Same skeleton + CSS, with these changes:
+
+- **OMIT** the progress bar (`.bar`/`.bar-fill`/`.pct`) and phase badges — there is no progress to show. Header keeps title + date/status only.
+- Each top-level `##` heading in the markdown becomes one `<section id="slug"><details open><summary>Heading</summary>…</details></section>`. Sub-content (`###`, lists, tables, code) renders inside.
+- `{{TOC_LINKS}}` = one anchor per `##` heading.
+- Output filename mirrors the source basename: `marketing-context.md` → `marketing-context.html`, written alongside it. Do NOT modify the `.md`.
+- All other rules (self-contained, zero-JS, footer, print) unchanged. The unused progress/badge CSS classes may stay in the skeleton harmlessly, or be dropped.
+
 ## Accepted deviation — diagrams
 
 The literal request said "Mermaid diagrams rendered". Mermaid needs `mermaid.min.js` (~3.5MB) inlined to stay self-contained — infeasible to hand-author and bloats every file. Instead diagrams use hand-authored CSS/flex boxes (technique 3): same visual goal (nodes + flow), zero deps, hand-authorable. Documented per researcher guidance.
 
 ## Snapshot / re-render contract
 
-- `plan.html` is a **point-in-time snapshot** of the markdown at generation time.
-- Editing `plan.md`/`phase-*.md` does NOT update `plan.html`. To refresh, re-run `/ck:plan … -o html`.
+- The `.html` is a **point-in-time snapshot** of the markdown at generation time.
+- Editing the markdown does NOT update the `.html`. To refresh, re-run with `-o html`.
 - The stale-marker footer makes this visible so html is never mistaken for live.
-- `/ck:cook` reads ONLY markdown; it never reads, regenerates, or depends on `plan.html`.
+- Downstream consumers (`/ck:cook`, every `/mk:` command) read ONLY the markdown; they never read, regenerate, or depend on the `.html`.

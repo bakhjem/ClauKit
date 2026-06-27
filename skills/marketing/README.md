@@ -40,7 +40,7 @@ mk:campaign <campaign-name>
 
 | Command | Purpose | Skills activated |
 |---|---|---|
-| `/mk:plan` | Bootstrap or update marketing context (ICP, positioning, voice) | `product-marketing`, `customer-research` |
+| `/mk:plan [-o md\|html]` | Bootstrap or update marketing context (ICP, positioning, voice) · `-o html` also renders `marketing-context.html` view | `product-marketing`, `customer-research` |
 | `/mk:seo` | SEO operations — routes through `AgriciDaniel/claude-seo` engine (25 sub-skills parallel) | `seo` (orchestrator), `seo-{audit,technical,content,schema,geo,...}` |
 | `/mk:content` | Content creation (blog, social, video, copy) | `copywriting`, `seo-content`, `copy-editing`, `social-content` |
 | `/mk:email` | Email & SMS (campaign, cold, drip, sms) | `emails`, `cold-email`, `email-sequence`, `sms` |

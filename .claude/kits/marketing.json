@@ -33,7 +33,8 @@
     "shared": [
       ".claude/agents/engineering/planner.md",
       ".claude/agents/engineering/mcp-manager.md",
-      ".claude/agents/engineering/copywriter.md"
+      ".claude/agents/engineering/copywriter.md",
+      ".claude/skills/software/planning/references/html-output.md"
     ]
   }
 }
