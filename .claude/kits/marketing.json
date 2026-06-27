@@ -21,11 +21,20 @@
       ".claude/workflows/design-workflow.md",
       ".claude/workflows/marketing-rules.md",
       ".claude/workflows/automation-rules.md"
+    ],
+    "config": [
+      ".claude/settings.json",
+      ".claude/settings.local.json",
+      ".claude/mcp.json",
+      ".claude/.env.example",
+      ".claude/.mcp.json.example"
     ]
   },
   "requires": {
     "shared": [
-      ".claude/agents/engineering/"
+      ".claude/agents/engineering/planner.md",
+      ".claude/agents/engineering/mcp-manager.md",
+      ".claude/agents/engineering/copywriter.md"
     ]
   }
 }
