@@ -10,7 +10,7 @@ For the full kit reference (skill list, agents, MCP setup, source repos) see [`s
 
 ---
 
-## 1. Giới thiệu (Introduction)
+## 1. Introduction
 
 The marketing kit turns Claude Code into a full marketing team. It ships:
 
@@ -21,7 +21,7 @@ The marketing kit turns Claude Code into a full marketing team. It ships:
 
 ---
 
-## 2. Đối tượng (Who it's for)
+## 2. Who it's for
 
 | User | Use case | Commands |
 |---|---|---|
@@ -38,7 +38,7 @@ The marketing kit turns Claude Code into a full marketing team. It ships:
 
 ---
 
-## 3. Cách sử dụng workflow (How to use — workflows)
+## 3. How to use — workflows
 
 ### 🧭 Decision tree — which command do I need?
 
@@ -153,6 +153,83 @@ flowchart LR
 | 🌱 Growth tactics | `/mk:growth` | (launch · referral · free-tool) |
 | 📈 Lead pipeline | `/mk:leads` | → `/mk:nurture` |
 | 🎬 AI video | `/mk:video` | (script → render → distribute) |
+
+### Real-world playbooks
+
+Concrete, end-to-end scenarios — copy the command sequence and adapt the bracketed values.
+
+**1. SaaS pillar-content SEO campaign** — analyze a live site, then build a topic cluster around one pillar keyword.
+```
+/mk:plan                                  # set ICP + brand voice (once)
+/mk:seo audit https://yoursaas.com        # technical + content + schema baseline
+/mk:seo keywords "<pillar keyword>"       # SERP analysis → cluster: pillar + supporting intents
+/mk:content blog "<pillar topic>"         # write pillar page
+/mk:content blog "<cluster topic N>"      # one per cluster post, internal-linked
+/mk:content publish <file> --publish      # draft → live on WordPress
+```
+
+**2. Local business — get found on Google Maps.** Restaurant/clinic/salon wants local-pack visibility.
+```
+/mk:plan                                  # ICP = local customers, service area
+/mk:seo audit https://yourshop.com        # routes seo-local + seo-maps sub-skills
+/mk:content blog "best <service> in <city>"
+/mk:seo schema <file>                     # LocalBusiness JSON-LD
+```
+
+**3. E-commerce product launch.** New product line, need ads + landing that convert.
+```
+/mk:research competitor "<competitor>"    # angle + positioning gaps
+/mk:content copy "<product> launch page"
+/mk:cro audit <landing-file>              # 25-point CRO pass
+/mk:ads google "<product>"                # + /mk:ads meta for social
+```
+
+**4. B2B cold-outreach + nurture.** Fill the funnel, then warm leads to a demo.
+```
+/mk:leads                                 # generate → qualify → nurture → convert → retain
+/mk:email cold "<ICP segment>"            # cold sequence
+/mk:nurture                               # lifecycle drip per lead stage (PII-redacted)
+```
+
+**5. Content creator — repurpose one idea across channels.** One topic → blog + social + video.
+```
+/mk:content blog "<topic>"
+/mk:content social "<topic>"              # platform-native variants
+/mk:video "<topic>"                       # script → voiceover → visuals → render
+```
+
+**6. Audit & fix an underperforming live post.** A published article that isn't ranking.
+```
+/mk:seo audit wp:<post-id>                # read-only audit of the live WP post
+/mk:content cro <exported-draft>          # rewrite per falsifiable findings
+/mk:content publish <file> --publish      # upsert by slug — never duplicates
+```
+
+**7. Agency client onboarding.** Spin up a repeatable delivery framework per client.
+```
+/mk:plan full                             # full ICP/positioning interview for the client
+/mk:research market                       # TAM/SAM/SOM + competitor deep-dive
+/mk:campaign <client-name>                # full 10-phase pipeline, gated each cycle
+```
+
+**8. Re-engage a dormant email list.** Win back subscribers who went cold.
+```
+/mk:email drip "<win-back angle>"         # re-engagement sequence
+/mk:cro email <sequence-file>             # optimize subject lines + CTAs
+```
+
+**9. Quick weekly social cadence.** Solo founder posting consistently without a calendar tool.
+```
+/mk:content social "<this week's theme>"  # batch a week of platform-native posts
+```
+
+**10. Pre-launch waitlist growth.** Build buzz before a product is live (greenfield, no site yet).
+```
+/mk:plan                                  # ICP + positioning from scratch
+/mk:growth launch "<product>"             # launch tactics + free-tool ideas
+/mk:content copy "<waitlist landing>"
+/mk:email campaign "<launch announcement>"
+```
 
 ### Patterns at a glance
 
